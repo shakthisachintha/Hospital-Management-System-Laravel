@@ -19,24 +19,24 @@
             <li><a href="#"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-id-card" aria-hidden="true"></i>Search Patient</a></li>
         </ul>
     </li>
-    <li class="treeview">
+    <li class="treeview active">
         <a href="#"><i class="far fa-calendar-check"></i></i> <span> Attendance</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-        <li><a href="{{route('myattend')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-calendar-day" aria-hidden="true"></i>My Attendance</a></li>
-            <li><a href="{{route('attendmore')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-plus-square" aria-hidden="true"></i>More</a></li>
+            <li><a href="{{route('myattend')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-calendar-day" aria-hidden="true"></i>My Attendance</a></li>
+            <li class="active"><a><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-plus-square" aria-hidden="true"></i>More</a></li>
         </ul>
     </li>
-    <li class="active"><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+<li><a href="{{route('profile')}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
 </ul>
 
 @endsection
 
-@section('content_title',"User Profile")
-@section('content_description',"Personalize Your Account")
+@section('content_title',"My Attendance")
+@section('content_description',"My Attendance And Holidays Taken")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">

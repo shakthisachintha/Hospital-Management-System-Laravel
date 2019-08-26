@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
 Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index']);
 
-Route::resource('attendance', 'AttendController')->names([
-    'index' => 'myattend'
-]);
+Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend']);
+Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore']);
+
+
