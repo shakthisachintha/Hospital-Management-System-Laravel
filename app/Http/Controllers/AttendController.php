@@ -15,5 +15,7 @@ class AttendController extends Controller
     public function attendmore()
     {
         return view('attendance.more_attendance', ['title' => "More Attendance"]);
-     }
+    }
+
+    
 }

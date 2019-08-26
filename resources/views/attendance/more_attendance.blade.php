@@ -34,7 +34,6 @@
 </ul>
 
 @endsection
-
 @section('content_title',"My Attendance")
 @section('content_description',"My Attendance And Holidays Taken")
 @section('breadcrumbs')
@@ -44,4 +43,10 @@
     <li class="active">Here</li>
 </ol>    
 @endsection
-    
+
+@section('main_content')
+<script
+src="https://code.jscharting.com/latest/jscharting.js"></script>
+
+
+@endsection
