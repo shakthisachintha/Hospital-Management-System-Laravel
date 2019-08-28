@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-       
+
     }
 
     /**
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
         return view('dash', [
             'title' => 'Dashboard',
         ]);

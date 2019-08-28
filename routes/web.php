@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
 Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index']);
+Route::get('/patient',['as' => 'patient', 'uses' => 'PatientController@index']);
+Route::get('/patient_register',['as' => 'patient_register', 'uses' => 'PatientController@register_patient']);

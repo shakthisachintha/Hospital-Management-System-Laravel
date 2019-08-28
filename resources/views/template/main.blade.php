@@ -21,10 +21,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <style>
-      
+
         .spinner {
             margin: 0;
             position: absolute;
@@ -246,7 +247,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                     @csrf
                                                     <input type="submit" href="#" class="btn btn-default btn-flat" value="Sign Out">
                                                 </form>
-                                        
+
                                     </div>
                                 </li>
                             </ul>
@@ -307,9 +308,10 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             </section>
 
             <!-- Main content -->
-            <section class="content container-fluid">
 
-                <div class="box box-info">
+           <section class="content container-fluid">
+                @yield('content')
+           {{--       <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Horizontal Form</h3>
                     </div>
@@ -348,7 +350,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         </div>
                         <!-- /.box-footer -->
                     </form>
-                </div>
+                </div> --}}
 
             </section>
             <!-- /.content -->
@@ -387,5 +389,5 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 @endauth
 
 @guest
- "FUck";   
+ "aaaa";
 @endguest

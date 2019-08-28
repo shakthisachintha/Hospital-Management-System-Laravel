@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-6">
                     <img class="text-center mt-5 mx-auto d-block border-0 img-thumbnail" style="border-radius:100%"
-                        src="/images/logo.png" alt="">
+                        src="./images/logo.png" alt="">
                     <h3 class="mt-2 text-center mb-5">Smart Hospitals</h3>
                 </div>
                 <div class="col-6 mt-2">
