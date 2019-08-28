@@ -25,7 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
         return view('dash', [
             'title' => 'Dashboard',
         ]);
@@ -36,4 +35,5 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('profile',['title'=>$user->name]);
     }
+
 }

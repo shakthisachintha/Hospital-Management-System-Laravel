@@ -352,6 +352,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </form>
                 </div> --}}
 
+
+            <section class="content container-fluid">
+                @yield('main_content')
             </section>
             <!-- /.content -->
         </div>
