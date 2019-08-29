@@ -1,6 +1,7 @@
 @extends('dash')
 
 @section('content')
+//patient registration
     <div class="row">
         <!-- right column -->
         <div class="col-md-8">
