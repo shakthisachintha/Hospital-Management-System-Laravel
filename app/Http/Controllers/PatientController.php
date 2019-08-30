@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -22,7 +24,6 @@ class PatientController extends Controller
 
     public function register_patient(Request $request)
     {
-        $user = Auth::user();
         //dd($request->all());
         $patient=new Patients;
         $patient->name=$request->reg_pname;

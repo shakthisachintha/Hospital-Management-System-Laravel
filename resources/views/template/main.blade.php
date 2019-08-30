@@ -310,7 +310,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             <!-- Main content -->
 
            <section class="content container-fluid">
-                @yield('content')
            {{--       <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Horizontal Form</h3>
