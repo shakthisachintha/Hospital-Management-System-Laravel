@@ -111,7 +111,7 @@
                     strokeWidth: 2
                 },
                 noDataPattern: {
-                    backgroundColor: '#76a7fa',
+                    backgroundColor: '#76a7ff',
                     color: '#76a7fa'
                 },
                 unusedMonthOutlineColor: {

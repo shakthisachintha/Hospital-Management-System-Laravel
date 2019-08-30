@@ -17,5 +17,10 @@ class AttendController extends Controller
         return view('attendance.more_attendance', ['title' => "More Attendance"]);
     }
 
-    
+    public function markattendance(Request $data){
+        $finger_id=$data->input('finger_id');
+        $user_id=$data->input('user_id');
+    }
+
+
 }
