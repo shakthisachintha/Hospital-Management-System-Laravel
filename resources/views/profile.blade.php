@@ -15,7 +15,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-plus" aria-hidden="true"></i>Register New</a></li>
+            <li><a href=""><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-plus" aria-hidden="true"></i>Register New</a></li>
             <li><a href="#"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-id-card" aria-hidden="true"></i>Search Patient</a></li>
         </ul>
     </li>
@@ -42,6 +42,5 @@
 <ol class="breadcrumb">
 <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
-</ol>    
+</ol>
 @endsection
-    
