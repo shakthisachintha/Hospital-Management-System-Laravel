@@ -35,4 +35,17 @@ class PatientController extends Controller
         session()->flash('regpsuccess','Patient registered successfully !');
         return redirect()->back();
     }
+
+    public function check_patient_view()
+    {
+        $user = Auth::user();
+        return view('patient.check_patient_view',['title'=>$user->name]);
+    }
+
+    public function create_channel_view()
+    {
+        $user = Auth::user();
+        return view('patient.create_channel_view',['title'=>$user->name]);
+    }
+
 }

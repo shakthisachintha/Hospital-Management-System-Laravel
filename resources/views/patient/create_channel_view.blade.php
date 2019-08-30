@@ -39,13 +39,30 @@
 </ul>
 
 @endsection
-
-@section('content_title',"Dashboard")
-@section('content_description',"Operate All The Things Here")
+@section('content_title',"Check Patient")
+@section('content_description',"Check Patient here and update history from here !")
 @section('breadcrumbs')
+
 <ol class="breadcrumb">
-    <li><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
+@endsection
+@section('main_content')
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+            <h3>44</h3>
 
+            <p>User Registrations</p>
+            </div>
+            <div class="icon">
+            <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+            More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
 @endsection
