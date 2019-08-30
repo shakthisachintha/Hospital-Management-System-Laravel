@@ -31,6 +31,7 @@ class PatientController extends Controller
         $patient->sex=$request->reg_psex;
         $patient->age=$request->reg_page;
         $patient->save();
+        session()->flash('regpsuccess','Patient registered successfully !');
         return redirect()->back();
     }
 }

@@ -1,7 +1,14 @@
 @extends('dash')
 
 @section('content')
-//patient registration
+{{--  patient registration  --}}
+  @if (session()->has('regpsuccess'))
+    <div class="row">
+        <div class="alert alert-success" role="alert">
+            {{session()->get('regpsuccess')}}
+        </div>
+    </div>
+  @endif
     <div class="row">
         <!-- right column -->
         <div class="col-md-8">
