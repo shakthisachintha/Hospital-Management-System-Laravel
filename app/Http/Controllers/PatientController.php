@@ -29,6 +29,16 @@ class PatientController extends Controller
 
         try{
             $patient=new Patients;
+            $today_regs = (int)Patients::whereDate('created_at', date("Y-m-d"))->count();
+            
+            $number=$today_regs+1;
+            $year=date('Y')%100;
+            $month=date('m');
+            $day=date('d');
+        
+            $reg_num=$year.$month.$day.$number;
+
+            $patient->id=$reg_num;
             $patient->name=$request->reg_pname;
             $patient->address=$request->reg_paddress;
             $patient->occupation=$request->reg_poccupation;
@@ -40,7 +50,7 @@ class PatientController extends Controller
             session()->flash('regpsuccess','Patient '.$request->reg_pname.' Registered Successfully !');
 
             // Log Activity
-            activity()->performedOn($patient)->withProperties(['Patient ID'=> $patient->id])->log('Patient Registration Success');
+            activity()->performedOn($patient)->withProperties(['Patient ID'=> $reg_num])->log('Patient Registration Success');
 
             return redirect()->back();
          }
