@@ -7,7 +7,7 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
 {{--patient--}}
     <li class="treeview">
         <a href="#"><i class="fas fa-user"></i> <span>Patient</span>
@@ -36,9 +36,9 @@
         </ul>
     </li>
 
-     {{-- Users Operations --}}
+    {{-- Users Operations --}}
 
-     <li class="treeview">
+    <li class="active treeview">
         <a href="#"><i class="fas fa-user"></i> <span>Users</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -47,40 +47,28 @@
         <ul class="treeview-menu">
             <li><a href="{{route('newuser')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
             <li><a href="{{route('regfinger')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-fingerprint" aria-hidden="true"></i>Register Fingerprint</a></li>
-            <li><a href="{{route('resetuser')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
+            <li class="active"><a href="#"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
         </ul>
     </li>
 
     {{-- Profile --}}
-
-<li><a href="{{route('profile')}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+<li><a href="{{route('profile')}}"><i class="fa fa-id-card" aria-hidden="true"></i> <span>Profile</span></a></li>
 </ul>
 
 @endsection
-@section('content_title',"Check Patient")
-@section('content_description',"Check Patient here and update history from here !")
+@section('content_title',"My Attendance")
+@section('content_description',"My Attendance And Holidays Taken")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+<li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
 @endsection
-@section('main_content')
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
-            <div class="inner">
-            <h3>44</h3>
 
-            <p>User Registrations</p>
-            </div>
-            <div class="icon">
-            <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
-            </a>
-        </div>
-    </div>
+@section('main_content')
+<script
+src="https://code.jscharting.com/latest/jscharting.js"></script>
+
+
 @endsection
