@@ -35,6 +35,24 @@
             <li><a href="{{route('attendmore')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-plus-square" aria-hidden="true"></i>More</a></li>
         </ul>
     </li>
+
+     {{-- Users Operations --}}
+
+     <li class="treeview">
+        <a href="#"><i class="fas fa-user"></i> <span>Users</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{route('newuser')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
+            <li><a href="{{route('regfinger')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-fingerprint" aria-hidden="true"></i>Register Fingerprint</a></li>
+            <li><a href="{{route('resetuser')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
+        </ul>
+    </li>
+
+    {{-- Profile --}}
+
 <li><a href="{{route('profile')}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
 </ul>
 
@@ -48,4 +66,47 @@
 <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
+@endsection
+
+@section('main_content')
+<?php $user = Auth::user();
+$name = $user->name;
+$user_type =$user->user_type;
+$image_path =$user->img_path;
+$outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
+
+.<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+                <div class="box box-primary">
+                        <div class="box-body box-profile">
+                        <img style="width:10vw" class="profile-user-img img-responsive img-circle" src="{{$image_path}}" alt="User Profile Picture">
+                
+                        <h3 class="profile-username text-center">{{$name}}</h3>
+                
+                        <p class="text-muted text-center">{{ucfirst($user_type)}}</p>
+                
+                          <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                              <b>Followers</b> <a class="pull-right">1,322</a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Following</b> <a class="pull-right">543</a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Friends</b> <a class="pull-right">13,287</a>
+                            </li>
+                          </ul>
+                          <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+
 @endsection
