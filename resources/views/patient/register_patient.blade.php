@@ -7,35 +7,53 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
 {{--patient--}}
-    <li class="treeview">
-        <a href="#"><i class="fas fa-user"></i> <span>Patient</span>
+    <li class="treeview active">
+        <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{route('patient')}}"></i><i class="fa fa-user-plus" aria-hidden="true"></i>Register New</a></li>
-            <li><a href="#"></i><i class="fa fa-id-card" aria-hidden="true"></i>Search Patient</a></li>
+            <li class="active"><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a></li>
+            <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
         </ul>
     </li>
 {{--create channel--}}
-    <li><a href="{{route('create_channel_view')}}"><i class="fa fa-user"></i> <span>Create Channel</span></a></li>
+    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Channel</span></a></li>
 {{--check patient--}}
-    <li><a href="{{route('check_patient_view')}}"><i class="fa fa-procedures"></i> <span>Check Patient</span></a></li>
+    <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
     <li class="treeview">
-        <a href="#"><i class="far fa-calendar-check"></i></i> <span> Attendance</span>
+        <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-        <li><a href="{{route('myattend')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-calendar-day" aria-hidden="true"></i>My Attendance</a></li>
-            <li><a href="{{route('attendmore')}}"><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-plus-square" aria-hidden="true"></i>More</a></li>
+        <li><a href="{{route('myattend')}}">      <i class="fas fa-calendar-day" aria-hidden="true"></i> My Attendance</a></li>
+            <li><a href="{{route('attendmore')}}"><i class="fas fa-plus-square" aria-hidden="true"></i> More</a></li>
         </ul>
     </li>
-<li><a href="{{route('profile')}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+
+     {{-- Users Operations --}}
+
+     <li class="treeview">
+        <a href="#"><i class="fas fa-users-cog"></i><span> Users</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{route('newuser')}}">  <i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
+            <li><a href="{{route('regfinger')}}"><i class="fa fa-fingerprint" aria-hidden="true"></i>Register Fingerprint</a></li>
+            <li><a href="{{route('resetuser')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
+        </ul>
+    </li>
+
+    {{-- Profile --}}
+
+<li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
 </ul>
 
 @endsection
@@ -51,20 +69,38 @@
 
 @section('main_content')
 {{--  patient registration  --}}
-    @if (session()->has('regpsuccess'))
-        <div class="row">
-            <div class="alert alert-success" role="alert">
-                {{session()->get('regpsuccess')}}
+    
+        <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                    @if (session()->has('regpsuccess'))
+                        <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                {{session()->get('regpsuccess')}}
+                              </div>
+                              @endif
+                              @if (session()->has('regpfail'))
+                              <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                    {{session()->get('regpfail')}}
+                                  </div>
+                                  @endif
+
             </div>
+            <div class="col-md-1"></div>
+            
         </div>
-    @endif
+
     <div class="row">
         <!-- right column -->
+        <div class="col-md-1"></div>
         <div class="col-md-10">
             <!-- Horizontal Form -->
             <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Registration Form</h3>
+                <h3 class="box-title">Patient Registration Form</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -72,40 +108,53 @@
                 {{csrf_field()}}
                 <div class="box-body">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Full Name</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Full Name <span style="color:red">*</span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
+                        <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Address</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">NIC Number</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
+                        <input type="text" required class="form-control" name="reg_pnic" placeholder="National Identity Card Number">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Occupation</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">Address <span style="color:red">*</span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
+                        <input type="text" required class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Telephone</label>
+                    <div class="col-sm-10">
+                        <input type="tel" class="form-control" name="reg_ptel" placeholder="Patient Telephone Number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Occupation <span style="color:red">*</span></label>
+                    <div class="col-sm-10">
+                        <input type="text" required class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
+                    </div>
+                </div>
+
                 <!-- select -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Sex</label>
+                    <label class="col-sm-2 control-label">Sex <span style="color:red">*</span></label>
                     <div class="col-sm-3">
-                        <select class="form-control" name="reg_psex">
-                            <option>Male</option>
-                            <option>Female</option>
+                        <select required class="form-control" name="reg_psex">
+                            <option selected value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
-                    <label for="inputEmail3" class="col-sm-1 control-label">Age</label>
+                    <label for="inputEmail3" class="col-sm-1 control-label">Age <span style="color:red">*</span></label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="reg_page" placeholder="Enter Age">
+                        <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
                     </div>
                 </div>
                 <div class="box-footer">
                     <input type="submit" class="btn btn-info pull-right" value="Register">
-                    <input type="button" class="btn btn-default" value="Cancel">
+                    <input type="reset" class="btn btn-default" value="Cancel">
                 </div>
                 <!-- /.box-footer -->
             </form>
@@ -113,6 +162,7 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-1"></div>
     </div>
 
     @endsection

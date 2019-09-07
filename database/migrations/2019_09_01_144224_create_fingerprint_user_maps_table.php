@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendanceTable extends Migration
+class CreateFingerprintUserMapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAttendanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance', function (Blueprint $table) {
+        Schema::create('fingerprint_user_maps', function (Blueprint $table) {
             $table->bigIncrements('user_id');
-            $table->timestamp('start');
-            $table->timestamp('end')->nullable();
+            $table->integer('finger_id')->index();
+            $table->timestamps();
         });
-        DB::unprepared('ALTER TABLE attendance DROP PRIMARY KEY,ADD PRIMARY KEY(`user_id`,`start`)');
     }
 
     /**
@@ -28,6 +27,6 @@ class CreateAttendanceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance');
+        Schema::dropIfExists('fingerprint_user_maps');
     }
 }
