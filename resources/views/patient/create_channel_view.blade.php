@@ -39,8 +39,8 @@
 </ul>
 
 @endsection
-@section('content_title',"Check Patient")
-@section('content_description',"Check Patient here and update history from here !")
+@section('content_title',"Create Channel")
+@section('content_description',"Create an appointment for the patient from here !")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -49,20 +49,141 @@
 </ol>
 @endsection
 @section('main_content')
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
-            <div class="inner">
-            <h3>44</h3>
+        <!-- Main content -->
 
-            <p>User Registrations</p>
+            {{--  <div class="col-md-3 col-md-offset-4"  >
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <p>Channel No:</p>
+                        <h3>44</h3>
+                    </div>
+                    <a href="#" class="icon"><i class="ion ion-person-add"></i></a>
+                    <a href="#" class="small-box-footer">Create Channel <i class="fas fa-plus-circle"></i></a>
+                </div>
+            </div>  --}}
+            <div class="row" id="createchannel1" style="display:none">
+                <div class="col-md-3 col-md-offset-4"  >
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>Channel No:</p>
+                            <h3>44</h3>
+                        </div>
+                        <a href="#" class="icon"><i class="ion ion-person-add"></i></a>
+                        <a href="#" class="small-box-footer">Create Channel <i class="fas fa-plus-circle"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="icon">
-            <i class="ion ion-person-add"></i>
+
+            <div class="box box-info" id="createchannel2" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Horizontal Form</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Full Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Occupation</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
+                            </div>
+                        </div>
+                        <!-- select -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Sex</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="reg_psex">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                            <label for="inputEmail3" class="col-sm-1 control-label">Age</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="reg_page" placeholder="Enter Age">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <input type="submit" class="btn btn-info pull-right" value="Register">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <a href="#" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
-            </a>
-        </div>
-    </div>
+
+            <div class="box box-info" id="createchannel3">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Enter Registration No. Or Scan the bar code</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Registration No:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Enter reg No">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-info pull-right" onclick="createchannelfunction()">Enter</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+
+            <div class="row" id="createchannel4">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Patients appointments Today</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                    <th>Registration No.</th>
+                                    <th>Appointment No.</th>
+                                    <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    <!-- /.box-body -->
+                    </div>
+                <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+          <!-- /.row -->
+        <!-- /.content -->
+
 @endsection
+
+<script>
+    function createchannelfunction() {
+        $("#createchannel1").slideDown(1000);
+        $("#createchannel2").slideDown(1000);
+        $("#createchannel3").slideUp(1000);
+        $("#createchannel4").slideUp(1000);
+    }
+</script>
+
