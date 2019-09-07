@@ -10,7 +10,7 @@
     <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
 {{--patient--}}
     <li class="treeview">
-        <a href="#"><i class="fas fa-user"></i> <span>Patient</span>
+        <a href="#"><i class="fas fa-user-injured"></i><span>Patient</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -21,7 +21,7 @@
         </ul>
     </li>
 {{--create channel--}}
-    <li><a href="{{route('create_channel_view')}}"><i class="fa fa-user"></i> <span>Create Channel</span></a></li>
+    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Channel</span></a></li>
 {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fa fa-procedures"></i> <span>Check Patient</span></a></li>
     <li class="treeview">
@@ -39,7 +39,7 @@
     {{-- Users Operations --}}
 
     <li class="active treeview">
-        <a href="#"><i class="fas fa-user"></i> <span>Users</span>
+        <a href="#"><i class="fas fa-users-cog"></i><span>Users</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
