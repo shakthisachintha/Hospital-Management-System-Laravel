@@ -25,15 +25,31 @@ class PatientController extends Controller
     public function register_patient(Request $request)
     {
         //dd($request->all());
-        $patient=new Patients;
-        $patient->name=$request->reg_pname;
-        $patient->address=$request->reg_paddress;
-        $patient->occupation=$request->reg_poccupation;
-        $patient->sex=$request->reg_psex;
-        $patient->age=$request->reg_page;
-        $patient->save();
-        session()->flash('regpsuccess','Patient registered successfully !');
-        return redirect()->back();
+       
+
+        try{
+            $patient=new Patients;
+            $patient->name=$request->reg_pname;
+            $patient->address=$request->reg_paddress;
+            $patient->occupation=$request->reg_poccupation;
+            $patient->sex=$request->reg_psex;
+            $patient->age=$request->reg_page;
+            $patient->telephone=$request->reg_ptel;
+            $patient->nic=$request->reg_pnic;
+            $patient->save();
+            session()->flash('regpsuccess','Patient '.$request->reg_pname.' Registered Successfully !');
+            return redirect()->back();
+         }
+         catch(\Exception $e){
+            // do task when error
+            $error=$e->getCode();
+            if($error=='23000'){
+                session()->flash('regpfail','Patient '.$request->reg_pname.' Is Already Registered..');
+                return redirect()->back();
+            }
+         }
+
+       
     }
 
     public function check_patient_view()
