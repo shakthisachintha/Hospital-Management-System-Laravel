@@ -7,7 +7,7 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
 {{--patient--}}
     <li class="treeview">
         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
@@ -21,7 +21,7 @@
         </ul>
     </li>
 {{--create channel--}}
-    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Channel</span></a></li>
+    <li class="active"><a  href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Channel</span></a></li>
 {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i> <span> Check Patient</span></a></li>
     <li class="treeview">
