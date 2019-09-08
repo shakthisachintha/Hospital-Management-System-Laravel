@@ -57,8 +57,8 @@
 </ul>
 
 @endsection
-@section('content_title',"My Attendance")
-@section('content_description',"My Attendance And Holidays Taken")
+@section('content_title',"Patient Registration")
+@section('content_description',"Register New Out Patients Here.")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">

@@ -64,4 +64,8 @@ class PatientController extends Controller
         return view('patient.create_channel_view',['title'=>$user->name]);
     }
 
+    public function regcard(){
+        return view('patient.patient_reg_card');
+    }
+
 }

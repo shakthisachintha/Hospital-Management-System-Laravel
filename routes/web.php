@@ -58,10 +58,11 @@ Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile'])-
 Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middleware('auth');
 
 Route::get('/patient',['as' => 'patient', 'uses' => 'PatientController@index'])->middleware('auth');
+Route::get('/patientregcard',['as' => 'pregcard', 'uses' => 'PatientController@regcard'])->middleware('auth');
 Route::post('/patientregister',['as' => 'patient_register', 'uses' => 'PatientController@register_patient'])->middleware('auth');
-Route::get('/createchannelview',['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth');
+Route::get('/createchannel',['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth');
 
-Route::get('/checkpatientview',['as' => 'check_patient_view', 'uses' => 'PatientController@check_patient_view'])->middleware('auth');
+Route::get('/checkpatient',['as' => 'check_patient_view', 'uses' => 'PatientController@check_patient_view'])->middleware('auth');
 
 Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth');
 Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth');
