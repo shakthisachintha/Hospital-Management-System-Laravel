@@ -78,20 +78,21 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form class="form-horizontal">
+                <form action="{{route('user.regfinger')}}" method="post" class="form-horizontal">
+                    @csrf
                       <div class="box-body">
                         <div class="form-group">
                           <label for="userid" class="col-sm-2 control-label">User ID</label>
             
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="userid" placeholder="User ID">
+                            <input type="number" name="userid" class="form-control" id="userid" placeholder="User ID">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="fingerid" class="col-sm-2 control-label">Fingerprint ID</label>
             
                           <div class="col-sm-10">
-                            <input type="password" class="form-control" id="fingerid" placeholder="Fingerprint ID">
+                            <input type="number" name="fingerid" class="form-control" id="fingerid" placeholder="Fingerprint ID">
                           </div>
                         </div>
                         
