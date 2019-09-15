@@ -351,19 +351,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+
+@yield('optional_scripts')
+
 </body>
 
 </html>
