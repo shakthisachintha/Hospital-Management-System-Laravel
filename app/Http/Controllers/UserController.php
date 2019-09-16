@@ -42,7 +42,7 @@ class UserController extends Controller
                 session()->flash('success', "Fingerprint ID For The User ID $data->userid Successfully Updated!");
 
                 // Activity Log
-                activity()->performedOn($user)->withProperties(['User ID'=> $data->userid,'Finger ID'->$data->fingerid])->log('Fingerprint Resgistration Success');
+                activity()->performedOn($user)->withProperties(['User ID'=> $data->userid,'Finger ID'=>$data->fingerid])->log('Fingerprint Resgistration Success');
 
                 return redirect()->back();
             } catch (\Exception $e) {
@@ -58,7 +58,7 @@ class UserController extends Controller
             session()->flash('fail', "User Does Not Exist.Please Re-Check The UserID.");
             
             // activity log
-            activity()->performedOn($user)->withProperties(['User ID'=> $data->userid,'Finger ID'=>$data->fingerid,'Error'=>'User Does Not Exist'])->log('Fingerprint Resgistration Fail');
+            activity()->withProperties(['User ID'=> $data->userid,'Finger ID'=>$data->fingerid,'Error'=>'User Does Not Exist'])->log('Fingerprint Resgistration Fail');
 
             return redirect()->back();
         }
