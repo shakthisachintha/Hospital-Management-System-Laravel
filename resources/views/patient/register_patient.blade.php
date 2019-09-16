@@ -69,7 +69,7 @@
 
 @section('main_content')
 {{--  patient registration  --}}
-    
+
         <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
@@ -90,7 +90,7 @@
 
             </div>
             <div class="col-md-1"></div>
-            
+
         </div>
 
     <div class="row">
@@ -107,59 +107,58 @@
             <form method="post" action="{{ route('patient_register') }}" class="form-horizontal">
                 {{csrf_field()}}
                 <div class="box-body">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Full Name <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Full Name <span style="color:red">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">NIC Number</label>
-                    <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_pnic" placeholder="National Identity Card Number">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">NIC Number</label>
+                        <div class="col-sm-10">
+                            <input type="text" required class="form-control" name="reg_pnic" placeholder="National Identity Card Number">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Address <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Address <span style="color:red">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" required class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Telephone</label>
-                    <div class="col-sm-10">
-                        <input type="tel" class="form-control" name="reg_ptel" placeholder="Patient Telephone Number">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Telephone</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" name="reg_ptel" placeholder="Patient Telephone Number">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Occupation <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Occupation <span style="color:red">*</span></label>
+                        <div class="col-sm-10">
+                            <input type="text" required class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
+                        </div>
                     </div>
-                </div>
 
-                <!-- select -->
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Sex <span style="color:red">*</span></label>
-                    <div class="col-sm-3">
-                        <select required class="form-control" name="reg_psex">
-                            <option selected value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
+                    <!-- select -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Sex <span style="color:red">*</span></label>
+                        <div class="col-sm-3">
+                            <select required class="form-control" name="reg_psex">
+                                <option selected value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-1 control-label">Age <span style="color:red">*</span></label>
+                        <div class="col-sm-2">
+                            <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
+                        </div>
                     </div>
-                    <label for="inputEmail3" class="col-sm-1 control-label">Age <span style="color:red">*</span></label>
-                    <div class="col-sm-2">
-                        <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
+                    <div class="box-footer">
+                        <input type="submit" class="btn btn-info pull-right" value="Register">
+                        <input type="reset" class="btn btn-default" value="Cancel">
                     </div>
-                </div>
-                <div class="box-footer">
-                    <input type="submit" class="btn btn-info pull-right" value="Register">
-                    <input type="reset" class="btn btn-default" value="Cancel">
-                </div>
                 <!-- /.box-footer -->
-            </form>
-
                 </div>
+            </form>
             </div>
         </div>
         <div class="col-md-1"></div>
