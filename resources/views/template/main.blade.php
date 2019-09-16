@@ -118,7 +118,37 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<script>
+
+function setdate(){
+    var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+today =  dd+ '-'+ mm  + '-' + yyyy;
+document.getElementById("today").innerHTML=today;
+}
+
+        function startTime() {
+          var today = new Date();
+          var h = today.getHours();
+          var c = ((h > 12) ? 'pm' : 'am');
+          h=h%12;
+          var m = today.getMinutes();
+          var s = today.getSeconds();
+          m = checkTime(m);
+          s = checkTime(s);
+          document.getElementById('time').innerHTML =
+          h + ":" + m + ":" + s + " "+c;
+          var t = setTimeout(startTime, 1000);
+        }
+        function checkTime(i) {
+          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+        }
+        </script>
+
+<body onload="startTime();setdate()" class="hold-transition skin-blue sidebar-mini">
 
 <div id="preloader"></div>
     <div id="spinner" class="spinner">
@@ -157,6 +187,10 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
+                       
+                        <li class="nav-item mr-auto">
+                             <p style="padding-top:1.3rem;font-weight:400;margin-right:1.5vw;color:ivory;font-size:1.7rem"><span class="mr-3" id="today"></span><span id="time"></span></p>
+                        </li>
                         <li class="dropdown messages-menu">
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
