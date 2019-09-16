@@ -69,9 +69,26 @@
 
 @section('main_content')
 
-<div style="margin-top:10vh;padding:3%" class="row">
+<div style="margin-top:1vh;padding:3%" class="row">
     <div class="col-md-2"></div>
     <div class="mt-5 col-md-8 mx-auto">
+
+            @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-check"></i> Success!</h4>
+                    {{session()->get('success')}}
+                  </div>
+                  @endif
+                  @if (session()->has('fail'))
+                  <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                      
+                        {{session()->get('fail')}}
+                      </div>
+                      @endif
+                     
             <div class="mt-5 box box-info">
                     <div class="box-header with-border">
                       <h3 class="box-title">Register Fingerprint</h3>
@@ -83,16 +100,25 @@
                       <div class="box-body">
                         <div class="form-group">
                           <label for="userid" class="col-sm-2 control-label">User ID</label>
-            
                           <div class="col-sm-10">
-                            <input type="number" name="userid" class="form-control" id="userid" placeholder="User ID">
+                            <input type="number" name="userid" class="form-control @error('userid') border border-danger @enderror" id="userid" value="{{ old('userid') }}" placeholder="User ID"> 
+                            @error('userid')
+                            <span class="text-danger text-capitalize invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="fingerid" class="col-sm-2 control-label">Fingerprint ID</label>
             
                           <div class="col-sm-10">
-                            <input type="number" name="fingerid" class="form-control" id="fingerid" placeholder="Fingerprint ID">
+                            <input type="number" name="fingerid" class="form-control @error('fingerid') border border-danger @enderror" value="{{ old('fingerid') }}" id="fingerid" placeholder="Fingerprint ID">
+                            @error('fingerid')
+                            <span class="text-danger text-capitalize invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                           </div>
                         </div>
                         
