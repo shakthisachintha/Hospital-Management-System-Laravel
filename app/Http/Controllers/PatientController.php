@@ -38,11 +38,18 @@ class PatientController extends Controller
             $patient->nic=$request->reg_pnic;
             $patient->save();
             session()->flash('regpsuccess','Patient '.$request->reg_pname.' Registered Successfully !');
+
+            // Log Activity
+            activity()->performedOn($patient)->withProperties(['Patient ID'=> $patient->id])->log('Patient Registration Success');
+
             return redirect()->back();
          }
          catch(\Exception $e){
             // do task when error
             $error=$e->getCode();
+            // log activity
+            activity()->performedOn($patient)->withProperties(['Error Code' => $error,'Error Message'=>$e->getMessage()])->log('Patient Registration Failed');
+           
             if($error=='23000'){
                 session()->flash('regpfail','Patient '.$request->reg_pname.' Is Already Registered..');
                 return redirect()->back();
