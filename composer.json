@@ -14,6 +14,7 @@
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.23",
+        "milon/barcode": "^6.0",
         "spatie/laravel-activitylog": "^3.2"
     },
     "require-dev": {
