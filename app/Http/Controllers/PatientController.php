@@ -48,6 +48,7 @@ class PatientController extends Controller
             $patient->nic=$request->reg_pnic;
             $patient->save();
             session()->flash('regpsuccess','Patient '.$request->reg_pname.' Registered Successfully !');
+            session()->flash('pid',"$reg_num");
 
             // Log Activity
             activity()->performedOn($patient)->withProperties(['Patient ID'=> $reg_num])->log('Patient Registration Success');

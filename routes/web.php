@@ -58,7 +58,7 @@ Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile'])-
 Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middleware('auth');
 
 Route::get('/patient',['as' => 'patient', 'uses' => 'PatientController@index'])->middleware('auth','staff');
-Route::get('/patientregcard',['as' => 'pregcard', 'uses' => 'PatientController@regcard'])->middleware('auth','staff');
+Route::get('/patientregcard/{pid}',['as' => 'pregcard', 'uses' => 'PatientController@regcard'])->middleware('auth','staff');
 Route::post('/patientregister',['as' => 'patient_register', 'uses' => 'PatientController@register_patient'])->middleware('auth','staff');
 Route::get('/createchannel',['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth','staff');
 
