@@ -70,13 +70,7 @@ Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@att
 Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth','admin');
 Route::post('regfinger',['as'=>'user.regfinger','uses'=>'UserController@regFinger'])->middleware('auth','admin');
 
-<<<<<<< HEAD
-Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@regFingerprint'])->middleware('auth');
-Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth');
-Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth');
-
-Route::get('/registerinpatient',['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth');
-=======
 Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth','admin');
 Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth','admin');
->>>>>>> origin
+
+Route::get('/inpatientregister',['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth','staff');
