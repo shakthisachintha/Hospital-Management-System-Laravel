@@ -68,4 +68,10 @@ class PatientController extends Controller
         return view('patient.patient_reg_card');
     }
 
+    public function register_in_patient_view()
+    {
+        $user = Auth::user();
+        return view('patient.register_in_patient_view',['title'=>$user->name]);
+    }
+
 }
