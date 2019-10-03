@@ -29,6 +29,16 @@ class PatientController extends Controller
 
         try{
             $patient=new Patients;
+            $today_regs = (int)Patients::whereDate('created_at', date("Y-m-d"))->count();
+            
+            $number=$today_regs+1;
+            $year=date('Y')%100;
+            $month=date('m');
+            $day=date('d');
+        
+            $reg_num=$year.$month.$day.$number;
+
+            $patient->id=$reg_num;
             $patient->name=$request->reg_pname;
             $patient->address=$request->reg_paddress;
             $patient->occupation=$request->reg_poccupation;
@@ -38,11 +48,19 @@ class PatientController extends Controller
             $patient->nic=$request->reg_pnic;
             $patient->save();
             session()->flash('regpsuccess','Patient '.$request->reg_pname.' Registered Successfully !');
+            session()->flash('pid',"$reg_num");
+
+            // Log Activity
+            activity()->performedOn($patient)->withProperties(['Patient ID'=> $reg_num])->log('Patient Registration Success');
+
             return redirect()->back();
          }
          catch(\Exception $e){
             // do task when error
             $error=$e->getCode();
+            // log activity
+            activity()->performedOn($patient)->withProperties(['Error Code' => $error,'Error Message'=>$e->getMessage()])->log('Patient Registration Failed');
+           
             if($error=='23000'){
                 session()->flash('regpfail','Patient '.$request->reg_pname.' Is Already Registered..');
                 return redirect()->back();

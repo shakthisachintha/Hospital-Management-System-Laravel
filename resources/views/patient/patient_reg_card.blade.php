@@ -68,10 +68,17 @@
     
                         </div>
                         <div class="row">
+                            <div class="col"></div>
                             <div class="col">
-                                    <img style="height:70px;" class="mx-auto mt-3 d-block" src="dist/img/barcode.png"
-                                    alt="...">
+                                <div class="mt-3 mx-auto">
+                                      
+                                        <?php 
+                                        echo '<img src="' . DNS1D::getBarcodePNGPath("1906254", "C39+",1.5,70,array(0,0,0), true) . '" alt="barcode"   />';
+                                            ?>
+                                </div>
+                                   
                             </div>
+                            <div class="col"></div>
                         </div>
                     </div>
                 </div>
@@ -80,8 +87,7 @@
             </div>
         
         </div>
-
-     
+       
     </div>
 
     <!-- Optional JavaScript -->

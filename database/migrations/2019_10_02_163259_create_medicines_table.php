@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFingerprintUserMapsTable extends Migration
+class CreateMedicinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateFingerprintUserMapsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fingerprint_user_maps', function (Blueprint $table) {
-            $table->bigIncrements('user_id');
-            $table->integer('finger_id')->index();
+        Schema::create('medicines', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name_sinhala');
+            $table->string('name_english');
+            $table->integer('qty');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateFingerprintUserMapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fingerprint_user_maps');
+        Schema::dropIfExists('medicines');
     }
 }
