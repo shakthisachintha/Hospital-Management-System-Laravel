@@ -9,7 +9,7 @@
     <!-- Optionally, you can add icons to the links -->
     <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
 {{--patient--}}
-    <li class="treeview">
+    <li class="treeview active">
         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -18,15 +18,16 @@
         <ul class="treeview-menu">
             <li><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a></li>
             <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
+ {{--register in patient--}}
+            <li class="active"><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" area-hidden="true"></i><span> Register In Patient</span></a></li>
         </ul>
     </li>
 {{--create channel--}}
-    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Channel</span></a></li>
+    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Appoinment</span></a></li>
 {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
 
-{{--register in patient--}}
-    <li class="active"><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"></i><span> Register In Patient</span></a></li>
+
 
     <li class="treeview">
         <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>

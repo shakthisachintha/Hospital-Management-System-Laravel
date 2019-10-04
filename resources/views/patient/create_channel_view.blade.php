@@ -20,6 +20,9 @@
             <li><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a>
             </li>
             <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
+{{--register in patient--}}
+            <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" area-hidden="true"></i><span> Register In Patient</span></a></li>
+
         </ul>
     </li>
     {{--create channel--}}
@@ -28,8 +31,6 @@
     {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i> <span> Check Patient</span></a></li>
     
-{{--register in patient--}}
-    <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"></i><span> Register In Patient</span></a></li>
     
     <li class="treeview">
         <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>
