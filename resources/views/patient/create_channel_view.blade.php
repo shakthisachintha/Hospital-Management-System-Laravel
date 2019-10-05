@@ -268,6 +268,15 @@
 
 <script>
     function createchannelfunction() {
+
+        var x, text;
+        x = document.getElementById("inputEmail3").value;
+        if (x == 0) 
+        {
+            alert("Please Enter a Registration Number!");
+            window.location.$("#reginpatient3");
+        }
+
         $("#createchannel1").slideDown(1000);
         $("#createchannel2").slideDown(1000);
         $("#createchannel3").slideUp(1000);

@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Occupation <span style="color:red">*</span></label>
+                            <label for="inputPassword3" class="col-sm-2 control-label">Occupation</label>
                             <div class="col-sm-10">
                                 <input type="text" required class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
                             </div>
@@ -288,12 +288,12 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal">
+                <form class="form-horizontal" >
                     <div class="box-body">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Registration No:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Enter reg No">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Enter reg No"/>
                             </div>
                         </div>
                     </div>
@@ -302,7 +302,7 @@
                 </form>
 
                 <div class="box-footer">
-                        <button type="button" class="btn btn-info pull-right" onclick="registerinpatientfunction()">Enter</button>
+                        <button type="button" class="btn btn-info pull-right"  onclick="registerinpatientfunction()">Enter</button>
                     </div>
                     <!-- /.box-footer -->
 
@@ -317,8 +317,17 @@
     @endsection
 
 <script>
+
     function registerinpatientfunction() {
-        $("#reginpatient1").slideDown(1000);
+
+        var x, text;
+        x = document.getElementById("inputEmail3").value;
+        if (x == 0) 
+        {
+            alert("Please Enter a Registration Number!");
+            window.location.$("#reginpatient3");
+        }
+
         $("#reginpatient2").slideDown(1000);
         $("#reginpatient3").slideUp(1000);
        
