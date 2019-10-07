@@ -74,7 +74,7 @@
 @section('main_content')
 {{--  patient registration  --}}
 
-        <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
+        <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:4vh" @endif class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
                     @if (session()->has('regpsuccess'))
@@ -103,7 +103,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal">
+                
                 <form class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">

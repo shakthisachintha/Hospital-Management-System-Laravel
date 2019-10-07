@@ -14,11 +14,13 @@ class CreateAttendancesTable extends Migration
     public function up()
     {
         Schema::create('attendances', function (Blueprint $table) {
-            $table->bigIncrements('user_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->timestamp('start');
             $table->timestamp('end')->nullable();
+            $table->timestamps();
         });
-        DB::unprepared('ALTER TABLE attendances DROP PRIMARY KEY,ADD PRIMARY KEY(`user_id`,`start`)');
+        DB::unprepared('ALTER TABLE attendances ADD UNIQUE KEY(`user_id`,`start`)');
     }
 
     /**

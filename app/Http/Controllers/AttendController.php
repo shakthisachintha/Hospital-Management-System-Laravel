@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Attendance;
+use DB;
 
 class AttendController extends Controller
 {
@@ -17,10 +20,27 @@ class AttendController extends Controller
         return view('attendance.more_attendance', ['title' => "More Attendance"]);
     }
 
-    public function markattendance(Request $data){
-        $finger_id=$data->input('finger_id');
-        $user_id=$data->input('user_id');
+    public function markAttendance(Request $data)
+    {
+        $finger_id = $data->input('finger');
+        $timestamp = $data->input('time');
+        // echo $finger_id;
+        // echo $timestamp;
+        if (User::where('fingerprint', $finger_id)->exists()) {
+            $user = User::where('fingerprint', $finger_id)->first();
+            if (DB::table('attendances')->whereRaw(DB::raw("user_id='$user->id' and date(start)=date('$timestamp') and end is null"))->exists()) {
+                $rec = DB::table('attendances')->whereRaw(DB::raw("user_id='$user->id' and date(start)=date('$timestamp') and end is null"))->orderBy('start', 'asc')->first();
+                // echo $rec;
+                $x = Attendance::where('id',$rec->id)->first();
+                $x->end=$timestamp;
+                $x->save();
+            }else{
+                $attend = new Attendance;
+                $attend->user_id = $user->id;
+                $attend->start = $timestamp;
+                $attend->save();
+            }
+           
+        }
     }
-
-
 }
