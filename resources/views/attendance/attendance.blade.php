@@ -92,29 +92,11 @@
             id: 'Worked Hours'
         });
         dataTable.addRows([
-            [new Date(2012, 3, 13), -1],
-            [new Date(2012, 3, 14), 1],
-            [new Date(2012, 3, 15), 0],
-            [new Date(2012, 3, 16), 1],
-            [new Date(2012, 3, 17), 2],
-            // Many rows omitted for brevity.
-            [new Date(2013, 9, 4), 3],
-            [new Date(2013, 9, 5), 3],
-            [new Date(2013, 9, 12), 3],
-            [new Date(2013, 9, 13), 3],
-            [new Date(2013, 9, 19), 3],
-            [new Date(2013, 9, 23), 3],
-            [new Date(2013, 9, 24), 3],
-            [new Date(2013, 9, 30), 3],
-
-            [new Date(2014, 3, 30), 0],
-            [new Date(2014, 4, 30), 0],
-            [new Date(2014, 5, 30), 0],
-            [new Date(2014, 6, 30), 0],
-            [new Date(2014, 7, 30), 0],
-            [new Date(2014, 8, 30), 0],
-            [new Date(2014, 9, 30), 0],
-            [new Date(2014, 10, 30), 0],
+            
+@foreach($att_records as $x)
+[new Date({{$x->year}}, {{$x->month-1}}, {{$x->day}}), {{$x->duration}}],
+@endforeach
+    
         ]);
 
         var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
@@ -159,5 +141,12 @@
     }
 
 </script>
-<div id="calendar_basic" style="height:700px"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col mx-auto text-center ">
+            <div class="d-block" id="calendar_basic" style="height:700px"></div>
+            
+        </div>
+    </div>
+</div>
 @endsection

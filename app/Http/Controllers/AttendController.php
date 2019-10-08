@@ -12,7 +12,10 @@ class AttendController extends Controller
     //
     public function myattend()
     {
-        return view('attendance.attendance', ['title' => "My Attendance"]);
+        $rec=DB::table('attendances')->select(DB::raw('user_id,DATE(created_at) as date, MONTH(created_at) as month,DAY(created_at) as day ,YEAR(created_at) as year, sum(TIMESTAMPDIFF(MINUTE,start,end))/60 as duration'))
+        ->where('user_id',\Auth::user()->id)->whereRaw(DB::raw('end is not null'))->groupBy('date')->get();
+
+        return view('attendance.attendance', ['title' => "My Attendance",'att_records'=>$rec]);
     }
 
     public function attendmore()
