@@ -192,6 +192,28 @@ document.getElementById("today").innerHTML=today;
                         <li class="nav-item mr-auto">
                              <p style="padding-top:1.3rem;font-weight:400;margin-right:1.5vw;color:ivory;font-size:1.7rem"><span class="mr-3" id="today"></span><span id="time"></span></p>
                         </li>
+
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @if(\Session::get('locale')=='si')
+                                සිං
+                                @else
+                                EN
+                                @endif
+                               
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Select The Language</li>
+                                <li>
+                                        <ul class="menu">
+                                                <li><a class="text-muted" href="{{route('lang','en')}}">English</a></li>
+                                                <li><a class="text-muted" href="{{route('lang','si')}}">සිංහල</a></li>
+                                        </ul>
+                                </li>
+                               
+                            </ul>
+                        </li>
+
                         <li class="dropdown messages-menu">
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -281,6 +303,7 @@ document.getElementById("today").innerHTML=today;
                                     <div class="pull-left">
                                         <a href="{{route('profile')}}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
+
                                     <div class="pull-right">
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                                     @csrf
