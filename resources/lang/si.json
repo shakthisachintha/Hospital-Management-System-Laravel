@@ -1,4 +1,12 @@
 {
     "Full Name":"සම්පූර්ණ  නම",
-    "NIC Number":"හැඳුනුම්පත් අංකය"
+    "NIC Number":"හැඳුනුම්පත් අංකය",
+    "Patient Registration":"බාහිර රෝගීන් ලියාපදිංචි කිරීම",
+    "Patient Registration Form":"බාහිර රෝගීන් ලියාපදිංචි කිරීමේ පෝරමය",
+    "Register New Out Patients Here":"නව බාහිර රෝගීන් ලියාපදිංචි කිරීම",
+    "Address":"ලිපිනය",
+    "Telephone":"දුරකථන අංකය",
+    "Occupation":"රැකියාව",
+    "Age":"වයස",
+    "Sex":"ස්ත්‍රී පුරුෂ භාවය"
 }

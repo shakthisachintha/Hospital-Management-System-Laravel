@@ -3,7 +3,9 @@
 $name = $user->name;
 $user_type =$user->user_type;
 $image_path =$user->img_path;
-$outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
+$outlet = 'Rural Ayruvedic Hospital Kesbawa';
+\App::setLocale(Session::get('locale'));
+?>
 
 
 <!DOCTYPE html>

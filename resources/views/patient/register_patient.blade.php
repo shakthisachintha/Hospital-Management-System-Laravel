@@ -62,8 +62,9 @@
 </ul>
 
 @endsection
-@section('content_title',"Patient Registration")
-@section('content_description',"Register New Out Patients Here.")
+@section('content_title',__('Patient Registration'))
+
+@section('content_description',__("Register New Out Patients Here"))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -106,7 +107,7 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
             <div class="box-header with-border">
-            <h3 class="box-title">Patient Registration Form {{\App::getLocale()}}</h3>
+            <h3 class="box-title">{{__('Patient Registration Form')}}</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -126,19 +127,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Address <span style="color:red">*</span></label>
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}} <span style="color:red">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" required class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Telephone</label>
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
                         <div class="col-sm-10">
                             <input type="tel" class="form-control" name="reg_ptel" placeholder="Patient Telephone Number">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Occupation <span style="color:red">*</span></label>
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}} <span style="color:red">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" required class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
                         </div>
@@ -146,14 +147,14 @@
 
                     <!-- select -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Sex <span style="color:red">*</span></label>
+                        <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
                         <div class="col-sm-3">
                             <select required class="form-control" name="reg_psex">
                                 <option selected value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
-                        <label for="inputEmail3" class="col-sm-1 control-label">Age <span style="color:red">*</span></label>
+                        <label for="inputEmail3" class="col-sm-1 control-label">{{__('Age')}} <span style="color:red">*</span></label>
                         <div class="col-sm-2">
                             <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
                         </div>
