@@ -16,10 +16,10 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="active"><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a></li>
-            <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
+            <li class="active"><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i>{{__('Register New')}}</a></li>
+            <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i>{{__('Search Patient')}}</a></li>
 {{--register in patient--}}
-            <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" aria-hidden="true"></i><span> Register In Patient</span></a></li>
+            <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" aria-hidden="true"></i><span>{{__('Register In Patient')}}</span></a></li>
 
         </ul>
     </li>
@@ -160,8 +160,8 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <input type="submit" class="btn btn-info pull-right" value="Register">
-                        <input type="reset" class="btn btn-default" value="Cancel">
+                        <input type="submit" class="btn btn-info pull-right" value="{{__('Register')}}">
+                        <input type="reset" class="btn btn-default" value="{{__('Cancel')}}">
                     </div>
                 <!-- /.box-footer -->
                 </div>
