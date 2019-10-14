@@ -92,4 +92,21 @@ class PatientController extends Controller
         return view('patient.register_in_patient_view',['title'=>"Register Inpatient"]);
     }
 
+    public function makeChannel(Request $request){
+        $regNum=$request->regNum;
+        $flight = Patients::find($regNum);
+        if($flight){
+            return response()->json([
+                'exist'=>true,
+                'name' => $flight->name,
+                'state' => 'CA'
+            ]);
+        }else{
+            return response()->json([
+                'exist'=>false
+            ]);
+        }
+        
+    }
+
 }

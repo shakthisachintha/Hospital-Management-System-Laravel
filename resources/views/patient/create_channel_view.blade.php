@@ -109,103 +109,7 @@
         <h3 class="box-title">Horizontal Form</h3>
     </div>
     <!-- /.box-header -->
-    <!-- form start -->
-    <form class="form-horizontal">
-        <div class="box-body">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Full Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Address</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form class="form-horizontal">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Full Name <span style="color:red">*</span></label>
-                            <div class="col-sm-10">
-                                <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">NIC Number</label>
-                            <div class="col-sm-10">
-                                <input type="text" required class="form-control" name="reg_pnic" placeholder="National Identity Card Number">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Address <span style="color:red">*</span></label>
-                            <div class="col-sm-10">
-                                <input type="text" required class="form-control" name="reg_paddress" placeholder="Enter Patient Address ">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Telephone</label>
-                            <div class="col-sm-10">
-                                <input type="tel" class="form-control" name="reg_ptel" placeholder="Patient Telephone Number">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Occupation <span style="color:red">*</span></label>
-                            <div class="col-sm-10">
-                                <input type="text" required class="form-control" name="reg_poccupation" placeholder="Enter Patient Occupation ">
-                            </div>
-                        </div>
-
-                        <!-- select -->
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Sex <span style="color:red">*</span></label>
-                            <div class="col-sm-3">
-                                <select required class="form-control" name="reg_psex">
-                                    <option selected value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <label for="inputEmail3" class="col-sm-1 control-label">Age <span style="color:red">*</span></label>
-                            <div class="col-sm-2">
-                                <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
-                            </div>
-                        </div>
-                        <div class="box-footer">
-                            <input type="submit" class="btn btn-info pull-right" value="Register">
-                            <input type="reset" class="btn btn-default" value="Cancel">
-                        </div>
-                    <!-- /.box-footer -->
-                    </div>
-                </form>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Occupation</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_poccupation"
-                        placeholder="Enter Patient Occupation ">
-                </div>
-            </div>
-            <!-- select -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Sex</label>
-                <div class="col-sm-3">
-                    <select class="form-control" name="reg_psex">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
-                <label for="inputEmail3" class="col-sm-1 control-label">Age</label>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" name="reg_page" placeholder="Enter Age">
-                </div>
-            </div>
-            <div class="box-footer">
-                <input type="submit" class="btn btn-info pull-right" value="Register">
-            </div>
-        </div>
-    </form>
+ 
 </div>
 
 <div class="box box-info" id="createchannel3">
@@ -217,15 +121,18 @@
     <form class="form-horizontal">
         <div class="box-body">
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Registration No:</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Enter reg No">
+                <label for="p_reg_num" class="col-sm-2 control-label">Registration No:</label>
+                <div class="col-sm-8">
+                    <input type="number" onchange="createChannelFunction()" required class="form-control" id="p_reg_num" placeholder="Enter Patient Registration Number">
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-info" onclick="createChannelFunction()">Enter</button>
                 </div>
             </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="button" class="btn btn-info pull-right" onclick="createchannelfunction()">Enter</button>
+            
         </div>
         <!-- /.box-footer -->
     </form>
@@ -267,20 +174,43 @@
 <!-- /.content -->
 
 <script>
-    function createchannelfunction() {
+    function createChannelFunction() {
 
         var x, text;
-        x = document.getElementById("inputEmail3").value;
-        if (x == 0) 
+        x = document.getElementById("p_reg_num").value;
+        if (x > 0) 
         {
-            alert("Please Enter a Registration Number!");
-            window.location.$("#reginpatient3");
+            // $("#createchannel1").slideDown(1000);
+            // $("#createchannel2").slideDown(1000);
+            // $("#createchannel3").slideUp(1000);
+            // $("#createchannel4").slideUp(1000);
+            
+            var data=new FormData;
+            data.append('regNum',x);
+            data.append('_token','{{csrf_token()}}');
+
+
+            $.ajax({
+                type: "post",
+                url: "{{route('makechannel')}}",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                
+                success: function (patient) {
+                    if(patient.exist){
+                        console.log(patient.name);
+                    }else{
+                        console.log('not found');
+                    }
+                }
+            });
+        }else{
+            alert("Please Enter a Valid Registration Number!");
         }
 
-        $("#createchannel1").slideDown(1000);
-        $("#createchannel2").slideDown(1000);
-        $("#createchannel3").slideUp(1000);
-        $("#createchannel4").slideUp(1000);
+   
     }
 
 </script>
