@@ -8,7 +8,7 @@
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
     <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-{{--patient--}}
+    {{--patient--}}
     <li class="treeview active">
         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
             <span class="pull-right-container">
@@ -18,14 +18,14 @@
         <ul class="treeview-menu">
             <li class="active"><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i>{{__('Register New')}}</a></li>
             <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i>{{__('Search Patient')}}</a></li>
-{{--register in patient--}}
+    {{--register in patient--}}
             <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" aria-hidden="true"></i><span>{{__('Register In Patient')}}</span></a></li>
 
         </ul>
     </li>
-{{--create channel--}}
+    {{--create channel--}}
     <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Appoinment</span></a></li>
-{{--check patient--}}
+    {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
 
 
@@ -58,7 +58,7 @@
 
     {{-- Profile --}}
 
-<li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
+    <li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
 </ul>
 
 @endsection
@@ -68,7 +68,7 @@
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
 @endsection

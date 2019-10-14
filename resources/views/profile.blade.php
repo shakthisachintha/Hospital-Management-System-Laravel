@@ -150,38 +150,63 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                     </div>
                                 </form>
                             </div>
+
                             <li><a data-toggle="collapse" href="#changepw" class="collapsed" aria-expanded="false"><i class="fa fa-unlock"></i> Change Password</a></li>
 
                             <div id="changepw" class="panel-collapse collapse" aria-expanded="false">
-                                <!-- /.box-header -->
+
+
+                                @if (count($errors) > 0)
+                                <div class = "alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
                                 <!-- form start -->
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" method="post" action="{{ route('change_password') }}">
+                                    {{csrf_field()}}
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Current Password</label>
 
                                             <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail3" placeholder="Current Password">
+                                            <input type="password" name="currentpassword" class="form-control" id="inputEmail3" placeholder="Current Password">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-2 control-label">New Password</label>
 
                                             <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="Enter New assword">
+                                            <input type="password" name="newpassword" class="form-control" id="inputPassword3" placeholder="Enter New assword">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputPassword3" class="col-sm-2 control-label">New Password Again</label>
+                                            <label for="inputPassword4" class="col-sm-2 control-label">New Password Again</label>
 
                                             <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="Enter New Password Again">
+                                            <input type="password" name="newpasswordagain" class="form-control" id="inputPassword4" placeholder="Enter New Password Again">
                                             </div>
                                         </div>
                                     </div>
                                     <!-- /.box-body -->
                                     <div class="box-footer">
-                                        <button type="submit" class="btn btn-default">Cancel</button>
+                                        <button type="reset" class="btn btn-default">Cancel</button>
                                         <button type="submit" class="btn btn-info pull-right">Update</button>
                                     </div>
                                     <!-- /.box-footer -->

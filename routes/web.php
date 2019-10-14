@@ -27,7 +27,7 @@ Route::get('login', [
     'as' => 'logout',
     'uses' => 'Auth\LoginController@logout'
   ]);
-  
+
   // Password Reset Routes...
   Route::post('password/email', [
     'as' => 'password.email',
@@ -45,7 +45,7 @@ Route::get('login', [
     'as' => 'password.reset',
     'uses' => 'Auth\ResetPasswordController@showResetForm'
   ]);
-  
+
   Route::post('register', [
     'as' => 'register',
     'uses' => 'Auth\RegisterController@register'
@@ -76,5 +76,6 @@ Route::post('regfinger',['as'=>'user.regfinger','uses'=>'UserController@regFinge
 Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth','admin');
 Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth','admin');
 
+Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@ChangeUserPassword'])->middleware('auth');
 
 
