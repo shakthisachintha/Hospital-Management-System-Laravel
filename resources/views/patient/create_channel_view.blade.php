@@ -93,32 +93,94 @@
 <div class="row" id="createchannel1" style="display:none">
     <div class="col-md-3 col-md-offset-4">
         <!-- small box -->
-        <div class="small-box bg-yellow">
-            <div class="inner">
+        <div style="cursor:pointer" id="makeBtn" onclick="makeChannel();" class="small-box bg-yellow">
+            <div style="cursor:pointer" class="inner">
                 <p>Channel No:</p>
-                <h3>44</h3>
+                <h3 id="appt_num"></h3>
             </div>
             <a href="#" class="icon"><i class="ion ion-person-add"></i></a>
-            <a href="#" class="small-box-footer">Create Channel <i class="fas fa-plus-circle"></i></a>
+            <a href="#" class="small-box-footer">Create Channel<i class="fas fa-plus-circle"></i></a>
         </div>
     </div>
 </div>
 
-<div class="box box-info" id="createchannel2" style="display:none">
-    <div class="box-header with-border">
-        <h3 class="box-title">Horizontal Form</h3>
+<div style="display:none" id="createchannel2" class="row">
+    <!-- right column -->
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+        <div class="box-header with-border">
+        <h3 class="box-title">{{__('Details Of The Patient')}}</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control" name="reg_pname" id="patient_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control" name="reg_pnic" id="patient_nic">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control" name="reg_paddress" id="patient_address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
+                    <div class="col-sm-10">
+                        <input type="tel" readonly class="form-control" id="patient_telephone" name="reg_ptel" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control" id="patient_occupation" name="reg_poccupation">
+                    </div>
+                </div>
+
+                <!-- select -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{__('Sex')}}</label>
+                    <div class="col-sm-3">
+                        <select id="patient_sex" readonly class="form-control" name="reg_psex">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <label for="inputEmail3" class="col-sm-1 control-label">{{__('Age')}}</label>
+                    <div class="col-sm-2">
+                        <input type="number" readonly id="patient_age" min="1" class="form-control" name="reg_page">
+                    </div>
+                </div>
+                <div class="box-footer">
+                    {{-- <input type="submit" class="btn btn-info pull-right" value="{{__('Register')}}">
+                    <input type="reset" class="btn btn-default" value="{{__('Cancel')}}"> --}}
+                </div>
+            <!-- /.box-footer -->
+            </div>
+        </form>
+        </div>
     </div>
-    <!-- /.box-header -->
- 
+    <div class="col-md-1"></div>
 </div>
 
 <div class="box box-info" id="createchannel3">
     <div class="box-header with-border">
-        <h3 class="box-title">Enter Registration No. Or Scan the bar code</h3>
+        <h3 class="box-title">Enter Registration No. Or Scan The Bar Code</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal">
+    <div class="form-horizontal">
         <div class="box-body">
             <div class="form-group">
                 <label for="p_reg_num" class="col-sm-2 control-label">Registration No:</label>
@@ -135,7 +197,7 @@
             
         </div>
         <!-- /.box-footer -->
-    </form>
+    </div>
 </div>
 
 <div class="row" id="createchannel4">
@@ -155,6 +217,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($appointments as $app)
+                            <tr>
+                            <td>{{$app->patient}}</td>
+                            <td>{{$app->number}}</td>
+                            <td>{{$app->name}}</td>
+                            </tr>   
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <th>Registration No.</th>
@@ -174,10 +243,30 @@
 <!-- /.content -->
 
 <script>
+    var patientid;
+    function makeChannel(){
+        $("#makeBtn").hide();
+        var data=new FormData;
+        data.append('_token','{{csrf_token()}}');
+        data.append('id',patientid);
+        $.ajax({
+            type: "post",
+            url: "{{route('makeappoint')}}",
+            processData: false,
+            contentType: false,
+            cache: false,
+            data:data,
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+
     function createChannelFunction() {
 
         var x, text;
         x = document.getElementById("p_reg_num").value;
+        patientid=x;
         if (x > 0) 
         {
             // $("#createchannel1").slideDown(1000);
@@ -197,12 +286,27 @@
                 processData: false,
                 contentType: false,
                 cache: false,
-                
+                error: function(data){
+                    console.log(data);
+                },
                 success: function (patient) {
                     if(patient.exist){
                         console.log(patient.name);
+                        $("#patient_name").val(patient.name);
+                        $("#patient_age").val(patient.age);
+                        $("#patient_sex").val(patient.sex);
+                        $("#patient_telephone").val(patient.telephone);
+                        $("#patient_nic").val(patient.nic);
+                        $("#patient_address").val(patient.address);
+                        $("#patient_occupation").val(patient.occupation);
+                        $("#appt_num").text(patient.appNum);
+
+                        $("#createchannel1").slideDown(1000);
+                        $("#createchannel2").slideDown(1000);
+                        $("#createchannel3").slideUp(1000);
                     }else{
                         console.log('not found');
+                        alert("Please Enter a Valid Registration Number!");
                     }
                 }
             });
