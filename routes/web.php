@@ -59,9 +59,11 @@ Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middlew
 Route::get('/lang/{lan}', ['as' => 'lang', 'uses' => 'HomeController@setLocale'])->middleware('auth');
 
 Route::get('/patient',['as' => 'patient', 'uses' => 'PatientController@index'])->middleware('auth','staff','lang');
+Route::post('/channel',['as' => 'makechannel', 'uses' => 'PatientController@makeChannel'])->middleware('auth','staff','lang');
+Route::post('/appoint',['as' => 'makeappoint', 'uses' => 'PatientController@addChannel'])->middleware('auth','staff','lang');
 Route::get('/patientregcard/{pid}',['as' => 'pregcard', 'uses' => 'PatientController@regcard'])->middleware('auth','staff');
 Route::post('/patientregister',['as' => 'patient_register', 'uses' => 'PatientController@register_patient'])->middleware('auth','staff');
-Route::get('/createchannel',['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth','staff');
+Route::get('/createchannel',['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth','staff','lang');
 Route::get('/inpatientregister',['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth','staff');
 
 Route::get('/checkpatient',['as' => 'check_patient_view', 'uses' => 'PatientController@check_patient_view'])->middleware('auth','doctor');
