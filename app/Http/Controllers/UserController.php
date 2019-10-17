@@ -108,4 +108,25 @@ class UserController extends Controller
 
         return redirect()->back()->with("success","Password changed successfully !");
     }
+
+    public function ChangeUserPropic(Request $request){
+
+        $this->validate($request,[
+            'propic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $user_id = Auth::user()->id;
+
+        $imageName = time().'.'.$request->propic->getClientOriginalExtension();
+        $destinationPath = '/images/'.$imageName;
+        $request->propic->move(public_path('images'),$imageName);
+
+        User::where('id', $user_id)->update(array(
+            'img_path' => $destinationPath
+        ));
+
+        return back()
+        ->with('success','You have successfully upload image.');
+        //->with('image',$imageName);
+    }
 }

@@ -134,19 +134,39 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                             <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed" aria-expanded="false"><i class="fa fa-camera"></i> Change Profile Picture</a></li>
 
                             <div id="changeprofilepic" class="panel-collapse collapse" aria-expanded="false">
+
+                                @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                <img src="images/{{ Session::get('image') }}">
+                                @endif
+
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
                                 <!-- form start -->
-                                <form role="form">
+                                <form action="{{ route('change_propic') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <input type="file" id="exampleInputFile">
-
                                             <p class="help-block">select your new profile picture here.</p>
+                                            <input type="file" id="exampleInputFile" name="propic" class="form-control">
                                         </div>
                                     </div>
                                     <!-- /.box-body -->
 
                                     <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -232,9 +252,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="box box-primary">
+            <div class="box box-danger">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                    <img class="profile-user-img img-responsive img-circle" src="{{$image_path}}" alt="User profile picture">
 
                     <h3 class="profile-username text-center">Nina Mcintire</h3>
 
@@ -252,14 +272,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </li>
                     </ul>
 
-                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                    <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
 
             <!-- About Me Box -->
-            <div class="box box-primary">
+            <div class="box box-success">
 
                 <div class="box-header with-border">
                     <h3 class="box-title">About Me</h3>

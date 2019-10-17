@@ -77,5 +77,6 @@ Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->
 Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth','admin');
 
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@ChangeUserPassword'])->middleware('auth');
+Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@ChangeUserPropic'])->middleware('auth');
 
 
