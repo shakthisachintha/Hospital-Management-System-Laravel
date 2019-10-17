@@ -425,7 +425,8 @@ a:hover, a:active, a:focus {
 
 @media (max-width:767px) {
     .main-sidebar {
-        padding-top: 100px
+        padding-top: 100px;
+        width:230px;
     }
 }
 

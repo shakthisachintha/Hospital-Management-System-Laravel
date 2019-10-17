@@ -67,6 +67,7 @@ Route::get('/createchannel',['as' => 'create_channel_view', 'uses' => 'PatientCo
 Route::get('/inpatientregister',['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth','staff');
 
 Route::get('/checkpatient',['as' => 'check_patient_view', 'uses' => 'PatientController@check_patient_view'])->middleware('auth','doctor');
+Route::post('/validateAppNum',['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth','doctor');
 
 Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth');
 Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth','admin');
