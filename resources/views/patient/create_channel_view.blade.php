@@ -269,7 +269,7 @@
 <script>
     function createchannelfunction() {
 
-        var x, text;
+        var x;
         x = document.getElementById("inputEmail3").value;
         if (x == 0) 
         {
