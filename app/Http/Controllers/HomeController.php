@@ -31,9 +31,16 @@ class HomeController extends Controller
         // return view('home');
     }
 
-    public function profile(){
+    public function profile()
+    {
         $user = Auth::user();
         return view('profile',['title'=>$user->name]);
+    }
+
+    public function setLocale($lan)
+    {
+        \Session::put('locale', $lan);
+        return redirect()->back();
     }
 
 }

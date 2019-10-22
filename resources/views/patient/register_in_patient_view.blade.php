@@ -75,8 +75,13 @@
 @section('main_content')
 {{--  patient registration  --}}
 
+<<<<<<< HEAD
     <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
         <div class="col-md-1"></div>
+=======
+        <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:4vh" @endif class="row">
+            <div class="col-md-1"></div>
+>>>>>>> origin
             <div class="col-md-10">
                     @if (session()->has('regpsuccess'))
                         <div class="alert alert-success alert-dismissible">
@@ -98,6 +103,7 @@
 
     </div>
 
+<<<<<<< HEAD
         
 
     <div class="box box-info" id="reginpatient2" style="display:none">
@@ -113,6 +119,22 @@
                         <label for="inputEmail3" class="col-sm-2 control-label">Full Name<span style="color:red">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
+=======
+            <div class="box box-info" id="reginpatient2" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Pre Registration Form</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Full Name<span style="color:red">*</span></label>
+                            <div class="col-sm-10">
+                                <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
+                            </div>
+>>>>>>> origin
                         </div>
                     </div>
                         

@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateAttendancesTable extends Migration
+class CreateAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +14,13 @@ class CreateAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->timestamp('start');
-            $table->timestamp('end')->nullable();
             $table->timestamps();
+            $table->bigInteger('patient');
+            $table->integer('number');
+            $table->bigInteger('doctor')->nullable();
         });
-        DB::unprepared('ALTER TABLE attendances ADD UNIQUE KEY(`user_id`,`start`)');
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateAttendancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('appointments');
     }
 }

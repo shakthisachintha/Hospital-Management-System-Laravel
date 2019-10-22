@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'doctor'=>\App\Http\Middleware\Doctor::class,
         'staff'=>\App\Http\Middleware\Staff::class,
         'pharmacist'=>\App\Http\Middleware\Pharma::class,
+        'lang'=>\App\Http\Middleware\SetLanguage::class,
     ];
 
     /**
