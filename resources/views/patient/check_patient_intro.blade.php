@@ -123,7 +123,8 @@ function validateNum(appNum){
                       <h3 class="box-title">Check Patient</h3>
                     </div>
                     <div class="box-body mt-0">
-                        <form class="pl-5 pr-5 pb-5" action="">
+                    <form class="pl-5 pr-5 pb-5" method="post" action="{{route('checkPatient')}}">
+                        @csrf
                             <h3>Enter Appointment Number Or Patient Number To Begin</h3>
                             <input id="appNum" name="appNum" class="form-control input-lg" type="number" onchange="validateNum(this.value)" placeholder="Appointment Number Or Patient Number">
                             <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center" value="Check Patient">
