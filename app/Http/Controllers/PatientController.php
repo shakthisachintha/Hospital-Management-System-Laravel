@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Patients;
 use App\Appointment;
 use DB;
+use stdClass;
 
 class PatientController extends Controller
 {
@@ -108,6 +109,38 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         return view('patient.check_patient_intro',['title'=>$user->name]);
+    }
+
+    public function checkPatient(Request $request){
+        $user = Auth::user();
+        $pBloodPressure = new stdClass;
+        $pBloodPressure->sys=120;
+        $pBloodPressure->dia=80;
+        $pBloodPressure->date='2019-02-28';
+        
+        $pBloodSugar= new stdClass;
+        $pBloodSugar->value=100;
+        $pBloodSugar->date='2019-02-28';
+
+        $pCholestrol= new stdClass;
+        $pCholestrol->value=100;
+        $pCholestrol->date='2019-02-28';
+
+        $pHistory= new stdClass;
+        
+
+        return view('patient.check_patient_view',[
+            'title'=>$user->name,
+            'appNum'=>$request->appNum,
+            'pName'=>'Shakthi Sachintha',
+            'pSex'=>"Male",
+            'pAge'=>21,
+            'pCholestrol'=>$pCholestrol,
+            'pBloodSugar'=>$pBloodSugar,
+            'pBloodPressure'=>$pBloodPressure,
+            'pHistory'=>$pHistory,
+            
+        ]);
     }
 
     public function create_channel_view()
