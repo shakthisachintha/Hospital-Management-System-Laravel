@@ -75,13 +75,8 @@
 @section('main_content')
 {{--  patient registration  --}}
 
-<<<<<<< HEAD
     <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
         <div class="col-md-1"></div>
-=======
-        <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:4vh" @endif class="row">
-            <div class="col-md-1"></div>
->>>>>>> origin
             <div class="col-md-10">
                     @if (session()->has('regpsuccess'))
                         <div class="alert alert-success alert-dismissible">
@@ -103,7 +98,6 @@
 
     </div>
 
-<<<<<<< HEAD
         
 
     <div class="box box-info" id="reginpatient2" style="display:none">
@@ -119,22 +113,6 @@
                         <label for="inputEmail3" class="col-sm-2 control-label">Full Name<span style="color:red">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
-=======
-            <div class="box box-info" id="reginpatient2" style="display:none">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Pre Registration Form</h3>
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                
-                <form class="form-horizontal">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Full Name<span style="color:red">*</span></label>
-                            <div class="col-sm-10">
-                                <input type="text" required class="form-control" name="reg_pname" placeholder="Enter Patient Full Name">
-                            </div>
->>>>>>> origin
                         </div>
                     </div>
                         
@@ -168,7 +146,7 @@
 
                         <!-- select -->
                     <div class="form-group">
-                            <label class="col-sm-2 control-label">Sex <span style="color:red">*</span></label>
+                            <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
                             <div class="col-sm-2">
                                 <select required class="form-control" name="reg_psex">
                                     <option selected value="Male">Male</option>
@@ -303,7 +281,7 @@
                 <div class="p-2 mt-5 ml-1 mr-1">
                     <button type="button" class="btn btn-block btn-success btn-md" onclick="reginpatientform2function()" >Notes of Admitting Officer</button>
                     <br>
-                    <button type="button" class="btn btn-block btn-success btn-md">Abstract of case by Medical officer</button>
+                    <button type="button" class="btn btn-block btn-success btn-md" onclick="reginpatientform3function()">Abstract of case by Medical officer</button>
                 </div>
             </div> 
         </form> 
@@ -348,7 +326,7 @@
                     <div class="box-body">
                         
                         <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Disease:</label>
+                            <label for="inputEmail" class="col-sm-2 control-label">Disease</label>
                             <div class="col-sm-10" id="al-box">
                                 <input type="email" class="form-control" id="inputEmail3" placeholder="Enter diagnosis of patient"/>
                             </div>
@@ -368,6 +346,64 @@
                             <label for="inputEmail" class="col-sm-2 control-label">Mode of arises and current condition:</label>
                             <div class="col-sm-10">
                             <textarea class="form-control" name = "reg_admitofficer3" rows = "3" cols = "100" placeholder="Enter current condition of patient here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Certified by</label>
+                            <div class="col-sm-10" id="al-box">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Select Your ID here"/>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                    
+                </form>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info pull-right" value="Submit">
+                    <input type="reset" class="btn btn-default" value="Cancel">
+                </div>
+                    <!-- /.box-footer -->
+           
+
+        </div>
+
+        <div class="box box-info" id="reginpatient5" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Medical Officer - Abstract of Case</h3>
+                </div>
+                
+                <form class="form-horizontal" >
+                    <div class="box-body">
+                        
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Description:</label>
+                            <div class="col-sm-10">
+                            <textarea class="form-control" name = "reg_medicalofficer1" rows = "3" cols = "100" placeholder="Enter abstract condition of patient here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Date of Discharge/Death</label>
+                            <div class="col-sm-2">
+                                <input type="date" onload="getDate()" class="form-control" name="reg_medicalofficer2">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Diagnosis</label>
+                            <div class="col-sm-10">
+                            <textarea class="form-control" name = "reg_medicalofficer3" rows = "3" cols = "100" placeholder="Enter abstract diagnosis of patient here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Certified by</label>
+                            <div class="col-sm-10" id="al-box">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Select Your ID here"/>
                             </div>
                         </div>
 
@@ -421,6 +457,13 @@
     function reginpatientform2function(){
         
         $("#reginpatient4").slideDown(1000);
+        $("#reginpatient2").slideUp(1000);
+
+    }
+
+    function reginpatientform3function(){
+        
+        $("#reginpatient5").slideDown(1000);
         $("#reginpatient2").slideUp(1000);
 
     }
