@@ -16,12 +16,14 @@ class CreatePatientHistoriesTable extends Migration
         Schema::create('patient__histories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('patient_id')->unique();
+            $table->foreign('patient_id')->references('id')->on('patients');
             $table->longText('description');
             $table->string('bpm');
             $table->string('bp');
             $table->string('cholestrol');
             $table->string('blood_sugar');
             $table->bigInteger('doctor_in_charge');
+            $table->foreign('doctor_in_charge')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -18,8 +18,10 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->bigInteger('patient');
+            $table->foreign('patient')->references('id')->on('patients')->onDelete('cascade');
             $table->integer('number');
             $table->bigInteger('doctor')->nullable();
+            $table->foreign('doctor')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
