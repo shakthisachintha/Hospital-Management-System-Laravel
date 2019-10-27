@@ -76,6 +76,8 @@
 @section('main_content')
 {{--  patient registration  --}}
 
+<script src="/js/WebCam/webcam.js"></script>
+
         <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
@@ -158,6 +160,11 @@
                         <div class="col-sm-2">
                             <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
                         </div>
+                        <label for="photo" class="col-sm-1 control-label">{{__('Picture')}}</label>
+                        <div class="col-sm-2">
+                        <button type="button" onclick="camStart();" data-toggle="modal" data-target="#modal-default" class="bg-navy btn btn-flat"><i class="fas fa-camera"></i>  {{__('Take a Photo')}}</button>
+                            <input type="text" style="display:none" id="regp_photo" name="regp_photo">
+                        </div>
                     </div>
                     <div class="box-footer">
                         <input type="submit" class="btn btn-info pull-right" value="{{__('Register')}}">
@@ -166,7 +173,69 @@
                 <!-- /.box-footer -->
                 </div>
             </form>
+
+            <script>
+            function camStart(){
+                Webcam.set({
+                width: 200,
+                height: 150,
+                image_format: 'png',
+                jpeg_quality: 100
+                });
+                Webcam.attach( '#my_camera' );
+            }
+
+            function take_snapshot() {
+                // take snapshot and get image data
+                Webcam.snap( function(data_uri) {
+                // display results in page
+                console.log(data_uri);
+                document.getElementById('results').innerHTML ='<img style="width:200px;height:150px" src="'+data_uri+'"/>';
+                document.getElementById('regp_photo').setAttribute("value", data_uri);
+                });
+            }
+
+            </script>
+
+            
+
+            <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" onclick="Webcam.reset()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">{{__('Take The Photo')}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-5 mr-3">
+                                        <h4>{{__('Live Preview')}}</h4>
+                                        <div c>
+                                                <div id="my_camera"></div>
+                                        </div>
+                                        <input type="button" class="btn mt-1 btn-flat btn-success" value="Take Snapshot" onClick="take_snapshot()">
+                                </div>
+                                <div class="col-sm-5">
+                                        <h4>{{__('Image Taken')}}</h4>
+                                        <div id="results">
+                                        </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" onclick="Webcam.reset()" data-dismiss="modal">{{__('Cancel')}}</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Webcam.reset()">{{__('Save Changes')}}</button>
+                        </div>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
             </div>
+                  <!-- /.modal -->
+            
+                </div>
         </div>
         <div class="col-md-1"></div>
     </div>

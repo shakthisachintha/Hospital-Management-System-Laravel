@@ -41,29 +41,28 @@
                             <div class="col-4">
                                 <span>Reg. Num.<br></span>
                                 <span>Name<br></span>
-                                <span>Age & Sex<br></span>
+                                <span>Birth Day & Sex<br></span>
                                 <span>Registration Date<br></span>
                             </div>
-                            <div class="col-1 text-right">
+                            <div class="col-1 m-0 p-0 text-left">
                                 <span>: <br></span>
                                 <span>: <br></span>
                                 <span>: <br></span>
                                 <span>: </span>
                             </div>
-                            <div class="col-7">
+                            <div class="col-7 m-0 p-0">
                                 <div class="row m-0 p-0">
-                                    <div class="col-7">
-                                        <span>8789656694663<br></span>
-                                        <span>John Doe<br></span>
-                                        <span>25 Years Male<br></span>
-                                        <span>01-02-2018</span>
+                                    <div class=" m-0 p-0 col-7">
+                                    <span>{{$id}}<br></span>
+                                    <span>{{$name}}<br></span>
+                                    <span>{{$dob}} {{ucfirst($sex)}}<br></span>
+                                    <span>{{$reg}}</span>
                                     </div>
-                                    <div class="col-5">
-                                        <img src="dist/img/avatar5.png" class="mx-auto d-inline text-center"
-                                            style="border-radius: 100%;width: 70px;height:70px;" alt="...">
+                                    <div  class="col-3 m-0 p-0">
+                                        <img src="{{$url}}"
+                                            style="width: 70px;height:70px;" alt="...">
                                     </div>
                                 </div>
-    
                             </div>
     
                         </div>
@@ -73,7 +72,7 @@
                                 <div class="mt-3 mx-auto">
                                       
                                         <?php 
-                                        echo '<img src="' . DNS1D::getBarcodePNGPath("1906254", "C39+",1.5,70,array(0,0,0), true) . '" alt="barcode"   />';
+                                        echo '<img src="/' . DNS1D::getBarcodePNGPath(preg_replace('/\s+/', '', $id), "C39+",1.5,70,array(0,0,0), true) . '" alt="barcode"   />';
                                             ?>
                                 </div>
                                    
