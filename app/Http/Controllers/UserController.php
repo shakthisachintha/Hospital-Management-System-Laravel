@@ -9,6 +9,8 @@ use Validator;
 use Illuminate\Contracts\Validation\ValidationException;
 use Illuminate\Contracts\Validation;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendNotices;
 
 class UserController extends Controller
 {
@@ -106,6 +108,9 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('newpassword'));
         $user->save();
 
+        //activity log
+        activity()->performedOn($user)->log('Password changed !');
+
         return redirect()->back()->with("success","Password changed successfully !");
     }
 
@@ -115,7 +120,8 @@ class UserController extends Controller
             'propic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $user_id = Auth::user()->id;
+        $user = Auth::user();
+        $user_id = $user->id;
 
         $imageName = time().'.'.$request->propic->getClientOriginalExtension();
         $destinationPath = '/images/'.$imageName;
@@ -125,8 +131,33 @@ class UserController extends Controller
             'img_path' => $destinationPath
         ));
 
+        //activity log
+        activity()->performedOn($user)->log('Profile Picture Changed!');
+
         return back()
         ->with('success','You have successfully upload image.');
         //->with('image',$imageName);
+    }
+
+    public function createnoticeview(){
+
+        return view('users.send_notices', ['title' => "Send Notices"]);
+
+    }
+
+    public function send_notice(Request $request){
+
+        $this->validate($request,[
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
+
+        $data = array(
+            'message' => $request->message
+        );
+
+        Mail::to('ssakunchamikara@gmail.com')->send(new SendNotices($data));
+        return back()->with('success','thanks for contacting us!');
+
     }
 }

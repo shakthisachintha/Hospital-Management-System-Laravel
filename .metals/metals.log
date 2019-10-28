@@ -6,3 +6,13 @@ INFO  time: initialize in 6.01s
 WARN  no build tool detected in workspace 'c:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 INFO  time: initialize in 1.61s
 WARN  no build tool detected in workspace 'c:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 1.21s
+WARN  no build tool detected in workspace 'C:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 2.18s
+WARN  no build tool detected in workspace 'C:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 0.89s
+WARN  no build tool detected in workspace 'C:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 0.83s
+WARN  no build tool detected in workspace 'C:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 0.49s
+WARN  no build tool detected in workspace 'C:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 

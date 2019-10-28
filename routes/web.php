@@ -82,4 +82,5 @@ Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUs
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@ChangeUserPassword'])->middleware('auth');
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@ChangeUserPropic'])->middleware('auth');
 
-
+Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth');
+Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');

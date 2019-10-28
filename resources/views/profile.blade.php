@@ -60,7 +60,7 @@
 
     {{-- Profile --}}
 
-<li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
+    <li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
 </ul>
 
 @endsection
@@ -89,12 +89,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
         <div class="col-md-9">
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity</a></li>
+                <li class=""><a href="#activity" data-toggle="tab" aria-expanded="false">Activity</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
-                <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>
+                <li class="active"><a href="#settings" data-toggle="tab" aria-expanded="true">Settings</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="activity">
+                <div class="tab-pane" id="activity">
                     <h3>empty for now</h3>
                 </div>
                 <!-- /.tab-pane -->
@@ -103,7 +103,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                 </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="settings">
+                <div class="tab-pane active" id="settings">
 
                     <div class="box box-solid">
                         <div class="box-header with-border">
