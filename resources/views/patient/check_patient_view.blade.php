@@ -79,13 +79,7 @@
 <div class="row">
     <div class="rounded col-md-5">
         <h4>Channel Details</h4>
-        <div class="input-group">
-            <input type="text" placeholder="Appointment Number" class="form-control">
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-info btn-flat">Check &nbsp; <i
-                        class="fas fa-sync-alt"></i></button>
-            </span>
-        </div>
+        <h4>Appointment Number : {{$appNum}}</h4>
         <div style="margin-bottom:0" class="box box-dark mt-2">
             <div class="box-header with-border">
                 Add Medicines To Prescription
@@ -180,14 +174,14 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
                             <div class="box-body">
-                                <h5>Name : John Doe</h5>
-                                <h5>Age & Sex : 35 Male</h5>
-                                <h5>Blood Pressure : <span class="h4 text-yellow">138/94 mmHg</span><small> (Updated
-                                        14-08-2019)</small></h5>
-                                <h5>Blood Glucose Levels : <span class="h4 text-green">85 mg/dL</span><small> (Updated
-                                        14-08-2019)</small></h5>
-                                <h5>General Cholestrol Level : <span class="h4 text-red">239 mg/dL</span><small>
-                                        (Updated 14-08-2019)</small></h5>
+                            <h5>Name : {{$pName}}</h5>
+                            <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
+                                <h5>Blood Pressure : <span class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}} mmHg</span><small> (Updated
+                                    {{$pBloodPressure->date}})</small></h5>
+                                <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}} mg/dL</span><small> (Updated
+                                    {{$pBloodSugar->date}})</small></h5>
+                                <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}} mg/dL</span><small>
+                                        (Updated {{$pCholestrol->date}})</small></h5>
 
                             </div>
                         </div>

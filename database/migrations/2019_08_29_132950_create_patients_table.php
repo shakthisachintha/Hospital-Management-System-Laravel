@@ -22,6 +22,7 @@ class CreatePatientsTable extends Migration
             $table->integer('age');
             $table->string('nic',15)->nullable()->unique();
             $table->string('telephone',13)->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
             $table->primary('id');
         });
