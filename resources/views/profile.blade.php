@@ -91,7 +91,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             <ul class="nav nav-tabs">
                 <li class=""><a href="#activity" data-toggle="tab" aria-expanded="false">Activity</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
-                <li class="active"><a href="#settings" data-toggle="tab" aria-expanded="true">Settings</a></li>
+                <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif"><a href="#settings" data-toggle="tab" aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane" id="activity">
@@ -103,11 +103,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                 </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane active" id="settings">
+                <div class="tab-pane @if (session('success') || session('errors')  ||session('errorpw') || session('successpw') ) active @endif" id="settings">
 
                     <div class="box box-solid">
                         <div class="box-header with-border">
-                            <a data-toggle="collapse" href="#collapseOne" class="collapsed" aria-expanded="false">
+                            <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="true">
                             <h3 class="box-title"><i class="fa fa-cogs"></i>  General</h3>
                             </a>
 
@@ -125,15 +125,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                     <div class="box box-solid">
                         <div class="box-header with-border">
-                            <a data-toggle="collapse" href="#collapseTwo" class="@if (session('error')) collapse in @else collapsed @endif" aria-expanded="@if (session('error')) true @else false @endif">
+                            <a data-toggle="collapse" href="#collapseTwo" class="" aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
                                 <h3 class="box-title"><i class="fa fa-user-shield"></i> Security and Login</h3>
                             </a>
                         </div>
-                        <div id="collapseTwo" class="panel-collapse collapse @if (session('error')) collapse in @else collapsed @endif" aria-expanded="@if (session('error')) true @else false @endif">
+                        <div id="collapseTwo" class="panel-collapse @if (session('errors') || session('success') ||session('errorpw') || session('successpw') ) collapse in @else collapse @endif" aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
                             <ul class="nav nav-pills nav-stacked">
                             <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed" aria-expanded="false"><i class="fa fa-camera"></i> Change Profile Picture</a></li>
 
-                            <div id="changeprofilepic" class="panel-collapse collapse" aria-expanded="false">
+                            <div id="changeprofilepic" class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif" aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
 
                                 @if ($message = Session::get('success'))
                                 <div class="alert alert-success alert-block">
@@ -173,7 +173,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                             <li><a data-toggle="collapse" href="#changepw" class="collapse" aria-expanded="false"><i class="fa fa-unlock"></i> Change Password</a></li>
 
-                            <div id="changepw" class="panel-collapse @if (session('error')) collapse in @else collapse @endif" aria-expanded="false">
+                            <div id="changepw" class="panel-collapse @if (session('errorpw') || session('successpw')) collapse in @else collapse @endif" aria-expanded="@if (session('errorpw') || session('successpw')) true @else false @endif">
 
 
                                 @if (count($errors) > 0)
@@ -187,14 +187,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 @endif
 
 
-                                @if (session('error'))
+                                @if (session('errorpw'))
                                     <div class="alert alert-danger">
-                                        {{ session('error') }}
+                                        {{ session('errorpw') }}
                                     </div>
                                 @endif
-                                @if (session('success'))
+                                @if (session('successpw'))
                                     <div class="alert alert-success">
-                                        {{ session('success') }}
+                                        {{ session('successpw') }}
                                     </div>
                                 @endif
 

@@ -93,15 +93,15 @@ class UserController extends Controller
         ]);
 
         if(!Hash::check($request->get('currentpassword'), Auth::user()->password)){
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("errorpw","Your current password does not matches with the password you provided. Please try again.");
         }
 
         if(strcmp($request->get('currentpassword'),$request->get('newpassword')) == 0){
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("errorpw","New Password cannot be same as your current password. Please choose a different password.");
         }
 
         if(strcmp($request->get('newpassword'),$request->get('newpasswordagain')) != 0){
-            return redirect()->back()->with("error","New Password Again does not match with the New Paassword. Please check a again.");
+            return redirect()->back()->with("errorpw","New Password Again does not match with the New Paassword. Please check a again.");
         }
 
         $user = Auth::user();
@@ -111,7 +111,7 @@ class UserController extends Controller
         //activity log
         activity()->performedOn($user)->log('Password changed !');
 
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("successpw","Password changed successfully !");
     }
 
     public function ChangeUserPropic(Request $request){
