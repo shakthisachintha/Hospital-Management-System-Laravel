@@ -23,3 +23,7 @@ INFO: Unsupported notification method: $/setTraceNotification
 Oct 28, 2019 11:33:53 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTraceNotification
 INFO  shutting down Metals
+INFO  time: initialize in 2s
+WARN  no build tool detected in workspace 'C:\xampp\htdocs\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Oct 30, 2019 2:12:13 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
