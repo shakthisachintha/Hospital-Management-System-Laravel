@@ -264,22 +264,13 @@
 
     function createChannelFunction() {
 
-<<<<<<< HEAD
-        var x;
-        x = document.getElementById("inputEmail3").value;
-        if (x == 0) 
-=======
         var x, text;
         x = document.getElementById("p_reg_num").value;
         patientid=x;
         if (x > 0) 
->>>>>>> origin
+
         {
-            // $("#createchannel1").slideDown(1000);
-            // $("#createchannel2").slideDown(1000);
-            // $("#createchannel3").slideUp(1000);
-            // $("#createchannel4").slideUp(1000);
-            
+   
             var data=new FormData;
             data.append('regNum',x);
             data.append('_token','{{csrf_token()}}');

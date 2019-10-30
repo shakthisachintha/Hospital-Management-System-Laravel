@@ -162,8 +162,9 @@
                         </div>
                         <label for="photo" class="col-sm-1 control-label">{{__('Picture')}}</label>
                         <div class="col-sm-2">
-                        <button type="button" onclick="camStart();" data-toggle="modal" data-target="#modal-default" class="bg-navy btn btn-flat"><i class="fas fa-camera"></i>  {{__('Take a Photo')}}</button>
-                            <input type="text" style="display:none" id="regp_photo" name="regp_photo">
+                        <button id="photo_btn"type="button" onclick="camStart();" data-toggle="modal" data-target="#modal-default" class="bg-navy btn btn-flat"><i class="fas fa-camera"></i> <span id="photo_btn_text">{{__('Take a Photo')}}</span>   <i id="photo_icon" style="display:none;" class="far text-dark fa-check-circle"></i>  </button>
+                 
+                        <input type="text" style="display:none" id="regp_photo" name="regp_photo">
                         </div>
                     </div>
                     <div class="box-footer">
@@ -175,6 +176,7 @@
             </form>
 
             <script>
+            
             function camStart(){
                 Webcam.set({
                 width: 200,
@@ -185,14 +187,34 @@
                 Webcam.attach( '#my_camera' );
             }
 
-            function take_snapshot() {
-                // take snapshot and get image data
+            var data;
+
+            function takeSnapshot() {
                 Webcam.snap( function(data_uri) {
-                // display results in page
-                console.log(data_uri);
-                document.getElementById('results').innerHTML ='<img style="width:200px;height:150px" src="'+data_uri+'"/>';
-                document.getElementById('regp_photo').setAttribute("value", data_uri);
+                    data=data_uri;
+                    document.getElementById('results').innerHTML ='<img style="width:200px;height:150px" src="'+data_uri+'"/>';
+                    $("#save_btn").removeAttr("disabled");
                 });
+            }
+
+            function saveSnap(){
+                document.getElementById('regp_photo').setAttribute("value", data);
+                $("#photo_icon").fadeIn();
+                $("#photo_btn").addClass("btn-success");
+                $("#photo_btn_text").text("{{__('Photo Taken')}}");
+                $("#photo_btn").removeClass("bg-navy");
+                Webcam.reset();
+            }
+
+            function cancelSnap(){
+                document.getElementById('regp_photo').removeAttribute("value");
+                $("#photo_icon").fadeOut();
+                $("#photo_btn").removeClass("btn-success");
+                $("#photo_btn").addClass("bg-navy");
+                if(data==null){
+                    $("#save_btn").attr("disabled", "disabled");
+                }
+                Webcam.reset();
             }
 
             </script>
@@ -214,7 +236,7 @@
                                         <div c>
                                                 <div id="my_camera"></div>
                                         </div>
-                                        <input type="button" class="btn mt-1 btn-flat btn-success" value="Take Snapshot" onClick="take_snapshot()">
+                                        <input type="button" class="btn mt-1 btn-flat btn-success" value="Take Snapshot" onClick="takeSnapshot();">
                                 </div>
                                 <div class="col-sm-5">
                                         <h4>{{__('Image Taken')}}</h4>
@@ -225,8 +247,8 @@
                           
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" onclick="Webcam.reset()" data-dismiss="modal">{{__('Cancel')}}</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Webcam.reset()">{{__('Save Changes')}}</button>
+                          <button type="button" class="btn btn-default pull-left" onclick="cancelSnap();" data-dismiss="modal">{{__('Cancel')}}</button>
+                        <button id="save_btn" type="button" disabled class="btn btn-primary" data-dismiss="modal" onclick="saveSnap();">{{__('Save Changes')}}</button>
                         </div>
                       </div>
                       <!-- /.modal-content -->
