@@ -11,6 +11,9 @@ use Illuminate\Contracts\Validation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendNotices;
+use Mailgun\Mailgun;
+
+// require 'vendor/autoload.php';
 
 class UserController extends Controller
 {
@@ -158,6 +161,25 @@ class UserController extends Controller
 
         Mail::to('ssakunchamikara@gmail.com')->send(new SendNotices($data));
         return back()->with('success','thanks for contacting us!');
+
+    }
+
+    public function email(){
+        # Include the Autoloader (see "Libraries" for install instructions)
+        require 'vendor/autoload.php';
+        # Instantiate the client.
+        $mgClient = new Mailgun('ab150eb15123c4d2c555fb4f9dec1d54-816b23ef-3157e49d');
+        $domain = "sandboxb511609ae5c9457a82989b1fa5a4b92f.mailgun.org";
+        # Make the call to the client.
+        $result = $mgClient->sendMessage($domain, array(
+            'from'	=> 'Excited User <mailgun@sandboxb511609ae5c9457a82989b1fa5a4b92f.mailgun.org>',
+            'to'	=> 'Baz <chamikarasakun@gmail.com@sandboxb511609ae5c9457a82989b1fa5a4b92f.mailgun.org>',
+            'subject' => 'Hello',
+            'text'	=> 'Testing some Mailgun awesomness!'
+        ));
+
+        return view('users.email', ['title' => "Register New Fingerprint"]);
+
 
     }
 }

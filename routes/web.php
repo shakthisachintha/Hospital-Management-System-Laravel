@@ -85,3 +85,5 @@ Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController
 
 Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
+
+Route::get('/emails',['as' => 'emails', 'uses' => 'UserController@email'])->middleware('auth');
