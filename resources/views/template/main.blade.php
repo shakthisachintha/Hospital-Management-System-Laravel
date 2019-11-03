@@ -31,8 +31,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
     <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
+    {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
+
+@yield('custom_styles')
 
         .spinner {
             margin: 0;
@@ -428,7 +433,7 @@ document.getElementById("today").innerHTML=today;
     </div>
     <!-- ./wrapper -->
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="dist/js/adminlte.min.js"></script>
@@ -437,6 +442,8 @@ document.getElementById("today").innerHTML=today;
     $("#spinner").fadeOut();
     </script>
 <!-- DataTables -->
+
+
 <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->

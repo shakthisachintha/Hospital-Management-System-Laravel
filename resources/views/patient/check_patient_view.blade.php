@@ -4,6 +4,9 @@
 
 @section('sidebar')
 
+@section('optional_scripts')
+@endsection
+
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
@@ -76,7 +79,36 @@
 </ol>
 @endsection
 @section('main_content')
+
+<script>
+function suggestMed(val){
+    keyword=val;
+    var data=new FormData;
+    data.append('keyword',keyword);
+    data.append('_token','{{csrf_token()}}');
+    $.ajax({
+        type: "POST",
+        url: "{{route('medicineSuggests')}}",
+        data:data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        global:false,
+        success: function (response) {
+            console.log(response.sugestion)
+            return(response)
+        }
+    });
+}
+</script>
+<script src="js/typeahead/typeahead.bundle.js"></script>
+{{-- <script src="js/typeahead/typeahead.jquery.js"></script> --}}
+<script src="js/typeahead/bloodhound.js"></script>
+
+
+
 <div class="row">
+    
     <div class="rounded col-md-5">
         <h4>Channel Details</h4>
         <h4>Appointment Number : {{$appNum}}</h4>
@@ -85,73 +117,109 @@
                 Add Medicines To Prescription
             </div>
             <div class="box-body">
-                <div class="row mb-2">
-                    <div class="col-xs-5">
-                        <input type="text" class="form-control" placeholder="Type To Search Medicine">
-                    </div>
-                    <div class="col-xs-3">
-                        <input type="text" class="form-control" placeholder="Dosage">
-                    </div>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="Notes">
-                    </div>
+                <div class="container-fluid">
+                        <div class="row mb-2">
+                                <div class="col-md-5 m-0 p-0">
+                                    <div id="bloodhound">
+                                        <input oninput="console.log(this.value);" id="medSearch" class="form-control" type="text" placeholder="Search Medicines">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 m-0 p-0">
+                                    <input onkeydown="addMed(event,this)" id="medNote" disabled type="text" class="form-control" placeholder="Notes">
+                                </div>
+                                <div id="suggestionList"></div>
+                        </div>
                 </div>
+               
 
                 <div style="height:30vh;overflow-y: scroll">
-                    <table class="table table-sm table-bordered w-100">
+                    <table id="medTable" class="table table-sm table-bordered w-100">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Medicine</th>
-                                <th>Dosage</th>
                                 <th>Notes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Dasamulaarishtaya</td>
-                                <td>2/3/12</td>
-                                <td>No Notes</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Bee Honey</td>
-                                <td>2/3/12</td>
-                                <td>No Notes</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Polpala Pulp</td>
-                                <td>3/3/12</td>
-                                <td>No Notes</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Niyagala Ala</td>
-                                <td>1/3/12</td>
-                                <td>No Notes</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Walas Oil</td>
-                                <td>2/3/12</td>
-                                <td>No Notes</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Dasamulaarishtaya</td>
-                                <td>2/3/12</td>
-                                <td>No Notes</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
-
-
         </div>
     </div>
+
+
+    <script>
+
+        var medicines=[];
+
+        function addMed(e,obj) { 
+            var note=obj.value;
+            var med=$("#medSearch").val();
+            if(e.keyCode === 13){
+                e.preventDefault(); 
+                var med={name:med,note:note}
+                medicines.push(med);
+                medTableUpdate();
+                $("#medSearch").val('');
+                $("#medSearch").focus();
+                $('#medSearch').typeahead('val', '');
+                $('#medSearch').typeahead('close');
+
+                $("#medNote").val('');
+                $("#medNote").attr('disabled', 'disabled');
+            }
+         }
+
+         function medTableUpdate() {
+            $("#medTable tbody tr").remove();
+            var count=1
+             medicines.forEach(element => {
+                $('#medTable > tbody:last-child').append('<tr><td>'+count+'</td><td>'+element.name+'</td><td>'+element.note+'</td></tr>');
+                count++;
+             });
+         }
+
+            
+            var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+                'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+                'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+                'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+                'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+                'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+            ];
+        
+            var states = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                local: states
+            });
+
+      
+    
+            $('#bloodhound #medSearch').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 2
+            }, {
+                name: 'states',
+                source: states
+            });
+    
+            $('#medSearch').bind('typeahead:select', function(ev, suggestion) {
+                console.log(suggestion);
+                $("#medNote").removeAttr("disabled");
+                $("#medNote").focus();
+                // 
+
+            });
+        </script>
 
     <div class="col-md-7">
         <h4 class="text-center">Patient's Details And Treatment History</h4>
@@ -414,5 +482,78 @@
     </div>
 
 </div>
+
+@endsection
+
+@section('custom_styles')
+.typeahead,
+.tt-query,
+.tt-hint {
+  width: 100%;
+  height: 100%;
+  {{-- padding: 8px 12px; --}}
+  {{-- font-size: 24px; --}}
+  {{-- line-height: 30px; --}}
+  border: 2px solid #ccc;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  outline: none;
+}
+
+.typeahead {
+  background-color: #fff;
+}
+
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-menu {
+  width:100% ;
+  margin: 3px 0;
+  padding: 8px 0;
+  background-color: #fef;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #0097cf;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
 
 @endsection
