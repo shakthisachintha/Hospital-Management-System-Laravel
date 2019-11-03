@@ -130,7 +130,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         <!-- textarea -->
                         <div class="form-group">
                             <label>Enter your Message</label>
-                            <textarea class="form-control" name="message" rows="5" placeholder="Enter Message"></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Enter Message" required></textarea>
                         </div>
 
                         <br>
@@ -146,39 +146,44 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                             <div class="col-md-3">
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox"> Emails
+                                    <input type="checkbox" name="emails" value="email"> Emails
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox"> SMS
+                                    <input type="checkbox" name="sms" value="sms"> SMS
                                     </label>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
-                                    <label>Select Senders :</label>
+                                    <label>Select Receivers :</label>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" name="receiverlist[]" value="admin"> Admin
+                                        </label>
+                                </div>
+                                <div class="checkbox">
                                     <label>
-                                    <input type="checkbox"> Doctor
+                                    <input type="checkbox" name="receiverlist[]" value="doctor"> Doctor
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox"> Staff
+                                    <input type="checkbox" name="receiverlist[]" value="staff"> Staff
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox"> Pharmasist
+                                    <input type="checkbox" name="receiverlist[]" value="pharmasist"> Pharmasist
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox"> Patient
+                                    <input type="checkbox" name="receiverlist[]" value="patient"> Patient
                                     </label>
                                 </div>
                             </div>

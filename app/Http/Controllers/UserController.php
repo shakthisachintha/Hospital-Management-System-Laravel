@@ -11,7 +11,7 @@ use Illuminate\Contracts\Validation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendNotices;
-use Mailgun\Mailgun;
+use DB;
 
 // require 'vendor/autoload.php';
 
@@ -150,36 +150,71 @@ class UserController extends Controller
 
     public function send_notice(Request $request){
 
-        $this->validate($request,[
-            'email' => 'required|email',
-            'message' => 'required'
-        ]);
-
         $data = array(
             'message' => $request->message
         );
 
-        Mail::to('ssakunchamikara@gmail.com')->send(new SendNotices($data));
+
+        $receverlist = $request->input('receiverlist');
+        foreach($receverlist as $list){
+            $emails = DB::table('users')->select('email')->where('user_type', $list)->get()->toArray();
+            dd($emails);
+        }
+
+        //userlata tp no eka na
+
+        //dd($data['message']);
+        // if($request->emails){
+        //     $this->email($data,$emaillist);
+        // }
+        // if($request->sms){
+        //     $this->sms($data,$nolist);
+        // }
+
         return back()->with('success','thanks for contacting us!');
 
     }
 
-    public function email(){
-        # Include the Autoloader (see "Libraries" for install instructions)
-        require 'vendor/autoload.php';
-        # Instantiate the client.
-        $mgClient = new Mailgun('ab150eb15123c4d2c555fb4f9dec1d54-816b23ef-3157e49d');
-        $domain = "sandboxb511609ae5c9457a82989b1fa5a4b92f.mailgun.org";
-        # Make the call to the client.
-        $result = $mgClient->sendMessage($domain, array(
-            'from'	=> 'Excited User <mailgun@sandboxb511609ae5c9457a82989b1fa5a4b92f.mailgun.org>',
-            'to'	=> 'Baz <chamikarasakun@gmail.com@sandboxb511609ae5c9457a82989b1fa5a4b92f.mailgun.org>',
-            'subject' => 'Hello',
-            'text'	=> 'Testing some Mailgun awesomness!'
-        ));
+    public function email($data,$emaillist){
+        // # Include the Autoloader (see "Libraries" for install instructions)
+        // require 'vendor/autoload.php';
+        //require 'vendor/autoload.php'; // If you're using Composer (recommended)
+        // Comment out the above line if not using Composer
+        // require("<PATH TO>/sendgrid-php.php");
+        // If not using Composer, uncomment the above line and
+        // download sendgrid-php.zip from the latest release here,
+        // replacing <PATH TO> with the path to the sendgrid-php.php file,
+        // which is included in the download:
+        // https://github.com/sendgrid/sendgrid-php/releases
+
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom("test@example.com", "Example User");
+        $email->setSubject("Sending with Twilio SendGrid is Fun");
+        $email->addTo($emaillist, "Example User");
+        $email->addContent("text/plain",$data['message']);
+        $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
 
         return view('users.email', ['title' => "Register New Fingerprint"]);
 
 
     }
+    public function sms($data,$nolist){
+        $basic  = new \Nexmo\Client\Credentials\Basic('4618c9cf', 'u56udGx4em2dqQqD');
+        $client = new \Nexmo\Client($basic);
+
+        $message = $client->message()->send([
+        'to' => $nolist,//'94767035067',
+        'from' => 'Nexmo',
+        'text' => $data['message']
+]);
+    }
 }
+?>

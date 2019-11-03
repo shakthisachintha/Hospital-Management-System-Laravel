@@ -22,6 +22,7 @@
         "nyholm/psr7": "^1.2",
         "php-http/guzzle6-adapter": "^2.0",
         "php-http/message": "^1.8",
+        "sendgrid/sendgrid": "~7",
         "spatie/laravel-activitylog": "^3.2"
     },
     "require-dev": {
