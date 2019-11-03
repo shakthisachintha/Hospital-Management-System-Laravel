@@ -97,7 +97,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
         </div>
         <div class="col-md-10">
-            <div class="box box-warning">
+            <div class="box box-danger">
                 <div class="box-header with-border">
                     <h3 class="box-title">Send Notices</h3>
                 </div>
@@ -127,20 +127,70 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                         {{csrf_field()}}
 
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="Enter email">
-                        </div>
-
                         <!-- textarea -->
                         <div class="form-group">
                             <label>Enter your Message</label>
-                            <textarea class="form-control" name="message" rows="3" placeholder="Enter Message"></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Enter Message"></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-info" name="send" value="Send" >
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-1">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Select Method :</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox"> Emails
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox"> SMS
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                    <label>Select Senders :</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox"> Doctor
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox"> Staff
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox"> Pharmasist
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox"> Patient
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group col-md-2 pull-right">
+                            <input type="submit" class="btn btn-danger btn-lg" name="send" value="Send" >
                         </div>
 
                     </form>
@@ -152,7 +202,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
         </div>
     </div>
-    
+
 
 </section>
 
