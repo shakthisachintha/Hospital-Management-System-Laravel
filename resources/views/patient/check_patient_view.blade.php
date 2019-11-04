@@ -133,15 +133,24 @@ function suggestMed(val){
                
 
                 <div style="height:30vh;overflow-y: scroll">
-                    <table id="medTable" class="table table-sm table-bordered w-100">
+                    <table style="width:100%" id="medTable" class="table table-sm table-bordered w-100">
+
+                            <colgroup>
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 40%;">
+                                <col span="1" style="width: 30%;">
+                                <col span="1" style="width: 20%;">
+                             </colgroup>
+
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Medicine</th>
                                 <th>Notes</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="m-0 p-0">
                             
                         </tbody>
                     </table>
@@ -170,6 +179,8 @@ function suggestMed(val){
 
                 $("#medNote").val('');
                 $("#medNote").attr('disabled', 'disabled');
+            }else if(e.keyCode===9){
+                e.preventDefault();
             }
          }
 
@@ -177,7 +188,7 @@ function suggestMed(val){
             $("#medTable tbody tr").remove();
             var count=1
              medicines.forEach(element => {
-                $('#medTable > tbody:last-child').append('<tr><td>'+count+'</td><td>'+element.name+'</td><td>'+element.note+'</td></tr>');
+                $('#medTable > tbody:last-child').append('<tr><td>'+count+'</td><td>'+element.name+'</td><td>'+element.note+'</td><td><div class="btn-group"><button style="height:28px;" type="button" class="m-0 btn btn-danger btn-sm btn-flat"><i class="far fa-trash-alt"></i></button><button style="height:28px;" type="button" class="btn m-0 btn-warning btn-sm btn-flat"><i class="far fa-edit"></i></button></div></td></tr>');
                 count++;
              });
          }
