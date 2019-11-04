@@ -125,27 +125,33 @@
                               <label for="password-confirm">Confirm Password</label>
                               <input required readonly id="password-confirm" type="password" class="form-control" name="password_confirmation" value="12345678" required autocomplete="new-password">
                             </div>
-                           
+
+                            <div class="form-group">
+                                <label>Contact No : </label>
+                                <input required type="tel" class="form-control" name="contactno"  placeholder="Enter Your Contact No...">
+                            </div>
+
+
                             <div class="form-group">
                                     <label for="user-type">{{ __('User Type') }}</label>
-                                        <select required id="user-type" type="select" class="form-control" name="user_type" required>    
+                                        <select required id="user-type" type="select" class="form-control" name="user_type" required>
                                         <option value="admin">Administrator</option>
                                         <option value="doctor">Doctor</option>
                                         <option value="pharmacist">Pharmacist</option>
                                         <option selected value="general">General Staff</option>
-                                        </select>        
+                                        </select>
                             </div>
 
                           <!-- /.box-body -->
-            
-                          <div class="">
- 
 
-    
+                          <div class="">
+
+
+
             <button type="submit" class="pull-right btn btn-primary">Register</button>
-    
+
 </div>
-                         
+
                           </div>
 
                         </form>
@@ -154,5 +160,6 @@
         <div class="col-md-1"></div>
     </div>
 </div>
+
 
 @endsection

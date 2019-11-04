@@ -47,6 +47,7 @@ class PatientController extends Controller
             $patient->address = $request->reg_paddress;
             $patient->occupation = $request->reg_poccupation;
             $patient->sex = $request->reg_psex;
+            $patient->bod = $request->reg_pbd;
             $patient->age = $request->reg_page;
             $patient->telephone = $request->reg_ptel;
             $patient->nic = $request->reg_pnic;

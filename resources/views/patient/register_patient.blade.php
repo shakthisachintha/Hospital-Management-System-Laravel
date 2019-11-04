@@ -149,13 +149,19 @@
 
                     <!-- select -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
-                        <div class="col-sm-3">
+                        <label class="col-sm-1 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
+                        <div class="col-sm-2">
                             <select required class="form-control" name="reg_psex">
                                 <option selected value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
+
+                        <label class="col-sm-1 control-label">{{__('BOD')}}<span style="color:red">*</span></label>
+                        <div class="col-sm-2">
+                            <input type="date"  class="form-control" name="reg_pbd" placeholder="Enter Patient BOD ">
+                        </div>
+
                         <label for="inputEmail3" class="col-sm-1 control-label">{{__('Age')}} <span style="color:red">*</span></label>
                         <div class="col-sm-2">
                             <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
@@ -163,7 +169,7 @@
                         <label for="photo" class="col-sm-1 control-label">{{__('Picture')}}</label>
                         <div class="col-sm-2">
                         <button id="photo_btn"type="button" onclick="camStart();" data-toggle="modal" data-target="#modal-default" class="bg-navy btn btn-flat"><i class="fas fa-camera"></i> <span id="photo_btn_text">{{__('Take a Photo')}}</span>   <i id="photo_icon" style="display:none;" class="far text-dark fa-check-circle"></i>  </button>
-                 
+
                         <input type="text" style="display:none" id="regp_photo" name="regp_photo">
                         </div>
                     </div>
@@ -176,7 +182,7 @@
             </form>
 
             <script>
-            
+
             function camStart(){
                 Webcam.set({
                 width: 200,
@@ -219,7 +225,7 @@
 
             </script>
 
-            
+
 
             <div class="modal fade" id="modal-default">
                     <div class="modal-dialog">
@@ -244,7 +250,7 @@
                                         </div>
                                 </div>
                             </div>
-                          
+
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default pull-left" onclick="cancelSnap();" data-dismiss="modal">{{__('Cancel')}}</button>
@@ -256,7 +262,7 @@
                     <!-- /.modal-dialog -->
             </div>
                   <!-- /.modal -->
-            
+
                 </div>
         </div>
         <div class="col-md-1"></div>

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('user_type')->nullable()->default("admin");
             $table->string('img_path')->nullable()->default("dist/img/avatar5.png");
             $table->integer('fingerprint')->nullable()->unique();
+            $table->string('contactnumber',13)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
                 'email' => 'admin@admin.com',
                 'name' => "Admin User",
                 'password'=>'$2y$10$T/AO49e7BmIC9aUG/33mAOdy9yDm/SUGUZC5zU.3Gtj4Lvvf.27My',//12345678
+                'contactnumber'=>'0776579307'
             )
         );
 
