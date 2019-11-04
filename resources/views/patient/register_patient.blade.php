@@ -149,23 +149,26 @@
 
                     <!-- select -->
                     <div class="form-group">
-                        <label class="col-sm-1 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
-                        <div class="col-sm-2">
+                        <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
+                        <div class="col-sm-2 mr-0 pr-0">
                             <select required class="form-control" name="reg_psex">
                                 <option selected value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
 
-                        <label class="col-sm-1 control-label">{{__('BOD')}}<span style="color:red">*</span></label>
-                        <div class="col-sm-2">
-                            <input type="date"  class="form-control" name="reg_pbd" placeholder="Enter Patient BOD ">
+                        <label class="col-sm-1 control-label">{{__('DOB')}}<span style="color:red">*</span></label>
+                        <div class="col-sm-3">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" id="datepicker"  class="form-control pull-right" name="reg_pbd" placeholder="Birthday">
+                            </div>
+                            
                         </div>
 
-                        <label for="inputEmail3" class="col-sm-1 control-label">{{__('Age')}} <span style="color:red">*</span></label>
-                        <div class="col-sm-2">
-                            <input type="number" required min="1" class="form-control" name="reg_page" placeholder="Enter Age">
-                        </div>
+                        
                         <label for="photo" class="col-sm-1 control-label">{{__('Picture')}}</label>
                         <div class="col-sm-2">
                         <button id="photo_btn"type="button" onclick="camStart();" data-toggle="modal" data-target="#modal-default" class="bg-navy btn btn-flat"><i class="fas fa-camera"></i> <span id="photo_btn_text">{{__('Take a Photo')}}</span>   <i id="photo_icon" style="display:none;" class="far text-dark fa-check-circle"></i>  </button>
@@ -181,7 +184,13 @@
                 </div>
             </form>
 
+            <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+            
             <script>
+
+            $('#datepicker').datepicker({
+                autoclose: true
+            });
 
             function camStart(){
                 Webcam.set({
