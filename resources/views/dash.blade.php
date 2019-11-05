@@ -44,7 +44,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-        <li><a href="{{route('myattend')}}">      <i class="fas fa-calendar-day" aria-hidden="true"></i>My Attendance</a></li>
+        <li><a href="{{route('myattend')}}"><i class="fas fa-calendar-day" aria-hidden="true"></i>My Attendance</a></li>
             <li><a href="{{route('attendmore')}}"><i class="fas fa-plus-square" aria-hidden="true"></i>More</a></li>
         </ul>
     </li>
@@ -58,7 +58,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{route('newuser')}}">  <i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
+            <li><a href="{{route('newuser')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
             <li><a href="{{route('regfinger')}}"><i class="fa fa-fingerprint" aria-hidden="true"></i>Register Fingerprint</a></li>
             <li><a href="{{route('resetuser')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
         </ul>
@@ -72,8 +72,32 @@
     {{--add notices--}}
     <li>
         <a href="{{route('createnoticeview')}}">
-        <i class="fas fa-sticky-note"></i>
+            <i class="fas fa-envelope-open-text"></i>
         <span> Notices</span>
+        </a>
+    </li>
+
+    {{--report generation--}}
+    <li class="treeview">
+        <a href="#">
+            <i class="fas fa-sticky-note"></i>
+            <span> Report Generation</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+                <li><a href="{{route('newuser')}}"><i class="fa fa-stethoscope" aria-hidden="true"></i> Clinic Report</a></li>
+                <li><a href="{{route('regfinger')}}"><i class="fa fa-ambulance" aria-hidden="true"></i> Mobile Clinic Report</a></li>
+                <li><a href="{{route('resetuser')}}"><i class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
+                <li><a href="{{route('resetuser')}}"><i class="fa fa-user-edit" aria-hidden="true"></i> Out-Patient Report</a></li>
+            </ul>
+    </li>
+
+    <li>
+        <a href="https://adminlte.io/themes/AdminLTE/index2.html">
+        <i class="fas fa-folder-plus"></i>
+        <span> Template</span>
         </a>
     </li>
 

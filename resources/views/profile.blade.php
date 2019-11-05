@@ -95,157 +95,202 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane" id="activity">
-                    <h3>empty for now</h3>
-                </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="timeline">
-                        <h3>empty for now</h3>
-                </div>
-                <!-- /.tab-pane -->
-
-                <div class="tab-pane @if (session('success') || session('errors')  ||session('errorpw') || session('successpw') ) active @endif" id="settings">
-
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="true">
-                            <h3 class="box-title"><i class="fa fa-cogs"></i>  General</h3>
-                            </a>
-
-
+                    <div class="box">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                            <thead>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <th>Subject Id</th>
+                                                    <th>Subject Type</th>
+                                                    <th>Causer Type</th>
+                                                    <th>Properties</th>
+                                                    <th>Created At</th>
+                                                    <th>Updated At</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($activity as $app)
+                                                    <tr>
+                                                    <td>{{$app->description}}</td>
+                                                    <td>{{$app->subject_id}}</td>
+                                                    <td>{{$app->subject_type}}</td>
+                                                    <td>{{$app->causer_type}}</td>
+                                                    <td>{{$app->properties}}</td>
+                                                    <td>{{$app->created_at}}</td>
+                                                    <td>{{$app->updated_at}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                                <th>Description</th>
+                                                <th>Subject Id</th>
+                                                <th>Subject Type</th>
+                                                <th>Causer Type</th>
+                                                <th>Properties</th>
+                                                <th>Created At</th>
+                                                <th>Updated At</th>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
                         </div>
-                        <div  id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
-                            <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#"><i class="fa fa-signature"></i> Change Name</a></li>
-                            <li><a href="#"><i class="fa fa-address-book"></i> Change Contact Number</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> Change email</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.box-body -->
+                    </div>
+                <!-- /.box-body -->
+                </div>
+            </div>
+
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="timeline">
+                <h3>empty for now</h3>
+            </div>
+            <!-- /.tab-pane -->
+
+            <div class="tab-pane @if (session('success') || session('errors')  ||session('errorpw') || session('successpw') ) active @endif" id="settings">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="true">
+                        <h3 class="box-title"><i class="fa fa-cogs"></i>  General</h3>
+                        </a>
                     </div>
 
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <a data-toggle="collapse" href="#collapseTwo" class="" aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
-                                <h3 class="box-title"><i class="fa fa-user-shield"></i> Security and Login</h3>
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse @if (session('errors') || session('success') ||session('errorpw') || session('successpw') ) collapse in @else collapse @endif" aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
-                            <ul class="nav nav-pills nav-stacked">
-                            <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed" aria-expanded="false"><i class="fa fa-camera"></i> Change Profile Picture</a></li>
+                    <div  id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
+                        <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#"><i class="fa fa-signature"></i> Change Name</a></li>
+                        <li><a href="#"><i class="fa fa-address-book"></i> Change Contact Number</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i> Change email</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
 
-                            <div id="changeprofilepic" class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif" aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <a data-toggle="collapse" href="#collapseTwo" class="" aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
+                            <h3 class="box-title"><i class="fa fa-user-shield"></i> Security and Login</h3>
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse @if (session('errors') || session('success') ||session('errorpw') || session('successpw') ) collapse in @else collapse @endif" aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
+                        <ul class="nav nav-pills nav-stacked">
+                        <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed" aria-expanded="false"><i class="fa fa-camera"></i> Change Profile Picture</a></li>
 
-                                @if ($message = Session::get('success'))
-                                <div class="alert alert-success alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                                <img src="images/{{ Session::get('image') }}">
-                                @endif
+                        <div id="changeprofilepic" class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif" aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
 
-                                @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        <strong>Whoops!</strong> There were some problems with your input.
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
-                                <!-- form start -->
-                                <form action="{{ route('change_propic') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <p class="help-block">select your new profile picture here.</p>
-                                            <input type="file" id="exampleInputFile" name="propic" class="form-control">
-                                        </div>
-                                    </div>
-                                    <!-- /.box-body -->
-
-                                    <div class="box-footer">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    </div>
-                                </form>
+                            @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
                             </div>
+                            <img src="images/{{ Session::get('image') }}">
+                            @endif
 
-                            <li><a data-toggle="collapse" href="#changepw" class="collapse" aria-expanded="false"><i class="fa fa-unlock"></i> Change Password</a></li>
-
-                            <div id="changepw" class="panel-collapse @if (session('errorpw') || session('successpw')) collapse in @else collapse @endif" aria-expanded="@if (session('errorpw') || session('successpw')) true @else false @endif">
-
-
-                                @if (count($errors) > 0)
-                                <div class = "alert alert-danger">
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> There were some problems with your input.
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
                                         @endforeach
                                     </ul>
                                 </div>
-                                @endif
+                            @endif
 
-
-                                @if (session('errorpw'))
-                                    <div class="alert alert-danger">
-                                        {{ session('errorpw') }}
+                            <!-- form start -->
+                            <form action="{{ route('change_propic') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <p class="help-block">select your new profile picture here.</p>
+                                        <input type="file" id="exampleInputFile" name="propic" class="form-control">
                                     </div>
-                                @endif
-                                @if (session('successpw'))
-                                    <div class="alert alert-success">
-                                        {{ session('successpw') }}
-                                    </div>
-                                @endif
+                                </div>
+                                <!-- /.box-body -->
 
-                                <!-- form start -->
-                                <form class="form-horizontal" method="post" action="{{ route('change_password') }}">
-                                    {{csrf_field()}}
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Current Password</label>
-
-                                            <div class="col-sm-10">
-                                            <input type="password" name="currentpassword" class="form-control" id="inputEmail3" placeholder="Current Password">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword3" class="col-sm-2 control-label">New Password</label>
-
-                                            <div class="col-sm-10">
-                                            <input type="password" name="newpassword" class="form-control" id="inputPassword3" placeholder="Enter New assword">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword4" class="col-sm-2 control-label">New Password Again</label>
-
-                                            <div class="col-sm-10">
-                                            <input type="password" name="newpasswordagain" class="form-control" id="inputPassword4" placeholder="Enter New Password Again">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.box-body -->
-                                    <div class="box-footer">
-                                        <button type="reset" class="btn btn-default">Cancel</button>
-                                        <button type="submit" class="btn btn-info pull-right">Update</button>
-                                    </div>
-                                    <!-- /.box-footer -->
-                                </form>
-                            </div>
-
-                            <li><a href="#"><i class="fa fa-fingerprint"></i> Change FingerPrint</a></li>
-                            </ul>
+                                <div class="box-footer">
+                                <button type="submit" class="btn btn-success">Update</button>
+                                </div>
+                            </form>
                         </div>
-                        <!-- /.box-body -->
+
+                        <li><a data-toggle="collapse" href="#changepw" class="collapse" aria-expanded="false"><i class="fa fa-unlock"></i> Change Password</a></li>
+
+                        <div id="changepw" class="panel-collapse @if (session('errorpw') || session('successpw')) collapse in @else collapse @endif" aria-expanded="@if (session('errorpw') || session('successpw')) true @else false @endif">
+
+
+                            @if (count($errors) > 0)
+                            <div class = "alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+
+
+                            @if (session('errorpw'))
+                                <div class="alert alert-danger">
+                                    {{ session('errorpw') }}
+                                </div>
+                            @endif
+                            @if (session('successpw'))
+                                <div class="alert alert-success">
+                                    {{ session('successpw') }}
+                                </div>
+                            @endif
+
+                            <!-- form start -->
+                            <form class="form-horizontal" method="post" action="{{ route('change_password') }}">
+                                {{csrf_field()}}
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Current Password</label>
+
+                                        <div class="col-sm-10">
+                                        <input type="password" name="currentpassword" class="form-control" id="inputEmail3" placeholder="Current Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-2 control-label">New Password</label>
+
+                                        <div class="col-sm-10">
+                                        <input type="password" name="newpassword" class="form-control" id="inputPassword3" placeholder="Enter New assword">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword4" class="col-sm-2 control-label">New Password Again</label>
+
+                                        <div class="col-sm-10">
+                                        <input type="password" name="newpasswordagain" class="form-control" id="inputPassword4" placeholder="Enter New Password Again">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button type="reset" class="btn btn-default">Cancel</button>
+                                    <button type="submit" class="btn btn-info pull-right">Update</button>
+                                </div>
+                                <!-- /.box-footer -->
+                            </form>
+                        </div>
+
+                        <li><a href="#"><i class="fa fa-fingerprint"></i> Change FingerPrint</a></li>
+                        </ul>
                     </div>
-
-
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.tab-pane -->
+
+
             </div>
-            <!-- /.tab-content -->
-            </div>
-            <!-- /.nav-tabs-custom -->
+            <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+        </div>
+        <!-- /.nav-tabs-custom -->
         </div>
         <!-- /.col -->
 
@@ -329,5 +374,23 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 </section>
 
+
+@endsection
+
+@section('optional_scripts')
+<script>
+    $(function () {
+
+        $('#example1').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+
+</script>
 
 @endsection

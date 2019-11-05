@@ -145,12 +145,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 <script>
 $(document).ready(function () {
     $(document).ready(function () {
-        
+
         $(document).ajaxSend(function(){
             $("#preloader1").fadeIn();
             $("#spinner").fadeIn();
         });
-        
+
         $(document).ajaxComplete(function(){
             $("#preloader1").fadeOut();
             $("#spinner").fadeOut();
@@ -227,7 +227,7 @@ document.getElementById("today").innerHTML=today;
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
-                       
+
                         <li class="nav-item mr-auto">
                              <p style="padding-top:1.3rem;font-weight:400;margin-right:1.5vw;color:ivory;font-size:1.7rem"><span class="mr-3" id="today"></span><span id="time"></span></p>
                         </li>
@@ -239,7 +239,7 @@ document.getElementById("today").innerHTML=today;
                                 @else
                                 EN
                                 @endif
-                               
+
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">Select The Language</li>
@@ -249,7 +249,7 @@ document.getElementById("today").innerHTML=today;
                                                 <li><a class="text-muted" href="{{route('lang','si')}}">සිංහල</a></li>
                                         </ul>
                                 </li>
-                               
+
                             </ul>
                         </li>
 
@@ -427,13 +427,13 @@ document.getElementById("today").innerHTML=today;
         </footer>
 
 
-        <!-- Add the sidebar's background. This div must be placed
+        <!-- Add the sidebars background. This div must be placed
   immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
 
-    
+
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="dist/js/adminlte.min.js"></script>
@@ -441,16 +441,14 @@ document.getElementById("today").innerHTML=today;
     $("#preloader").fadeOut();
     $("#spinner").fadeOut();
     </script>
-<!-- DataTables -->
-
-
-<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- page script -->
+    <!-- DataTables -->
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- page script -->
 
 @yield('optional_scripts')
 

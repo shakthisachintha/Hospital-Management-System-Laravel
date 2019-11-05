@@ -214,7 +214,9 @@ class UserController extends Controller
         'to' => $nolist,//'94767035067',
         'from' => 'Nexmo',
         'text' => $data['message']
-]);
+        ]);
     }
+
+    
 }
 ?>

@@ -89,3 +89,5 @@ Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send
 Route::get('/medsuggest', ['as' => 'medicineSuggests', 'uses' => 'MedicineController@searchSuggestion'])->middleware('auth');
 
 Route::get('/emails',['as' => 'emails', 'uses' => 'UserController@email'])->middleware('auth');
+Route::get('/reportgeneration',['as' => 'reportgeneration', 'uses' => 'UserController@reportgen'])->middleware('auth');
+
