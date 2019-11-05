@@ -27,6 +27,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
@@ -441,6 +442,7 @@ document.getElementById("today").innerHTML=today;
     $("#preloader").fadeOut();
     $("#spinner").fadeOut();
     </script>
+<<<<<<< HEAD
     <!-- DataTables -->
     <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -449,6 +451,21 @@ document.getElementById("today").innerHTML=today;
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <!-- page script -->
+=======
+<!-- DataTables -->
+ 
+ <!--Datepicker-->
+ 
+ 
+
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
+>>>>>>> 6a1dad4f23ffbacd1859824db15fde3318fabe40
 
 @yield('optional_scripts')
 
