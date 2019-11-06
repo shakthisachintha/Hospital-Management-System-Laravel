@@ -89,12 +89,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
         <div class="col-md-9">
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class=""><a href="#activity" data-toggle="tab" aria-expanded="false">Activity</a></li>
+                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity Log</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
                 <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif"><a href="#settings" data-toggle="tab" aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane" id="activity">
+                <div class="tab-pane active" id="activity">
                     <div class="box">
                         <!-- /.box-header -->
                         <div class="box-body">

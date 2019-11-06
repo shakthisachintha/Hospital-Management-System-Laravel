@@ -20,7 +20,7 @@
             <li><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a>
             </li>
             <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
-{{--register in patient--}}
+    {{--register in patient--}}
             <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" area-hidden="true"></i><span> Register In Patient</span></a></li>
 
         </ul>
@@ -30,8 +30,8 @@
                 Appointment</span></a></li>
     {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i> <span> Check Patient</span></a></li>
-    
-    
+
+
     <li class="treeview">
         <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>
             <span class="pull-right-container">
@@ -194,7 +194,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            
+
         </div>
         <!-- /.box-footer -->
     </div>
@@ -222,7 +222,7 @@
                             <td>{{$app->patient}}</td>
                             <td>{{$app->number}}</td>
                             <td>{{$app->name}}</td>
-                            </tr>   
+                            </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
@@ -267,10 +267,8 @@
         var x, text;
         x = document.getElementById("p_reg_num").value;
         patientid=x;
-        if (x > 0) 
-
+        if (x > 0)
         {
-   
             var data=new FormData;
             data.append('regNum',x);
             data.append('_token','{{csrf_token()}}');
@@ -307,12 +305,12 @@
                     }
                 }
             });
-        }else{
-            alert("Please Enter a Valid Registration Number!");
-        }
+            }else{
+                alert("Please Enter a Valid Registration Number!");
+            }
 
-   
-    }
+
+        }
 
 </script>
 
@@ -321,7 +319,7 @@
 @section('optional_scripts')
 <script>
     $(function () {
-       
+
         $('#example2').DataTable({
             'paging': true,
             'lengthChange': false,

@@ -81,22 +81,21 @@
         <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else style="margin-bottom:0;margin-top:8vh" @endif class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                    @if (session()->has('regpsuccess'))
-                        <div class="alert alert-success alert-dismissible">
+                @if (session()->has('regpsuccess'))
+                    <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <button onclick="window.open('{{route('pregcard',session()->get('pid'))}}','myWin','scrollbars=yes,width=830,height=500,location=no').focus();" class="btn btn-warning ml-5"><i class="fas fa-print"></i>  Print Registration Card </button>
+                            {{session()->get('regpsuccess')}}
+                            </div>
+                            @endif
+                            @if (session()->has('regpfail'))
+                            <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h4><i class="icon fa fa-check"></i> Success!</h4>
-                                <button onclick="window.open('{{route('pregcard',session()->get('pid'))}}','myWin','scrollbars=yes,width=830,height=500,location=no').focus();" class="btn btn-warning ml-5"><i class="fas fa-print"></i>  Print Registration Card </button>
-                                {{session()->get('regpsuccess')}}
-                              </div>
-                              @endif
-                              @if (session()->has('regpfail'))
-                              <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                    {{session()->get('regpfail')}}
-                                  </div>
-                                  @endif
-
+                                <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                {{session()->get('regpfail')}}
+                                </div>
+                                @endif
             </div>
             <div class="col-md-1"></div>
 
@@ -165,10 +164,10 @@
                                 </div>
                                 <input type="text" id="datepicker"  class="form-control pull-right" name="reg_pbd" placeholder="Birthday">
                             </div>
-                            
+
                         </div>
 
-                        
+
                         <label for="photo" class="col-sm-1 control-label">{{__('Picture')}}</label>
                         <div class="col-sm-2">
                         <button id="photo_btn"type="button" onclick="camStart();" data-toggle="modal" data-target="#modal-default" class="bg-navy btn btn-flat"><i class="fas fa-camera"></i> <span id="photo_btn_text">{{__('Take a Photo')}}</span>   <i id="photo_icon" style="display:none;" class="far text-dark fa-check-circle"></i>  </button>
@@ -185,7 +184,7 @@
             </form>
 
             <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-            
+
             <script>
 
             $('#datepicker').datepicker({
