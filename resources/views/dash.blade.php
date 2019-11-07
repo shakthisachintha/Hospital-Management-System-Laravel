@@ -11,7 +11,7 @@
         <i class="fas fa-tachometer-alt"></i>
         <span> Dashboard</span></a>
     </li>
-{{--patient--}}
+    {{--patient--}}
     <li class="treeview">
         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
             <span class="pull-right-container">
@@ -21,18 +21,18 @@
         <ul class="treeview-menu">
             <li><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a></li>
             <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
-{{--register in patient--}}
+    {{--register in patient--}}
             <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" area-hidden="true"></i><span> Register In Patient</span></a></li>
         </ul>
     </li>
-{{--create channel--}}
+    {{--create channel--}}
     <li>
         <a href="{{route('create_channel_view')}}">
         <i class="fas fa-folder-plus"></i>
         <span> Create Appoinment</span>
         </a>
     </li>
-{{--check patient--}}
+    {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
 
 
@@ -87,15 +87,15 @@
             </span>
         </a>
         <ul class="treeview-menu">
-                <li><a href="{{route('newuser')}}"><i class="fa fa-stethoscope" aria-hidden="true"></i> Clinic Report</a></li>
-                <li><a href="{{route('regfinger')}}"><i class="fa fa-ambulance" aria-hidden="true"></i> Mobile Clinic Report</a></li>
-                <li><a href="{{route('resetuser')}}"><i class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
-                <li><a href="{{route('resetuser')}}"><i class="fa fa-user-edit" aria-hidden="true"></i> Out-Patient Report</a></li>
-            </ul>
+            <li><a href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope" aria-hidden="true"></i> Clinic Report</a></li>
+            <li><a href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance" aria-hidden="true"></i> Mobile Clinic Report</a></li>
+            <li><a href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
+            <li><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i> Out-Patient Report</a></li>
+        </ul>
     </li>
 
     <li>
-        <a href="https://adminlte.io/themes/AdminLTE/index2.html">
+        <a href="https://adminlte.io/themes/AdminLTE/index2.html" target="_blank">
         <i class="fas fa-folder-plus"></i>
         <span> Template</span>
         </a>

@@ -91,3 +91,7 @@ Route::get('/medsuggest', ['as' => 'medicineSuggests', 'uses' => 'MedicineContro
 Route::get('/emails',['as' => 'emails', 'uses' => 'UserController@email'])->middleware('auth');
 Route::get('/reportgeneration',['as' => 'reportgeneration', 'uses' => 'UserController@reportgen'])->middleware('auth');
 
+Route::get('/clinicreports',['as' => 'clinic_reports', 'uses' => 'ReportController@viewclinicreport'])->middleware('auth');
+Route::get('/mobclinicreport',['as'=> 'mob_clinic_report','uses' => 'ReportController@view_mobile_clinic_report'])->middleware('auth');
+Route::get('/monstatreport',['as'=> 'mon_stat_report','uses' => 'ReportController@view_monthly_static_report'])->middleware('auth');
+Route::get('/outpreport',['as'=> 'out_p_report','uses' => 'ReportController@view_out_patient_report'])->middleware('auth');
