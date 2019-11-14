@@ -128,7 +128,7 @@
 
                             <div class="form-group">
                                 <label>Contact No : </label>
-                                <input required type="tel" class="form-control" name="contactno"  placeholder="Enter Your Contact No...">
+                                <input required type="text" class="form-control" name="contactno"  placeholder="Enter Your Contact No...">
                             </div>
 
 

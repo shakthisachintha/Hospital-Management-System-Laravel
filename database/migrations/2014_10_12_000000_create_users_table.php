@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('user_type')->nullable()->default("admin");
             $table->string('img_path')->nullable()->default("dist/img/avatar5.png");
             $table->integer('fingerprint')->nullable()->unique();
-            $table->string('contactnumber',13)->nullable();
+            $table->integer('contactnumber');
             $table->rememberToken();
             $table->timestamps();
         });
