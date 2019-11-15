@@ -91,6 +91,7 @@
             <li><a href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance" aria-hidden="true"></i> Mobile Clinic Report</a></li>
             <li><a href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
             <li><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i> Out-Patient Report</a></li>
+            <li><a href="{{route('attendance_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i> Attendance Report</a></li>
         </ul>
     </li>
 

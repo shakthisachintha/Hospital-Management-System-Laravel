@@ -95,3 +95,6 @@ Route::get('/clinicreports',['as' => 'clinic_reports', 'uses' => 'ReportControll
 Route::get('/mobclinicreport',['as'=> 'mob_clinic_report','uses' => 'ReportController@view_mobile_clinic_report'])->middleware('auth');
 Route::get('/monstatreport',['as'=> 'mon_stat_report','uses' => 'ReportController@view_monthly_static_report'])->middleware('auth');
 Route::get('/outpreport',['as'=> 'out_p_report','uses' => 'ReportController@view_out_patient_report'])->middleware('auth');
+Route::get('/attendancereport',['as'=> 'attendance_report','uses' => 'ReportController@view_attendance_report'])->middleware('auth');
+Route::post('/generatereports',['as'=> 'gen_att_reports','uses' => 'ReportController@gen_att_reports'])->middleware('auth');
+

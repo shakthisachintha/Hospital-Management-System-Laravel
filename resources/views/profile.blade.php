@@ -91,6 +91,7 @@
             <li><a href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance" aria-hidden="true"></i> Mobile Clinic Report</a></li>
             <li><a href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
             <li><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i> Out-Patient Report</a></li>
+            <li><a href="{{route('attendance_report')}}"><i class="fa fa-calendar-alt" aria-hidden="true"></i> Attendance Report</a></li>
         </ul>
     </li>
 
@@ -128,22 +129,45 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
         <div class="col-md-9">
             <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity Log</a></li>
-                <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
-                <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif"><a href="#settings" data-toggle="tab" aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="activity">
-                    <div class="box">
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                            <thead>
-                                                <tr>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity Log</a></li>
+                    <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">My Attendence</a></li>
+                    <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif"><a href="#settings" data-toggle="tab" aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="activity">
+                        <div class="box">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>Subject Id</th>
+                                                        <th>Subject Type</th>
+                                                        <th>Causer Type</th>
+                                                        <th>Properties</th>
+                                                        <th>Created At</th>
+                                                        <th>Updated At</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($activity as $app)
+                                                        <tr>
+                                                        <td>{{$app->description}}</td>
+                                                        <td>{{$app->subject_id}}</td>
+                                                        <td>{{$app->subject_type}}</td>
+                                                        <td>{{$app->causer_type}}</td>
+                                                        <td>{{$app->properties}}</td>
+                                                        <td>{{$app->created_at}}</td>
+                                                        <td>{{$app->updated_at}}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                <tfoot>
                                                     <th>Description</th>
                                                     <th>Subject Id</th>
                                                     <th>Subject Type</th>
@@ -151,43 +175,80 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                     <th>Properties</th>
                                                     <th>Created At</th>
                                                     <th>Updated At</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($activity as $app)
-                                                    <tr>
-                                                    <td>{{$app->description}}</td>
-                                                    <td>{{$app->subject_id}}</td>
-                                                    <td>{{$app->subject_type}}</td>
-                                                    <td>{{$app->causer_type}}</td>
-                                                    <td>{{$app->properties}}</td>
-                                                    <td>{{$app->created_at}}</td>
-                                                    <td>{{$app->updated_at}}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                            <tfoot>
-                                                <th>Description</th>
-                                                <th>Subject Id</th>
-                                                <th>Subject Type</th>
-                                                <th>Causer Type</th>
-                                                <th>Properties</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
-                                            </tfoot>
-                                        </table>
+                                                </tfoot>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
+                            </div>
                         </div>
+                    <!-- /.box-body -->
                     </div>
-                <!-- /.box-body -->
                 </div>
-            </div>
 
             <!-- /.tab-pane -->
-            <div class="tab-pane" id="timeline">
-                <h3>empty for now</h3>
+            <div class="tab-pane" id="attendance">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-9">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-envelope"></i></span>
+
+                                <div class="info-box-content">
+                                <span class="info-box-text">Messages</span>
+                                <span class="info-box-number">1,410</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                                <!-- /.info-box -->
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-9">
+                            <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="fa fa-flag"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Bookmarks</span>
+                                <span class="info-box-number">410</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-9">
+                            <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="fa fa-file"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Uploads</span>
+                                <span class="info-box-number">13,648</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-9">
+                            <div class="info-box">
+                            <span class="info-box-icon bg-red"><i class="fa fa-star"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Likes</span>
+                                <span class="info-box-number">93,139</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                            <!-- /.info-box -->
+                    </div>
+
+                    <div class="row">
+
+                    </div>
+
+                <!-- /.col -->
+                </section>
             </div>
+
+
             <!-- /.tab-pane -->
 
             <div class="tab-pane @if (session('success') || session('errors')  ||session('errorpw') || session('successpw') ) active @endif" id="settings">
@@ -200,7 +261,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                     <div  id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
                         <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#"><i class="fa fa-signature"></i> Change Name</a></li>
+                        <li><a href="#"><i class="fa fa-signature"></i> Edit Profile</a></li>
                         <li><a href="#"><i class="fa fa-address-book"></i> Change Contact Number</a></li>
                         <li><a href="#"><i class="fa fa-envelope"></i> Change email</a></li>
                         </ul>

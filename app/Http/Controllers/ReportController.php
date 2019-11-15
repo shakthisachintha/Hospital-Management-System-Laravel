@@ -27,5 +27,19 @@ class ReportController extends Controller
         $user = Auth::user();
         return view('reports/out_patient_report',['title' => $user->name]);
     }
+    public function view_attendance_report(){
+        $user = Auth::user();
+        return view('reports/attendance_reports',['title' => $user->name]);
+    }
+    public function gen_att_reports(Request $request){
+        $user = Auth::user();
+        $data = DB::table('activity_log')
+        ->select('description','subject_id', 'subject_type', 'causer_type','properties','created_at','updated_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
+        return view('reports/attendance-reports/all_attandance_report',['title' => $user->name,'details' => $data]);
+    }
+
 
 }
