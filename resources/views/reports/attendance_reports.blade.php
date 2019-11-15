@@ -144,7 +144,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                     <div class="form-group">
                     <label>Select Attendeance Type</label>
-                    <select class="form-control" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                    <select class="form-control" style="width: 100%;" name="type" data-select2-id="1" tabindex="-1" aria-hidden="true">
                         <option selected="selected" data-select2-id="3">My Attendance</option>
                         <option>All</option>
                         <option>Doctors</option>
@@ -156,16 +156,28 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         <div class="col-md-6">
 
                     <div class="form-group">
-                        <label>Date range:</label>
+                        <label>Starting Date:</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" name="daterange">
+                            <input type="text" class="form-control pull-right" name="start" placeholder="Enter date">
                         </div>
                         <!-- /.input group -->
                     </div>
+
+                    <div class="form-group">
+                        <label>Ending Date:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" name="end" placeholder="Enter date">
                         </div>
+                        <!-- /.input group -->
+                    </div>
+
+                </div>
 
                 <div class="form-group">
                     <input type="submit" value="Get Report" class="btn btn-warning pull-right">
@@ -184,11 +196,16 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 <script>
 $(function() {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
+    $('input[name="start1"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    });
+});
+$(function() {
+    $('input[name="end1"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    });
 });
 </script>
 

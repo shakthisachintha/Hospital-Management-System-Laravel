@@ -134,6 +134,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">My Attendence</a></li>
                     <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif"><a href="#settings" data-toggle="tab" aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a></li>
                 </ul>
+                
                 <div class="tab-content">
                     <div class="tab-pane active" id="activity">
                         <div class="box">

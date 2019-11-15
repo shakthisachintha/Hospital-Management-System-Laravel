@@ -125,6 +125,59 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 <section class="content">
 
-
+        <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Attended Dates</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($details as $result)
+                                            <tr>
+                                                <td>{{$result->id}}</td>
+                                                <td>{{$result->name}}</td>
+                                                <td>{{$result->type}}</td>
+                                                <td>{{$result->count}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Attended Dates</th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
 </section>
+@endsection
+
+@section('optional_scripts')
+<script>
+    $(function () {
+
+        $('#example1').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+
+</script>
+
 @endsection

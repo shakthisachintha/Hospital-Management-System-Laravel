@@ -141,9 +141,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($details as $result)
                                             <tr>
-                                                <td></td>
+                                                <td>{{$result->id}}</td>
+                                                <td>{{$result->name}}</td>
+                                                <td>{{$result->type}}</td>
+                                                <td>{{$result->count}}</td>
                                             </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                             <th>Id</th>

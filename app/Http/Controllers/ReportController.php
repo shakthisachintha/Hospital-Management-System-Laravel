@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use DB;
 
 class ReportController extends Controller
 {
@@ -33,12 +34,55 @@ class ReportController extends Controller
     }
     public function gen_att_reports(Request $request){
         $user = Auth::user();
-        $data = DB::table('activity_log')
-        ->select('description','subject_id', 'subject_type', 'causer_type','properties','created_at','updated_at')
-        ->orderBy('created_at', 'desc')
-        ->get();
-        // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
-        return view('reports/attendance-reports/all_attandance_report',['title' => $user->name,'details' => $data]);
+        if($request->type == "All"){
+            $data = DB::table('attendances')
+            ->join('users','attendances.user_id' , '=', 'users.id')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->get();
+            // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
+
+            return view('reports/attendance-reports/all_attendance_report',['title' => $user->name,'details' => $data]);
+        }
+
+
+        if($request->type == "My Attendance"){
+            $data = DB::table('attendances')
+            ->join('users','attendances.user_id' , '=', 'users.id')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->where('attendances.user_id',$user->id)
+            ->get();
+
+            return view('reports/attendance-reports/my_attendance_report',['title' => $user->name,'details' => $data]);
+        }
+
+
+        if($request->type == "Doctors"){
+            $data = DB::table('attendances')
+            ->join('users','attendances.user_id' , '=', 'users.id')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->where('users.user_type','doctor')
+            ->get();
+
+            return view('reports/attendance-reports/doctors_attendance_report',['title' => $user->name,'details' => $data]);
+        }
+
+
+        if($request->type == "General Staff"){
+            $data = DB::table('attendances')
+            ->join('users','attendances.user_id' , '=', 'users.id')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->where('users.user_type','general')
+            ->orWhere('users.user_type','pharmacist')
+            ->get();
+
+            return view('reports/attendance-reports/staff_attendance_report',['title' => $user->name,'details' => $data]);
+        }
+
+
     }
 
 

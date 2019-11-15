@@ -483,13 +483,7 @@ document.getElementById("today").innerHTML=today;
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <!-- page script -->
-    <script>
-            $(function () {
-
-              //Date range picker
-              $('#reservation').daterangepicker()
-
-          </script>
+    
 @yield('optional_scripts')
 
 </body>
