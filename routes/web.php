@@ -80,8 +80,8 @@ Route::post('regfinger',['as'=>'user.regfinger','uses'=>'UserController@regFinge
 Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth','admin');
 Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth','admin');
 
-Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@ChangeUserPassword'])->middleware('auth');
-Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@ChangeUserPropic'])->middleware('auth');
+Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@changeUserPassword'])->middleware('auth');
+Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
 
 Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
@@ -97,4 +97,6 @@ Route::get('/monstatreport',['as'=> 'mon_stat_report','uses' => 'ReportControlle
 Route::get('/outpreport',['as'=> 'out_p_report','uses' => 'ReportController@view_out_patient_report'])->middleware('auth');
 Route::get('/attendancereport',['as'=> 'attendance_report','uses' => 'ReportController@view_attendance_report'])->middleware('auth');
 Route::post('/generatereports',['as'=> 'gen_att_reports','uses' => 'ReportController@gen_att_reports'])->middleware('auth');
+Route::get('/allprintpreview',['as'=> 'all_print_preview','uses' => 'ReportController@all_print_preview'])->middleware('auth');
+
 

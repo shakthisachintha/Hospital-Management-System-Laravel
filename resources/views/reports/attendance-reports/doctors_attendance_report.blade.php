@@ -134,27 +134,27 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Name</th>
                                             <th>Type</th>
-                                            <th>Attended Dates</th>
+                                            <th>Attend Dates</th>
+                                            <th>Short Leave</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($details as $result)
                                             <tr>
-                                                <td>{{$result->id}}</td>
                                                 <td>{{$result->name}}</td>
                                                 <td>{{$result->type}}</td>
-                                                <td>{{$result->count}}</td>
+                                                <td>{{$result->attended}}</td>
+                                                <td>{{$result->shortleave}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                            <th>Id</th>
                                             <th>Name</th>
                                             <th>Type</th>
-                                            <th>Attended Dates</th>
+                                            <th>Attend Dates</th>
+                                            <th>Short Leave</th>
                                     </tfoot>
                                 </table>
                             </div>

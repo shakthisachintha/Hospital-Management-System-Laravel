@@ -87,7 +87,7 @@ class UserController extends Controller
         return view('users.resetuser', ['title' => "Reset User Account"]);
     }
 
-    public function ChangeUserPassword(Request $request)
+    public function changeUserPassword(Request $request)
     {
 
         $this->validate($request,[
@@ -118,7 +118,7 @@ class UserController extends Controller
         return redirect()->back()->with("successpw","Password changed successfully !");
     }
 
-    public function ChangeUserPropic(Request $request){
+    public function changeUserPropic(Request $request){
 
         $this->validate($request,[
             'propic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'

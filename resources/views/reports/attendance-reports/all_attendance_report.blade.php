@@ -4,9 +4,12 @@
 
 @section('sidebar')
 
+{{--sidebar-menu--}}
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
+
+    {{--dashboard--}}
     <li><a href="{{route('dash')}}">
         <i class="fas fa-tachometer-alt"></i>
         <span> Dashboard</span></a>
@@ -126,6 +129,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 <section class="content">
 
         <div class="box">
+
+
+
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -134,32 +140,45 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Name</th>
                                             <th>Type</th>
-                                            <th>Attended Dates</th>
+                                            <th>Attend Dates</th>
+                                            <th>Short Leave</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($details as $result)
                                             <tr>
-                                                <td>{{$result->id}}</td>
                                                 <td>{{$result->name}}</td>
                                                 <td>{{$result->type}}</td>
-                                                <td>{{$result->count}}</td>
+                                                <td>{{$result->attended}}</td>
+                                                <td>{{$result->shortleave}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                            <th>Id</th>
                                             <th>Name</th>
                                             <th>Type</th>
-                                            <th>Attended Dates</th>
+                                            <th>Attend Dates</th>
+                                            <th>Short Leave</th>
                                     </tfoot>
+
                                 </table>
+
                             </div>
+
                         </div>
-                </div>
+                    </div>
+
+                    {{-- print priview --}}
+                    <div class="col-md-3">
+                        <form action="{{route('all_print_preview')}}" method="get">
+                                {{csrf_field()}}
+                        <button type="submit" class="btnprn btn btn-danger">Print Preview</button>
+                        <input type="text" name="start" value={{$start}} style="display:none">
+                        <input type="text" name="end" value={{$end}} style="display:none">
+                        </form>
+                    </div>
             </div>
 </section>
 @endsection
@@ -178,6 +197,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
         })
     })
 
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.btnprn').printPage();
+    });
 </script>
 
 @endsection

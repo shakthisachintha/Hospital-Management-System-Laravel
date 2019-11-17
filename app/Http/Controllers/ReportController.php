@@ -37,21 +37,27 @@ class ReportController extends Controller
         if($request->type == "All"){
             $data = DB::table('attendances')
             ->join('users','attendances.user_id' , '=', 'users.id')
-            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->select('users.id as id','attendances.start as start','attendances.end as end','users.name as name','users.user_type as type',
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
             ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->groupBy('name')
             ->get();
             // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
 
-            return view('reports/attendance-reports/all_attendance_report',['title' => $user->name,'details' => $data]);
+            return view('reports/attendance-reports/all_attendance_report',['title' => $user->name,'details' => $data,'start'=>$request->start,'end'=>$request->end]);
         }
 
 
         if($request->type == "My Attendance"){
             $data = DB::table('attendances')
             ->join('users','attendances.user_id' , '=', 'users.id')
-            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
             ->whereBetween('attendances.start', [$request->start, $request->end])
             ->where('attendances.user_id',$user->id)
+            ->groupBy('name')
             ->get();
 
             return view('reports/attendance-reports/my_attendance_report',['title' => $user->name,'details' => $data]);
@@ -60,10 +66,13 @@ class ReportController extends Controller
 
         if($request->type == "Doctors"){
             $data = DB::table('attendances')
-            ->join('users','attendances.user_id' , '=', 'users.id')
-            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->rightJoin('users','attendances.user_id' , '=', 'users.id')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
             ->whereBetween('attendances.start', [$request->start, $request->end])
             ->where('users.user_type','doctor')
+            ->groupBy('name')
             ->get();
 
             return view('reports/attendance-reports/doctors_attendance_report',['title' => $user->name,'details' => $data]);
@@ -73,10 +82,13 @@ class ReportController extends Controller
         if($request->type == "General Staff"){
             $data = DB::table('attendances')
             ->join('users','attendances.user_id' , '=', 'users.id')
-            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type', 'attendances.id as count')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
             ->whereBetween('attendances.start', [$request->start, $request->end])
-            ->where('users.user_type','general')
-            ->orWhere('users.user_type','pharmacist')
+            ->whereIn('users.user_type',['pharmacist','general'])
+            ->groupBy('name')
+            // ->where('users.user_type','pharmacist')
             ->get();
 
             return view('reports/attendance-reports/staff_attendance_report',['title' => $user->name,'details' => $data]);
@@ -85,5 +97,19 @@ class ReportController extends Controller
 
     }
 
+    public function all_print_preview(Request $request){
+        $user = Auth::user();
+            $data = DB::table('attendances')
+            ->join('users','attendances.user_id' , '=', 'users.id')
+            ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
+            DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
+            ->whereBetween('attendances.start', [$request->start,$request->end])
+            ->groupBy('name')
+            ->orderBy('type')
+            ->get();
+            // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
 
+            return view('reports/attendance-reports/all_print_preview',['title' => $user->name,'details' => $data]);
+    }
 }

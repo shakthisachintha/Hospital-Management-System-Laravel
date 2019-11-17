@@ -19,6 +19,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+    {{-- print-function --}}
+    <script type="text/javascript" src="js/jquery.printPage.js"></script>
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -483,7 +485,7 @@ document.getElementById("today").innerHTML=today;
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <!-- page script -->
-    
+
 @yield('optional_scripts')
 
 </body>
