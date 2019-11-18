@@ -2,73 +2,9 @@
 
 @section('title', $title)
 
-@section('sidebar')
-
 @section('optional_scripts')
 @endsection
 
-<ul class="sidebar-menu" data-widget="tree">
-    <li class="header">Main Menu</li>
-    <!-- Optionally, you can add icons to the links -->
-    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-    {{--patient--}}
-    <li class="treeview">
-        <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a>
-            </li>
-            <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
-{{--register in patient--}}
-            <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" area-hidden="true"></i><span> Register In Patient</span></a></li>
-
-        </ul>
-    </li>
-    {{--create channel--}}
-    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Appoinment</span></a>
-    </li>
-    {{--check patient--}}
-    <li class="active"><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
-    
-       
-    <li class="treeview">
-        <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{route('myattend')}}"><i class="fas fa-calendar-day" aria-hidden="true"></i> My Attendance</a>
-            </li>
-            <li><a href="{{route('attendmore')}}"><i class="fas fa-plus-square" aria-hidden="true"></i> More</a></li>
-        </ul>
-    </li>
-
-    {{-- Users Operations --}}
-
-    <li class="treeview">
-        <a href="#"><i class="fas fa-users-cog"></i><span> Users</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{route('newuser')}}"> <i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
-            <li><a href="{{route('regfinger')}}"><i class="fa fa-fingerprint" aria-hidden="true"></i>Register
-                    Fingerprint</a></li>
-            <li><a href="{{route('resetuser')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
-        </ul>
-    </li>
-
-    {{-- Profile --}}
-
-    <li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
-</ul>
-
-@endsection
 @section('content_title',"Check Patient")
 @section('content_description',"Check Patient here and update history from here !")
 @section('breadcrumbs')
@@ -81,7 +17,7 @@
 @section('main_content')
 
 <script>
-function suggestMed(val){
+    function suggestMed(val){
     keyword=val;
     var data=new FormData;
     data.append('keyword',keyword);
@@ -108,7 +44,7 @@ function suggestMed(val){
 
 
 <div class="row">
-    
+
     <div class="rounded col-md-5">
         <h4>Channel Details</h4>
         <h4>Appointment Number : {{$appNum}}</h4>
@@ -118,29 +54,31 @@ function suggestMed(val){
             </div>
             <div class="box-body">
                 <div class="container-fluid">
-                        <div class="row mb-2">
-                                <div class="col-md-5 m-0 p-0">
-                                    <div id="bloodhound">
-                                        <input oninput="console.log(this.value);" id="medSearch" class="form-control" type="text" placeholder="Search Medicines">
-                                    </div>
-                                </div>
-                                <div class="col-md-7 m-0 p-0">
-                                    <input onkeydown="addMed(event,this)" id="medNote" disabled type="text" class="form-control" placeholder="Notes">
-                                </div>
-                                <div id="suggestionList"></div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 m-0 p-0">
+                            <div id="bloodhound">
+                                <input oninput="console.log(this.value);" id="medSearch" class="form-control"
+                                    type="text" placeholder="Search Medicines">
+                            </div>
                         </div>
+                        <div class="col-md-7 m-0 p-0">
+                            <input onkeydown="addMed(event,this)" id="medNote" disabled type="text" class="form-control"
+                                placeholder="Notes">
+                        </div>
+                        <div id="suggestionList"></div>
+                    </div>
                 </div>
-               
+
 
                 <div style="height:30vh;overflow-y: scroll">
                     <table style="width:100%" id="medTable" class="table table-sm table-bordered w-100">
 
-                            <colgroup>
-                                <col span="1" style="width: 10%;">
-                                <col span="1" style="width: 40%;">
-                                <col span="1" style="width: 30%;">
-                                <col span="1" style="width: 20%;">
-                             </colgroup>
+                        <colgroup>
+                            <col span="1" style="width: 10%;">
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 30%;">
+                            <col span="1" style="width: 20%;">
+                        </colgroup>
 
                         <thead>
                             <tr>
@@ -151,7 +89,7 @@ function suggestMed(val){
                             </tr>
                         </thead>
                         <tbody class="m-0 p-0">
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -161,7 +99,6 @@ function suggestMed(val){
 
 
     <script>
-
         var medicines=[];
 
         function addMed(e,obj) { 
@@ -230,7 +167,7 @@ function suggestMed(val){
                 // 
 
             });
-        </script>
+    </script>
 
     <div class="col-md-7">
         <h4 class="text-center">Patient's Details And Treatment History</h4>
@@ -253,13 +190,17 @@ function suggestMed(val){
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
                             <div class="box-body">
-                            <h5>Name : {{$pName}}</h5>
-                            <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
-                                <h5>Blood Pressure : <span class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}} mmHg</span><small> (Updated
-                                    {{$pBloodPressure->date}})</small></h5>
-                                <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}} mg/dL</span><small> (Updated
-                                    {{$pBloodSugar->date}})</small></h5>
-                                <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}} mg/dL</span><small>
+                                <h5>Name : {{$pName}}</h5>
+                                <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
+                                <h5>Blood Pressure : <span
+                                        class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}}
+                                        mmHg</span><small> (Updated
+                                        {{$pBloodPressure->date}})</small></h5>
+                                <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}}
+                                        mg/dL</span><small> (Updated
+                                        {{$pBloodSugar->date}})</small></h5>
+                                <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}}
+                                        mg/dL</span><small>
                                         (Updated {{$pCholestrol->date}})</small></h5>
 
                             </div>
@@ -479,13 +420,13 @@ function suggestMed(val){
                 </div>
                 <div class="col-md-2">
                     <div class="p-2 mt-5 ml-1 mr-1">
-                            <button type="button" class="btn btn-block btn-success btn-lg">Save & Next</button>
-                            <br>
-                            <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
-                            <br>
-                            <button type="button" class="btn btn-block btn-danger btn-lg">Clear</button>
+                        <button type="button" class="btn btn-block btn-success btn-lg">Save & Next</button>
+                        <br>
+                        <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
+                        <br>
+                        <button type="button" class="btn btn-block btn-danger btn-lg">Clear</button>
                     </div>
-                       
+
                 </div>
             </div>
 
@@ -500,71 +441,71 @@ function suggestMed(val){
 .typeahead,
 .tt-query,
 .tt-hint {
-  width: 100%;
-  height: 100%;
-  {{-- padding: 8px 12px; --}}
-  {{-- font-size: 24px; --}}
-  {{-- line-height: 30px; --}}
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  outline: none;
+width: 100%;
+height: 100%;
+{{-- padding: 8px 12px; --}}
+{{-- font-size: 24px; --}}
+{{-- line-height: 30px; --}}
+border: 2px solid #ccc;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+outline: none;
 }
 
 .typeahead {
-  background-color: #fff;
+background-color: #fff;
 }
 
 .typeahead:focus {
-  border: 2px solid #0097cf;
+border: 2px solid #0097cf;
 }
 
 .tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .tt-hint {
-  color: #999
+color: #999
 }
 
 .tt-menu {
-  width:100% ;
-  margin: 3px 0;
-  padding: 8px 0;
-  background-color: #fef;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+width:100% ;
+margin: 3px 0;
+padding: 8px 0;
+background-color: #fef;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.2);
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
 .tt-suggestion {
-  padding: 3px 20px;
-  font-size: 15px;
-  line-height: 20px;
+padding: 3px 20px;
+font-size: 15px;
+line-height: 20px;
 }
 
 .tt-suggestion:hover {
-  cursor: pointer;
-  color: #fff;
-  background-color: #0097cf;
+cursor: pointer;
+color: #fff;
+background-color: #0097cf;
 }
 
 .tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #0097cf;
+color: #fff;
+background-color: #0097cf;
 
 }
 
 .tt-suggestion p {
-  margin: 0;
+margin: 0;
 }
 
 @endsection
