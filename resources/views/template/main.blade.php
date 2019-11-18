@@ -1762,15 +1762,15 @@ document.getElementById("today").innerHTML=today;
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{Active::checkRoute('clinic_reports')}}><a href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
+                            <li class="{{Active::checkRoute('clinic_reports')}}"><a href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
-                            <li class="{{Active::checkRoute('mob_clinic_report')}}><a href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
+                            <li class="{{Active::checkRoute('mob_clinic_report')}}"><a href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
                                         aria-hidden="true"></i> Mobile Clinic Report</a></li>
-                            <li class="{{Active::checkRoute('mon_stat_report')}}><a href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
+                            <li class="{{Active::checkRoute('mon_stat_report')}}"><a href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
-                            <li class="{{Active::checkRoute('out_p_report')}}><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>
+                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>
                                     Out-Patient Report</a></li>
-                            <li class="{{Active::checkRoute('attendance_report')}}><a href="{{route('attendance_report')}}"><i class="fa fa-user-edit"
+                            <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i class="fa fa-user-edit"
                                         aria-hidden="true"></i> Attendance Report</a></li>
                         </ul>
                     </li>
