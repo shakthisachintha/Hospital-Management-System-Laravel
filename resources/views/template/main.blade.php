@@ -1446,14 +1446,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
 });
 
-function setdate(){
-    var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-today =  dd+ '-'+ mm  + '-' + yyyy;
-document.getElementById("today").innerHTML=today;
-}
+        function setdate(){
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today =  dd+ '-'+ mm  + '-' + yyyy;
+            document.getElementById("today").innerHTML=today;
+        }
 
         function startTime() {
           var today = new Date();
@@ -1483,10 +1483,6 @@ document.getElementById("today").innerHTML=today;
         <div class="rect4"></div>
         <div class="rect5"></div>
     </div>
-
-
-
-
 
     <div class="wrapper">
 
