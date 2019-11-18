@@ -177,6 +177,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         <button type="submit" class="btnprn btn btn-danger">Print Preview</button>
                         <input type="text" name="start" value={{$start}} style="display:none">
                         <input type="text" name="end" value={{$end}} style="display:none">
+                        <input type="text" name="type" value={{$type}} style="display:none">
                         </form>
                     </div>
             </div>
