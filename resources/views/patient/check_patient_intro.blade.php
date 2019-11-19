@@ -29,6 +29,8 @@
     </li>
     {{--check patient--}}
     <li class="active"><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
+    {{--issue medicine--}}
+    <li><a href="{{route('issueMedicineView')}}"><i class="fa fa-medkit"></i><span>Issue Medicine</span></a></li>
     
        
     <li class="treeview">

@@ -27,7 +27,9 @@
     <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Appoinment</span></a></li>
 {{--check patient--}}
     <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures" area-hidden="true"></i><span> Check Patient</span></a></li>
-    
+{{--issue medicine--}}
+    <li><a href="{{route('issueMedicineView')}}"><i class="fa fa-medkit"></i><span>Issue Medicine</span></a></li>
+   
     
     <li class="treeview active">
         <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>
