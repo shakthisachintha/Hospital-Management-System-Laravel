@@ -92,13 +92,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 <script>
 $(function() {
-    $('input[name="start1"]').daterangepicker({
+    $('input[name="start"]').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
     });
 });
 $(function() {
-    $('input[name="end1"]').daterangepicker({
+    $('input[name="end"]').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
     });
