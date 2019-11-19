@@ -183,7 +183,7 @@ class UserController extends Controller
         }
 
 
-        return back()->with('success', 'thanks for contacting us!');
+        return back()->with('success', 'Message Send Successfully!');
     }
 
     public function email($data, $emaillist)
