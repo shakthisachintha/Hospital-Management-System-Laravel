@@ -26,6 +26,27 @@ class PatientController extends Controller
         return view('patient.register_patient', ['title' => $user->name]);
     }
 
+    public function searchPatient(Request $request){
+        return view('patient.search_patient_view',['title'=>"asda"]);
+    }
+
+    public function patientData(Request $request){
+        if($request->cat=="name"){
+            $result=Patients::where('name','LIKE','%'.$request->keyword.'%')->get();
+        }
+        // return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
+        if($request->cat=="nic"){
+            $result=Patients::where('nic','LIKE','%'.$request->keyword.'%')->get();
+
+        }
+        // return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
+        if($request->cat=="telephone"){
+            $result=Patients::where('telephone','LIKE','%'.$request->keyword.'%')->get();
+            // dd($result);
+        }
+        return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
+    }
+
     public function register_patient(Request $request)
     {
         //dd($request->all());
