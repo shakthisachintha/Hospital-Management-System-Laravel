@@ -2,75 +2,12 @@
 
 @section('title', $title)
 
-@section('sidebar')
-
-<ul class="sidebar-menu" data-widget="tree">
-    <li class="header">Main Menu</li>
-    <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-{{--patient--}}
-    <li class="treeview">
-        <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i> Register New</a></li>
-            <li><a href="#"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a></li>
-{{--register in patient--}}
-            <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus" are-hidden="true"></i><span> Register In Patient</span></a></li>
-
-        </ul>
-    </li>
-{{--create channel--}}
-    <li><a href="{{route('create_channel_view')}}"><i class="fas fa-folder-plus"></i><span> Create Appoinment</span></a></li>
-{{--check patient--}}
-    <li><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check Patient</span></a></li>
-
-{{--register in patient--}}
-    <li><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"></i><span> Register In Patient</span></a></li>
-
-    <li class="treeview">
-        <a href="#"><i class="fas fa-calendar-check"></i></i><span> Attendance</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-        <li><a href="{{route('myattend')}}">      <i class="fas fa-calendar-day" aria-hidden="true"></i> My Attendance</a></li>
-            <li><a href="{{route('attendmore')}}"><i class="fas fa-plus-square" aria-hidden="true"></i> More</a></li>
-        </ul>
-    </li>
-
-     {{-- Users Operations --}}
-
-     <li class="treeview">
-        <a href="#"><i class="fas fa-users-cog"></i><span> Users</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{route('newuser')}}">  <i class="fa fa-user-plus" aria-hidden="true"></i>New User</a></li>
-            <li><a href="{{route('regfinger')}}"><i class="fa fa-fingerprint" aria-hidden="true"></i>Register Fingerprint</a></li>
-            <li><a href="{{route('resetuser')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>Reset User</a></li>
-        </ul>
-    </li>
-
-    {{-- Profile --}}
-
-    <li><a href="{{route('profile')}}"><i class="fas fa-user"></i><span> Profile</span></a></li>
-</ul>
-
-@endsection
-
 @section('content_title',"User Profile")
 @section('content_description',"Personalize Your Account")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-<li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
 @endsection
@@ -88,162 +25,295 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
         <div class="col-md-9">
             <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li class=""><a href="#activity" data-toggle="tab" aria-expanded="false">Activity</a></li>
-                <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
-                <li class="active"><a href="#settings" data-toggle="tab" aria-expanded="true">Settings</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane" id="activity">
-                    <h3>empty for now</h3>
-                </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="timeline">
-                        <h3>empty for now</h3>
-                </div>
-                <!-- /.tab-pane -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity Log</a></li>
+                    <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">My Attendence</a></li>
+                    <li
+                        class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif">
+                        <a href="#settings" data-toggle="tab"
+                            aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a>
+                    </li>
+                </ul>
 
-                <div class="tab-pane active" id="settings">
-
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <a data-toggle="collapse" href="#collapseOne" class="collapsed" aria-expanded="false">
-                            <h3 class="box-title"><i class="fa fa-cogs"></i>  General</h3>
-                            </a>
-
-
+                <div class="tab-content">
+                    <div class="tab-pane active" id="activity">
+                        <div class="box">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example1" class="table table-bordered table-striped dataTable"
+                                                role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>Subject Id</th>
+                                                        <th>Subject Type</th>
+                                                        <th>Causer Type</th>
+                                                        <th>Properties</th>
+                                                        <th>Created At</th>
+                                                        <th>Updated At</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($activity as $app)
+                                                    <tr>
+                                                        <td>{{$app->description}}</td>
+                                                        <td>{{$app->subject_id}}</td>
+                                                        <td>{{$app->subject_type}}</td>
+                                                        <td>{{$app->causer_type}}</td>
+                                                        <td>{{$app->properties}}</td>
+                                                        <td>{{$app->created_at}}</td>
+                                                        <td>{{$app->updated_at}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                <tfoot>
+                                                    <th>Description</th>
+                                                    <th>Subject Id</th>
+                                                    <th>Subject Type</th>
+                                                    <th>Causer Type</th>
+                                                    <th>Properties</th>
+                                                    <th>Created At</th>
+                                                    <th>Updated At</th>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <div  id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
-                            <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#"><i class="fa fa-signature"></i> Change Name</a></li>
-                            <li><a href="#"><i class="fa fa-address-book"></i> Change Contact Number</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> Change email</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.box-body -->
                     </div>
 
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <a data-toggle="collapse" href="#collapseTwo" class="@if (session('error')) collapse in @else collapsed @endif" aria-expanded="@if (session('error')) true @else false @endif">
-                                <h3 class="box-title"><i class="fa fa-user-shield"></i> Security and Login</h3>
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse @if (session('error')) collapse in @else collapsed @endif" aria-expanded="@if (session('error')) true @else false @endif">
-                            <ul class="nav nav-pills nav-stacked">
-                            <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed" aria-expanded="false"><i class="fa fa-camera"></i> Change Profile Picture</a></li>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="attendance">
+                        <section class="content">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 col-xs-9">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope"></i></span>
 
-                            <div id="changeprofilepic" class="panel-collapse collapse" aria-expanded="false">
-
-                                @if ($message = Session::get('success'))
-                                <div class="alert alert-success alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{ $message }}</strong>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Messages</span>
+                                            <span class="info-box-number">1,410</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
                                 </div>
-                                <img src="images/{{ Session::get('image') }}">
-                                @endif
+                                <div class="col-md-3 col-sm-6 col-xs-9">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-green"><i class="fa fa-flag"></i></span>
 
-                                @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        <strong>Whoops!</strong> There were some problems with your input.
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Bookmarks</span>
+                                            <span class="info-box-number">410</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-6 col-xs-9">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-yellow"><i class="fa fa-file"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Uploads</span>
+                                            <span class="info-box-number">13,648</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-6 col-xs-9">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-red"><i class="fa fa-star"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Likes</span>
+                                            <span class="info-box-number">93,139</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+
+                                <div class="row">
+
+                                </div>
+
+                                <!-- /.col -->
+                        </section>
+                    </div>
+
+
+                    <!-- /.tab-pane -->
+
+                    <div class="tab-pane @if (session('success') || session('errors')  ||session('errorpw') || session('successpw') ) active @endif"
+                        id="settings">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="true">
+                                    <h3 class="box-title"><i class="fa fa-cogs"></i> General</h3>
+                                </a>
+                            </div>
+
+                            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#"><i class="fa fa-signature"></i> Edit Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-address-book"></i> Change Contact Number</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i> Change email</a></li>
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <a data-toggle="collapse" href="#collapseTwo" class=""
+                                    aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
+                                    <h3 class="box-title"><i class="fa fa-user-shield"></i> Security and Login</h3>
+                                </a>
+                            </div>
+                            <div id="collapseTwo"
+                                class="panel-collapse @if (session('errors') || session('success') ||session('errorpw') || session('successpw') ) collapse in @else collapse @endif"
+                                aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed"
+                                            aria-expanded="false"><i class="fa fa-camera"></i> Change Profile
+                                            Picture</a></li>
+
+                                    <div id="changeprofilepic"
+                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+
+                                        @if ($message = Session::get('success'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                        <img src="images/{{ Session::get('image') }}">
+                                        @endif
+
+                                        @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
                                                 <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
-                                <!-- form start -->
-                                <form action="{{ route('change_propic') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <p class="help-block">select your new profile picture here.</p>
-                                            <input type="file" id="exampleInputFile" name="propic" class="form-control">
+                                                @endforeach
+                                            </ul>
                                         </div>
-                                    </div>
-                                    <!-- /.box-body -->
+                                        @endif
 
-                                    <div class="box-footer">
-                                    <button type="submit" class="btn btn-success">Update</button>
+                                        <!-- form start -->
+                                        <form action="{{ route('change_propic') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <p class="help-block">select your new profile picture here.</p>
+                                                    <input type="file" id="exampleInputFile" name="propic"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+
+                                    <li><a data-toggle="collapse" href="#changepw" class="collapse"
+                                            aria-expanded="false"><i class="fa fa-unlock"></i> Change Password</a></li>
+
+                                    <div id="changepw"
+                                        class="panel-collapse @if (session('errorpw') || session('successpw')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('errorpw') || session('successpw')) true @else false @endif">
+
+
+                                        @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+
+                                        @if (session('errorpw'))
+                                        <div class="alert alert-danger">
+                                            {{ session('errorpw') }}
+                                        </div>
+                                        @endif
+                                        @if (session('successpw'))
+                                        <div class="alert alert-success">
+                                            {{ session('successpw') }}
+                                        </div>
+                                        @endif
+
+                                        <!-- form start -->
+                                        <form class="form-horizontal" method="post"
+                                            action="{{ route('change_password') }}">
+                                            {{csrf_field()}}
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Current
+                                                        Password</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="password" name="currentpassword"
+                                                            class="form-control" id="inputEmail3"
+                                                            placeholder="Current Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">New
+                                                        Password</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="password" name="newpassword" class="form-control"
+                                                            id="inputPassword3" placeholder="Enter New assword">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword4" class="col-sm-2 control-label">New
+                                                        Password Again</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="password" name="newpasswordagain"
+                                                            class="form-control" id="inputPassword4"
+                                                            placeholder="Enter New Password Again">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="reset" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+                                    </div>
+
+                                    <li><a href="#"><i class="fa fa-fingerprint"></i> Change FingerPrint</a></li>
+                                </ul>
                             </div>
-
-                            <li><a data-toggle="collapse" href="#changepw" class="collapse" aria-expanded="false"><i class="fa fa-unlock"></i> Change Password</a></li>
-
-                            <div id="changepw" class="panel-collapse @if (session('error')) collapse in @else collapse @endif" aria-expanded="false">
-
-
-                                @if (count($errors) > 0)
-                                <div class = "alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endif
-
-
-                                @if (session('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-
-                                <!-- form start -->
-                                <form class="form-horizontal" method="post" action="{{ route('change_password') }}">
-                                    {{csrf_field()}}
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Current Password</label>
-
-                                            <div class="col-sm-10">
-                                            <input type="password" name="currentpassword" class="form-control" id="inputEmail3" placeholder="Current Password">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword3" class="col-sm-2 control-label">New Password</label>
-
-                                            <div class="col-sm-10">
-                                            <input type="password" name="newpassword" class="form-control" id="inputPassword3" placeholder="Enter New assword">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword4" class="col-sm-2 control-label">New Password Again</label>
-
-                                            <div class="col-sm-10">
-                                            <input type="password" name="newpasswordagain" class="form-control" id="inputPassword4" placeholder="Enter New Password Again">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.box-body -->
-                                    <div class="box-footer">
-                                        <button type="reset" class="btn btn-default">Cancel</button>
-                                        <button type="submit" class="btn btn-info pull-right">Update</button>
-                                    </div>
-                                    <!-- /.box-footer -->
-                                </form>
-                            </div>
-
-                            <li><a href="#"><i class="fa fa-fingerprint"></i> Change FingerPrint</a></li>
-                            </ul>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
+
+
                     </div>
-
-
+                    <!-- /.tab-pane -->
                 </div>
-                <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
+                <!-- /.tab-content -->
             </div>
             <!-- /.nav-tabs-custom -->
         </div>
@@ -254,22 +324,23 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             <!-- Profile Image -->
             <div class="box box-danger">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{$image_path}}" alt="User profile picture">
+                    <img class="profile-user-img img-responsive img-circle" src="{{$image_path}}"
+                        alt="User profile picture">
 
                     <h3 class="profile-username text-center">Nina Mcintire</h3>
 
                     <p class="text-muted text-center">Software Engineer</p>
 
                     <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                        <b>Followers</b> <a class="pull-right">1,322</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>Following</b> <a class="pull-right">543</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>Friends</b> <a class="pull-right">13,287</a>
-                    </li>
+                        <li class="list-group-item">
+                            <b>Followers</b> <a class="pull-right">1,322</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Following</b> <a class="pull-right">543</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Friends</b> <a class="pull-right">13,287</a>
+                        </li>
                     </ul>
 
                     <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
@@ -290,7 +361,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
                     <p class="text-muted">
-                    B.S. in Computer Science from the University of Tennessee at Knoxville
+                        B.S. in Computer Science from the University of Tennessee at Knoxville
                     </p>
 
                     <hr>
@@ -304,11 +375,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
 
                     <p>
-                    <span class="label label-danger">UI Design</span>
-                    <span class="label label-success">Coding</span>
-                    <span class="label label-info">Javascript</span>
-                    <span class="label label-warning">PHP</span>
-                    <span class="label label-primary">Node.js</span>
+                        <span class="label label-danger">UI Design</span>
+                        <span class="label label-success">Coding</span>
+                        <span class="label label-info">Javascript</span>
+                        <span class="label label-warning">PHP</span>
+                        <span class="label label-primary">Node.js</span>
                     </p>
 
                     <hr>
@@ -329,5 +400,23 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 </section>
 
+
+@endsection
+
+@section('optional_scripts')
+<script>
+    $(function () {
+
+        $('#example1').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+
+</script>
 
 @endsection

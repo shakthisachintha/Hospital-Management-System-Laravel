@@ -11,6 +11,10 @@ use Illuminate\Contracts\Validation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendNotices;
+use DB;
+use SebastianBergmann\Environment\Console;
+
+// require 'vendor/autoload.php';
 
 class UserController extends Controller
 {
@@ -83,7 +87,7 @@ class UserController extends Controller
         return view('users.resetuser', ['title' => "Reset User Account"]);
     }
 
-    public function ChangeUserPassword(Request $request)
+    public function changeUserPassword(Request $request)
     {
 
         $this->validate($request,[
@@ -93,15 +97,15 @@ class UserController extends Controller
         ]);
 
         if(!Hash::check($request->get('currentpassword'), Auth::user()->password)){
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("errorpw","Your current password does not matches with the password you provided. Please try again.");
         }
 
         if(strcmp($request->get('currentpassword'),$request->get('newpassword')) == 0){
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("errorpw","New Password cannot be same as your current password. Please choose a different password.");
         }
 
         if(strcmp($request->get('newpassword'),$request->get('newpasswordagain')) != 0){
-            return redirect()->back()->with("error","New Password Again does not match with the New Paassword. Please check a again.");
+            return redirect()->back()->with("errorpw","New Password Again does not match with the New Paassword. Please check a again.");
         }
 
         $user = Auth::user();
@@ -111,10 +115,10 @@ class UserController extends Controller
         //activity log
         activity()->performedOn($user)->log('Password changed !');
 
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("successpw","Password changed successfully !");
     }
 
-    public function ChangeUserPropic(Request $request){
+    public function changeUserPropic(Request $request){
 
         $this->validate($request,[
             'propic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
@@ -147,17 +151,67 @@ class UserController extends Controller
 
     public function send_notice(Request $request){
 
-        $this->validate($request,[
-            'email' => 'required|email',
-            'message' => 'required'
-        ]);
-
         $data = array(
             'message' => $request->message
         );
 
-        Mail::to('ssakunchamikara@gmail.com')->send(new SendNotices($data));
+        $emailsarr=array();
+        $receverlist = $request->input('receiverlist');
+        foreach($receverlist as $list){
+            $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
+        }
+        // dd($emailsarr);
+        //userlata tp no eka na
+
+        //dd($data['message']);
+        if($request->emails){
+            $this->email($data,$emailsarr);
+        }
+        // if($request->sms){
+        //     $this->sms($data,$nolist);
+        // }
+
         return back()->with('success','thanks for contacting us!');
 
     }
+
+    public function email($data,$emaillist){
+
+        foreach($emaillist as $emails){
+            // dd($emails);
+            require '../vendor/autoload.php';
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom("2017cs014@stu.ucsc.cmb.ac.lk");
+            $email->setSubject("Aurwedic Hospital- KESBAWA");
+            $email->addTo($emails);
+            $email->addContent("text/plain", $data['message']);
+            $email->addContent(
+                "text/html", $data['message']
+            );
+            $sendgrid = new \SendGrid('xxx');
+            try {
+                $response = $sendgrid->send($email);
+                print $response->statusCode() . "\n";
+                print_r($response->headers());
+                print $response->body() . "\n";
+            } catch (Exception $e) {
+                echo 'Caught exception: '. $e->getMessage() ."\n";
+            }
+
+        }
+    }
+
+    public function sms($data,$nolist){
+        $basic  = new \Nexmo\Client\Credentials\Basic('4618c9cf', 'u56udGx4em2dqQqD');
+        $client = new \Nexmo\Client($basic);
+
+        $message = $client->message()->send([
+        'to' => $nolist,//'94767035067',
+        'from' => 'Nexmo',
+        'text' => $data['message']
+        ]);
+    }
+
+
 }
+?>

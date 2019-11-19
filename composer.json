@@ -10,12 +10,20 @@
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "kriswallsmith/buzz": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.23",
+        "mailgun/mailgun-php": "^3.0",
         "milon/barcode": "^6.0",
         "nexmo/client": "^2.0",
+        "nyholm/psr7": "^1.2",
+        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/message": "^1.8",
+        "pyaesone17/active-state": "1.1.1",
+        "sendgrid/sendgrid": "~7",
         "spatie/laravel-activitylog": "^3.2"
     },
     "require-dev": {
