@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 <ul class="sidebar-menu" data-widget="tree">
@@ -107,6 +108,8 @@
 
 @endsection
 
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"Attendance Report")
 @section('content_description',"Generate Your Report Here...")
 @section('breadcrumbs')
@@ -197,13 +200,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 <script>
 $(function() {
-    $('input[name="start1"]').daterangepicker({
+    $('input[name="start"]').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
     });
 });
 $(function() {
-    $('input[name="end1"]').daterangepicker({
+    $('input[name="end"]').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
     });

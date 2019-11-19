@@ -2,11 +2,10 @@
 
 @section('title', $title)
 
-@section('sidebar')
-
 @section('optional_scripts')
 @endsection
 
+<<<<<<< HEAD
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">Main Menu</li>
     <!-- Optionally, you can add icons to the links -->
@@ -71,6 +70,8 @@
 </ul>
 
 @endsection
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"Check Patient")
 @section('content_description',"Check Patient here and update history from here !")
 @section('breadcrumbs')
@@ -83,7 +84,7 @@
 @section('main_content')
 
 <script>
-function suggestMed(val){
+    function suggestMed(val){
     keyword=val;
     var data=new FormData;
     data.append('keyword',keyword);
@@ -110,7 +111,7 @@ function suggestMed(val){
 
 
 <div class="row">
-    
+
     <div class="rounded col-md-5">
         <h4>Channel Details</h4>
         <h4>Appointment Number : {{$appNum}}</h4>
@@ -120,29 +121,31 @@ function suggestMed(val){
             </div>
             <div class="box-body">
                 <div class="container-fluid">
-                        <div class="row mb-2">
-                                <div class="col-md-5 m-0 p-0">
-                                    <div id="bloodhound">
-                                        <input oninput="console.log(this.value);" id="medSearch" class="form-control" type="text" placeholder="Search Medicines">
-                                    </div>
-                                </div>
-                                <div class="col-md-7 m-0 p-0">
-                                    <input onkeydown="addMed(event,this)" id="medNote" disabled type="text" class="form-control" placeholder="Notes">
-                                </div>
-                                <div id="suggestionList"></div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 m-0 p-0">
+                            <div id="bloodhound">
+                                <input oninput="console.log(this.value);" id="medSearch" class="form-control"
+                                    type="text" placeholder="Search Medicines">
+                            </div>
                         </div>
+                        <div class="col-md-7 m-0 p-0">
+                            <input onkeydown="addMed(event,this)" id="medNote" disabled type="text" class="form-control"
+                                placeholder="Notes">
+                        </div>
+                        <div id="suggestionList"></div>
+                    </div>
                 </div>
-               
+
 
                 <div style="height:30vh;overflow-y: scroll">
                     <table style="width:100%" id="medTable" class="table table-sm table-bordered w-100">
 
-                            <colgroup>
-                                <col span="1" style="width: 10%;">
-                                <col span="1" style="width: 40%;">
-                                <col span="1" style="width: 30%;">
-                                <col span="1" style="width: 20%;">
-                             </colgroup>
+                        <colgroup>
+                            <col span="1" style="width: 10%;">
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 30%;">
+                            <col span="1" style="width: 20%;">
+                        </colgroup>
 
                         <thead>
                             <tr>
@@ -153,7 +156,7 @@ function suggestMed(val){
                             </tr>
                         </thead>
                         <tbody class="m-0 p-0">
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -163,7 +166,6 @@ function suggestMed(val){
 
 
     <script>
-
         var medicines=[];
 
         function addMed(e,obj) { 
@@ -232,7 +234,7 @@ function suggestMed(val){
                 // 
 
             });
-        </script>
+    </script>
 
     <div class="col-md-7">
         <h4 class="text-center">Patient's Details And Treatment History</h4>
@@ -255,13 +257,17 @@ function suggestMed(val){
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
                             <div class="box-body">
-                            <h5>Name : {{$pName}}</h5>
-                            <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
-                                <h5>Blood Pressure : <span class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}} mmHg</span><small> (Updated
-                                    {{$pBloodPressure->date}})</small></h5>
-                                <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}} mg/dL</span><small> (Updated
-                                    {{$pBloodSugar->date}})</small></h5>
-                                <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}} mg/dL</span><small>
+                                <h5>Name : {{$pName}}</h5>
+                                <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
+                                <h5>Blood Pressure : <span
+                                        class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}}
+                                        mmHg</span><small> (Updated
+                                        {{$pBloodPressure->date}})</small></h5>
+                                <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}}
+                                        mg/dL</span><small> (Updated
+                                        {{$pBloodSugar->date}})</small></h5>
+                                <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}}
+                                        mg/dL</span><small>
                                         (Updated {{$pCholestrol->date}})</small></h5>
 
                             </div>
@@ -481,13 +487,13 @@ function suggestMed(val){
                 </div>
                 <div class="col-md-2">
                     <div class="p-2 mt-5 ml-1 mr-1">
-                            <button type="button" class="btn btn-block btn-success btn-lg">Save & Next</button>
-                            <br>
-                            <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
-                            <br>
-                            <button type="button" class="btn btn-block btn-danger btn-lg">Clear</button>
+                        <button type="button" class="btn btn-block btn-success btn-lg">Save & Next</button>
+                        <br>
+                        <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
+                        <br>
+                        <button type="button" class="btn btn-block btn-danger btn-lg">Clear</button>
                     </div>
-                       
+
                 </div>
             </div>
 
@@ -502,71 +508,71 @@ function suggestMed(val){
 .typeahead,
 .tt-query,
 .tt-hint {
-  width: 100%;
-  height: 100%;
-  {{-- padding: 8px 12px; --}}
-  {{-- font-size: 24px; --}}
-  {{-- line-height: 30px; --}}
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  outline: none;
+width: 100%;
+height: 100%;
+{{-- padding: 8px 12px; --}}
+{{-- font-size: 24px; --}}
+{{-- line-height: 30px; --}}
+border: 2px solid #ccc;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+outline: none;
 }
 
 .typeahead {
-  background-color: #fff;
+background-color: #fff;
 }
 
 .typeahead:focus {
-  border: 2px solid #0097cf;
+border: 2px solid #0097cf;
 }
 
 .tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .tt-hint {
-  color: #999
+color: #999
 }
 
 .tt-menu {
-  width:100% ;
-  margin: 3px 0;
-  padding: 8px 0;
-  background-color: #fef;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+width:100% ;
+margin: 3px 0;
+padding: 8px 0;
+background-color: #fef;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.2);
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
 .tt-suggestion {
-  padding: 3px 20px;
-  font-size: 15px;
-  line-height: 20px;
+padding: 3px 20px;
+font-size: 15px;
+line-height: 20px;
 }
 
 .tt-suggestion:hover {
-  cursor: pointer;
-  color: #fff;
-  background-color: #0097cf;
+cursor: pointer;
+color: #fff;
+background-color: #0097cf;
 }
 
 .tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #0097cf;
+color: #fff;
+background-color: #0097cf;
 
 }
 
 .tt-suggestion p {
-  margin: 0;
+margin: 0;
 }
 
 @endsection

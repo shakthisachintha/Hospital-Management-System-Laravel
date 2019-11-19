@@ -26,6 +26,24 @@ class PatientController extends Controller
         return view('patient.register_patient', ['title' => $user->name]);
     }
 
+    public function searchPatient(Request $request){
+        return view('patient.search_patient_view',['title'=>"Search Patient","search_result"=>""]);
+    }
+
+    public function patientData(Request $request){
+        if($request->cat=="name"){
+            $result=Patients::where('name','LIKE','%'.$request->keyword.'%')->get();
+        }
+        if($request->cat=="nic"){
+            $result=Patients::where('nic','LIKE','%'.$request->keyword.'%')->get();
+
+        }
+        if($request->cat=="telephone"){
+            $result=Patients::where('telephone','LIKE','%'.$request->keyword.'%')->get();
+        }
+        return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
+    }
+
     public function register_patient(Request $request)
     {
         //dd($request->all());
@@ -42,12 +60,14 @@ class PatientController extends Controller
 
             $reg_num = $year . $month . $day . $number;
 
+            $date=date_create($request->reg_pbd);
+
             $patient->id = $reg_num;
             $patient->name = $request->reg_pname;
             $patient->address = $request->reg_paddress;
             $patient->occupation = $request->reg_poccupation;
             $patient->sex = $request->reg_psex;
-            $patient->bod = $request->reg_pbd;
+            $patient->bod = date_format($date,"Y-m-d");
             $patient->telephone = $request->reg_ptel;
             $patient->nic = $request->reg_pnic;
             $patient->image = $reg_num.".png";

@@ -17,7 +17,7 @@ class CreatePatientsTable extends Migration
             $table->bigInteger('id');
             $table->string('name');
             $table->mediumText('address');
-            $table->string('occupation');
+            $table->string('contactnumber');
             $table->string('sex');
             $table->date('bod');
             $table->string('nic',15)->nullable()->unique();

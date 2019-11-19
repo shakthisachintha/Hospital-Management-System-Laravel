@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 <ul class="sidebar-menu" data-widget="tree">
@@ -108,6 +109,8 @@
 </ul>
 
 @endsection
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 
 @section('content_title',"Dashboard")
 @section('content_description',"Operate All The Things Here")

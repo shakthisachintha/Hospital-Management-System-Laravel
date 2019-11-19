@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 <ul class="sidebar-menu" data-widget="tree">
@@ -60,19 +61,20 @@
 </ul>
 
 @endsection
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"My Attendance")
 @section('content_description',"My Attendance And Holidays Taken")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-<li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
 @endsection
 
 @section('main_content')
-<script
-src="https://code.jscharting.com/latest/jscharting.js"></script>
+<script src="https://code.jscharting.com/latest/jscharting.js"></script>
 
 
 @endsection

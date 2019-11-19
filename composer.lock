@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e70a171d85117f9e56c73a6359db83b1",
+    "content-hash": "002d997649ef23ed1e49463a852976b9",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -210,6 +210,7 @@
         },
         {
             "name": "doctrine/lexer",
+<<<<<<< HEAD
             "version": "1.0.2",
             "source": {
                 "type": "git",
@@ -220,6 +221,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/lexer/zipball/1febd6c3ef84253d7c815bed85fc622ad207a9f8",
                 "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8",
+=======
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/lexer.git",
+                "reference": "5242d66dbeb21a30dd8a3e66bf7a73b66e05e1f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/5242d66dbeb21a30dd8a3e66bf7a73b66e05e1f6",
+                "reference": "5242d66dbeb21a30dd8a3e66bf7a73b66e05e1f6",
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
                 "shasum": ""
             },
             "require": {
@@ -231,7 +244,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "1.0.x-dev"
+=======
+                    "dev-master": "1.2.x-dev"
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
                 }
             },
             "autoload": {
@@ -266,7 +283,11 @@
                 "parser",
                 "php"
             ],
+<<<<<<< HEAD
             "time": "2019-06-08T11:03:04+00:00"
+=======
+            "time": "2019-10-30T14:39:59+00:00"
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -1852,11 +1873,11 @@
             },
             "require": {
                 "composer-plugin-api": "^1.0.0",
-                "php": "^7.1.0"
+                "php": "^7.3.0"
             },
             "require-dev": {
-                "composer/composer": "^1.6.3",
-                "doctrine/coding-standard": "^5.0.1",
+                "composer/composer": "^1.8.6",
+                "doctrine/coding-standard": "^6.0.0",
                 "ext-zip": "*",
                 "infection/infection": "^0.7.1",
                 "phpunit/phpunit": "^7.5.17"
@@ -1865,7 +1886,7 @@
             "extra": {
                 "class": "PackageVersions\\Installer",
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -2950,6 +2971,49 @@
                 "shell"
             ],
             "time": "2018-10-13T15:16:03+00:00"
+        },
+        {
+            "name": "pyaesone17/active-state",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pyaesone17/active-state.git",
+                "reference": "c513c2282dfe33627011501a89339b482296ed9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pyaesone17/active-state/zipball/c513c2282dfe33627011501a89339b482296ed9c",
+                "reference": "c513c2282dfe33627011501a89339b482296ed9c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pyaesone17\\ActiveState\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pyae Sone Nyein",
+                    "email": "promise286@gmail.com"
+                }
+            ],
+            "description": "Active State Checker For Laravel Url",
+            "homepage": "https://github.com/pyaesone17/active-state",
+            "keywords": [
+                "dynamic url",
+                "laravel",
+                "request",
+                "url checker"
+            ],
+            "time": "2017-06-20T11:15:25+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 <ul class="sidebar-menu" data-widget="tree">
@@ -69,6 +70,8 @@
 
 @endsection
 
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"My Attendance")
 @section('content_description',"My Attendance And Holidays Taken")
 @section('breadcrumbs')
@@ -170,29 +173,29 @@
         <div class="col">
             <div class="box">
                 <div class="box-header">
-                <h3 class="box-title">Attendance Records</h3>
+                    <h3 class="box-title">Attendance Records</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                               <th>Date</th>
-                               <th>Start Time</th>
-                               <th>End Time</th>
-                               <th>Hours Worked</th>
+                                <th>Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Hours Worked</th>
                             </tr>
                         </thead>
-                  <tbody>
-                        @foreach($att_more as $x)
-                        <tr>
-                        <td>{{$x->date}}</td>
-                        <td>{{$x->start}}</td>
-                        <td>{{$x->end}}</td>
-                        <td>{{$x->duration}}</td>
-                        </tr>
-                        @endforeach
-                  </tbody>
+                        <tbody>
+                            @foreach($att_more as $x)
+                            <tr>
+                                <td>{{$x->date}}</td>
+                                <td>{{$x->start}}</td>
+                                <td>{{$x->end}}</td>
+                                <td>{{$x->duration}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                         <tfoot>
                             <tr>
                                 <th>Date</th>

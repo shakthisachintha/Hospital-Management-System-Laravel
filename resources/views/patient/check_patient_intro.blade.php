@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 <ul class="sidebar-menu" data-widget="tree">
@@ -68,6 +69,8 @@
 </ul>
 
 @endsection
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"Check Patient")
 @section('content_description',"Check Patient here and update history from here !")
 @section('breadcrumbs')
@@ -81,7 +84,7 @@
 
 
 <script>
-$(document).ready(function () {
+    $(document).ready(function () {
   $("#appNum").focus();
 });
 
@@ -120,27 +123,29 @@ function validateNum(appNum){
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-            <div class="box box-success">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">Check Patient</h3>
-                    </div>
-                    <div class="box-body mt-0">
-                    <form class="pl-5 pr-5 pb-5" method="post" action="{{route('checkPatient')}}">
-                        @csrf
-                            <h3>Enter Appointment Number Or Patient Number To Begin</h3>
-                            <input id="appNum" name="appNum" class="form-control input-lg" type="number" onchange="validateNum(this.value)" placeholder="Appointment Number Or Patient Number">
-                            <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center" value="Check Patient">
-                            <p id="validation" class="mt-2 text-danger"></p>
-                            <div style="display:none" id="details">
-                                <h4>Patient Name : <span id="p_name"></span></h4>
-                                <h4>Appointment &nbsp;: <span id="appt_num"></span></h4>
-                            </div>
-                          </form> 
-                    </div>
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Check Patient</h3>
             </div>
+            <div class="box-body mt-0">
+                <form class="pl-5 pr-5 pb-5" method="post" action="{{route('checkPatient')}}">
+                    @csrf
+                    <h3>Enter Appointment Number Or Patient Number To Begin</h3>
+                    <input id="appNum" name="appNum" class="form-control input-lg" type="number"
+                        onchange="validateNum(this.value)" placeholder="Appointment Number Or Patient Number">
+                    <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
+                        value="Check Patient">
+                    <p id="validation" class="mt-2 text-danger"></p>
+                    <div style="display:none" id="details">
+                        <h4>Patient Name : <span id="p_name"></span></h4>
+                        <h4>Appointment &nbsp;: <span id="appt_num"></span></h4>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="col-md-1"></div>
-    
+
 </div>
 
 @endsection

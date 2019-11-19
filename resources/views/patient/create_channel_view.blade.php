@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 
@@ -69,6 +70,8 @@
 </ul>
 
 @endsection
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"Create Appoinments")
 @section('content_description',"Create an appointment for the patient from here !")
 @section('breadcrumbs')
@@ -112,65 +115,66 @@
     <div class="col-md-10">
         <!-- Horizontal Form -->
         <div class="box box-info">
-        <div class="box-header with-border">
-        <h3 class="box-title">{{__('Details Of The Patient')}}</h3>
-        </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form class="form-horizontal">
-            <div class="box-body">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control" name="reg_pname" id="patient_name">
-                    </div>
-                </div>
-                <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control" name="reg_pnic" id="patient_nic">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control" name="reg_paddress" id="patient_address">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
-                    <div class="col-sm-10">
-                        <input type="tel" readonly class="form-control" id="patient_telephone" name="reg_ptel" >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control" id="patient_occupation" name="reg_poccupation">
-                    </div>
-                </div>
-
-                <!-- select -->
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">{{__('Sex')}}</label>
-                    <div class="col-sm-3">
-                        <select id="patient_sex" readonly class="form-control" name="reg_psex">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <label for="inputEmail3" class="col-sm-1 control-label">{{__('Age')}}</label>
-                    <div class="col-sm-2">
-                        <input type="number" readonly id="patient_age" min="1" class="form-control" name="reg_page">
-                    </div>
-                </div>
-                <div class="box-footer">
-                    {{-- <input type="submit" class="btn btn-info pull-right" value="{{__('Register')}}">
-                    <input type="reset" class="btn btn-default" value="{{__('Cancel')}}"> --}}
-                </div>
-            <!-- /.box-footer -->
+            <div class="box-header with-border">
+                <h3 class="box-title">{{__('Details Of The Patient')}}</h3>
             </div>
-        </form>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control" name="reg_pname" id="patient_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control" name="reg_pnic" id="patient_nic">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control" name="reg_paddress" id="patient_address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
+                        <div class="col-sm-10">
+                            <input type="tel" readonly class="form-control" id="patient_telephone" name="reg_ptel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control" id="patient_occupation"
+                                name="reg_poccupation">
+                        </div>
+                    </div>
+
+                    <!-- select -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{__('Sex')}}</label>
+                        <div class="col-sm-3">
+                            <select id="patient_sex" readonly class="form-control" name="reg_psex">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-1 control-label">{{__('Age')}}</label>
+                        <div class="col-sm-2">
+                            <input type="number" readonly id="patient_age" min="1" class="form-control" name="reg_page">
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        {{-- <input type="submit" class="btn btn-info pull-right" value="{{__('Register')}}">
+                        <input type="reset" class="btn btn-default" value="{{__('Cancel')}}"> --}}
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+            </form>
         </div>
     </div>
     <div class="col-md-1"></div>
@@ -187,7 +191,8 @@
             <div class="form-group">
                 <label for="p_reg_num" class="col-sm-2 control-label">Registration No:</label>
                 <div class="col-sm-8">
-                    <input type="number" onchange="createChannelFunction()" required class="form-control" id="p_reg_num" placeholder="Enter Patient Registration Number">
+                    <input type="number" onchange="createChannelFunction()" required class="form-control" id="p_reg_num"
+                        placeholder="Enter Patient Registration Number">
                 </div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-info" onclick="createChannelFunction()">Enter</button>
@@ -220,11 +225,11 @@
                     </thead>
                     <tbody>
                         @foreach ($appointments as $app)
-                            <tr>
+                        <tr>
                             <td>{{$app->patient}}</td>
                             <td>{{$app->number}}</td>
                             <td>{{$app->name}}</td>
-                            </tr>
+                        </tr>
                         @endforeach
                     </tbody>
                     <tfoot>

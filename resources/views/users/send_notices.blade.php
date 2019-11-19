@@ -2,6 +2,7 @@
 
 @section('title', $title)
 
+<<<<<<< HEAD
 @section('sidebar')
 
 <ul class="sidebar-menu" data-widget="tree">
@@ -76,12 +77,14 @@
 
 @endsection
 
+=======
+>>>>>>> 4601dd9d491c33f27d0d9c1f253482f2548d7f5e
 @section('content_title',"User Profile")
 @section('content_description',"Personalize Your Account")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-<li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+    <li><a href="{{route('dash')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
     <li class="active">Here</li>
 </ol>
 @endsection
@@ -109,21 +112,21 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                     {{--  display validattion errors  --}}
                     @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
 
                     @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
                     @endif
 
                     <form role="form" method="post" action="{{ route('sendnotice') }}">
@@ -133,7 +136,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         <!-- textarea -->
                         <div class="form-group">
                             <label>Enter your Message</label>
-                            <textarea class="form-control" name="message" rows="5" placeholder="Enter Message" required></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Enter Message"
+                                required></textarea>
                         </div>
 
                         <br>
@@ -149,46 +153,46 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                             <div class="col-md-3">
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" name="emails" value="email"> Emails
+                                        <input type="checkbox" name="emails" value="email"> Emails
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" name="sms" value="sms"> SMS
+                                        <input type="checkbox" name="sms" value="sms"> SMS
                                     </label>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
-                                    <label>Select Receivers :</label>
+                                <label>Select Receivers :</label>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="checkbox">
-                                        <label>
+                                    <label>
                                         <input type="checkbox" name="receiverlist[]" value="admin"> Admin
-                                        </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                    <input type="checkbox" name="receiverlist[]" value="doctor"> Doctor
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" name="receiverlist[]" value="staff"> Staff
+                                        <input type="checkbox" name="receiverlist[]" value="doctor"> Doctor
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" name="receiverlist[]" value="pharmasist"> Pharmasist
+                                        <input type="checkbox" name="receiverlist[]" value="general"> Staff
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" name="receiverlist[]" value="patient"> Patient
+                                        <input type="checkbox" name="receiverlist[]" value="pharmacist"> Pharmasist
                                     </label>
                                 </div>
+                                {{-- <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="receiverlist[]" value="patient"> Patient
+                                    </label>
+                                </div> --}}
                             </div>
 
                             <div class="col-md-1">
@@ -198,12 +202,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         <br>
 
                         <div class="form-group col-md-2 pull-right">
-                            <input type="submit" class="btn btn-danger btn-lg" name="send" value="Send" >
+                            <input type="submit" class="btn btn-danger btn-lg" name="send" value="Send">
                         </div>
 
                     </form>
                 </div>
-            <!-- /.box-body -->
+                <!-- /.box-body -->
             </div>
         </div>
         <div class="col-md-1">
