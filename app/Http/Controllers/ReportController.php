@@ -37,8 +37,9 @@ class ReportController extends Controller
         $user = Auth::user();
         // dd($request->start);
 
-        $start_date=date_format(date_create($request->start),"y/m/d");
-        $end_date=date_format(date_create($request->end),"y/m/d");
+        $start_date=date_format(date_create($request->start),"Y/m/d");
+        $end_date=date_format(date_create($request->end),"Y/m/d");
+        // dd($request->start);
 
 
         if($request->type == "All"){
@@ -65,14 +66,13 @@ class ReportController extends Controller
             ->groupBy('name')
             ->get();
             // $data=User::find($user->id);
-            // dd($date);
 
         }
 
 
         if($request->type == "Doctors"){
             $data = DB::table('attendances')
-            ->rightJoin('users','attendances.user_id' , '=', 'users.id')
+            ->join('users','attendances.user_id' , '=', 'users.id')
             ->select('users.id as id','attendances.start as start','attendances.end as end','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
@@ -100,6 +100,10 @@ class ReportController extends Controller
     }
 
     public function all_print_preview(Request $request){
+
+        $start_date=date_format(date_create($request->start),"Y/m/d");
+        $end_date=date_format(date_create($request->end),"Y/m/d");
+
         $user = Auth::user();
         //get the attendance of all type
         if($request->type=="All"){
@@ -108,7 +112,7 @@ class ReportController extends Controller
             ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start,$request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->groupBy('name')
             ->orderBy('type')
             ->get();
@@ -121,7 +125,7 @@ class ReportController extends Controller
             ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->where('attendances.user_id',$user->id)
             ->groupBy('name')
             ->orderBy('type')
@@ -136,7 +140,7 @@ class ReportController extends Controller
             ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->where('users.user_type','doctor')
             ->groupBy('name')
             ->orderBy('type')
@@ -151,7 +155,7 @@ class ReportController extends Controller
             ->select('users.id as id','attendances.start as start','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->whereIn('users.user_type',['pharmacist','general'])
             ->groupBy('name')
             ->orderBy('type')
