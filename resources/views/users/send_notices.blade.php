@@ -103,17 +103,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="receiverlist[]" value="staff"> Staff
+                                        <input type="checkbox" name="receiverlist[]" value="general"> Staff
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="receiverlist[]" value="pharmasist"> Pharmasist
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="receiverlist[]" value="patient"> Patient
+                                        <input type="checkbox" name="receiverlist[]" value="pharmacist"> Pharmasist
                                     </label>
                                 </div>
                             </div>

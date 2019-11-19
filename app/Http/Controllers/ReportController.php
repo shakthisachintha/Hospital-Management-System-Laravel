@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 
 class ReportController extends Controller
 {
@@ -34,28 +35,38 @@ class ReportController extends Controller
     }
     public function gen_att_reports(Request $request){
         $user = Auth::user();
+        // dd($request->start);
+
+        $start_date=date_format(date_create($request->start),"y/m/d");
+        $end_date=date_format(date_create($request->end),"y/m/d");
+
+
         if($request->type == "All"){
             $data = DB::table('attendances')
             ->join('users','attendances.user_id' , '=', 'users.id')
             ->select('users.id as id','attendances.start as start','attendances.end as end','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->groupBy('name')
             ->get();
         }
 
 
         if($request->type == "My Attendance"){
+
             $data = DB::table('attendances')
             ->join('users','attendances.user_id' , '=', 'users.id')
             ->select('users.id as id','attendances.start as start','attendances.end as end','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->where('attendances.user_id',$user->id)
             ->groupBy('name')
             ->get();
+            // $data=User::find($user->id);
+            // dd($date);
+
         }
 
 
@@ -65,7 +76,7 @@ class ReportController extends Controller
             ->select('users.id as id','attendances.start as start','attendances.end as end','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->where('users.user_type','doctor')
             ->groupBy('name')
             ->get();
@@ -78,7 +89,7 @@ class ReportController extends Controller
             ->select('users.id as id','attendances.start as start','attendances.end as end','users.name as name','users.user_type as type',
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) > 7 THEN 1 ELSE NULL END) AS attended'),
             DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave'))
-            ->whereBetween('attendances.start', [$request->start, $request->end])
+            ->whereBetween('attendances.start', [$start_date,$end_date])
             ->whereIn('users.user_type',['pharmacist','general'])
             ->groupBy('name')
             // ->where('users.user_type','pharmacist')
