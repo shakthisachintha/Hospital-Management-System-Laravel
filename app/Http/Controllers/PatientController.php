@@ -42,12 +42,14 @@ class PatientController extends Controller
 
             $reg_num = $year . $month . $day . $number;
 
+            $date=date_create($request->reg_pbd);
+
             $patient->id = $reg_num;
             $patient->name = $request->reg_pname;
             $patient->address = $request->reg_paddress;
             $patient->occupation = $request->reg_poccupation;
             $patient->sex = $request->reg_psex;
-            $patient->bod = $request->reg_pbd;
+            $patient->bod = date_format($date,"Y-m-d");
             $patient->telephone = $request->reg_ptel;
             $patient->nic = $request->reg_pnic;
             $patient->image = $reg_num.".png";
