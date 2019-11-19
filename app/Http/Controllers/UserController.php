@@ -161,21 +161,20 @@ class UserController extends Controller
         $receverlist = $request->input('receiverlist');
         foreach ($receverlist as $list) {
 
-            if($list!="patient"){
-            $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
-            $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
-            if ($request->sms) {
-                $this->sms($data, $nolist);
-            }
-            }
-
-            if($list=="patient"){
-                $nolist[] = DB::table('patients')->select('contactnumber')->get();
+            if ($list != "patient") {
+                $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
+                $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
                 if ($request->sms) {
                     $this->sms($data, $nolist);
                 }
             }
 
+            if ($list == "patient") {
+                $nolist[] = DB::table('patients')->select('contactnumber')->get();
+                if ($request->sms) {
+                    $this->sms($data, $nolist);
+                }
+            }
         }
         // dd($emailsarr);
         //userlata tp no eka na
@@ -228,7 +227,7 @@ class UserController extends Controller
         // ]);
         foreach ($nolist as $key) {
             foreach ($key as $tpnumber) {
-                $no="94".$tpnumber->contactnumber;
+                $no = "94" . $tpnumber->contactnumber;
                 $user = "94767035067";
                 $password = "3056";
                 $text = urlencode($data['message']);
