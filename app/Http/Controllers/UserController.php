@@ -160,8 +160,22 @@ class UserController extends Controller
         $emailsarr = array();
         $receverlist = $request->input('receiverlist');
         foreach ($receverlist as $list) {
+
+            if($list!="patient"){
             $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
             $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
+            if ($request->sms) {
+                $this->sms($data, $nolist);
+            }
+            }
+
+            if($list=="patient"){
+                $nolist[] = DB::table('patients')->select('contactnumber')->get();
+                if ($request->sms) {
+                    $this->sms($data, $nolist);
+                }
+            }
+
         }
         // dd($emailsarr);
         //userlata tp no eka na
@@ -170,9 +184,7 @@ class UserController extends Controller
         if ($request->emails) {
             $this->email($data, $emailsarr);
         }
-        if ($request->sms) {
-            $this->sms($data, $nolist);
-        }
+
 
         return back()->with('success', 'thanks for contacting us!');
     }
