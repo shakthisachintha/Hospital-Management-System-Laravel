@@ -161,20 +161,14 @@ class UserController extends Controller
         $receverlist = $request->input('receiverlist');
         foreach ($receverlist as $list) {
 
-            if ($list != "patient") {
+            // if ($list != "patient") {
                 $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
                 $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
-                if ($request->sms) {
-                    $this->sms($data, $nolist);
-                }
-            }
+            // }
 
-            if ($list == "patient") {
-                $nolist[] = DB::table('patients')->select('contactnumber')->get();
-                if ($request->sms) {
-                    $this->sms($data, $nolist);
-                }
-            }
+            // if ($list == "patient") {
+            //     $nolist1[] = DB::table('patients')->select('contactnumber')->get();
+            // }
         }
         // dd($emailsarr);
         //userlata tp no eka na
@@ -182,6 +176,10 @@ class UserController extends Controller
         //dd($data['message']);
         if ($request->emails) {
             $this->email($data, $emailsarr);
+        }
+
+        if ($request->sms) {
+            $this->sms($data, $nolist);
         }
 
 
@@ -194,7 +192,7 @@ class UserController extends Controller
             foreach ($key as $emails) {
                 require '../vendor/autoload.php';
                 $email = new \SendGrid\Mail\Mail();
-                $email->setFrom("2017cs014@stu.ucsc.cmb.ac.lk");
+                $email->setFrom("aurwedicHospitalkesbawa@gov.lk","Aurwedic Hospital- KESBAWA");
                 $email->setSubject("Aurwedic Hospital- KESBAWA");
                 $email->addTo($emails->email);
                 $email->addContent("text/plain", $data['message']);
@@ -228,6 +226,7 @@ class UserController extends Controller
         foreach ($nolist as $key) {
             foreach ($key as $tpnumber) {
                 $no = "94" . $tpnumber->contactnumber;
+
                 $user = "94767035067";
                 $password = "3056";
                 $text = urlencode($data['message']);

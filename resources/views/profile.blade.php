@@ -17,6 +17,10 @@
 $name = $user->name;
 $user_type =$user->user_type;
 $image_path =$user->img_path;
+$email = $user->email;
+$tp = $user->contactnumber;
+$id = $user->id;
+
 $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
 <section class="content">
@@ -333,17 +337,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Followers</b> <a class="pull-right">1,322</a>
+                            <b>User ID :</b> <a class="pull-right">{{$id}}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Following</b> <a class="pull-right">543</a>
+                            <b>Email :</b> <a class="pull-right">{{$email}}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Friends</b> <a class="pull-right">13,287</a>
+                            <b>Contact NO :</b> <a class="pull-right">{{$tp}}</a>
                         </li>
                     </ul>
 
-                    <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
+                    <a href="#" class="btn btn-warning btn-block"><b>Edit Profile</b></a>
                 </div>
                 <!-- /.box-body -->
             </div>
