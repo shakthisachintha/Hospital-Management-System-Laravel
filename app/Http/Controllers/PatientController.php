@@ -27,22 +27,19 @@ class PatientController extends Controller
     }
 
     public function searchPatient(Request $request){
-        return view('patient.search_patient_view',['title'=>"asda"]);
+        return view('patient.search_patient_view',['title'=>"Search Patient","search_result"=>""]);
     }
 
     public function patientData(Request $request){
         if($request->cat=="name"){
             $result=Patients::where('name','LIKE','%'.$request->keyword.'%')->get();
         }
-        // return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
         if($request->cat=="nic"){
             $result=Patients::where('nic','LIKE','%'.$request->keyword.'%')->get();
 
         }
-        // return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
         if($request->cat=="telephone"){
             $result=Patients::where('telephone','LIKE','%'.$request->keyword.'%')->get();
-            // dd($result);
         }
         return view('patient.search_patient_view',["title"=>"Search Results","search_result"=>$result]);
     }

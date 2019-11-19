@@ -70,7 +70,7 @@ Route::get('/checkpatient',['as' => 'check_patient_view', 'uses' => 'PatientCont
 Route::post('/validateAppNum',['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth','doctor');
 Route::post('/checkpatient',['as' => 'checkPatient', 'uses' => 'PatientController@checkPatient'])->middleware('auth','doctor');
 Route::get('/searchpatient',['as' => 'searchPatient', 'uses' => 'PatientController@searchPatient'])->middleware('auth','doctor');
-Route::post('/search',['as' => 'searchData', 'uses' => 'PatientController@patientData'])->middleware('auth','doctor');
+Route::get('/search',['as' => 'searchData', 'uses' => 'PatientController@patientData'])->middleware('auth','doctor');
 
 Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth');
 Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth','admin');
