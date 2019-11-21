@@ -65,6 +65,11 @@ Route::get('/patientregcard/{pid}',['as' => 'pregcard', 'uses' => 'PatientContro
 Route::post('/patientregister',['as' => 'patient_register', 'uses' => 'PatientController@register_patient'])->middleware('auth','staff');
 Route::get('/createchannel',['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth','staff','lang');
 Route::get('/inpatientregister',['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth','staff');
+Route::get('/issueMedicine',['as' => 'issueMedicineView', 'uses' => 'PatientController@issueMedicineView'])->middleware('auth','staff');
+
+
+
+
 
 Route::get('/checkpatient',['as' => 'check_patient_view', 'uses' => 'PatientController@check_patient_view'])->middleware('auth','doctor');
 Route::post('/validateAppNum',['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth','doctor');
