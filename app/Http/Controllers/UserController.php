@@ -183,14 +183,14 @@ class UserController extends Controller
         }
 
 
-        return back()->with('success', 'thanks for contacting us!');
+        return back()->with('success', 'Messages Sent Successfully!');
     }
 
     public function email($data, $emaillist)
     {
         foreach ($emaillist as $key) {
             foreach ($key as $emails) {
-                require '../vendor/autoload.php';
+                // require '../vendor/autoload.php';
                 $email = new \SendGrid\Mail\Mail();
                 $email->setFrom("aurwedicHospitalkesbawa@gov.lk","Aurwedic Hospital- KESBAWA");
                 $email->setSubject("Aurwedic Hospital- KESBAWA");
