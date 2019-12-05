@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29e38a43f7ddd4140d852ff0b609240e",
+    "content-hash": "daeb28066c33e887dce60a29641f3faf",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -3229,6 +3229,56 @@
             "time": "2019-04-15T17:27:21+00:00"
         },
         {
+            "name": "spatie/db-dumper",
+            "version": "2.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/db-dumper.git",
+                "reference": "eec21c55012b02fb8453c9929fa1c3150ca184ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/eec21c55012b02fb8453c9929fa1c3150ca184ac",
+                "reference": "eec21c55012b02fb8453c9929fa1c3150ca184ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "symfony/process": "^4.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\DbDumper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Dump databases",
+            "homepage": "https://github.com/spatie/db-dumper",
+            "keywords": [
+                "database",
+                "db-dumper",
+                "dump",
+                "mysqldump",
+                "spatie"
+            ],
+            "time": "2019-04-17T07:03:19+00:00"
+        },
+        {
             "name": "spatie/laravel-activitylog",
             "version": "3.2.2",
             "source": {
@@ -3301,6 +3351,79 @@
             "time": "2019-02-27T12:41:17+00:00"
         },
         {
+            "name": "spatie/laravel-backup",
+            "version": "5.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-backup.git",
+                "reference": "553562557ef13fda0e823cc609cd7d4f2c4f2552"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/553562557ef13fda0e823cc609cd7d4f2c4f2552",
+                "reference": "553562557ef13fda0e823cc609cd7d4f2c4f2552",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/contracts": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/events": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/filesystem": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/notifications": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "league/flysystem": "^1.0.27",
+                "php": "^7.1",
+                "spatie/db-dumper": "^2.11.1",
+                "spatie/temporary-directory": "^1.1",
+                "symfony/finder": "^3.3|^4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "phpunit/phpunit": "^7.3"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows notifications to be sent via Slack"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Backup\\BackupServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Backup\\": "src"
+                },
+                "files": [
+                    "src/Helpers/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel 5 package to backup your application",
+            "homepage": "https://github.com/spatie/laravel-backup",
+            "keywords": [
+                "backup",
+                "database",
+                "laravel-backup",
+                "spatie"
+            ],
+            "time": "2019-04-04T12:00:30+00:00"
+        },
+        {
             "name": "spatie/string",
             "version": "2.2.2",
             "source": {
@@ -3352,6 +3475,52 @@
                 "string"
             ],
             "time": "2017-11-08T14:28:57+00:00"
+        },
+        {
+            "name": "spatie/temporary-directory",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/temporary-directory.git",
+                "reference": "539d0856c5d6344619b3c5ab472e1ff6c655df5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/539d0856c5d6344619b3c5ab472e1ff6c655df5a",
+                "reference": "539d0856c5d6344619b3c5ab472e1ff6c655df5a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TemporaryDirectory\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily create, use and destroy temporary directories",
+            "homepage": "https://github.com/spatie/temporary-directory",
+            "keywords": [
+                "spatie",
+                "temporary-directory"
+            ],
+            "time": "2019-07-16T20:39:53+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -24,7 +24,8 @@
         "php-http/message": "^1.8",
         "pyaesone17/active-state": "1.1.1",
         "sendgrid/sendgrid": "~7",
-        "spatie/laravel-activitylog": "^3.2"
+        "spatie/laravel-activitylog": "^3.2",
+        "spatie/laravel-backup": "^5.12"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

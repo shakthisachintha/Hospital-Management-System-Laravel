@@ -10,9 +10,10 @@ use App\Patients;
 use Illuminate\Support\Facades\Storage;
 use File;
 use App\Appointment;
+use App\Medicine;
 use DB;
 use stdClass;
-
+use Carbon\Carbon;
 class PatientController extends Controller
 {
     public function __construct()
@@ -138,6 +139,9 @@ class PatientController extends Controller
 
     public function checkPatient(Request $request)
     {
+        $patient=Appointment::where('number',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient','1910101')->first();
+        dd($patient);
+
         $user = Auth::user();
         $pBloodPressure = new stdClass;
         $pBloodPressure->sys = 120;
@@ -156,15 +160,16 @@ class PatientController extends Controller
 
 
         return view('patient.check_patient_view', [
-            'title' => $user->name,
+            'title' => ucWords($user->name),
             'appNum' => $request->appNum,
-            'pName' => 'Shakthi Sachintha',
+            'pName' => $patient->patient,
             'pSex' => "Male",
             'pAge' => 21,
             'pCholestrol' => $pCholestrol,
             'pBloodSugar' => $pBloodSugar,
             'pBloodPressure' => $pBloodPressure,
             'pHistory' => $pHistory,
+            'medicines'=>Medicine::all(),
 
         ]);
     }
