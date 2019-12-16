@@ -100,6 +100,8 @@
 
     <script>
         var medicines=[];
+        var patient_id={{$pid}};
+        var app_num={{$appNum}};
 
         $(document).ready(function () {
             if(sessionStorage.getItem('app')=={{$appNum}}){
@@ -109,8 +111,8 @@
                 medTableUpdate();
                 console.log("Found");
                 }else{
-                    console.log("not found");
-                    return;
+                console.log("not found");
+                return;
                 }
             }
             sessionStorage.setItem('app',{{$appNum}});
@@ -138,6 +140,9 @@
          }
 
          function medTableUpdate() {
+            medicines = medicines.filter(function (el) {
+            return el != null;
+            });
             sessionStorage.setItem("medicines", JSON.stringify(medicines));
             $("#medTable tbody tr").remove();
             var count=1
@@ -148,7 +153,6 @@
          }
 
          function editMed(id){
-             alert(id);
              $("#medSearch").val()
              count=0;
              medicines.forEach(element=>{
@@ -448,37 +452,38 @@
                 <div class="col-md-5">
                     <label class="mt-3" for="">Blood Pressure</label>
                     <div class="input-group">
-                        <input id="pressure" name="pressure" type="text" class="form-control">
+                        <input id="pressure" pattern="/([0-9]{3}|[0-9]{2})[/]([0-9]{3}|[0-9]{2})/g" name="pressure" type="text" class="form-control">
                         <span class="input-group-addon">mmHg</span>
                     </div>
                     <label class="mt-3" for="">Blood Glucose Level</label>
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input id="glucose" type="text" class="form-control">
                         <span class="input-group-addon">mg/dL</span>
                     </div>
                     <label class="mt-3" for="">General Cholestrol Level</label>
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input id="cholestrol" type="text" class="form-control">
                         <span class="input-group-addon">mg/dL</span>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="p-2 mt-5 ml-1 mr-1">
-                        <button type="button" class="btn btn-block btn-success btn-lg">Save & Next</button>
+                        <button type="button" onclick="submit()" class="btn btn-block btn-success btn-lg">Save & Next</button>
                         <br>
                         @if ($inpatient=="YES")
-                        <button type="button" class="btn btn-block btn-primary btn-lg">Discharge Inpatient</button>
+                        <button disabled type="button"
+                            class="btn btn-block btn-primary btn-lg">Inpatient</button>
                         @endif
-                        
+
                         @if ($inpatient=="NO")
-                        <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
+                        <button type="button" onclick="admitPatient('YES')" class="btn btn-block btn-warning btn-lg">Mark As
+                            Inpatient</button>
                         @endif
-                       
+
                         <br>
                         <button type="button" onclick="clearAll()"
                             class="btn btn-block btn-danger btn-lg">Clear</button>
                     </div>
-
                 </div>
             </div>
 
@@ -488,6 +493,48 @@
 </div>
 
 <script>
+    var inpatient='{{$inpatient}}';
+    function admitPatient(status){
+        var data=new FormData;
+        data.append('_token','{{csrf_token()}}');
+        data.append('admit',status);
+        data.append('pid',{{$pid}});
+        data.append('app_num',{{$appNum}});
+        $.ajax({
+            type: "POST",
+            url: "{{route('markInPatient')}}",
+            processData: false,
+            contentType: false,
+            cache: false,
+            data:data,
+            success: function (response) {
+                console.log('success');
+                console.log(response);
+            },
+            error: function(data){
+                console.log('error occured');
+                console.log(data);
+            },
+        });
+    }
+
+    function submit(){
+        var diag=$('textarea').val();
+        var pressure=$('#pressure').val();
+        var cholestrol=$('#cholestrol').val();
+        var glucose=$('#glucose').val();
+        var data={
+            patient_id:patient_id,
+            appointment_num:app_num,
+            medicines:medicines,
+            diagnosis:diag,
+            pressure:pressure,
+            glucose:glucose,
+            cholestrol:cholestrol,
+        };
+        console.log(data);
+    }
+
     function clearAll(){
         medicines=[];
         medTableUpdate();

@@ -142,7 +142,7 @@ class PatientController extends Controller
     public function checkPatient(Request $request)
     {
         $appointment=Appointment::where('number',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$request->pid)->first();
-        
+        $patient=Patients::find($appointment->patient_id);
 
         $user = Auth::user();
 
@@ -168,20 +168,32 @@ class PatientController extends Controller
             'appNum' => $request->appNum,
             'pName' => $appointment->patient->name,
             'pSex' => $appointment->patient->sex,
-            'pAge' => 21,
+            'pAge' => $patient->getAge(),
             'pCholestrol' => $pCholestrol,
             'pBloodSugar' => $pBloodSugar,
             'pBloodPressure' => $pBloodPressure,
             'pHistory' => $pHistory,
             'inpatient'=>$appointment->admit,
+            'pid'=>$appointment->patient->id,
             'medicines'=>Medicine::all(),
         ]);
     }
     public function markInPatient(Request $request){
         $pid=$request->pid;
         $app_num=$request->app_num;
+        $user = Auth::user();
         $appointment=Appointment::where('number',$app_num)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$pid)->first();
-        $appointment->admit="YES";
+        if($appointment->admit=="NO"){
+            $appointment->admit="YES";
+            $appointment->doctor=$user->id;
+            $appointment->save();
+            return response()->json([
+                'success' => true,
+                'appid'=>$appointment->id,
+                'pid' => $pid,
+                'app_num' => $app_num,
+            ]);
+        }
     }
 
     public function create_channel_view()
