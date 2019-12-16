@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWardsTable extends Migration
+class CreateInpatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateWardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wards', function (Blueprint $table) {
+        Schema::create('inpatients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ward_no');
-            $table->integer('beds');
-            $table->integer('free_beds');
-            $table->bigInteger('doctor_id');
             $table->timestamps();
+            $table->bigInteger('patient_id');
+            $table->char('discharged',4)->default('NO'); // YES | NO
+            $table->bigInteger('ward_id');
+            $table->integer('bed')->nullable();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateWardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wards');
+        Schema::dropIfExists('inpatients');
     }
 }

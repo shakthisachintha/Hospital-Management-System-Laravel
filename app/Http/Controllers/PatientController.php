@@ -173,8 +173,15 @@ class PatientController extends Controller
             'pBloodSugar' => $pBloodSugar,
             'pBloodPressure' => $pBloodPressure,
             'pHistory' => $pHistory,
+            'inpatient'=>$appointment->admit,
             'medicines'=>Medicine::all(),
         ]);
+    }
+    public function markInPatient(Request $request){
+        $pid=$request->pid;
+        $app_num=$request->app_num;
+        $appointment=Appointment::where('number',$app_num)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$pid)->first();
+        $appointment->admit="YES";
     }
 
     public function create_channel_view()

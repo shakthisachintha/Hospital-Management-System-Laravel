@@ -466,7 +466,14 @@
                     <div class="p-2 mt-5 ml-1 mr-1">
                         <button type="button" class="btn btn-block btn-success btn-lg">Save & Next</button>
                         <br>
+                        @if ($inpatient=="YES")
+                        <button type="button" class="btn btn-block btn-primary btn-lg">Discharge Inpatient</button>
+                        @endif
+                        
+                        @if ($inpatient=="NO")
                         <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
+                        @endif
+                       
                         <br>
                         <button type="button" onclick="clearAll()"
                             class="btn btn-block btn-danger btn-lg">Clear</button>

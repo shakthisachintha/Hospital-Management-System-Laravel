@@ -2,6 +2,7 @@
 
 use App\Attendance;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AttendancesTableSeeder extends Seeder
 {

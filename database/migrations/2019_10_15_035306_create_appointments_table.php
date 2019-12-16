@@ -21,6 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->integer('number');
             $table->bigInteger('doctor')->nullable();
+            $table->char('admit',3)->default("NO");
             $table->foreign('doctor')->references('id')->on('users')->onDelete('cascade');
         });
     }
