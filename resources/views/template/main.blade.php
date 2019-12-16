@@ -1705,10 +1705,10 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{Active::checkRoute('myattend')}}"><a href="{{route('myattend')}}"><i class="fas fa-calendar-day" aria-hidden="true"></i>My
+                            <li class="{{Active::checkRoute('myattend')}}"><a href="{{route('myattend')}}"><i class="fas fa-calendar-day" aria-hidden="true"></i>&nbsp; My
                                     Attendance</a></li>
                             <li class="{{Active::checkRoute('attendmore')}}"><a href="{{route('attendmore')}}"><i class="fas fa-plus-square"
-                                        aria-hidden="true"></i>More</a></li>
+                                        aria-hidden="true"></i>&nbsp; More</a></li>
                         </ul>
                     </li>
 

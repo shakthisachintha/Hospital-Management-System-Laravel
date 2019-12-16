@@ -8,7 +8,7 @@ class Appointment extends Model
 {
     //
 
-    public function patients(){
+    public function patient(){
         return $this->belongsTo('\App\Patients');
     }
 }

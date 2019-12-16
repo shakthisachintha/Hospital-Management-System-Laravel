@@ -101,12 +101,28 @@
     <script>
         var medicines=[];
 
+        $(document).ready(function () {
+            if(sessionStorage.getItem('app')=={{$appNum}}){
+                sessionStorage.setItem('app',{{$appNum}});
+                if(sessionStorage.getItem("medicines")){
+                medicines=JSON.parse(sessionStorage.getItem("medicines"));
+                medTableUpdate();
+                console.log("Found");
+                }else{
+                    console.log("not found");
+                    return;
+                }
+            }
+            sessionStorage.setItem('app',{{$appNum}});
+         });
+
         function addMed(e,obj) { 
             var note=obj.value;
             var med=$("#medSearch").val();
             if(e.keyCode === 13){
-                e.preventDefault(); 
-                var med={name:med,note:note}
+                e.preventDefault();
+                var id = Math.floor(1000 + Math.random() * 9000); 
+                var med={id:id,name:med,note:note}
                 medicines.push(med);
                 medTableUpdate();
                 $("#medSearch").val('');
@@ -122,12 +138,46 @@
          }
 
          function medTableUpdate() {
+            sessionStorage.setItem("medicines", JSON.stringify(medicines));
             $("#medTable tbody tr").remove();
             var count=1
              medicines.forEach(element => {
-                $('#medTable > tbody:last-child').append('<tr><td>'+count+'</td><td>'+element.name+'</td><td>'+element.note+'</td><td><div class="btn-group"><button style="height:28px;" type="button" class="m-0 btn btn-danger btn-sm btn-flat"><i class="far fa-trash-alt"></i></button><button style="height:28px;" type="button" class="btn m-0 btn-warning btn-sm btn-flat"><i class="far fa-edit"></i></button></div></td></tr>');
+                $('#medTable > tbody:last-child').append('<tr><td>'+count+'</td><td>'+element.name+'</td><td>'+element.note+'</td><td><div class="btn-group"><button onclick="delMed('+element.id+')" style="height:28px;" type="button" class="m-0 btn btn-danger btn-sm btn-flat"><i class="far fa-trash-alt"></i></button><button style="height:28px;" onclick="editMed('+element.id+')" type="button" class="btn m-0 btn-warning btn-sm btn-flat"><i class="far fa-edit"></i></button></div></td></tr>');
                 count++;
              });
+         }
+
+         function editMed(id){
+             alert(id);
+             $("#medSearch").val()
+             count=0;
+             medicines.forEach(element=>{
+                if(element.id==id){
+                    $("#medSearch").val(element.name);
+                    $("#medNote").removeAttr("disabled");
+                    $("#medNote").val(element.note);
+                    $("#medNote").focus();
+                    delMed(id);
+                    return;
+                }
+                count++;
+            })
+         }
+
+         function delMed(id){
+            medicines = medicines.filter(function (el) {
+            return el != null;
+            });
+            console.log(id);
+            count=0;
+            medicines.forEach(element=>{
+                if(element.id==id){
+                    delete medicines[count];
+                    medTableUpdate();
+                    return;
+                }
+                count++;
+            })
          }
 
             
@@ -156,7 +206,6 @@
             });
     
             $('#medSearch').bind('typeahead:select', function(ev, suggestion) {
-                console.log(suggestion);
                 $("#medNote").removeAttr("disabled");
                 $("#medNote").focus();
                 // 
@@ -419,7 +468,8 @@
                         <br>
                         <button type="button" class="btn btn-block btn-warning btn-lg">Mark As Inpatient</button>
                         <br>
-                        <button type="button" class="btn btn-block btn-danger btn-lg">Clear</button>
+                        <button type="button" onclick="clearAll()"
+                            class="btn btn-block btn-danger btn-lg">Clear</button>
                     </div>
 
                 </div>
@@ -429,6 +479,15 @@
     </div>
 
 </div>
+
+<script>
+    function clearAll(){
+        medicines=[];
+        medTableUpdate();
+        $('input').val("");
+        $('textarea').val("");
+    }
+</script>
 
 @endsection
 

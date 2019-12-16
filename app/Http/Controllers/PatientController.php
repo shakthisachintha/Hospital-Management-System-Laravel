@@ -103,12 +103,13 @@ class PatientController extends Controller
         $num = $request->number;
         $numlength = strlen((string) $num);
         if ($numlength < 5) {
-            $rec = DB::table('appointments')->join('patients', 'appointments.patient', '=', 'patients.id')->select('patients.name as name', 'appointments.number as num', 'appointments.patient')->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and appointments.number='$num'"))->first();
+            $rec = DB::table('appointments')->join('patients', 'appointments.patient_id', '=', 'patients.id')->select('patients.name as name', 'appointments.number as num', 'appointments.patient_id as pnum')->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and appointments.number='$num'"))->first();
             if ($rec) {
                 return response()->json([
                     "exist" => true,
                     "name" => $rec->name,
-                    "appNum" => $rec->num
+                    "appNum" => $rec->num,
+                    "pNum"=>$rec->pnum
                 ]);
             } else {
                 return response()->json([
@@ -116,12 +117,13 @@ class PatientController extends Controller
                 ]);
             }
         } else {
-            $rec = DB::table('appointments')->join('patients', 'appointments.patient', '=', 'patients.id')->select('patients.name as name', 'appointments.number as num', 'appointments.patient')->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and appointments.patient='$num'"))->first();
+            $rec = DB::table('appointments')->join('patients', 'appointments.patient_id', '=', 'patients.id')->select('patients.name as name', 'appointments.number as num', 'appointments.patient_id as pnum')->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and appointments.patient_id='$num'"))->first();
             if ($rec) {
                 return response()->json([
                     "exist" => true,
                     "name" => $rec->name,
-                    "appNum" => $rec->num
+                    "appNum" => $rec->num,
+                    "pNum"=>$rec->pnum
                 ]);
             } else {
                 return response()->json([
@@ -139,10 +141,12 @@ class PatientController extends Controller
 
     public function checkPatient(Request $request)
     {
-        $patient=Appointment::where('number',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient','1910101')->first();
-        dd($patient);
+        $appointment=Appointment::where('number',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$request->pid)->first();
+        
 
         $user = Auth::user();
+
+
         $pBloodPressure = new stdClass;
         $pBloodPressure->sys = 120;
         $pBloodPressure->dia = 80;
@@ -162,22 +166,21 @@ class PatientController extends Controller
         return view('patient.check_patient_view', [
             'title' => ucWords($user->name),
             'appNum' => $request->appNum,
-            'pName' => $patient->patient,
-            'pSex' => "Male",
+            'pName' => $appointment->patient->name,
+            'pSex' => $appointment->patient->sex,
             'pAge' => 21,
             'pCholestrol' => $pCholestrol,
             'pBloodSugar' => $pBloodSugar,
             'pBloodPressure' => $pBloodPressure,
             'pHistory' => $pHistory,
             'medicines'=>Medicine::all(),
-
         ]);
     }
 
     public function create_channel_view()
     {
         $user = Auth::user();
-        $appointments = DB::table('appointments')->join('patients', 'appointments.patient', '=', 'patients.id')->select('patients.name', 'appointments.number', 'appointments.patient')->whereRaw(DB::Raw('Date(appointments.created_at)=CURDATE()'))->orderBy('appointments.created_at', 'desc')->get();
+        $appointments = DB::table('appointments')->join('patients', 'appointments.patient_id', '=', 'patients.id')->select('patients.name', 'appointments.number', 'appointments.patient_id')->whereRaw(DB::Raw('Date(appointments.created_at)=CURDATE()'))->orderBy('appointments.created_at', 'desc')->get();
 
         return view('patient.create_channel_view', ['title' => $user->name, 'appointments' => $appointments]);
     }
@@ -238,7 +241,7 @@ class PatientController extends Controller
         $patient = Patients::find($pid);
 
         $app->number = $num;
-        $app->patient = $pid;
+        $app->patient_id = $pid;
         $app->save();
         try {
             $app->save();

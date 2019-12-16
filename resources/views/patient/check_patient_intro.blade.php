@@ -40,7 +40,9 @@ function validateNum(appNum){
           $("#btn_submit").focus();
           $("#details").fadeIn();
           $("#p_name").text(appointment.name);
+          $("#pnum").val(appointment.pNum)
           $("#appt_num").text(appointment.appNum);
+          $("#appt_num_1").val(appointment.appNum);
         }else{
           $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
           $("#appNum").focus();
@@ -62,10 +64,12 @@ function validateNum(appNum){
                 <form class="pl-5 pr-5 pb-5" method="post" action="{{route('checkPatient')}}">
                     @csrf
                     <h3>Enter Appointment Number Or Patient Number To Begin</h3>
-                    <input id="appNum" name="appNum" class="form-control input-lg" type="number"
+                    <input id="appNum" class="form-control input-lg" type="number"
                         onchange="validateNum(this.value)" placeholder="Appointment Number Or Patient Number">
                     <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
                         value="Check Patient">
+                    <input name="pid" type="hidden" id="pnum">
+                    <input name="appNum" type="hidden" id="appt_num_1">
                     <p id="validation" class="mt-2 text-danger"></p>
                     <div style="display:none" id="details">
                         <h4>Patient Name : <span id="p_name"></span></h4>

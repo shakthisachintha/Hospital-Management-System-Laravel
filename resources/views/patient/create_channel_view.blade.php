@@ -156,7 +156,7 @@
                     <tbody>
                         @foreach ($appointments as $app)
                         <tr>
-                            <td>{{$app->patient}}</td>
+                            <td>{{$app->patient_id}}</td>
                             <td>{{$app->number}}</td>
                             <td>{{$app->name}}</td>
                         </tr>
