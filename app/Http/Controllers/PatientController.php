@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use File;
 use App\Appointment;
 use App\Medicine;
+use App\Prescription;
+use App\Prescription_Medicine;
 use DB;
 use stdClass;
 use Carbon\Carbon;
@@ -197,7 +199,24 @@ class PatientController extends Controller
     }
 
     public function checkPatientSave(Request $request){
-        print_r( $request->medicines);
+        $user = Auth::user();
+        $presc=new Prescription;
+        $presc->doctor_id=$user->id;
+        $presc->patient_id=$request->patient_id;
+        $presc->diagnosis=$request->diagnosis;
+        $presc->cholestrol=$request->cholestrol;
+        $presc->bp=$request->pressure;
+        $presc->blood_sugar=$request->glucose;
+        $presc->medicines=json_encode($request->medicines);
+        $presc->save();
+
+        foreach ($request->medicines as $medicine) {
+            $med=Medicine::where('name_english',strtolower($medicine['name']))->first();
+            $pres_med=new Prescription_Medicine;
+            $pres_med->medicine_id=$med->id;
+            $pres_med->prescription_id=$presc->id;
+            $pres_med->save();
+        }
     }
 
     public function create_channel_view()

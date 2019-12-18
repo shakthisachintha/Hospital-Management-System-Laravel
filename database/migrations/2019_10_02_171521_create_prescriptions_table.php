@@ -15,10 +15,15 @@ class CreatePrescriptionsTable extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('doctor');
-            $table->foreign('doctor')->references('id')->on('doctors')->onDelete('cascade');
-            $table->bigInteger('patient');
-            $table->foreign('patient')->references('id')->on('patients')->onDelete('cascade');
+            $table->bigInteger('doctor_id');
+            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('patient_id');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->string('bp')->nullable();
+            $table->string('cholestrol')->nullable();
+            $table->string('blood_sugar')->nullable();
+            $table->longText('diagnosis')->nullable();
+            $table->json('medicines')->nullable();
             $table->timestamps();
         });
     }
