@@ -449,10 +449,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 pl-5 pr-5">
                     <label class="mt-3" for="">Blood Pressure</label>
                     <div class="input-group">
-                        <input id="pressure" pattern="/([0-9]{3}|[0-9]{2})[/]([0-9]{3}|[0-9]{2})/g" name="pressure" type="text" class="form-control">
+                        <input id="pressure" name="pressure" type="text" class="form-control">
                         <span class="input-group-addon">mmHg</span>
                     </div>
                     <label class="mt-3" for="">Blood Glucose Level</label>
@@ -518,12 +518,64 @@
         });
     }
 
+    function validate(){
+        var diag=$('textarea').val();
+        var pressure=/^([0-9]{3}|[0-9]{2})[/]([0-9]{3}|[0-9]{2})$/.test($('#pressure').val());
+        var cholestrol=/^[0-9]{2}|[0-9]{3}$/.test($('#cholestrol').val());
+        var glucose=/^[0-9]{2}|[0-9]{3}$/.test($('#glucose').val());
+        if(diag.length<5){
+            $('textarea').addClass('border-danger');
+            diag=false;
+        }else{
+            $('textarea').removeClass('border-danger');
+            diag=true;
+        }
+        if($('#pressure').val()==""){
+            pressure=true;
+           
+        }
+        if($('#cholestrol').val()==""){
+            cholestrol=true;
+        }
+        if($('#glucose').val()==""){
+            glucose=true;   
+        }
+
+        if(cholestrol){
+            $('#cholestrol').removeClass('border-danger');
+        }else{
+            $('#cholestrol').addClass('border-danger');
+        }
+
+        if(glucose){
+            $('#glucose').removeClass('border-danger');
+        }else{
+            $('#glucose').addClass('border-danger');
+        }
+
+        if(pressure){
+            $('#pressure').removeClass('border-danger');
+        }else{
+            $('#pressure').addClass('border-danger');
+        }
+
+        if(pressure && cholestrol && glucose && diag){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function submit(){
+        if(!validate()){
+            return;
+        }
         var diag=$('textarea').val();
         var pressure=$('#pressure').val();
         var cholestrol=$('#cholestrol').val();
         var glucose=$('#glucose').val();
         var data={
+            _token:'{{csrf_token()}}',
             patient_id:patient_id,
             appointment_num:app_num,
             medicines:medicines,
@@ -532,6 +584,22 @@
             glucose:glucose,
             cholestrol:cholestrol,
         };
+        $.ajax({
+            type: "POST",
+            url: "{{route('checkSave')}}",
+            processData: false,
+            contentType: "application/json",
+            cache: false,
+            data:JSON.stringify(data),
+            success: function (response) {
+                console.log('success');
+                console.log(response);
+            },
+            error: function(response){
+                console.log('error occured');
+                console.log(response);
+            },
+        });
         console.log(data);
     }
 

@@ -151,7 +151,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background-repeat: no-repeat;
             background-color: #F9FDFF;
             background-position: center;
         }
@@ -163,9 +162,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background-repeat: no-repeat;
             background-color: rgba(0, 0, 0, 0.56);
-            background-position: center;
+            background-position:center;
         }
 
         .mr-0,

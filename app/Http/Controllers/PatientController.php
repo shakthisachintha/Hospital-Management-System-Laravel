@@ -196,6 +196,10 @@ class PatientController extends Controller
         }
     }
 
+    public function checkPatientSave(Request $request){
+        print_r( $request->medicines);
+    }
+
     public function create_channel_view()
     {
         $user = Auth::user();
