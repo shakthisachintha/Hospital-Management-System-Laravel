@@ -69,7 +69,7 @@ Route::get('/searchpatient', ['as' => 'searchPatient', 'uses' => 'PatientControl
 Route::get('/search', ['as' => 'searchData', 'uses' => 'PatientController@patientData'])->middleware('auth', 'doctor', 'lang');
 
 
-//Attendance Routes 
+//Attendance Routes
 Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth');
 Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth', 'admin');
 Route::get('/attendance', ['as' => 'attendance', 'uses' => 'AttendController@markattendance'])->middleware('guest');
@@ -98,3 +98,5 @@ Route::get('/outpreport', ['as' => 'out_p_report', 'uses' => 'ReportController@v
 Route::get('/attendancereport', ['as' => 'attendance_report', 'uses' => 'ReportController@view_attendance_report'])->middleware('auth');
 Route::post('/generatereports', ['as' => 'gen_att_reports', 'uses' => 'ReportController@gen_att_reports'])->middleware('auth');
 Route::get('/allprintpreview', ['as' => 'all_print_preview', 'uses' => 'ReportController@all_print_preview'])->middleware('auth');
+
+Route::get('/herbs',['as'=>'herbs', 'uses' => 'MedicineController@getherbs']);
