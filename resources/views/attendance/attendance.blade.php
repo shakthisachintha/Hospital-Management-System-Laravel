@@ -87,7 +87,7 @@
             <div class="box">
                 <div class="box-header">
                     <div class="box-title">
-                        Attendance Calendar
+                        {{__('Attendance Calendar')}}
                     </div>
                 </div>
                 <div class="box-body">
@@ -103,7 +103,7 @@
         <div class="col">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Attendance Records</h3>
+                    <h3 class="box-title">{{__('Attendance Records')}}</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

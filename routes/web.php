@@ -28,7 +28,7 @@ Route::get('password/reset/{token}', ['as' => 'password.reset','uses' => 'Auth\R
 
 
 //User Profile Language and Dashboard
-Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile'])->middleware('auth');
+Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile'])->middleware('auth','lang');
 Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middleware('auth');
 Route::get('/lang/{lan}', ['as' => 'lang', 'uses' => 'HomeController@setLocale'])->middleware('auth');
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@changeUserPassword'])->middleware('auth');
@@ -70,13 +70,13 @@ Route::get('/search', ['as' => 'searchData', 'uses' => 'PatientController@patien
 
 
 //Attendance Routes
-Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth');
-Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth', 'admin');
+Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth','lang');
+Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth', 'admin','lang');
 Route::get('/attendance', ['as' => 'attendance', 'uses' => 'AttendController@markattendance'])->middleware('guest');
 
 
 // Admin Routes For User Registration and Management
-Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth', 'admin');
+Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth', 'admin','lang');
 Route::post('regfinger', ['as' => 'user.regfinger', 'uses' => 'UserController@regFinger'])->middleware('auth', 'admin');
 Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth', 'admin');
 Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth', 'admin');
