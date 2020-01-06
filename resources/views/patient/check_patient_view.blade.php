@@ -109,6 +109,10 @@
                 if(sessionStorage.getItem("medicines")){
                 medicines=JSON.parse(sessionStorage.getItem("medicines"));
                 medTableUpdate();
+                $("#diagnosys").val(sessionStorage.getItem('diagnosys'));
+                $("#cholestrol").val(sessionStorage.getItem('cholestrol'));
+                $("#glucose").val(sessionStorage.getItem('glucose'));
+                $("#pressure").val(sessionStorage.getItem('pressure'));
                 console.log("Found");
                 }else{
                 console.log("not found");
@@ -116,6 +120,22 @@
                 }
             }
             sessionStorage.setItem('app',{{$appNum}});
+
+            $("#diagnosys").change(function (e) { 
+                var diag=$("#diagnosys").val();
+                sessionStorage.setItem('diagnosys',diag)
+            });
+
+            $("#cholestrol").change(function (e) { 
+                sessionStorage.setItem('cholestrol',$("#cholestrol").val());
+            });
+
+            $("#glucose").change(function (e) { 
+                sessionStorage.setItem('glucose',$("#glucose").val());
+            });
+            $("#pressure").change(function (e) { 
+                sessionStorage.setItem('pressure',$("#pressure").val());
+            });
          });
 
         function addMed(e,obj) { 
@@ -476,8 +496,7 @@
                         @endif
 
                         @if ($inpatient=="NO")
-                        <button type="button" onclick="admitPatient('YES')" class="btn btn-block btn-warning btn-lg">Mark As
-                            Inpatient</button>
+                        <button id="admit-btn" type="button" onclick="admitPatient('YES')" class="btn btn-block btn-warning btn-lg">Admit Patient</button>
                         @endif
 
                         <br>
@@ -510,10 +529,25 @@
             success: function (response) {
                 console.log('success');
                 console.log(response);
+                if(response.success){
+                    $("#admit-btn").attr('disabled','disabled');
+                    $("#admit-btn").text("Patient Admitted");
+                    $("#admit-btn").removeClass('btn-warning');
+                    $("#admit-btn").addClass('btn-primary');
+                }else{
+                    $("#admit-btn").attr('disabled','disabled');
+                    $("#admit-btn").text("Error Occured");
+                    $("#admit-btn").removeClass('btn-warning');
+                    $("#admit-btn").addClass('btn-danger');
+                }
             },
             error: function(data){
                 console.log('error occured');
                 console.log(data);
+                $("#admit-btn").attr('disabled','disabled');
+                $("#admit-btn").text("Error Occured");
+                $("#admit-btn").removeClass('btn-warning');
+                $("#admit-btn").addClass('btn-danger');
             },
         });
     }
@@ -570,6 +604,7 @@
         if(!validate()){
             return;
         }
+        window.scrollTo(0,0);
         var diag=$('textarea').val();
         var pressure=$('#pressure').val();
         var cholestrol=$('#cholestrol').val();
@@ -578,6 +613,7 @@
             _token:'{{csrf_token()}}',
             patient_id:patient_id,
             appointment_num:app_num,
+            appointment_id:{{$appID}},
             medicines:medicines,
             diagnosis:diag,
             pressure:pressure,
@@ -606,6 +642,7 @@
     function clearAll(){
         medicines=[];
         medTableUpdate();
+        sessionStorage.clear();
         $('input').val("");
         $('textarea').val("");
     }
