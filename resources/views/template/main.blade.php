@@ -1694,6 +1694,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     <li class="{{Active::checkRoute('check_patient_view')}}"><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check
                                 Patient</span></a></li>
 
+                    {{--Issue Medicine--}}
+                    <li class="{{Active::checkRoute('issueMedicineView')}}"><a href="{{route('issueMedicineView')}}"><i class="fa fa-plus-square"></i><span>Issue Medicine</span></a></li>
 
 
                     <li class="treeview {{Active::checkRoute(['attendmore','myattend'])}}">
