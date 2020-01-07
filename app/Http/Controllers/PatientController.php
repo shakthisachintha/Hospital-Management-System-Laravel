@@ -148,25 +148,52 @@ class PatientController extends Controller
 
         $user = Auth::user();
 
-        $prescriptions=Prescription::where('patient_id',$appointment->patient_id);
+        $prescriptions=Prescription::where('patient_id',$appointment->patient_id)->orderBy('created_at','DESC')->get();
         
-
-
         $pBloodPressure = new stdClass;
-        $pBloodPressure->sys = 120;
-        $pBloodPressure->dia = 80;
-        $pBloodPressure->date = '2019-02-28';
+        $pBloodPressure->flag = False;
 
         $pBloodSugar = new stdClass;
-        $pBloodSugar->value = 100;
-        $pBloodSugar->date = '2019-02-28';
+        $pBloodSugar->flag = False;
 
         $pCholestrol = new stdClass;
-        $pCholestrol->value = 100;
-        $pCholestrol->date = '2019-02-28';
+        $pCholestrol->flag=False;
+
+        foreach ($prescriptions as $prescription) {
+
+            if(!$pBloodPressure->flag ==True){
+                $bp=json_decode($prescription->bp)->value;
+                if($bp!=null){
+                    $pBloodPressure->sys = explode("/", $bp)[0];
+                    $pBloodPressure->dia = explode("/", $bp)[1];
+                    $pBloodPressure->date = json_decode($prescription->bp)->updated;
+                    $pBloodPressure->flag = True;
+                    
+                }
+            }
+           
+            if(!$pCholestrol->flag==True){
+                $cholestrol=json_decode($prescription->cholestrol)->value;
+                if($cholestrol!=null){
+                    $pCholestrol->value = $cholestrol;
+                    $pCholestrol->date = json_decode($prescription->cholestrol)->updated;
+                    $pCholestrol->flag=True;
+                }
+            }
+            
+           
+            if(!$pBloodSugar->flag == True){
+                $sugar=json_decode($prescription->blood_sugar)->value;
+                if($sugar!=null){
+                    $pBloodSugar->value = $sugar;
+                    $pBloodSugar->date = json_decode($prescription->blood_sugar)->updated;
+                    $pBloodSugar->flag = True;
+                }
+            }
+            
+        }
 
         $pHistory = new stdClass;
-
 
         return view('patient.check_patient_view', [
             'title' => ucWords($user->name),
