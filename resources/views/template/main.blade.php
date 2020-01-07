@@ -60,12 +60,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
+    
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <link rel="shortcut icon" type="image/png" href="images/logo.png" />
-
+    
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
@@ -1695,6 +1695,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     <li class="{{Active::checkRoute('check_patient_view')}}"><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check
                                 Patient</span></a></li>
 
+                    {{--Issue Medicine--}}
+                    <li class="{{Active::checkRoute('issueMedicineView')}}"><a href="{{route('issueMedicineView')}}"><i class="fa fa-plus-square"></i><span>Issue Medicine</span></a></li>
 
 
                     <li class="treeview {{Active::checkRoute(['attendmore','myattend'])}}">

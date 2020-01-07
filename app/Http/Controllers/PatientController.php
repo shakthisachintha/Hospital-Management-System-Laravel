@@ -149,26 +149,57 @@ class PatientController extends Controller
 
         $user = Auth::user();
 
-
+        $prescriptions=Prescription::where('patient_id',$appointment->patient_id)->orderBy('created_at','DESC')->get();
+        
         $pBloodPressure = new stdClass;
-        $pBloodPressure->sys = 120;
-        $pBloodPressure->dia = 80;
-        $pBloodPressure->date = '2019-02-28';
+        $pBloodPressure->flag = False;
 
         $pBloodSugar = new stdClass;
-        $pBloodSugar->value = 100;
-        $pBloodSugar->date = '2019-02-28';
+        $pBloodSugar->flag = False;
 
         $pCholestrol = new stdClass;
-        $pCholestrol->value = 100;
-        $pCholestrol->date = '2019-02-28';
+        $pCholestrol->flag=False;
+
+        foreach ($prescriptions as $prescription) {
+
+            if(!$pBloodPressure->flag ==True){
+                $bp=json_decode($prescription->bp)->value;
+                if($bp!=null){
+                    $pBloodPressure->sys = explode("/", $bp)[0];
+                    $pBloodPressure->dia = explode("/", $bp)[1];
+                    $pBloodPressure->date = json_decode($prescription->bp)->updated;
+                    $pBloodPressure->flag = True;
+                    
+                }
+            }
+           
+            if(!$pCholestrol->flag==True){
+                $cholestrol=json_decode($prescription->cholestrol)->value;
+                if($cholestrol!=null){
+                    $pCholestrol->value = $cholestrol;
+                    $pCholestrol->date = json_decode($prescription->cholestrol)->updated;
+                    $pCholestrol->flag=True;
+                }
+            }
+            
+           
+            if(!$pBloodSugar->flag == True){
+                $sugar=json_decode($prescription->blood_sugar)->value;
+                if($sugar!=null){
+                    $pBloodSugar->value = $sugar;
+                    $pBloodSugar->date = json_decode($prescription->blood_sugar)->updated;
+                    $pBloodSugar->flag = True;
+                }
+            }
+            
+        }
 
         $pHistory = new stdClass;
-
 
         return view('patient.check_patient_view', [
             'title' => ucWords($user->name),
             'appNum' => $request->appNum,
+            'appID'=>$appointment->id,
             'pName' => $appointment->patient->name,
             'pSex' => $appointment->patient->sex,
             'pAge' => $patient->getAge(),
@@ -188,7 +219,7 @@ class PatientController extends Controller
         $appointment=Appointment::where('number',$app_num)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$pid)->first();
         if($appointment->admit=="NO"){
             $appointment->admit="YES";
-            $appointment->doctor=$user->id;
+            $appointment->doctor_id=$user->id;
             $appointment->save();
             return response()->json([
                 'success' => true,
@@ -205,11 +236,31 @@ class PatientController extends Controller
         $presc->doctor_id=$user->id;
         $presc->patient_id=$request->patient_id;
         $presc->diagnosis=$request->diagnosis;
-        $presc->cholestrol=$request->cholestrol;
-        $presc->bp=$request->pressure;
-        $presc->blood_sugar=$request->glucose;
+        $presc->appointment_id=$request->appointment_id;
+        
         $presc->medicines=json_encode($request->medicines);
+        
+        $bp = new stdClass;
+        $bp->value=$request->pressure;
+        $bp->updated=Carbon::now()->toDateTimeString();
+        $presc->bp=json_encode($bp);
+
+        $gloucose = new stdClass;
+        $gloucose->value=$request->glucose;
+        $gloucose->updated=Carbon::now()->toDateTimeString();
+        $presc->blood_sugar=json_encode($gloucose);
+
+        $cholestrol = new stdClass;
+        $cholestrol->value=$request->cholestrol;
+        $cholestrol->updated=Carbon::now()->toDateTimeString();
+        $presc->cholestrol=json_encode($cholestrol);
+
         $presc->save();
+
+        $appointment=Appointment::find($request->appointment_id);
+        $appointment->completed="YES";
+        $appointment->doctor_id=$user->id;
+        $appointment->save();
 
         foreach ($request->medicines as $medicine) {
             $med=Medicine::where('name_english',strtolower($medicine['name']))->first();
@@ -218,6 +269,12 @@ class PatientController extends Controller
             $pres_med->prescription_id=$presc->id;
             $pres_med->save();
         }
+
+        
+        // Log Activity
+        activity()->performedOn($presc)->withProperties(['Patient ID' => $request->patient_id,'Doctor ID'=>$user->id,'Prescription ID'=>$presc->id,'Appointment ID'=>$request->appointment_id,'Medicines'=>json_encode($request->medicines)])->log('Check Patient Success');
+
+        return http_response_code(200);
     }
 
     public function create_channel_view()

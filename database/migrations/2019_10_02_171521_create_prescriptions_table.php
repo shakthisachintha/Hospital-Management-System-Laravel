@@ -19,9 +19,11 @@ class CreatePrescriptionsTable extends Migration
             $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->string('bp')->nullable();
-            $table->string('cholestrol')->nullable();
-            $table->string('blood_sugar')->nullable();
+            $table->bigInteger('appointment_id');
+            $table->foreign('appointment_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->json('bp')->nullable();
+            $table->json('cholestrol')->nullable();
+            $table->json('blood_sugar')->nullable();
             $table->longText('diagnosis')->nullable();
             $table->json('medicines')->nullable();
             $table->timestamps();
