@@ -71,6 +71,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
     {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
+        
         @yield('custom_styles') .spinner {
             margin: 0;
             position: absolute;

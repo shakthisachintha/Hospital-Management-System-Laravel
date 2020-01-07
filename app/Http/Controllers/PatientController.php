@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Patients;
+// use App\Http\Controllers\Redirect;
 use Illuminate\Support\Facades\Storage;
 use File;
 use App\Appointment;
@@ -300,11 +301,48 @@ class PatientController extends Controller
             ]);
         }
     }
-    
+
     public function issueMedicineView()
     {
         $user = Auth::user();
         return view('patient.issueMedicineView', ['title' => "Issue Medicine"]);
     }
 
+    public function editPatientview(Request $request){
+        // dd($request->reg_pid);
+        $user =Auth::user();
+        // $data = DB::table('patients')->select('*')->where('id',$request->reg_pid)->first();
+        $data=Patients::find($request->reg_pid);
+         return view('patient.edit_patient_view',['title' => "Edit Patient",'patient'=>$data]);
+    }
+
+    public function updatePatient(Request $result){
+        // dd($result->reg_pbd);
+        $user =Auth::user();
+        $data=Patients::find($result->reg_pid);
+        $query=DB::table('patients')
+            ->where('id', $result->reg_pid)
+            ->update(array(
+                'name' => $result->reg_pname,
+                'address'=>$result->reg_paddress,
+                'sex'=>$result->reg_psex,
+                'bod'=>$result->reg_pbd,
+                'occupation'=>$result->reg_poccupation,
+                'nic'=>$result->reg_pnic,
+                'telephone'=>$result->reg_ptel
+            ));
+
+        if($query){
+            //activity log
+            activity()->performedOn($user)->log('Patient details updated!');
+            return redirect()
+            ->route('searchPatient')
+            ->with('success', 'You have successfully updated patient details.');
+        }else{
+            return redirect()
+            ->route('searchPatient')
+            ->with('unsuccess', 'Error in Updating details !!!');
+        }
+
+    }
 }

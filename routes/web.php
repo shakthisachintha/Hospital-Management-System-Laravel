@@ -68,6 +68,12 @@ Route::post('/markinpatient', ['as' => 'markInPatient', 'uses' => 'PatientContro
 Route::get('/searchpatient', ['as' => 'searchPatient', 'uses' => 'PatientController@searchPatient'])->middleware('auth', 'doctor', 'lang');
 Route::get('/search', ['as' => 'searchData', 'uses' => 'PatientController@patientData'])->middleware('auth', 'doctor', 'lang');
 
+//edit patitent routes
+Route::post('/editpatient',['as'=> 'editpatient','uses' => 'PatientController@editPatientview'])->middleware('auth', 'doctor', 'lang');
+
+//update patitent routes
+Route::post('/updatepatientdetails',['as'=> 'updatepatientdetails','uses' => 'PatientController@updatePatient'])->middleware('auth', 'doctor', 'lang');
+
 
 //Attendance Routes
 Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth','lang');
