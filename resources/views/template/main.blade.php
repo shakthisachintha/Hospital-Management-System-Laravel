@@ -60,18 +60,18 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <link rel="shortcut icon" type="image/png" href="images/logo.png" />
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
     {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
-        
+
         @yield('custom_styles') .spinner {
             margin: 0;
             position: absolute;
@@ -1767,7 +1767,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
                             <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>
                                     Out-Patient Report</a></li>
-                            <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i class="fa fa-user-edit"
+                            <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i class="fa fa-hospital" aria-hidden="true"></i>
+                                    Ward Reports</a></li>
+                            <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i class="fa fa-clipboard
                                         aria-hidden="true"></i> Attendance Report</a></li>
                         </ul>
                     </li>
