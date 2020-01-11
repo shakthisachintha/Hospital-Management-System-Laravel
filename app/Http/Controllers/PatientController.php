@@ -331,10 +331,6 @@ class PatientController extends Controller
         }
     }
     
-    public function issueMedicineView()
-    {
-        $user = Auth::user();
-        return view('patient.issueMedicineView', ['title' => "Issue Medicine"]);
-    }
+    
 
 }
