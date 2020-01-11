@@ -71,6 +71,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
     {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
+
         @yield('custom_styles') .spinner {
             margin: 0;
             position: absolute;
@@ -1766,7 +1767,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
                             <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>
                                     Out-Patient Report</a></li>
-                            <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i class="fa fa-user-edit"
+                            <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i class="fa fa-hospital" aria-hidden="true"></i>
+                                    Ward Reports</a></li>
+                            <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i class="fa fa-clipboard
                                         aria-hidden="true"></i> Attendance Report</a></li>
                         </ul>
                     </li>

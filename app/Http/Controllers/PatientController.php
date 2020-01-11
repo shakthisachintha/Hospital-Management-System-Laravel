@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Patients;
+// use App\Http\Controllers\Redirect;
 use Illuminate\Support\Facades\Storage;
 use File;
 use App\Appointment;
@@ -148,25 +149,52 @@ class PatientController extends Controller
 
         $user = Auth::user();
 
-        $prescriptions=Prescription::where('patient_id',$appointment->patient_id);
+        $prescriptions=Prescription::where('patient_id',$appointment->patient_id)->orderBy('created_at','DESC')->get();
         
-
-
         $pBloodPressure = new stdClass;
-        $pBloodPressure->sys = 120;
-        $pBloodPressure->dia = 80;
-        $pBloodPressure->date = '2019-02-28';
+        $pBloodPressure->flag = False;
 
         $pBloodSugar = new stdClass;
-        $pBloodSugar->value = 100;
-        $pBloodSugar->date = '2019-02-28';
+        $pBloodSugar->flag = False;
 
         $pCholestrol = new stdClass;
-        $pCholestrol->value = 100;
-        $pCholestrol->date = '2019-02-28';
+        $pCholestrol->flag=False;
+
+        foreach ($prescriptions as $prescription) {
+
+            if(!$pBloodPressure->flag ==True){
+                $bp=json_decode($prescription->bp)->value;
+                if($bp!=null){
+                    $pBloodPressure->sys = explode("/", $bp)[0];
+                    $pBloodPressure->dia = explode("/", $bp)[1];
+                    $pBloodPressure->date = json_decode($prescription->bp)->updated;
+                    $pBloodPressure->flag = True;
+                    
+                }
+            }
+           
+            if(!$pCholestrol->flag==True){
+                $cholestrol=json_decode($prescription->cholestrol)->value;
+                if($cholestrol!=null){
+                    $pCholestrol->value = $cholestrol;
+                    $pCholestrol->date = json_decode($prescription->cholestrol)->updated;
+                    $pCholestrol->flag=True;
+                }
+            }
+            
+           
+            if(!$pBloodSugar->flag == True){
+                $sugar=json_decode($prescription->blood_sugar)->value;
+                if($sugar!=null){
+                    $pBloodSugar->value = $sugar;
+                    $pBloodSugar->date = json_decode($prescription->blood_sugar)->updated;
+                    $pBloodSugar->flag = True;
+                }
+            }
+            
+        }
 
         $pHistory = new stdClass;
-
 
         return view('patient.check_patient_view', [
             'title' => ucWords($user->name),
@@ -333,4 +361,41 @@ class PatientController extends Controller
     
     
 
+    public function editPatientview(Request $request){
+        // dd($request->reg_pid);
+        $user =Auth::user();
+        // $data = DB::table('patients')->select('*')->where('id',$request->reg_pid)->first();
+        $data=Patients::find($request->reg_pid);
+         return view('patient.edit_patient_view',['title' => "Edit Patient",'patient'=>$data]);
+    }
+
+    public function updatePatient(Request $result){
+        // dd($result->reg_pbd);
+        $user =Auth::user();
+        $data=Patients::find($result->reg_pid);
+        $query=DB::table('patients')
+            ->where('id', $result->reg_pid)
+            ->update(array(
+                'name' => $result->reg_pname,
+                'address'=>$result->reg_paddress,
+                'sex'=>$result->reg_psex,
+                'bod'=>$result->reg_pbd,
+                'occupation'=>$result->reg_poccupation,
+                'nic'=>$result->reg_pnic,
+                'telephone'=>$result->reg_ptel
+            ));
+
+        if($query){
+            //activity log
+            //activity()->performedOn($user)->log('Patient details updated!');
+            return redirect()
+            ->route('searchPatient')
+            ->with('success', 'You have successfully updated patient details.');
+        }else{
+            return redirect()
+            ->route('searchPatient')
+            ->with('unsuccess', 'Error in Updating details !!!');
+        }
+
+    }
 }
