@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('content_title',"Pharamacy")
-@section('content_description',"Issue medicines here.")
+@section('content_description',"Issue Medicines here.")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -15,25 +15,70 @@
 @section('main_content')
 {{--  issue medicine  --}}
 
-<div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
-    style="margin-bottom:0;margin-top:8vh" @endif class="row">
+<script>
+    $(document).ready(function () {
+  $("#appNum").focus();
+});
+
+function validateId(appNum){
+    var data=new FormData;
+    data.append('number',appNum);
+    data.append('_token','{{csrf_token()}}');
+    
+    $.ajax({
+    type: "POST",
+    url: "{{route('pharmacyValidate')}}",
+    processData: false,
+    contentType: false,
+    cache: false,
+    data:data,
+    error: function(data){
+        console.log(data);
+    },
+    success: function (prescription) {
+        if(prescription.exist){
+          $("#btn_submit").removeAttr("disabled");
+          $("#btn_submit").focus();
+          $("#details").fadeIn();
+          $("#p_name").text(prescription.name);
+          $("#pnum").val(prescription.pNum)
+          $("#appt_num").text(prescription.appNum);
+          $("#appt_num_1").val(prescription.appNum);
+        }else{
+          $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
+          $("#appNum").focus();
+        }
+    }
+});
+}
+
+</script>
+
+<div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        @if (session()->has('regpsuccess'))
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Success!</h4>
-            {{session()->get('regpsuccess')}}
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Issue Medicine</h3>
+            </div>
+            <div class="box-body mt-0">
+                <form class="pl-5 pr-5 pb-5" method="post" action="{{route('issueMedicine')}}">
+                    @csrf
+                    <h3>Enter Appointment Number Or Patient Number To Begin</h3>
+                    <input id="appNum" class="form-control input-lg" type="number"
+                        onchange="validateId(this.value)" placeholder="Appointment Number Or Patient Number">
+                    <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
+                        value="Issue Medicine">
+                    <input name="pid" type="hidden" id="pnum">
+                    <input name="appNum" type="hidden" id="appt_num_1">
+                    <p id="validation" class="mt-2 text-danger"></p>
+                    <div style="display:none" id="details">
+                        <h4>Patient Name : <span id="p_name"></span></h4>
+                        <h4>Appointment &nbsp;: <span id="appt_num"></span></h4>
+                    </div>
+                </form>
+            </div>
         </div>
-        @endif
-        @if (session()->has('regpfail'))
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-ban"></i> Error!</h4>
-            {{session()->get('regpfail')}}
-        </div>
-        @endif
-
     </div>
     <div class="col-md-1"></div>
 
@@ -43,35 +88,8 @@
 
 
 
-<div class="box box-info" id="issuemedicine1">
-    <div class="box-header with-border">
-        <h3 class="box-title">Enter Registration No. Or Scan the bar code</h3>
-    </div>
-    <!-- /.box-header -->
-    <!-- form start -->
-    <form class="form-horizontal">
-        <div class="box-body">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Registration No:</label>
-                <div class="col-sm-10" id="al-box">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Enter reg No" />
-                </div>
-            </div>
-        </div>
-        <!-- /.box-body -->
 
-    </form>
-
-    <div class="box-footer">
-        <button type="button" class="btn btn-info pull-right" onclick="issuemedicinefunction()">Enter</button>
-    </div>
-    <!-- /.box-footer -->
-
-
-</div>
-
-
-<div class="row" id="issuemedicine2" style="display:none">
+{{-- <div class="row" id="issuemedicine2" style="display:none">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
@@ -101,7 +119,7 @@
     <!-- /.col -->
 </div>
 <!-- /.row -->
-<!-- /.content -->
+<!-- /.content --> --}}
 
 
 
@@ -112,33 +130,6 @@
 
 
 
-
-
-
-
-
-
-<script>
-    function issuemedicinefunction() {
-        
-
-        var x;
-        x = document.getElementById("inputEmail3").value;
-        if (x == 0) 
-        {
-            alert("Please Enter a Registration Number!");
-            window.location.$("#issuemedicine1");
-        }
-
-        $("#issuemedicine2").slideDown(1000);
-        $("#issuemedicine1").slideUp(1000);
-       
-    }
-
-    
-   
-
-</script>
 
 
 

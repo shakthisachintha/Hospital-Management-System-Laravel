@@ -33,6 +33,12 @@ class ReportController extends Controller
         $user = Auth::user();
         return view('reports/attendance_reports',['title' => $user->name]);
     }
+
+    public function view_ward_report()
+    {
+        $user = Auth::user();
+        return view('reports/ward_reports', ['title' => $user->name]);
+    }
     public function gen_att_reports(Request $request){
         $user = Auth::user();
         // dd($request->start);

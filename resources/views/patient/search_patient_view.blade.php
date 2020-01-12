@@ -24,11 +24,35 @@
             </button>
         </span>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
+                @if (session('unsuccess'))
+                <div class="alert alert-danger">
+                    {{ session('unsuccess') }}
+                </div>
+                @endif
+            <div class="callout callout-info">
+                <label for="">Search With ...</label>
+                <div class="row">
+                <div class="col-md-4">
+            <input  checked type="checkbox" name="cat" id="cat" value="name"> Name</div>
+            <div class="col-md-4">
+            <input  type="checkbox" name="cat" id="cat" value="telephone"> Telephone</div>
+            <div class="col-md-4">
+            <input  type="checkbox" name="cat" id="cat" value="nic"> NIC</div>
+        </div>
 
-
-    <input required checked type="radio" name="cat" id="cat" value="name"> Name
-    <input required type="radio" name="cat" id="cat" value="telephone"> Telephone
-    <input required type="radio" name="cat" id="cat" value="nic"> NIC
+        </div>
+    </div>
+        <div class="col-md-1"></div>
+</div>
 
 </form>
 
@@ -48,49 +72,51 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+
+            <form class="form-horizontal" action="{{route('editpatient')}}" method="POST">
+                @csrf
                 <div class="box-body">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
                         <div class="col-sm-10">
-                            <input value="{{$patient->name}}" type="text" required class="form-control" name="reg_pname"
+                            <input readonly value="{{$patient->name}}" type="text" required class="form-control" name="reg_pname"
                                 placeholder="Enter Patient Full Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
                         <div class="col-sm-10">
-                            <input value="{{$patient->nic}}" type="text" required class="form-control" name="reg_pnic"
+                            <input readonly value="{{$patient->nic}}" type="text" required class="form-control" name="reg_pnic"
                                 placeholder="National Identity Card Number">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{$patient->address}}" required class="form-control" name="reg_paddress"
+                            <input readonly type="text" value="{{$patient->address}}" required class="form-control" name="reg_paddress"
                                 placeholder="Enter Patient Address ">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
                         <div class="col-sm-10">
-                            <input value="{{$patient->telephone}}" type="tel" class="form-control" name="reg_ptel"
+                            <input readonly value="{{$patient->telephone}}" type="tel" class="form-control" name="reg_ptel"
                                 placeholder="Patient Telephone Number">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
                         <div class="col-sm-10">
-                            <input value="{{$patient->occupation}}" type="text" required class="form-control" name="reg_poccupation"
+                            <input readonly value="{{$patient->occupation}}" type="text" required class="form-control" name="reg_poccupation"
                                 placeholder="Enter Patient Occupation ">
                         </div>
                     </div>
-
                     <!-- select -->
                     <div class="form-group">
+
                         <label class="col-sm-2 control-label">{{__('Sex')}}</label>
                         <div class="col-sm-2 mr-0 pr-0">
-                            <input value="{{$patient->sex}}" type="text" required class="form-control" name="reg_poccupation"
+                            <input readonly value="{{$patient->sex}}" type="text" required class="form-control" name="reg_poccupation"
                                 placeholder="Enter Patient Occupation ">
                         </div>
 
@@ -100,12 +126,20 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input value="{{$patient->bod}}" type="text" class="form-control pull-right" name="reg_pbd"
+                                <input readonly value="{{$patient->bod}}" type="text" class="form-control pull-right" name="reg_pbd"
                                     placeholder="Birthday">
+                                <input readonly value="{{$patient->id}}" type="text" class="form-control pull-right" name="reg_pid" style="display:none">
+
                             </div>
                         </div>
+
+                        <div class="col-sm-3">
+                            <button class="btn btn-warning pull-right" ><i class="fas fa-edit"></i> Edit</button>
+                        </div>
+
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
@@ -116,7 +150,5 @@
     No results found
     @endif
     @endif
-
-
 
     @endsection
