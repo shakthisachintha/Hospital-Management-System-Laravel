@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MedicinePrescription extends Migration
+class CreateMedicinePrescriptionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,6 +19,7 @@ class MedicinePrescription extends Migration
             $table->foreign('prescription_id')->references('id')->on('prescriptions')->onDelete('cascade');
             $table->bigInteger('medicine_id');
             $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class MedicinePrescription extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('medicine_prescription');
     }
 }

@@ -266,6 +266,7 @@ class PatientController extends Controller
             $pres_med=new Prescription_Medicine;
             $pres_med->medicine_id=$med->id;
             $pres_med->prescription_id=$presc->id;
+            $pres_med->note=$medicine->note;
             $pres_med->save();
         }
 
