@@ -80,25 +80,7 @@ class MedicineController extends Controller
 
         $user = Auth::user();
 
-    //     $prescriptions=Prescription::where('patient_id',$appointment->patient_id);
-        
-
-
-    //     $pBloodPressure = new stdClass;
-    //     $pBloodPressure->sys = 120;
-    //     $pBloodPressure->dia = 80;
-    //     $pBloodPressure->date = '2019-02-28';
-
-    //     $pBloodSugar = new stdClass;
-    //     $pBloodSugar->value = 100;
-    //     $pBloodSugar->date = '2019-02-28';
-
-    //     $pCholestrol = new stdClass;
-    //     $pCholestrol->value = 100;
-    //     $pCholestrol->date = '2019-02-28';
-
-    //     $pHistory = new stdClass;
-
+    
 
         return view('patient.issueMedicineView', [
             'title' => ucWords($user->name),
@@ -107,13 +89,9 @@ class MedicineController extends Controller
             'pName' => $prescription->patient->name,
             'pSex' => $prescription->patient->sex,
             'pAge' => $patient->getAge(),
-    //         'pCholestrol' => $pCholestrol,
-    //         'pBloodSugar' => $pBloodSugar,
-    //         'pBloodPressure' => $pBloodPressure,
-    //         'pHistory' => $pHistory,
-    //         'inpatient'=>$appointment->admit,
+   
             'pid'=>$prescription->patient->id,
-            // 'medicines'=>Medicine::all(),
+            
         ]);
     }
     

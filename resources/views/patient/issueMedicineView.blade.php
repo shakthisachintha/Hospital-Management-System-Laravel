@@ -40,8 +40,10 @@ function validateId(appNum){
           $("#btn_submit").removeAttr("disabled");
           $("#btn_submit").focus();
           $("#details").fadeIn();
+          $("#box").fadeOut();
           $("#p_name").text(prescription.name);
-          $("#pnum").val(prescription.pNum)
+          $("#pnum").val(prescription.pNum);
+          $("#pnum_1").text(prescription.pNum);
           $("#appt_num").text(prescription.appNum);
           $("#appt_num_1").val(prescription.appNum);
         }else{
@@ -51,6 +53,10 @@ function validateId(appNum){
     }
 });
 }
+
+// function issueNow() {
+//    document.getElementById('issuemedicine2').style.display = "block";
+// }
 
 </script>
 
@@ -64,6 +70,7 @@ function validateId(appNum){
             <div class="box-body mt-0">
                 <form class="pl-5 pr-5 pb-5" method="post" action="{{route('issueMedicine')}}">
                     @csrf
+                    <div id="box">
                     <h3>Enter Appointment Number Or Patient Number To Begin</h3>
                     <input id="appNum" class="form-control input-lg" type="number"
                         onchange="validateId(this.value)" placeholder="Appointment Number Or Patient Number">
@@ -72,9 +79,36 @@ function validateId(appNum){
                     <input name="pid" type="hidden" id="pnum">
                     <input name="appNum" type="hidden" id="appt_num_1">
                     <p id="validation" class="mt-2 text-danger"></p>
+                    </div>
                     <div style="display:none" id="details">
+                        <h4>Registration No : <span id="pnum_1"></span></h4>
                         <h4>Patient Name : <span id="p_name"></span></h4>
-                        <h4>Appointment &nbsp;: <span id="appt_num"></span></h4>
+                        <h4>Appointment No &nbsp;: <span id="appt_num"></span></h4>
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Prescription</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="example2" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>Medicine</th>
+                                                <th>Issued or Not</th>
+                    
+                                            </tr>
+                                        </thead>
+                    
+                    
+                    
+                                    </table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
                     </div>
                 </form>
             </div>
@@ -117,9 +151,9 @@ function validateId(appNum){
         <!-- /.box -->
     </div>
     <!-- /.col -->
-</div>
+</div> --}}
 <!-- /.row -->
-<!-- /.content --> --}}
+<!-- /.content -->
 
 
 

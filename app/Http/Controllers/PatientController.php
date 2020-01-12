@@ -388,7 +388,7 @@ class PatientController extends Controller
 
         if($query){
             //activity log
-            //activity()->performedOn($user)->log('Patient details updated!');
+            activity()->performedOn($user)->log('Patient details updated!');
             return redirect()
             ->route('searchPatient')
             ->with('success', 'You have successfully updated patient details.');

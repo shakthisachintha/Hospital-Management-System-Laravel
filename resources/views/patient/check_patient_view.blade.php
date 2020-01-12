@@ -260,7 +260,7 @@
                             <div class="box-body">
                                 <h5>Name : {{$pName}}</h5>
                                 <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
-                                <h5>Blood Pressure : <span
+                                {{-- <h5>Blood Pressure : <span
                                         class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}}
                                         mmHg</span><small> (Updated
                                         {{$pBloodPressure->date}})</small></h5>
@@ -269,7 +269,7 @@
                                         {{$pBloodSugar->date}})</small></h5>
                                 <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}}
                                         mg/dL</span><small>
-                                        (Updated {{$pCholestrol->date}})</small></h5>
+                                        (Updated {{$pCholestrol->date}})</small></h5> --}}
 
                             </div>
                         </div>
