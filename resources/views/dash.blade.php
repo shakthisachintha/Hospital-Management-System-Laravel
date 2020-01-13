@@ -19,7 +19,7 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-    <div class="info-box-content">
+        <div class="info-box-content">
           <span class="info-box-text">Doctors</span>
           <span class="info-box-number">90</span>
         </div>
@@ -77,28 +77,35 @@
 
 <div class="col-xs-12">
     <div class="box box-default">
+
         <div class="box-header with-border">
         <h3 class="box-title">Patients</h3>
         </div>
         <div class="box-body">
         <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-aqua">
-        <div class="inner">
-          <h3>#</h3>
+{{--       <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+            <h3>#</h3>
 
-          <p>Register New</p>
-        </div>
+            <p>Register New</p>
+            </div>
         <div class="icon">
         <i class="ion ion-person-add"></i>
         </div>
         <a href="{{route('patient')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
+        </div>--}}
+        <a href="{{route('patient')}}" class="btn btn-app">
+        {{-- <span class="badge bg-purple">891</span> --}}
+        <i class="ion ion-person-add"></i> Patients
+        </a>
     </div>
+
+
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
-      <div class="small-box bg-green">
+      {{-- <div class="small-box bg-green">
         <div class="inner">
           <h3>#</h3>
 
@@ -108,12 +115,18 @@
           <i class="ion ion-stats-bars"></i>
         </div>
         <a href="{{route('searchPatient')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
+      </div> --}}
+      <a href="{{route('searchPatient')}}" class="btn btn-app">
+          {{-- <span class="badge bg-purple">891</span> --}}
+          <i class="ion ion-stats-bars"></i> Search Patient
+      </a>
     </div>
+
+
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
-      <div class="small-box bg-yellow">
+    {{--   <div class="small-box bg-yellow">
         <div class="inner">
           <h3>#</h3>
 
@@ -124,22 +137,12 @@
         </div>
         <a href="{{route('register_in_patient_view')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
-    </div>
-    {{--  <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>65</h3>
+    </div> --}}
+    <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
+        {{-- <span class="badge bg-purple">891</span> --}}
+        <i class="fa fa-procedures"></i> Register in-Patient
+    </a>
 
-          <p>Unique Visitors</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>  --}}
         </div>
     </div>
 </div>
