@@ -20,6 +20,8 @@
   $("#appNum").focus();
 });
 
+fetchData();
+
 function validateId(appNum){
     var data=new FormData;
     data.append('number',appNum);
@@ -54,9 +56,31 @@ function validateId(appNum){
 });
 }
 
-// function issueNow() {
-//    document.getElementById('issuemedicine2').style.display = "block";
-// }
+function fetch_data()
+ {
+  $.ajax({
+   url:"{{route('issueMedicine')}}",
+   dataType:"json",
+   success:function(data)
+   {
+    var html = '';
+    html += '<tr>';
+    html += '<td contenteditable id="medicine_e"></td>';
+    html += '<td contenteditable id="medicine_s"></td>';
+    html += '<td><button type="button" class="btn btn-success btn-xs" id="issued">Add</button></td></tr>';
+    for(var count=0; count < data.length; count++)
+    {
+     html +='<tr>';
+     html +='<td contenteditable class="column_name" data-column_name="first_name" data-id="'+data[count].id+'">'+data[count].first_name+'</td>';
+     html += '<td contenteditable class="column_name" data-column_name="last_name" data-id="'+data[count].id+'">'+data[count].last_name+'</td>';
+     html += '<td><button type="button" class="btn btn-danger btn-xs delete" id="'+data[count].id+'">Delete</button></td></tr>';
+    }
+    $('tbody').html(html);
+   }
+  });
+ }
+
+
 
 </script>
 
@@ -89,25 +113,21 @@ function validateId(appNum){
                                 <div class="box-header">
                                     <h3 class="box-title">Prescription</h3>
                                 </div>
-                                <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="example2" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                
-                                                <th>Medicine</th>
+                                                <th colspan="2">Medicine</th>
                                                 <th>Issued or Not</th>
-                    
                                             </tr>
                                         </thead>
-                    
-                    
-                    
-                                    </table>
+                                        <tbody>
+       
+                                        </tbody>
+                                     </table>
+                                     {{ csrf_field() }}
                                 </div>
-                                <!-- /.box-body -->
                             </div>
-                            <!-- /.box -->
                         </div>
                     </div>
                 </form>
@@ -115,7 +135,6 @@ function validateId(appNum){
         </div>
     </div>
     <div class="col-md-1"></div>
-
 </div>
 
 
@@ -123,37 +142,7 @@ function validateId(appNum){
 
 
 
-{{-- <div class="row" id="issuemedicine2" style="display:none">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Prescription</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <table id="example2" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Registration No.</th>
-                            <th>Appointment No.</th>
-                            <th>Medicine</th>
-                            <th>Issued or Not</th>
 
-                        </tr>
-                    </thead>
-
-
-
-                </table>
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div>
-    <!-- /.col -->
-</div> --}}
-<!-- /.row -->
-<!-- /.content -->
 
 
 

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use Illuminate\Support\Facades\Storage;
 use App\Patients;
-//use App\Medicine;
+use App\Medicine;
 //use App\Appointment;
 //use File;
 use App\Prescription;
@@ -65,6 +67,7 @@ class MedicineController extends Controller
                 ]);
             }
         }
+        
     }
 
     public function issueMedicineView()
@@ -78,6 +81,13 @@ class MedicineController extends Controller
         $prescription=Prescription::where('id',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$request->pid)->first();
         $patient=Patients::find($prescription->patient_id);
 
+        if($request->ajax())
+        {
+            $medicine = DB::table('prescriptions')->join('medicines', 'prescriptions.medicines[id]', '=', 'medicines.id')->select('medcines.name_english as ename', 'medcines.name_sinhala as sname')->get();
+            echo json_encode($medicine);
+        }
+        
+
         $user = Auth::user();
 
     
@@ -89,9 +99,9 @@ class MedicineController extends Controller
             'pName' => $prescription->patient->name,
             'pSex' => $prescription->patient->sex,
             'pAge' => $patient->getAge(),
-   
             'pid'=>$prescription->patient->id,
-            
+            'medicines'=>Medicine::all(),
+            'medId'=>$medicine->id
         ]);
     }
     
