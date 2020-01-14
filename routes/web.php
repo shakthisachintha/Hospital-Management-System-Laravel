@@ -82,7 +82,7 @@ Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->
 Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth', 'admin');
 
 // Admin Routes For Notices
-Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth');
+Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth','lang');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
 Route::get('/emails', ['as' => 'emails', 'uses' => 'UserController@email'])->middleware('auth');
