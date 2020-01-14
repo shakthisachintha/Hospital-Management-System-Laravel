@@ -81,41 +81,45 @@
                                 <br>
                             </div>
 
-                            {{--  <div class="row">  --}}
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Day 03</th>
-                                            <th scope="col">Day 05</th>
-                                            <th scope="col">Day 07</th>
-                                            <th scope="col">Day 06</th>
-                                            <th scope="col">Day</th>
-                                            <th scope="col">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <th scope="row">No. of patients from OPD</th>
-                                        <td><input type="text" name="no_patient_day3"></td>
-                                        <td><input type="text" name="no_patient_day5"></td>
-                                        <td><input type="text" name="no_patient_day7"></td>
-                                        <td><input type="text" name="no_patient_day6"></td>
-                                        <td><input type="text" name="no_patient_day"></td>
-                                        <td><input type="text" name="no_patient_total"></td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">No. of OPD days</th>
-                                        <td><input type="text" name="no_opd_day3"></td>
-                                        <td><input type="text" name="no_opd_day5"></td>
-                                        <td><input type="text" name="no_opd_day7"></td>
-                                        <td><input type="text" name="no_opd_day6"></td>
-                                        <td><input type="text" name="no_opd_day"></td>
-                                        <td><input type="text" name="no_opd_day_total"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            {{--  </div>  --}}
+                             <div class="row"> 
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Day 03</th>
+                                                <th scope="col">Day 05</th>
+                                                <th scope="col">Day 07</th>
+                                                <th scope="col">Day 06</th>
+                                                <th scope="col">Day</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <th scope="row">No. of patients from OPD</th>
+                                            <td><input type="text" name="no_patient_day3"></td>
+                                            <td><input type="text" name="no_patient_day5"></td>
+                                            <td><input type="text" name="no_patient_day7"></td>
+                                            <td><input type="text" name="no_patient_day6"></td>
+                                            <td><input type="text" name="no_patient_day"></td>
+                                            <td><input type="text" name="no_patient_total"></td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">No. of OPD days</th>
+                                            <td><input type="text" name="no_opd_day3"></td>
+                                            <td><input type="text" name="no_opd_day5"></td>
+                                            <td><input type="text" name="no_opd_day7"></td>
+                                            <td><input type="text" name="no_opd_day6"></td>
+                                            <td><input type="text" name="no_opd_day"></td>
+                                            <td><input type="text" name="no_opd_day_total"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-1"></div>
+                             </div> 
 
                             <center><h3>Inpatient Department</h3></center>
                             <br>
