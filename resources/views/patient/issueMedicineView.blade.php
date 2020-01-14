@@ -95,14 +95,14 @@ function fetch_data()
                 <form class="pl-5 pr-5 pb-5" method="post" action="{{route('issueMedicine')}}">
                     @csrf
                     <div id="box">
-                    <h3>Enter Appointment Number Or Patient Number To Begin</h3>
-                    <input id="appNum" class="form-control input-lg" type="number"
-                        onchange="validateId(this.value)" placeholder="Appointment Number Or Patient Number">
-                    <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
-                        value="Issue Medicine">
-                    <input name="pid" type="hidden" id="pnum">
-                    <input name="appNum" type="hidden" id="appt_num_1">
-                    <p id="validation" class="mt-2 text-danger"></p>
+                        <h3>Enter Appointment Number Or Patient Number To Begin</h3>
+                        <input id="appNum" class="form-control input-lg" type="number" onchange="validateId(this.value)"
+                            placeholder="Appointment Number Or Patient Number">
+                        <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
+                            value="Issue Medicine">
+                        <input name="pid" type="hidden" id="pnum">
+                        <input name="appNum" type="hidden" id="appt_num_1">
+                        <p id="validation" class="mt-2 text-danger"></p>
                     </div>
                     <div style="display:none" id="details">
                         <h4>Registration No : <span id="pnum_1"></span></h4>
@@ -122,10 +122,10 @@ function fetch_data()
                                             </tr>
                                         </thead>
                                         <tbody>
-       
+
                                         </tbody>
-                                     </table>
-                                     {{ csrf_field() }}
+                                    </table>
+                                    {{ csrf_field() }}
                                 </div>
                             </div>
                         </div>

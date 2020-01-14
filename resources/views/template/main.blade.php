@@ -71,7 +71,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
     {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
-
         @yield('custom_styles') .spinner {
             margin: 0;
             position: absolute;
@@ -164,7 +163,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
             height: 100%;
             z-index: 9999;
             background-color: rgba(0, 0, 0, 0.56);
-            background-position:center;
+            background-position: center;
         }
 
         .mr-0,
@@ -1603,7 +1602,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                 <!-- The user image in the navbar-->
                                 <img src="{{$image_path}}" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{{$name}}</span>
+                                <span class="hidden-xs">{{ucwords($name)}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -1668,19 +1667,24 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <span> Dashboard</span></a>
                     </li>
                     {{--patient--}}
-                    <li class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData'])}}">
+                    <li
+                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData'])}}">
                         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{Active::checkRoute('patient')}}"><a href="{{route('patient')}}"></i><i class="fas fa-user-plus" aria-hidden="true"></i>
+                            <li class="{{Active::checkRoute('patient')}}"><a href="{{route('patient')}}"></i><i
+                                        class="fas fa-user-plus" aria-hidden="true"></i>
                                     Register New</a></li>
-                            <li class="{{Active::checkRoute(['searchPatient','searchData'])}}"><a href="{{route('searchPatient')}}"></i><i class="fas fa-id-card" aria-hidden="true"></i> Search Patient</a>
+                            <li class="{{Active::checkRoute(['searchPatient','searchData'])}}"><a
+                                    href="{{route('searchPatient')}}"></i><i class="fas fa-id-card"
+                                        aria-hidden="true"></i> Search Patient</a>
                             </li>
                             {{--register in patient--}}
-                            <li class="{{Active::checkRoute('register_in_patient_view')}}"><a href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
+                            <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
+                                    href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
                                         area-hidden="true"></i><span> Register In Patient</span></a></li>
                         </ul>
                     </li>
@@ -1692,11 +1696,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                         </a>
                     </li>
                     {{--check patient--}}
-                    <li class="{{Active::checkRoute('check_patient_view')}}"><a href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check
+                    <li class="{{Active::checkRoute('check_patient_view')}}"><a
+                            href="{{route('check_patient_view')}}"><i class="fas fa-procedures"></i><span> Check
                                 Patient</span></a></li>
 
                     {{--Issue Medicine--}}
-                    <li class="{{Active::checkRoute('issueMedicineView')}}"><a href="{{route('issueMedicineView')}}"><i class="fa fa-plus-square"></i><span>Issue Medicine</span></a></li>
+                    <li class="{{Active::checkRoute('issueMedicineView')}}"><a href="{{route('issueMedicineView')}}"><i
+                                class="fa fa-plus-square"></i><span>Issue Medicine</span></a></li>
 
 
                     <li class="treeview {{Active::checkRoute(['attendmore','myattend'])}}">
@@ -1706,10 +1712,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{Active::checkRoute('myattend')}}"><a href="{{route('myattend')}}"><i class="fas fa-calendar-day" aria-hidden="true"></i>&nbsp; My
+                            <li class="{{Active::checkRoute('myattend')}}"><a href="{{route('myattend')}}"><i
+                                        class="fas fa-calendar-day" aria-hidden="true"></i>&nbsp; My
                                     Attendance</a></li>
-                            <li class="{{Active::checkRoute('attendmore')}}"><a href="{{route('attendmore')}}"><i class="fas fa-plus-square"
-                                        aria-hidden="true"></i>&nbsp; More</a></li>
+                            <li class="{{Active::checkRoute('attendmore')}}"><a href="{{route('attendmore')}}"><i
+                                        class="fas fa-plus-square" aria-hidden="true"></i>&nbsp; More</a></li>
                         </ul>
                     </li>
 
@@ -1722,15 +1729,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{Active::checkRoute('newuser')}}"><a
-                                    href="{{route('newuser')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>New
+                            <li class="{{Active::checkRoute('newuser')}}"><a href="{{route('newuser')}}"><i
+                                        class="fa fa-user-plus" aria-hidden="true"></i>New
                                     User</a></li>
-                            <li class="{{Active::checkRoute('regfinger')}}"><a
-                                    href="{{route('regfinger')}}"><i class="fa fa-fingerprint"
-                                        aria-hidden="true"></i>Register Fingerprint</a></li>
-                            <li class="{{Active::checkRoute('resetuser')}}"><a
-                                    href="{{route('resetuser')}}"><i class="fa fa-user-edit"
-                                        aria-hidden="true"></i>Reset
+                            <li class="{{Active::checkRoute('regfinger')}}"><a href="{{route('regfinger')}}"><i
+                                        class="fa fa-fingerprint" aria-hidden="true"></i>Register Fingerprint</a></li>
+                            <li class="{{Active::checkRoute('resetuser')}}"><a href="{{route('resetuser')}}"><i
+                                        class="fa fa-user-edit" aria-hidden="true"></i>Reset
                                     User</a></li>
                         </ul>
                     </li>
@@ -1750,7 +1755,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     </li>
 
                     {{--report generation--}}
-                    <li class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
+                    <li
+                        class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
                         <a href="#">
                             <i class="fas fa-sticky-note"></i>
                             <span> Report Generation</span>
@@ -1759,18 +1765,24 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{Active::checkRoute('clinic_reports')}}"><a href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
+                            <li class="{{Active::checkRoute('clinic_reports')}}"><a
+                                    href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
-                            <li class="{{Active::checkRoute('mob_clinic_report')}}"><a href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
+                            <li class="{{Active::checkRoute('mob_clinic_report')}}"><a
+                                    href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
                                         aria-hidden="true"></i> Mobile Clinic Report</a></li>
-                            <li class="{{Active::checkRoute('mon_stat_report')}}"><a href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
+                            <li class="{{Active::checkRoute('mon_stat_report')}}"><a
+                                    href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
-                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i class="fa fa-user-edit" aria-hidden="true"></i>
+                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
+                                        class="fa fa-user-edit" aria-hidden="true"></i>
                                     Out-Patient Report</a></li>
-                            <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i class="fa fa-hospital" aria-hidden="true"></i>
+                            <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i
+                                        class="fa fa-hospital" aria-hidden="true"></i>
                                     Ward Reports</a></li>
-                            <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i class="fa fa-clipboard
-                                        aria-hidden="true"></i> Attendance Report</a></li>
+                            <li class="{{Active::checkRoute('attendance_report')}}"><a
+                                    href="{{route('attendance_report')}}"><i class="fa fa-clipboard
+                                        aria-hidden=" true"></i> Attendance Report</a></li>
                         </ul>
                     </li>
 
