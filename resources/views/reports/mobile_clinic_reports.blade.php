@@ -2,7 +2,7 @@
 
 @section('title', $title)
 
-@section('content_title',"User Profile")
+@section('content_title',"REPORTS")
 @section('content_description',"Personalize Your Account")
 @section('breadcrumbs')
 
