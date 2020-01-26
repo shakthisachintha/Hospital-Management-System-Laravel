@@ -11,7 +11,7 @@ use App\Medicine;
 //use App\Appointment;
 //use File;
 use App\Prescription;
-//use App\Prescription_Medicine;
+use App\Medicine_prescription;
 use DB;
 //use stdClass;
 //use Carbon\Carbon;
@@ -73,22 +73,33 @@ class MedicineController extends Controller
     public function issueMedicineView()
     {
         $user = Auth::user();
-        return view('patient.issueMedicineView', ['title' => $user->name]);
+        $pmedicines = DB::table('medicine_prescription')
+                    ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
+                    ->join('prescriptions', 'medicine_prescription.prescription_id', '=', 'prescriptions.id')
+                    ->select('medicines.name_english', 'medicines.name_sinhala', 'medicine_prescription.note')
+                    // ->where('medicine_prescription.','=','')
+                    ->get();
+
+        return view('patient.issueMedicineView', ['title' => $user->name, 'pmedicines' => $pmedicines]);
+        
+        // $user = Auth::user();
+        // return view('patient.issueMedicineView', ['title' => $user->name]);
     }
 
     public function issueMedicine(Request $request)
     {
         $prescription=Prescription::where('id',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$request->pid)->first();
         $patient=Patients::find($prescription->patient_id);
-
-        if($request->ajax())
-        {
-            $medicine = DB::table('prescriptions')->join('medicines', 'prescriptions.medicines[id]', '=', 'medicines.id')->select('medcines.name_english as ename', 'medcines.name_sinhala as sname')->get();
-            echo json_encode($medicine);
-        }
+       
+        // $medPrescription=Medicine_prescription::where('prescription_id',$request->appNum)->where('patient_id',$request->pid);
+        // $med= DB::table('medicine_prescription')
+        //                 ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
+        //                 ->select('medicines.name_english', 'medicines.name_sinhala')
+        //                 ->get();
         
 
         $user = Auth::user();
+
 
     
 
@@ -101,7 +112,10 @@ class MedicineController extends Controller
             'pAge' => $patient->getAge(),
             'pid'=>$prescription->patient->id,
             'medicines'=>Medicine::all(),
-            'medId'=>$medicine->id
+            // 'medId'=>$med->medicine_id,
+            // 'ename'=>$med->name_english,
+            // 'sname'=>$med->name_sinhala
+
         ]);
     }
     

@@ -52,33 +52,16 @@ function validateId(appNum){
           $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
           $("#appNum").focus();
         }
+        // if(med.exist){
+        //     $('#ename').text(med.ename);
+        //     $('#sname').text(med.sname);
+
+        // }
     }
 });
 }
 
-function fetch_data()
- {
-  $.ajax({
-   url:"{{route('issueMedicine')}}",
-   dataType:"json",
-   success:function(data)
-   {
-    var html = '';
-    html += '<tr>';
-    html += '<td contenteditable id="medicine_e"></td>';
-    html += '<td contenteditable id="medicine_s"></td>';
-    html += '<td><button type="button" class="btn btn-success btn-xs" id="issued">Add</button></td></tr>';
-    for(var count=0; count < data.length; count++)
-    {
-     html +='<tr>';
-     html +='<td contenteditable class="column_name" data-column_name="first_name" data-id="'+data[count].id+'">'+data[count].first_name+'</td>';
-     html += '<td contenteditable class="column_name" data-column_name="last_name" data-id="'+data[count].id+'">'+data[count].last_name+'</td>';
-     html += '<td><button type="button" class="btn btn-danger btn-xs delete" id="'+data[count].id+'">Delete</button></td></tr>';
-    }
-    $('tbody').html(html);
-   }
-  });
- }
+
 
 
 
@@ -117,15 +100,27 @@ function fetch_data()
                                     <table id="example2" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th colspan="2">Medicine</th>
-                                                <th>Issued or Not</th>
+                                                <th colspan="2" style="text-align:center">Medicine</th>
+                                                <th style="text-align:center;vertical-align:middle" rowspan="2">Note</th>
+                                                <th style="text-align:center;vertical-align:middle" rowspan="2">Issued or Not</th>
+                                                <th style="text-align:center;vertical-align:middle" rowspan="2">Quantity (If issued)</th>
+                                            </tr>
+                                            <tr>
+                                                <th  style="text-align:center">English</th>
+                                                <th  style="text-align:center">Sinhala</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-
-                                        </tbody>
+                                      @foreach ($pmedicines as $med)
+                                            <tr>
+                                                <td>{{ $med->name_english }}</td>
+                                                <td>{{ $med->name_sinhala }}</td>
+                                                <td>{{ $med->note }}</td>
+                                                {{-- <td>{{ $user->city_name }}</td>
+                                                <td>{{ $user->email }}</td> --}}
+                                             </tr>
+                                        @endforeach  
                                     </table>
-                                    {{ csrf_field() }}
+                                  {{ csrf_field() }}
                                 </div>
                             </div>
                         </div>
