@@ -48,14 +48,14 @@
     <!-- /.box-header -->
     <!-- form start -->
     <form method="post" action="{{ route('register_in_patient_view') }}" class="form-horizontal">
-    {{csrf_field()}}
+        {{csrf_field()}}
         <form class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}<span
                             style="color:red">*</span></label>
                     <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_pname"
+                        <input type="text" required readonly class="form-control" name="reg_pname" id="patient_name"
                             placeholder="Enter Patient Full Name">
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_pnic"
+                        <input type="text" required readonly class="form-control" name="reg_pnic" id="patient_nic"
                             placeholder="National Identity Card Number">
                     </div>
                 </div>
@@ -72,23 +72,24 @@
                     <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}<span
                             style="color:red">*</span></label>
                     <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_paddress"
-                            placeholder="Enter Patient Address ">
+                        <input type="text" required readonly class="form-control" name="reg_paddress"
+                            id="patient_address" placeholder="Enter Patient Address ">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
                     <div class="col-sm-10">
-                        <input type="tel" class="form-control" name="reg_ptel" placeholder="Patient Telephone Number">
+                        <input type="tel" readonly class="form-control" name="reg_ptel" id="patient_telephone"
+                            placeholder="Patient Telephone Number">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" required class="form-control" name="reg_poccupation"
-                            placeholder="Enter Patient Occupation ">
+                        <input type="text" required readonly class="form-control" name="reg_poccupation"
+                            id="patient_occupation" placeholder="Enter Patient Occupation ">
                     </div>
                 </div>
 
@@ -96,14 +97,15 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
                     <div class="col-sm-2">
-                        <select required class="form-control" name="reg_psex">
+                        <select required readonly class="form-control" name="reg_psex" id="patient_sex">
                             <option selected value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                     </div>
-                    <label for="inputEmail3" class="col-sm-2 control-label">{{__('Age')}}<span style="color:red">*</span></label>
+                    <label for="inputEmail3" readonly class="col-sm-2 control-label">{{__('Age')}}<span
+                            style="color:red">*</span></label>
                     <div class="col-sm-2">
-                        <input type="number" required min="1" class="form-control" name="reg_page"
+                        <input type="number" required min="1" class="form-control" name="reg_page" id="patient_age"
                             placeholder="Enter Age">
                     </div>
                 </div>
@@ -111,7 +113,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{__('Civil Condition')}}</label>
                     <div class="col-sm-2">
-                        <select required class="form-control" name="reg_ipcondition">
+                        <select required readonly class="form-control" name="reg_ipcondition">
                             <option selected value="Male">Single</option>
                             <option value="Female">Married</option>
                         </select>
@@ -253,26 +255,24 @@
         <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
     </div>
     <!-- /.box-header -->
-    <!-- form start -->
-    <form class="form-horizontal">
-        <div class="box-body">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
-                <div class="col-sm-10" id="al-box">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Enter reg No" />
-                </div>
+    <div class="box-body">
+        <div class="form-group">
+            <label for="pID" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
+            <div class="col-sm-8">
+                <input type="number" required class="form-control" onchange="registerinpatientfunction()" id="pID"
+                    placeholder="Enter Registration No" />
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-info" onclick="registerinpatientfunction()">Enter</button>
             </div>
         </div>
-        <!-- /.box-body -->
-
-    </form>
+    </div>
+    <!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="button" class="btn btn-info pull-right" onclick="registerinpatientfunction()">Enter</button>
+
     </div>
     <!-- /.box-footer -->
-
-
 </div>
 
 
@@ -304,7 +304,8 @@
             </div>
 
             <div class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">{{__('Mode of arises and current condition:')}}</label>
+                <label for="inputEmail"
+                    class="col-sm-2 control-label">{{__('Mode of arises and current condition:')}}</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" name="reg_admitofficer3" rows="3" cols="100"
                         placeholder="Enter current condition of patient here"></textarea>
@@ -403,18 +404,50 @@
 <script>
     function registerinpatientfunction() {
         
-
-        var x;
-        x = document.getElementById("inputEmail3").value;
-        if (x == 0) 
+        var x, text;
+        x = document.getElementById("pID").value;
+        patientid=x;
+        if (x > 0)
         {
-            alert("Please Enter a Registration Number!");
-            window.location.$("#reginpatient3");
-        }
+            var data=new FormData;
+            data.append('pNum',x);
+            data.append('_token','{{csrf_token()}}');
 
-        $("#reginpatient2").slideDown(1000);
-        $("#reginpatient3").slideUp(1000);
-       
+
+            $.ajax({
+                type: "post",
+                url: "{{route('regInPatient')}}",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                error: function(data){
+                    console.log(data);
+                },
+                success: function (patient) {
+                    if(patient.exist){
+                        console.log(patient.name);
+                        $("#patient_name").val(patient.name);
+                        $("#patient_age").val(patient.age);
+                        $("#patient_sex").val(patient.sex);
+                        $("#patient_telephone").val(patient.telephone);
+                        $("#patient_nic").val(patient.nic);
+                        $("#patient_address").val(patient.address);
+                        $("#patient_occupation").val(patient.occupation);
+                        
+
+                        $("#reginpatient2").slideDown(1000);
+                        $("#reginpatient3").slideUp(1000);
+                       
+                    }else{
+                        console.log('not found');
+                        alert("Please Enter a Valid Registration Number!");
+                    }
+                }
+            });
+            }else{
+                alert("Please Enter a Valid Registration Number!");
+            }    
     }
 
     function reginpatientform2function(){

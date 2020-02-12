@@ -11,6 +11,10 @@
 |
  */
 
+//use Illuminate\Routing\Route;
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'HomeController@index');
 
 // Auth Routes
@@ -43,9 +47,11 @@ Route::get('/patient', ['as' => 'patient', 'uses' => 'PatientController@index'])
 Route::get('/patientregcard/{pid}', ['as' => 'pregcard', 'uses' => 'PatientController@regcard'])->middleware('auth', 'staff');
 Route::post('/patientregister', ['as' => 'patient_register', 'uses' => 'PatientController@register_patient'])->middleware('auth', 'staff');
 Route::get('/inpatientregister', ['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth', 'staff', 'lang');
+Route::post('/inpatientregister2', ['as' => 'regInPatient', 'uses' => 'PatientController@regInPatientValid'])->middleware('auth', 'staff', 'lang');
 
 // Issue Medicine(Pharmacist Routes)
 Route::get('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff');
+// Route::post('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff');
 Route::post('/pharmacyValidate', ['as' => 'pharmacyValidate', 'uses' => 'MedicineController@pharmacyValidate'])->middleware('auth', 'staff');
 Route::post('/issueMedicine', ['as' => 'issueMedicine', 'uses' => 'MedicineController@issueMedicine'])->middleware('auth', 'staff');
 

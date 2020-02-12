@@ -48,6 +48,7 @@ function validateId(appNum){
           $("#pnum_1").text(prescription.pNum);
           $("#appt_num").text(prescription.appNum);
           $("#appt_num_1").val(prescription.appNum);
+        //   $("#example2").fadeIn();
         }else{
           $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
           $("#appNum").focus();
@@ -91,7 +92,9 @@ function validateId(appNum){
                         <h4>Registration No : <span id="pnum_1"></span></h4>
                         <h4>Patient Name : <span id="p_name"></span></h4>
                         <h4>Appointment No &nbsp;: <span id="appt_num"></span></h4>
-                        <div class="col-xs-12">
+                        <input id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
+                        value="Issue Medicine Now">
+                        {{-- <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">Prescription</h3>
@@ -109,21 +112,21 @@ function validateId(appNum){
                                                 <th  style="text-align:center">English</th>
                                                 <th  style="text-align:center">Sinhala</th>
                                             </tr>
-                                        </thead>
-                                      @foreach ($pmedicines as $med)
+                                        </thead> --}}
+                                      {{-- @foreach ($pmedicines as $med)
                                             <tr>
                                                 <td>{{ $med->name_english }}</td>
                                                 <td>{{ $med->name_sinhala }}</td>
                                                 <td>{{ $med->note }}</td>
-                                                {{-- <td>{{ $user->city_name }}</td>
+                                                 <td>{{ $user->city_name }}</td>
                                                 <td>{{ $user->email }}</td> --}}
-                                             </tr>
-                                        @endforeach  
-                                    </table>
+                                             {{-- </tr>
+                                        @endforeach   --}} 
+                                    {{-- </table>
                                   {{ csrf_field() }}
                                 </div>
-                            </div>
-                        </div>
+                            </div> --}}
+                        </div> 
                     </div>
                 </form>
             </div>
