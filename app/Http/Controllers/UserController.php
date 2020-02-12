@@ -97,7 +97,7 @@ class UserController extends Controller
             $usr->password=bcrypt("12345678");
             try {
                 $usr->save();
-                return redirect()->back()->with('success',"User $usr->name's(UserID: $usr->id) Password Reset To System Default(12345678) Password.");
+                return redirect()->back()->with('success',"User ".ucWords($usr->name)."'s(UserID: $usr->id) Password Reset To System Default(12345678) Password.");
             } catch (\Throwable $th) {
                 return redirect()->back()->with('error',"Unkown Error Occured.Try Later.");
             }

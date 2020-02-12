@@ -46,6 +46,10 @@
     "House Physician/Surgeon":"නේවාසික වෛද්‍යවරයා / ශල්‍ය වෛද්‍ය",
     "Notes of Admitting Officer":"ඇතුළත් කිරීමේ නිලධාරී - සටහන්",
     "Abstract of case by Medical officer":"වෛද්‍ය නිලධාරි විසින් රෝගියාගේ සාරාංශය",
-    "Disease":"රෝගය"
-    
+    "Disease":"රෝගය",
+    "User ID":"රෝ",
+    "Reset User":"Reset User",
+    "Reset Any User Password To System Default":"Reset Any User Password To System Default",
+    "Your Password":"Your Password"
+
 }
