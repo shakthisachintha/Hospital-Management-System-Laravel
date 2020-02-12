@@ -82,9 +82,28 @@ class UserController extends Controller
         return view('users.reguser', ['title' => "Register New User"]);
     }
 
-    public function resetUser()
+    public function resetUserView()
     {
         return view('users.resetuser', ['title' => "Reset User Account"]);
+    }
+
+    public function resetUser(Request $request){
+        $reset_user_id=$request->userid;
+        $admin_pw=$request->admin_password;
+
+        if (!Hash::check($admin_pw, Auth::user()->password)) {
+            return redirect()->back()->with("error", "Your Entered Password Does Not Matches With Your Current Password.Please Check Again.");
+        }else if($usr=User::find($reset_user_id)){
+            $usr->password=bcrypt("12345678");
+            try {
+                $usr->save();
+                return redirect()->back()->with('success',"User $usr->name's(UserID: $usr->id) Password Reset To System Default(12345678) Password.");
+            } catch (\Throwable $th) {
+                return redirect()->back()->with('error',"Unkown Error Occured.Try Later.");
+            }
+        }else{
+            return redirect()->back()->with('error',"User($reset_user_id) Does Not Exist.");
+        }
     }
 
     public function changeUserPassword(Request $request)
@@ -162,8 +181,8 @@ class UserController extends Controller
         foreach ($receverlist as $list) {
 
             // if ($list != "patient") {
-                $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
-                $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
+            $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
+            $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
             // }
 
             // if ($list == "patient") {
@@ -192,7 +211,7 @@ class UserController extends Controller
             foreach ($key as $emails) {
                 // require '../vendor/autoload.php';
                 $email = new \SendGrid\Mail\Mail();
-                $email->setFrom("aurwedicHospitalkesbawa@gov.lk","Aurwedic Hospital- KESBAWA");
+                $email->setFrom("aurwedicHospitalkesbawa@gov.lk", "Aurwedic Hospital- KESBAWA");
                 $email->setSubject("Aurwedic Hospital- KESBAWA");
                 $email->addTo($emails->email);
                 $email->addContent("text/plain", $data['message']);

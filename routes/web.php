@@ -79,7 +79,8 @@ Route::get('/attendance', ['as' => 'attendance', 'uses' => 'AttendController@mar
 Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth', 'admin', 'lang');
 Route::post('regfinger', ['as' => 'user.regfinger', 'uses' => 'UserController@regFinger'])->middleware('auth', 'admin');
 Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth', 'admin');
-Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth', 'admin');
+Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUserView'])->middleware('auth','lang','admin');
+Route::post('/resetusersave', ['as' => 'resetuser_save', 'uses' => 'UserController@resetUser'])->middleware('auth','lang','admin');
 
 // Admin Routes For Notices
 Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth','lang');
