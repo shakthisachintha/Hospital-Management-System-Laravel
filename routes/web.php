@@ -85,7 +85,8 @@ Route::get('/attendance', ['as' => 'attendance', 'uses' => 'AttendController@mar
 Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth', 'admin', 'lang');
 Route::post('regfinger', ['as' => 'user.regfinger', 'uses' => 'UserController@regFinger'])->middleware('auth', 'admin');
 Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth', 'admin');
-Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUser'])->middleware('auth', 'admin');
+Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUserView'])->middleware('auth','lang','admin');
+Route::post('/resetusersave', ['as' => 'resetuser_save', 'uses' => 'UserController@resetUser'])->middleware('auth','admin');
 
 // Admin Routes For Notices
 Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth','lang');
@@ -103,6 +104,10 @@ Route::get('/attendancereport', ['as' => 'attendance_report', 'uses' => 'ReportC
 Route::get('/wardreport', ['as' => 'ward_report', 'uses' => 'ReportController@view_ward_report'])->middleware('auth');
 Route::post('/generatereports', ['as' => 'gen_att_reports', 'uses' => 'ReportController@gen_att_reports'])->middleware('auth');
 Route::get('/allprintpreview', ['as' => 'all_print_preview', 'uses' => 'ReportController@all_print_preview'])->middleware('auth');
+
+//Ward Management Routes
+Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middleware('auth');
+Route::post('/add-ward', ['as' => 'add-ward', 'uses' => 'WardController@createWard'])->middleware('auth');
 
 Route::get('/herbs',['as'=>'herbs', 'uses' => 'MedicineController@getherbs']);
 

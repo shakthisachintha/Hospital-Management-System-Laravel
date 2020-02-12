@@ -331,9 +331,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <img class="profile-user-img img-responsive img-circle" src="{{$image_path}}"
                         alt="User profile picture">
 
-                    <h3 class="profile-username text-center">{{$name}}</h3>
+                    <h3 class="profile-username text-center">{{ucWords($name)}}</h3>
 
-                    <p class="text-muted text-center">{{$user_type}}</p>
+                    <p class="text-muted text-center">{{ucFirst($user_type)}}</p>
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
@@ -343,7 +343,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                             <b>Email :</b> <a class="pull-right">{{$email}}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Contact NO :</b> <a class="pull-right">{{$tp}}</a>
+                            <b>Contact No :</b> <a class="pull-right">{{$tp}}</a>
                         </li>
                     </ul>
 
