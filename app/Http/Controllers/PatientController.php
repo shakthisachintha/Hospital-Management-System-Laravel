@@ -14,6 +14,7 @@ use App\Appointment;
 use App\Medicine;
 use App\Prescription;
 use App\Prescription_Medicine;
+use App\inpatient;
 use DB;
 use stdClass;
 use Carbon\Carbon;
@@ -311,6 +312,7 @@ class PatientController extends Controller
     {
         $pNum = $request->pNum;
         $patient = Patients::find($pNum);
+
         if ($patient) {
 
             return response()->json([
@@ -321,7 +323,7 @@ class PatientController extends Controller
                 'occupation' => $patient->occupation,
                 'telephone' => $patient->telephone,
                 'nic' => $patient->nic,
-                'age' => $patient->age,
+                'age' => $patient->getAge(),
                 'id' => $patient->id
             ]);
         } else {
@@ -331,6 +333,12 @@ class PatientController extends Controller
         }
     }
     
+    public function store_inpatient(Request $request)
+    {
+        $test=new inpatient;
+        $test->birth_place=$request->reg_ipbirthplace;
+        $test->save();
+    }
     
 
     public function makeChannel(Request $request)
