@@ -334,10 +334,21 @@ class PatientController extends Controller
     }
     
     public function store_inpatient(Request $request)
-    {
+     {
         $test=new inpatient;
         $test->birth_place=$request->reg_ipbirthplace;
-        $test->save();
+        $saved = $test->save();
+
+        if($saved){
+            echo "hhhhhhh";
+        }
+        return redirect()->back();
+    }
+
+    public function discharge_inpatient()
+    {
+        $user = Auth::user();
+        return view('patient.discharge_inpatient_view',['title' => "Discharge Inpatient"]); 
     }
     
 

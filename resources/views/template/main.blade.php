@@ -415,7 +415,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     </li>
                     {{--patient--}}
                     <li
-                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData'])}}">
+                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData','discharge_inpatient'])}}">
                         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -431,8 +431,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </li>
                             {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
-                                    href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
-                                        area-hidden="true"></i><span> Register In Patient</span></a></li>
+                                    href="{{route('register_in_patient_view')}}"><i 
+                                    class="fas fa-user-plus"
+                                        area-hidden="true"></i><span> Register In Patient</span></a>
+                            </li>
+                            {{--Discharge in patient--}} 
+                            <li class="{{Active::checkRoute('discharge_inpatient')}}"><a 
+                                href="/dischargeInpatient"><i class="fa fa-hospital-o" area-hidden="true">
+                                </i><span>Discharge In Patient</span></a>
+                            </li>           
                         </ul>
                     </li>
                     {{--create channel--}}
