@@ -49,14 +49,19 @@
     <!-- form start -->
     <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
         {{csrf_field()}}
-        <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
-            {{csrf_field()}}
-            <div class="box-body">
+        <div class="box-body">
+
+            <div class="form-group">
+                <label for="patient_id" class="col-sm-2 control-label">{{__('Registration No')}}</label>
+                <div class="col-sm-2">
+                    <input type="text" required readonly class="form-control" name="reg_pid" id="patient_id">
+                </div>
+            </div>
+
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}<span
-                            style="color:red">*</span></label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" required  class="form-control" name="reg_pname" id="patient_name"
+                        <input type="text" required readonly class="form-control" name="reg_pname" id="patient_name"
                             placeholder="Enter Patient Full Name">
                     </div>
                 </div>
@@ -64,16 +69,15 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" required  class="form-control" name="reg_pnic" id="patient_nic"
+                        <input type="text" required readonly class="form-control" name="reg_pnic" id="patient_nic"
                             placeholder="National Identity Card Number">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}<span
-                            style="color:red">*</span></label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" required  class="form-control" name="reg_paddress"
+                        <input type="text" required readonly class="form-control" name="reg_paddress"
                             id="patient_address" placeholder="Enter Patient Address ">
                     </div>
                 </div>
@@ -81,7 +85,7 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
                     <div class="col-sm-10">
-                        <input type="tel"  class="form-control" name="reg_ptel" id="patient_telephone"
+                        <input type="tel" readonly class="form-control" name="reg_ptel" id="patient_telephone"
                             placeholder="Patient Telephone Number">
                     </div>
                 </div>
@@ -89,24 +93,23 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" required  class="form-control" name="reg_poccupation"
+                        <input type="text" required readonly class="form-control" name="reg_poccupation"
                             id="patient_occupation" placeholder="Enter Patient Occupation ">
                     </div>
                 </div>
 
                 <!-- select -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
+                    <label class="col-sm-2 control-label">{{__('Sex')}}</label>
                     <div class="col-sm-2">
-                        <select required  class="form-control" name="reg_psex" id="patient_sex">
-                            <option selected value="Male">Male</option>
+                        <select required readonly class="form-control" name="reg_psex" id="patient_sex">
+                            <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                     </div>
-                    <label for="patient_age"  class="col-sm-2 control-label">{{__('Age')}}<span
-                            style="color:red">*</span></label>
+                    <label for="patient_age"  class="col-sm-2 control-label">{{__('Age')}}</label>
                     <div class="col-sm-2">
-                        <input type="text"  class="form-control" name="reg_page" id="patient_age"
+                        <input type="text" readonly class="form-control" name="reg_page" id="patient_age"
                             placeholder="Enter Age">
                     </div>
                 </div>
@@ -115,8 +118,8 @@
                     <label class="col-sm-2 control-label">{{__('Civil Condition')}}</label>
                     <div class="col-sm-2">
                         <select required class="form-control" name="reg_ipcondition">
-                            <option selected value="Male">Single</option>
-                            <option value="Female">Married</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
                         </select>
                     </div>
                 </div>
@@ -131,22 +134,37 @@
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{__('Nationality')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="reg_ipnation" placeholder="Sri Lankan or another">
+                    <div class="col-sm-2">
+                        <select required class="form-control" name="reg_ipnation">
+                            <option selected value="Sinhala">Sinhala</option>
+                            <option value="Tamil">Tamil</option>
+                            <option value="Muslim">Muslim</option>
+                            <option value="Burgher">Burgher</option>
+                            <option value="Malay">Malay</option>
+                            <option value="other">other</option>
+                        </select>
+                        {{-- <input type="text" class="form-control" name="reg_ipnation" placeholder="Sri Lankan or another"> --}}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{__('Religion')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="reg_ipreligion" placeholder="Patient Religion">
+                    <div class="col-sm-2">
+                        <select required class="form-control" name="reg_ipreligion">
+                            <option selected value="Buddhism">Buddhism</option>
+                            <option value="Hinduism">Hinduism</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Christianity">Christianity</option>
+                            <option value="other">other</option>
+                        </select>
+                        {{-- <input type="text" class="form-control" name="reg_ipreligion" placeholder="Patient Religion"> --}}
                     </div>
                 </div>
 
                 <!-- currency input type -->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{__('Monthly Income')}}</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
                         <div class="input-group">
                             <span class="input-group-addon">{{__('Rs:')}}</span>
                             <input type="number" min="1000" step="1000.00" data-number-to-fixed="2"
@@ -179,15 +197,15 @@
                     </div>
                 </div>
             </div>
-        </form>
+        {{-- </form> --}}
 
 
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Ward Registration Form')}}</h3>
         </div>
 
-        <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
-            {{csrf_field()}}
+        {{-- <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
+            {{csrf_field()}} --}}
             <div class="box-body">
                 <div class="form-group">
 
@@ -197,10 +215,10 @@
                     </div>
 
                     <label class="col-sm-2 control-label">{{__('Date of Admission')}}</label>
-                    <div class="col-sm-2">
-                        <input type="date" onload="getDate()" class="form-control" name="reg_ipdate">
+                    <div readonly class="col-sm-2">
+                      <input type="date" name="reg_ipdate" id="dd" onload="getDate()" class="form-control">
                     </div>
-
+                   
                     <label class="col-sm-2 control-label">{{__('Time of Admission')}}</label>
                     <div class="col-sm-2">
                         <input type="time" onload="getTime()" class="form-control" name="reg_inptime">
@@ -232,25 +250,25 @@
                 </div>
 
             </div>
-        </form>
+        {{-- </form> --}}
 
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Admitting Officer - Notes')}}</h3>
         </div>
 
-        <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
-            {{csrf_field()}}
+        {{-- <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
+            {{csrf_field()}} --}}
             <div class="box-body">
                 <div class="form-group">
                     <label for="dis1" class="col-sm-2 control-label">{{__('Disease')}}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="dis1" placeholder="Enter diagnosis of patient" />
+                        <input type="text" class="form-control" id="dis1" placeholder="Enter diagnosis of patient" name="reg_admitofficer1"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{__('Duration of illness')}}</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
                         <div class="input-group">
                             <span class="input-group-addon">{{__('Days:')}}</span>
                             <input type="number" min="1" step="1" data-number-to-fixed="2" data-number-stepfactor="100"
@@ -270,14 +288,14 @@
 
                 <div class="form-group">
                     <label for="dis4" class="col-sm-2 control-label">{{__('Certified by')}}</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="dis4" placeholder="Select Your ID here" />
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="dis4" placeholder="Select Your ID here" name="reg_admitofficer4"/>
                     </div>
                 </div>
             </div>
             <!-- /.box-body -->
 
-        </form>
+        {{-- </form> --}}
 
         <div class="box-footer">
             <input type="submit" class="btn btn-info pull-right" value="Register">
@@ -366,7 +384,7 @@
                         $("#patient_nic").val(patient.nic);
                         $("#patient_address").val(patient.address);
                         $("#patient_occupation").val(patient.occupation);
-                        
+                        $("#patient_id").val(patient.id);
 
                         $("#reginpatient2").slideDown(1000);
                         $("#reginpatient3").slideUp(1000);
@@ -381,25 +399,17 @@
                 alert("Please Enter a Valid Registration Number!");
             }    
     }
-
-    function reginpatientform2function(){
-        
-        $("#reginpatient4").slideDown(1000);
-        $("#reginpatient2").slideUp(1000);
-
-    }
-
-    function reginpatientform3function(){
-        
-        $("#reginpatient5").slideDown(1000);
-        $("#reginpatient2").slideUp(1000);
-
-    }
-
    
+    // function setdate(){
+    //         var today = new Date();
+    //         var dd = String(today.getDate()).padStart(2, '0');
+    //         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    //         var yyyy = today.getFullYear();
+    //         today =  dd+ '-'+ mm  + '-' + yyyy;
+    //         document.getElementById("today").innerHTML=today;
+    //     }
 
 </script>
-
 
 
 @endsection

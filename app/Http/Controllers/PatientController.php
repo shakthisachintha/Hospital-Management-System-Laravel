@@ -336,12 +336,27 @@ class PatientController extends Controller
     public function store_inpatient(Request $request)
      {
         $test=new inpatient;
+        $test->patient_id=$request->reg_pid;
         $test->birth_place=$request->reg_ipbirthplace;
-        $saved = $test->save();
+        $test->ward_id=$request->reg_ipwardno;
+        $test->nationality=$request->reg_ipnation;
+        $test->religion=$request->reg_ipreligion;
+        $test->monthly_income=$request->reg_inpincome;
+        $test->guardian=$request->reg_ipguardname;
+        $test->guardian_address=$request->reg_ipguardaddress;
+        $test->inventory=$request->reg_ipinventory;
+        $test->date=$request->reg_ipdate;
+        $test->time=$request->reg_inptime;
+        $test->approved_doctor=$request->reg_ipapprovedoc;
+        $test->ward_doctor=$request->reg_ipinchrgedoc;
+        $test->disease=$request->reg_admitofficer1;
+        $test->duration=$request->reg_admitofficer2;
+        $test->condition=$request->reg_admitofficer3;
+        $test->certified_by=$request->reg_admitofficer4;
 
-        if($saved){
-            echo "hhhhhhh";
-        }
+        $test->save();
+
+        
         return redirect()->back();
     }
 
