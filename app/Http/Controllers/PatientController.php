@@ -15,14 +15,19 @@ use App\Medicine;
 use App\Prescription;
 use App\Prescription_Medicine;
 use App\inpatient;
+use App\Ward;
 use DB;
 use stdClass;
 use Carbon\Carbon;
+
 class PatientController extends Controller
 {
+    protected $wardArray;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->wardList = ['' => 'Select Ward No'] + Ward::pluck('id', 'ward_no')->all();
     }
 
     public function index()
@@ -312,9 +317,6 @@ class PatientController extends Controller
     {
         $pNum = $request->pNum;
         $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id','patients.name as name','patients.sex as sex','patients.address as address','patients.occupation as occ','patients.telephone as tel','patients.nic as nic', 'appointments.admit as ad','patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
-        // $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.*', 'appointments.admit')->where('patients.id', '=', $pNum)->where('appointments.admit', '=', 'YES')->first();
-        //  $patient = Patients::find($pNum);
-
         if ($patient) {
 
             return response()->json([
@@ -337,29 +339,55 @@ class PatientController extends Controller
     
     public function store_inpatient(Request $request)
      {
-        $test=new inpatient;
-        $test->patient_id=$request->reg_pid;
+        $pid=$request->reg_pid;
+        $test=Patients::find($pid);
+        $test1=new inpatient;
+        // $test2=Ward::find($request->reg_ipwardno);
+        
+        // $free_bd_val = Ward::select('free_beds')->where('id','=','$request->reg_ipwardno')->value('free_beds');
+        // $free_bd = $free_bd_val - 1;
+        
+        // where('ward_no','=','$request->reg_ipwardno');
+        // $test2=$test2->decrement('free_beds');
+        // $test2->free_beds=Ward::decrese1($request->reg_ipwardno);
+        // $free_bd=$test2->free_beds-1;
+        // $test2->update(['free_beds'=>'$free_bd']);
+   
+        $test->civil_status=$request->reg_ipcondition;
         $test->birth_place=$request->reg_ipbirthplace;
-        $test->ward_id=$request->reg_ipwardno;
         $test->nationality=$request->reg_ipnation;
         $test->religion=$request->reg_ipreligion;
-        $test->monthly_income=$request->reg_inpincome;
+        $test->income=$request->reg_inpincome;
         $test->guardian=$request->reg_ipguardname;
         $test->guardian_address=$request->reg_ipguardaddress;
-        $test->inventory=$request->reg_ipinventory;
-        $test->date=$request->reg_ipdate;
-        $test->time=$request->reg_inptime;
-        $test->approved_doctor=$request->reg_ipapprovedoc;
-        $test->ward_doctor=$request->reg_ipinchrgedoc;
-        $test->disease=$request->reg_admitofficer1;
-        $test->duration=$request->reg_admitofficer2;
-        $test->condition=$request->reg_admitofficer3;
-        $test->certified_by=$request->reg_admitofficer4;
+        
+        $test1->patient_id=$request->reg_pid;
+        $test1->ward_id=$request->reg_ipwardno;
+        $test1->patient_inventory=$request->reg_ipinventory;
+        $test1->approved_doctor=$request->reg_ipapprovedoc;
+        $test1->incharge_doctor=$request->reg_ipinchrgedoc;
+        $test1->house_doctor=$request->reg_iphousedoc;
+        $test1->disease=$request->reg_admitofficer1;
+        $test1->duration=$request->reg_admitofficer2;
+        $test1->condition=$request->reg_admitofficer3;
+        $test1->certified_officer=$request->reg_admitofficer4;
 
+        // $test2->free_beds=$free_bd;
+        
         $test->save();
-
+        $test1->save();
+        // $test2->save();
         
         return redirect()->back();
+    }
+
+    public function get_ward_list()
+    {
+        $wardList = $this->wardList;
+         return view('register_in_patient_view', compact('wardList'));
+        // $wards = Ward::all();
+        // dd($wardss);
+        // return view('register_in_patient_view', compact(['wards']));
     }
 
     public function discharge_inpatient()

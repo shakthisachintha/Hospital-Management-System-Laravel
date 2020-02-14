@@ -114,4 +114,5 @@ Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middl
 Route::post('/add-ward', ['as' => 'add-ward', 'uses' => 'WardController@createWard'])->middleware('auth');
 
 Route::get('/herbs',['as'=>'herbs', 'uses' => 'MedicineController@getherbs']);
+Route::get('/wardlist', 'PatientController@get_ward_list');
 
