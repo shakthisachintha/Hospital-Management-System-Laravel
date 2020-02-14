@@ -311,7 +311,9 @@ class PatientController extends Controller
     public function regInPatientValid(Request $request)
     {
         $pNum = $request->pNum;
-        $patient = Patients::find($pNum);
+        $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id','patients.name as name','patients.sex as sex','patients.address as address','patients.occupation as occ','patients.telephone as tel','patients.nic as nic', 'appointments.admit as ad','patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
+        // $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.*', 'appointments.admit')->where('patients.id', '=', $pNum)->where('appointments.admit', '=', 'YES')->first();
+        //  $patient = Patients::find($pNum);
 
         if ($patient) {
 
@@ -320,10 +322,10 @@ class PatientController extends Controller
                 'name' => $patient->name,
                 'sex' => $patient->sex,
                 'address' => $patient->address,
-                'occupation' => $patient->occupation,
-                'telephone' => $patient->telephone,
+                'occupation' => $patient->occ,
+                'telephone' => $patient->tel,
                 'nic' => $patient->nic,
-                'age' => $patient->getAge(),
+                'age' => Patients::find($patient->id)->getAge(),
                 'id' => $patient->id
             ]);
         } else {
@@ -336,12 +338,27 @@ class PatientController extends Controller
     public function store_inpatient(Request $request)
      {
         $test=new inpatient;
+        $test->patient_id=$request->reg_pid;
         $test->birth_place=$request->reg_ipbirthplace;
-        $saved = $test->save();
+        $test->ward_id=$request->reg_ipwardno;
+        $test->nationality=$request->reg_ipnation;
+        $test->religion=$request->reg_ipreligion;
+        $test->monthly_income=$request->reg_inpincome;
+        $test->guardian=$request->reg_ipguardname;
+        $test->guardian_address=$request->reg_ipguardaddress;
+        $test->inventory=$request->reg_ipinventory;
+        $test->date=$request->reg_ipdate;
+        $test->time=$request->reg_inptime;
+        $test->approved_doctor=$request->reg_ipapprovedoc;
+        $test->ward_doctor=$request->reg_ipinchrgedoc;
+        $test->disease=$request->reg_admitofficer1;
+        $test->duration=$request->reg_admitofficer2;
+        $test->condition=$request->reg_admitofficer3;
+        $test->certified_by=$request->reg_admitofficer4;
 
-        if($saved){
-            echo "hhhhhhh";
-        }
+        $test->save();
+
+        
         return redirect()->back();
     }
 
