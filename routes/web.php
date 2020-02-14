@@ -38,7 +38,7 @@ Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserContro
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
 
 //Make channels Routes
-Route::post('/channel', ['as' => 'makechannel', 'uses' => 'PatientController@makeChannel'])->middleware('auth', 'staff', 'lang');
+Route::post('/channel', ['as' => 'makechannel', 'uses' => 'PatientController@getPatientData'])->middleware('auth', 'staff', 'lang');
 Route::post('/appoint', ['as' => 'makeappoint', 'uses' => 'PatientController@addChannel'])->middleware('auth', 'staff', 'lang');
 Route::get('/createchannel', ['as' => 'create_channel_view', 'uses' => 'PatientController@create_channel_view'])->middleware('auth', 'staff', 'lang');
 
@@ -65,6 +65,7 @@ Route::post('/validateAppNum', ['as' => 'validateAppNum', 'uses' => 'PatientCont
 Route::post('/checkpatient', ['as' => 'checkPatient', 'uses' => 'PatientController@checkPatient'])->middleware('auth', 'doctor');
 Route::get('/medsuggest', ['as' => 'medicineSuggests', 'uses' => 'MedicineController@searchSuggestion'])->middleware('auth');
 Route::post('/checksave', ['as' => 'checkSave', 'uses' => 'PatientController@checkPatientSave'])->middleware('auth', 'doctor');
+Route::post('/addclinic', ['as' => 'addToClinic', 'uses' => 'PatientController@addToClinic'])->middleware('auth', 'doctor');
 
 // In patient Routes
 Route::post('/markinpatient', ['as' => 'markInPatient', 'uses' => 'PatientController@markInPatient'])->middleware('auth', 'doctor');

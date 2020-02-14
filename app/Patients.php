@@ -18,4 +18,8 @@ class Patients extends Model
     public function getAge(){
         return Carbon::parse($this->attributes['bod'])->age;
     }
+
+    public function clinics(){
+        return $this->belongsToMany('App\Clinic',"clinic_patient");
+    }
 }

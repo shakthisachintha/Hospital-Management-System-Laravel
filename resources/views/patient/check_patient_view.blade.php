@@ -45,10 +45,147 @@
 
 <div class="row">
 
-    <div class="rounded col-md-5">
-        <h4>Channel Details</h4>
-        <h4>Appointment Number : {{$appNum}}</h4>
-        <div style="margin-bottom:0" class="box box-dark mt-2">
+    <div class="col-md-6">
+        <div style="height:46.5vh;overflow-y:scroll;overflow-x:hidden;" class="mt-2 mb-1 box box-dark">
+            <div class="box-header with-border">
+                <h3 class="box-title"> <i class="fas fa-notes-medical"></i>&nbsp;Channel & Patient's Details</h3>
+            </div>
+            <div class="box-body">
+                <h4>Appointment Number : {{$appNum}}</h4>
+                <h4>Name : {{$pName}}</h4>
+                <h4>Age & Sex : {{$pAge}} {{$pSex}}</h4>
+                @if ($pBloodPressure->flag)
+                <h4>Blood Pressure : <span
+                        class="h4 @if ($pBloodPressure->sys>130 || $pBloodPressure->dia>90) text-red @elseif ($pBloodPressure->sys>125 || $pBloodPressure->dia>85) text-yellow @else text-green @endif ">
+                        {{$pBloodPressure->sys}}/{{$pBloodPressure->dia}}
+                        mmHg</span><small> (Updated
+                        {{explode(" ",$pBloodPressure->date)[0]}})</small></h4>
+                @endif
+
+                @if($pBloodSugar->flag)
+                <h4>Blood Glucose Levels : <span
+                        class="h4 @if($pBloodSugar->value > 72 && $pBloodSugar->value<100) text-green @else text-red @endif">{{$pBloodSugar->value}}
+                        mg/dL</span><small> (Updated
+                        {{explode(" ",$pBloodSugar->date)[0]}})</small></h4>
+                @endif
+
+                @if ($pCholestrol->flag)
+                <h4>General Cholestrol Level : <span
+                        class="h4 @if($pCholestrol->value>220) text-red @elseif($pCholestrol->value>200) text-yellow @else text-green @endif">{{$pCholestrol->value}}
+                        mg/dL</span><small>
+                        (Updated {{explode(" ",$pCholestrol->date)[0]}})</small></h4>
+                @endif
+                <div class="row mt-2 mb-0 pb-0">
+                    <div class="col-md-3 mt-2 mb-0 pb-0">
+                        <button class="btn btn-info">
+                            View Patient History
+                        </button>
+                    </div>
+                    <div class="col-md-3 mt-2 mb-0 pb-0">
+                        <button data-toggle="modal" data-target="#modal-clinics" class="btn btn-primary">
+                            Assign To Clinic
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#clinic-form").submit(function(e) {
+            
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            
+            var form = $(this);
+            var url = form.attr('action');
+        
+            $.ajax({
+                   type: "POST",
+                   url: url,
+                   processData: false,
+                        
+                        cache: false,
+                   headers: {
+                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                   },
+                   data: $('#clinic-form').serialize(), // serializes the form's elements.
+                   success: function(response)
+                   {
+                       if(response.code==200){
+                        $("#clinic").html(response.html_list);
+                        $("#already").html(response.html_already);
+
+                       }
+                       console.log(response); // show response from the php script.
+                   },
+                   error:function(response){
+                       console.log(response);
+                   }
+     });
+
+
+});
+    });
+    </script>
+    <div class="modal fade" id="modal-clinics">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Assign To Clinics</h3>
+                </div>
+                <div id="clinics" class="modal-body">
+                    <h4>This Patient Is Already Assigned To </h4>
+                    <div id="already">
+                        @foreach ($assinged_clinics as $clinic)
+                        <span style="font-size:15px;display:inline-block"
+                            class="label mt-1 mb-1 bg-blue">{{$clinic->name_eng}}</span>
+                        @endforeach
+                    </div>
+                    <div class="mt-3 pt-1">
+
+                        <form action="{{route('addToClinic')}}" method="POST" id="clinic-form">
+                            <input type="hidden" name="pid" value="{{$pid}}">
+                            <h4 for="clinic">Assign To a New Clinic <small>( CTRL+Click To Select Multiple )</small>
+                            </h4>
+                            <select class="form-control" name="clinic[]" multiple id="clinic">
+
+                                @foreach ($clinics as $clinic)
+                                @php
+                                $flag=0;
+                                @endphp
+                                @foreach($assinged_clinics as $key)
+                                @if($clinic->id==$key->id)
+                                @php
+                                $flag=1;
+                                @endphp
+                                @endif
+                                @endforeach
+                                @if ($flag==0)
+                                <option value={{$clinic->id}}>{{$clinic->name_eng}}({{$clinic->name_sin}})</option>
+                                @endif
+                                @endforeach
+                            </select>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div class="rounded col-md-6">
+
+        <div style="height:46.5vh;" class="box box-dark mb-1 mt-2">
             <div class="box-header with-border">
                 Add Medicines To Prescription
             </div>
@@ -237,233 +374,8 @@
             });
     </script>
 
-    <div class="col-md-7">
-        <h4 class="text-center">Patient's Details And Treatment History</h4>
-        <div style="height:46.5vh;overflow-y:scroll;" class="p-2 box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title"> <i class="fas fa-notes-medical"></i>&nbsp;Patient's Details</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="box-group" id="accordion">
-                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                    <div class="panel box box-success">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                    aria-expanded="false" class="collapsed">
-                                    Patient's Details <small>(Updated 14-08-2019)</small>
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
-                            <div class="box-body">
-                                <h5>Name : {{$pName}}</h5>
-                                <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
-                                @if ($pBloodPressure->flag)
-                                <h5>Blood Pressure : <span
-                                        class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}}
-                                        mmHg</span><small> (Updated
-                                        {{$pBloodPressure->date}})</small></h5>
-                                @endif
-
-                                @if($pBloodSugar->flag)
-                                <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}}
-                                        mg/dL</span><small> (Updated
-                                        {{$pBloodSugar->date}})</small></h5>
-                                @endif
-
-                                @if ($pCholestrol->flag){
-                                <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}}
-                                        mg/dL</span><small>
-                                        (Updated {{$pCholestrol->date}})</small></h5>
-                                }
-                                @endif
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 pl-0 mb-2 box-header with-border">
-                        <h3 class="box-title"><i class="fas fa-file-medical"></i>&nbsp;Patient's Treatment History</h3>
-                    </div>
-                    <div class="panel box box-warning">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"
-                                    aria-expanded="false">
-                                    <i class="fas fa-history"></i> &nbsp; 14-08-2019
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false"
-                            style="height: 0px;">
-                            <div class="box-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3
-                                wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                nesciunt laborum
-                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                                coffee nulla
-                                assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                cred
-                                nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                craft beer
-                                farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                accusamus
-                                labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel box box-success">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
-                                    class="collapsed" aria-expanded="false">
-                                    <i class="fas fa-history"></i> &nbsp; 10-07-2019
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false"
-                            style="height: 0px;">
-                            <div class="box-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3
-                                wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                nesciunt laborum
-                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                                coffee nulla
-                                assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                cred
-                                nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                craft beer
-                                farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                accusamus
-                                labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel box box-success">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
-                                    class="collapsed" aria-expanded="false">
-                                    <i class="fas fa-history"></i> &nbsp; 17-06-2019
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false"
-                            style="height: 0px;">
-                            <div class="box-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3
-                                wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                nesciunt laborum
-                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                                coffee nulla
-                                assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                cred
-                                nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                craft beer
-                                farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                accusamus
-                                labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel box box-success">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
-                                    class="collapsed" aria-expanded="false">
-                                    <i class="fas fa-history"></i> &nbsp; 12-05-2019
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseFive" class="panel-collapse collapse" aria-expanded="false"
-                            style="height: 0px;">
-                            <div class="box-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3
-                                wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                nesciunt laborum
-                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                                coffee nulla
-                                assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                cred
-                                nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                craft beer
-                                farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                accusamus
-                                labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel box box-success">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix" class="collapsed"
-                                    aria-expanded="false">
-                                    <i class="fas fa-history"></i> &nbsp; 17-04-2019
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseSix" class="panel-collapse collapse" aria-expanded="false"
-                            style="height: 0px;">
-                            <div class="box-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3
-                                wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                nesciunt laborum
-                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                                coffee nulla
-                                assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                cred
-                                nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                craft beer
-                                farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                accusamus
-                                labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel box box-success">
-                        <div class="box-header with-border">
-                            <h4 class="box-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"
-                                    class="collapsed" aria-expanded="false">
-                                    <i class="fas fa-history"></i> &nbsp; 22-03-2019
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseSeven" class="panel-collapse collapse" aria-expanded="false"
-                            style="height: 0px;">
-                            <div class="box-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3
-                                wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                nesciunt laborum
-                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                                coffee nulla
-                                assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                cred
-                                nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-                                craft beer
-                                farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                accusamus
-                                labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box-body -->
-    </div>
 </div>
+
 <div class="row">
     <div class="col-md-12">
         <div class="box mt-2 box-dark">
@@ -525,42 +437,66 @@
 <script>
     var inpatient='{{$inpatient}}';
     function admitPatient(status){
-        var data=new FormData;
-        data.append('_token','{{csrf_token()}}');
-        data.append('admit',status);
-        data.append('pid',{{$pid}});
-        data.append('app_num',{{$appNum}});
-        $.ajax({
-            type: "POST",
-            url: "{{route('markInPatient')}}",
-            processData: false,
-            contentType: false,
-            cache: false,
-            data:data,
-            success: function (response) {
-                console.log('success');
-                console.log(response);
-                if(response.success){
-                    $("#admit-btn").attr('disabled','disabled');
-                    $("#admit-btn").text("Patient Admitted");
-                    $("#admit-btn").removeClass('btn-warning');
-                    $("#admit-btn").addClass('btn-primary');
-                }else{
-                    $("#admit-btn").attr('disabled','disabled');
-                    $("#admit-btn").text("Error Occured");
-                    $("#admit-btn").removeClass('btn-warning');
-                    $("#admit-btn").addClass('btn-danger');
+        bootbox.confirm({
+            title:"<h2>Confirm Admit Patient</h2>",
+            message: "<p>This Will Make This Patient(Out Patient) an Inpatient.<br>Press Admit Patient To Admit The Patient.<br>Note:This Action Cannot Be Undone.</p>",
+            buttons: {
+                confirm: {
+                    label: 'Admit Patient',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Cancel',
+                    className: 'btn-danger'
                 }
             },
-            error: function(data){
-                console.log('error occured');
-                console.log(data);
-                $("#admit-btn").attr('disabled','disabled');
-                $("#admit-btn").text("Error Occured");
-                $("#admit-btn").removeClass('btn-warning');
-                $("#admit-btn").addClass('btn-danger');
-            },
+            callback: function (result) {
+                if(result){
+                    var data=new FormData;
+                    data.append('_token','{{csrf_token()}}');
+                    data.append('admit',status);
+                    data.append('pid',{{$pid}});
+                    data.append('app_num',{{$appNum}});
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('markInPatient')}}",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        data:data,
+                        success: function (response) {
+                            console.log('success');
+                            console.log(response);
+                            if(response.success){
+                                $("#admit-btn").attr('disabled','disabled');
+                                $("#admit-btn").text("Patient Admitted");
+                                $("#admit-btn").removeClass('btn-warning');
+                                $("#admit-btn").addClass('btn-primary');
+                            }else{
+                                $("#admit-btn").attr('disabled','disabled');
+                                $("#admit-btn").text("Error Occured");
+                                $("#admit-btn").removeClass('btn-warning');
+                                $("#admit-btn").addClass('btn-danger');
+                            }
+                        },
+                        error: function(data){
+                            console.log('error occured');
+                            console.log(data);
+                            $("#admit-btn").attr('disabled','disabled');
+                            $("#admit-btn").text("Error Occured");
+                            $("#admit-btn").removeClass('btn-warning');
+                            $("#admit-btn").addClass('btn-danger');
+                            bootbox.alert({
+                                title:"Error Occured On Admit Patient",
+                                message: "Error Occured! Try Later."+data,
+                                backdrop: true
+                            });
+                        },
+                    });
+                }
+            }
         });
+        
     }
 
     function validate(){
@@ -614,8 +550,23 @@
     function submit(){
         if(!validate()){
             return;
-        }
-        window.scrollTo(0,0);
+        }else{
+            bootbox.confirm({
+            title:"<h2>Done Channelling</h2>",
+            message: "<p>This will finish the chanelling for the patient.<br>No changes can be done to the prescription after saving.<br>Please check your actoin before comfirm.<br>Note:This Action Cannot Be Undone.</p>",
+            buttons: {
+                confirm: {
+                    label: 'Confirm Save',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback:function(result){
+                if (result) {
+                    window.scrollTo(0,0);
         var diag=$('textarea').val();
         var pressure=$('#pressure').val();
         var cholestrol=$('#cholestrol').val();
@@ -639,15 +590,25 @@
             cache: false,
             data:JSON.stringify(data),
             success: function (response) {
-                console.log('success');
-                console.log(response);
+                if(response==200){
+                    clearAll();
+                    window.location.replace("{{route('check_patient_view')}}");
+                }
             },
             error: function(response){
-                console.log('error occured');
-                console.log(response);
+                bootbox.alert({
+                    title:"Error Occured On Save",
+                    message: "Error Occured! Try Later."+response,
+                    backdrop: true
+                });
             },
         });
-        console.log(data);
+
+        };
+       
+    }
+    });
+    }
     }
 
     function clearAll(){
