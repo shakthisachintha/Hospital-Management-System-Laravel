@@ -102,3 +102,7 @@ INFO  shutting down Metals
 INFO  time: initialize in 1.72s
 WARN  no build tool detected in workspace 'G:\group-project\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 INFO  shutting down Metals
+INFO  started: Metals version 0.8.0 in workspace 'G:\group-project\Group-Project'
+INFO  time: initialize in 9.12s
+WARN  resetting database: G:\group-project\Group-Project\.metals\metals.h2.db
+WARN  no build tool detected in workspace 'G:\group-project\Group-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
