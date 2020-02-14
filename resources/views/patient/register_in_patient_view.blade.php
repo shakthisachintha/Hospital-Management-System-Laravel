@@ -211,17 +211,15 @@
 
                     <label class="col-sm-2 control-label">{{__('Ward No')}}<span style="color:red">*</span></label>
                     <div class="col-sm-2">
-                        <input type="number" required min="01" class="form-control" name="reg_ipwardno">
-                    </div>
-
-                    <label class="col-sm-2 control-label">{{__('Date of Admission')}}</label>
-                    <div readonly class="col-sm-2">
-                      <input type="date" name="reg_ipdate" id="dd" onload="getDate()" class="form-control">
-                    </div>
-                   
-                    <label class="col-sm-2 control-label">{{__('Time of Admission')}}</label>
-                    <div class="col-sm-2">
-                        <input type="time" onload="getTime()" class="form-control" name="reg_inptime">
+                        <select required class="form-control" name="reg_ipwardno">
+                            <option value="">Select Ward No</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            {{-- @foreach ($wardList as $key => $ward)
+                                <option value="{!! $ward['id'] !!}"  !!}>{!! $ward['ward_no'] !!}</option>
+                            @endforeach --}}
+                            {{-- <input type="number" required min="01" class="form-control" name="reg_ipwardno">           --}}
+                        </select>
                     </div>
                 </div>
 
