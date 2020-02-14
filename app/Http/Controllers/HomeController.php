@@ -34,9 +34,10 @@ class HomeController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        $currentcontactnumber=$user->contactnumber;
         $log = DB::table('activity_log')->select('description','subject_id', 'subject_type', 'causer_type','properties','created_at','updated_at')->orderBy('created_at', 'desc')->get();
         // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
-        return view('profile', ['title' => $user->name, 'activity' => $log]);
+        return view('profile', ['title' => $user->name, 'activity' => $log,'currentno'=>$currentcontactnumber]);
     }
 
     public function setLocale($lan)

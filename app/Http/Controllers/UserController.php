@@ -265,4 +265,19 @@ class UserController extends Controller
             }
         }
     }
+
+    public function changecontactnumber(Request $data){
+
+        $user = Auth::user();
+        $user_id=$user->id;
+        // dd($user_id);
+        DB::table('users')
+            ->where('id', $user_id)
+            ->limit(1)
+            ->update(array('contactnumber' => $data->newcontactnumber));
+
+        activity()->performedOn($user)->log('Contact number changed successfully!');
+
+        return redirect()->back()->with("successcn", "Password changed successfully !");
+    }
 }

@@ -36,6 +36,7 @@ Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middlew
 Route::get('/lang/{lan}', ['as' => 'lang', 'uses' => 'HomeController@setLocale'])->middleware('auth');
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@changeUserPassword'])->middleware('auth');
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
+Route::post('/changecontactnumber', ['as' => 'changecontactnumber', 'uses' => 'UserController@changecontactnumber'])->middleware('auth');
 
 //Make channels Routes
 Route::post('/channel', ['as' => 'makechannel', 'uses' => 'PatientController@makeChannel'])->middleware('auth', 'staff', 'lang');

@@ -176,6 +176,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                         class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
                                         aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
                                         <form>
+                                            @csrf
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
@@ -193,7 +194,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             </div>
                                             <div class="box-footer">
                                                 <button type="reset" class="btn btn-default">Cancel</button>
-                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                                <button type="submit" class="btn btn-danger pull-right">Update</button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -205,26 +206,46 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             Number</a></li>
 
                                     <div id="changecontactno"
-                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
-                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
-                                        <form>
+                                        class="panel-collapse @if (session('errors') || session('successcn')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('errors') || session('successcn')) true @else false @endif">
 
+                                        @if ($message = Session::get('successcn'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+
+                                        @endif
+
+                                        @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+                                        <form action="{{route('changecontactnumber')}}" method="POST">
+                                            @csrf
                                             <div class="form-group row">
                                                 <label for="inputPassword"
                                                     class="col-sm-2 col-form-label">Current Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputPassword" value="hi" readonly>
+                                                    <input type="text" class="form-control" value="{{$currentno}}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">New Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control"  placeholder="enter new number">
+                                                    <input type="text" name="newcontactnumber" class="form-control"  placeholder="enter new number">
                                                 </div>
                                             </div>
                                             <div class="box-footer">
                                                 <button type="reset" class="btn btn-default">Cancel</button>
-                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                                <button type="submit" class="btn btn-danger pull-right">Update</button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -237,6 +258,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                         class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
                                         aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
                                         <form>
+                                            @csrf
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
@@ -254,7 +276,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             </div>
                                             <div class="box-footer">
                                                 <button type="reset" class="btn btn-default">Cancel</button>
-                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                                <button type="submit" class="btn btn-danger pull-right">Update</button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
