@@ -168,9 +168,97 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                             <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#"><i class="fa fa-signature"></i> Edit Profile</a></li>
-                                    <li><a href="#"><i class="fa fa-address-book"></i> Change Contact Number</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope"></i> Change email</a></li>
+
+                                    <li><a data-toggle="collapse" href="#editprofile" class="collapsed"
+                                            aria-expanded="false"><i class="fa fa-signature"></i> Edit Profile</a></li>
+
+                                    <div id="editprofile"
+                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+                                        <form>
+                                            <div class="form-group row">
+                                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" readonly class="form-control-plaintext"
+                                                        id="staticEmail" value="email@example.com">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Password</label>
+                                                <div class="col-sm-10">
+                                                    <input type="password" class="form-control" id="inputPassword"
+                                                        placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <div class="box-footer">
+                                                <button type="reset" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+
+                                    </div>
+
+                                    <li><a data-toggle="collapse" href="#changecontactno" class="collapsed"
+                                            aria-expanded="false"><i class="fa fa-address-book"></i> Change Contact
+                                            Number</a></li>
+
+                                    <div id="changecontactno"
+                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+                                        <form>
+
+                                            <div class="form-group row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Current Number</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputPassword" value="hi" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputPassword" class="col-sm-2 col-form-label">New Number</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  placeholder="enter new number">
+                                                </div>
+                                            </div>
+                                            <div class="box-footer">
+                                                <button type="reset" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+                                    </div>
+
+                                    <li><a data-toggle="collapse" href="#changeemail" class="collapsed"
+                                            aria-expanded="false"><i class="fa fa-envelope"></i> Change email</a></li>
+
+                                    <div id="changeemail"
+                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+                                        <form>
+                                            <div class="form-group row">
+                                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" readonly class="form-control-plaintext"
+                                                        id="staticEmail" value="email@example.com">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Password</label>
+                                                <div class="col-sm-10">
+                                                    <input type="password" class="form-control" id="inputPassword"
+                                                        placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <div class="box-footer">
+                                                <button type="reset" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-info pull-right">Update</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+                                    </div>
                                 </ul>
                             </div>
                             <!-- /.box-body -->
