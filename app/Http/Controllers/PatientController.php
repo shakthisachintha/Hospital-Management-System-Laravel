@@ -342,16 +342,6 @@ class PatientController extends Controller
         $pid=$request->reg_pid;
         $test=Patients::find($pid);
         $test1=new inpatient;
-        // $test2=Ward::find($request->reg_ipwardno);
-        
-        // $free_bd_val = Ward::select('free_beds')->where('id','=','$request->reg_ipwardno')->value('free_beds');
-        // $free_bd = $free_bd_val - 1;
-        
-        // where('ward_no','=','$request->reg_ipwardno');
-        // $test2=$test2->decrement('free_beds');
-        // $test2->free_beds=Ward::decrese1($request->reg_ipwardno);
-        // $free_bd=$test2->free_beds-1;
-        // $test2->update(['free_beds'=>'$free_bd']);
    
         $test->civil_status=$request->reg_ipcondition;
         $test->birth_place=$request->reg_ipbirthplace;
@@ -371,12 +361,15 @@ class PatientController extends Controller
         $test1->duration=$request->reg_admitofficer2;
         $test1->condition=$request->reg_admitofficer3;
         $test1->certified_officer=$request->reg_admitofficer4;
-
-        // $test2->free_beds=$free_bd;
         
         $test->save();
         $test1->save();
-        // $test2->save();
+
+        // decrement bed count by 1
+        $getFB=Ward::where('id',$request->reg_ipwardno)->first();
+        $decre=1;
+        $newFB=$getFB->free_beds - $decre;
+        Ward::where('id',$request->reg_ipwardno)->update(['free_beds'=>$newFB]);
         
         return redirect()->back();
     }
