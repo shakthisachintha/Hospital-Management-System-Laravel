@@ -389,7 +389,7 @@
                        
                     }else{
                         console.log('not found');
-                        alert("Please Enter a Valid Registration Number!");
+                        alert("Please Enter a Valid Admitted Patient Registration Number!");
                     }
                 }
             });
