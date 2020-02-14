@@ -311,7 +311,9 @@ class PatientController extends Controller
     public function regInPatientValid(Request $request)
     {
         $pNum = $request->pNum;
-        $patient = Patients::find($pNum);
+        $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id','patients.name as name','patients.sex as sex','patients.address as address','patients.occupation as occ','patients.telephone as tel','patients.nic as nic', 'appointments.admit as ad','patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
+        // $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.*', 'appointments.admit')->where('patients.id', '=', $pNum)->where('appointments.admit', '=', 'YES')->first();
+        //  $patient = Patients::find($pNum);
 
         if ($patient) {
 
@@ -320,10 +322,10 @@ class PatientController extends Controller
                 'name' => $patient->name,
                 'sex' => $patient->sex,
                 'address' => $patient->address,
-                'occupation' => $patient->occupation,
-                'telephone' => $patient->telephone,
+                'occupation' => $patient->occ,
+                'telephone' => $patient->tel,
                 'nic' => $patient->nic,
-                'age' => $patient->getAge(),
+                'age' => Patients::find($patient->id)->getAge(),
                 'id' => $patient->id
             ]);
         } else {

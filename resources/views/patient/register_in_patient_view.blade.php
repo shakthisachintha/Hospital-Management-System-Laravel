@@ -374,17 +374,17 @@
                 error: function(data){
                     console.log(data);
                 },
-                success: function (patient) {
-                    if(patient.exist){
-                        console.log(patient.name);
-                        $("#patient_name").val(patient.name);
-                        $("#patient_age").val(patient.age);
-                        $("#patient_sex").val(patient.sex);
-                        $("#patient_telephone").val(patient.telephone);
-                        $("#patient_nic").val(patient.nic);
-                        $("#patient_address").val(patient.address);
-                        $("#patient_occupation").val(patient.occupation);
-                        $("#patient_id").val(patient.id);
+                success: function (inp) {
+                    if(inp.exist){
+                        console.log(inp.name);
+                        $("#patient_name").val(inp.name);
+                        $("#patient_age").val(inp.age);
+                        $("#patient_sex").val(inp.sex);
+                        $("#patient_telephone").val(inp.telephone);
+                        $("#patient_nic").val(inp.nic);
+                        $("#patient_address").val(inp.address);
+                        $("#patient_occupation").val(inp.occupation);
+                        $("#patient_id").val(inp.id);
 
                         $("#reginpatient2").slideDown(1000);
                         $("#reginpatient3").slideUp(1000);
