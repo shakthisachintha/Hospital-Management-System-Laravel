@@ -5,23 +5,27 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\Clinic;
 use App\inpatient;
-// use App\Http\Controllers\Redirect;
+use App\Http\Controllers\Redirect;
 use App\Medicine;
 use App\Patients;
 use App\Prescription;
 use App\Prescription_Medicine;
-use Carbon\Carbon;
+use App\Ward;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use stdClass;
+use Carbon\Carbon;
 
 class PatientController extends Controller
 {
+    protected $wardArray;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->wardList = ['' => 'Select Ward No'] + Ward::pluck('id', 'ward_no')->all();
     }
 
     public function index()
@@ -345,8 +349,7 @@ class PatientController extends Controller
     public function regInPatientValid(Request $request)
     {
         $pNum = $request->pNum;
-        $patient = Patients::find($pNum);
-
+        $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id','patients.name as name','patients.sex as sex','patients.address as address','patients.occupation as occ','patients.telephone as tel','patients.nic as nic', 'appointments.admit as ad','patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
         if ($patient) {
 
             return response()->json([
@@ -354,11 +357,11 @@ class PatientController extends Controller
                 'name' => $patient->name,
                 'sex' => $patient->sex,
                 'address' => $patient->address,
-                'occupation' => $patient->occupation,
-                'telephone' => $patient->telephone,
+                'occupation' => $patient->occ,
+                'telephone' => $patient->tel,
                 'nic' => $patient->nic,
-                'age' => $patient->getAge(),
-                'id' => $patient->id,
+                'age' => Patients::find($patient->id)->getAge(),
+                'id' => $patient->id
             ]);
         } else {
             return response()->json([
@@ -368,29 +371,49 @@ class PatientController extends Controller
     }
 
     public function store_inpatient(Request $request)
-    {
-        $test = new inpatient;
-        $test->patient_id = $request->reg_pid;
-        $test->birth_place = $request->reg_ipbirthplace;
-        $test->ward_id = $request->reg_ipwardno;
-        $test->nationality = $request->reg_ipnation;
-        $test->religion = $request->reg_ipreligion;
-        $test->monthly_income = $request->reg_inpincome;
-        $test->guardian = $request->reg_ipguardname;
-        $test->guardian_address = $request->reg_ipguardaddress;
-        $test->inventory = $request->reg_ipinventory;
-        $test->date = $request->reg_ipdate;
-        $test->time = $request->reg_inptime;
-        $test->approved_doctor = $request->reg_ipapprovedoc;
-        $test->ward_doctor = $request->reg_ipinchrgedoc;
-        $test->disease = $request->reg_admitofficer1;
-        $test->duration = $request->reg_admitofficer2;
-        $test->condition = $request->reg_admitofficer3;
-        $test->certified_by = $request->reg_admitofficer4;
-
+     {
+        $pid=$request->reg_pid;
+        $test=Patients::find($pid);
+        $test1=new inpatient;
+   
+        $test->civil_status=$request->reg_ipcondition;
+        $test->birth_place=$request->reg_ipbirthplace;
+        $test->nationality=$request->reg_ipnation;
+        $test->religion=$request->reg_ipreligion;
+        $test->income=$request->reg_inpincome;
+        $test->guardian=$request->reg_ipguardname;
+        $test->guardian_address=$request->reg_ipguardaddress;
+        
+        $test1->patient_id=$request->reg_pid;
+        $test1->ward_id=$request->reg_ipwardno;
+        $test1->patient_inventory=$request->reg_ipinventory;
+        $test1->approved_doctor=$request->reg_ipapprovedoc;
+        $test1->incharge_doctor=$request->reg_ipinchrgedoc;
+        $test1->house_doctor=$request->reg_iphousedoc;
+        $test1->disease=$request->reg_admitofficer1;
+        $test1->duration=$request->reg_admitofficer2;
+        $test1->condition=$request->reg_admitofficer3;
+        $test1->certified_officer=$request->reg_admitofficer4;
+        
         $test->save();
+        $test1->save();
 
+        // decrement bed count by 1
+        $getFB=Ward::where('id',$request->reg_ipwardno)->first();
+        $decre=1;
+        $newFB=$getFB->free_beds - $decre;
+        Ward::where('id',$request->reg_ipwardno)->update(['free_beds'=>$newFB]);
+        
         return redirect()->back();
+    }
+
+    public function get_ward_list()
+    {
+        $wardList = $this->wardList;
+         return view('register_in_patient_view', compact('wardList'));
+        // $wards = Ward::all();
+        // dd($wardss);
+        // return view('register_in_patient_view', compact(['wards']));
     }
 
     public function discharge_inpatient()

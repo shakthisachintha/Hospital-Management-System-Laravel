@@ -211,17 +211,15 @@
 
                     <label class="col-sm-2 control-label">{{__('Ward No')}}<span style="color:red">*</span></label>
                     <div class="col-sm-2">
-                        <input type="number" required min="01" class="form-control" name="reg_ipwardno">
-                    </div>
-
-                    <label class="col-sm-2 control-label">{{__('Date of Admission')}}</label>
-                    <div readonly class="col-sm-2">
-                      <input type="date" name="reg_ipdate" id="dd" onload="getDate()" class="form-control">
-                    </div>
-                   
-                    <label class="col-sm-2 control-label">{{__('Time of Admission')}}</label>
-                    <div class="col-sm-2">
-                        <input type="time" onload="getTime()" class="form-control" name="reg_inptime">
+                        <select required class="form-control" name="reg_ipwardno">
+                            <option value="">Select Ward No</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            {{-- @foreach ($wardList as $key => $ward)
+                                <option value="{!! $ward['id'] !!}"  !!}>{!! $ward['ward_no'] !!}</option>
+                            @endforeach --}}
+                            {{-- <input type="number" required min="01" class="form-control" name="reg_ipwardno">           --}}
+                        </select>
                     </div>
                 </div>
 
@@ -374,24 +372,24 @@
                 error: function(data){
                     console.log(data);
                 },
-                success: function (patient) {
-                    if(patient.exist){
-                        console.log(patient.name);
-                        $("#patient_name").val(patient.name);
-                        $("#patient_age").val(patient.age);
-                        $("#patient_sex").val(patient.sex);
-                        $("#patient_telephone").val(patient.telephone);
-                        $("#patient_nic").val(patient.nic);
-                        $("#patient_address").val(patient.address);
-                        $("#patient_occupation").val(patient.occupation);
-                        $("#patient_id").val(patient.id);
+                success: function (inp) {
+                    if(inp.exist){
+                        console.log(inp.name);
+                        $("#patient_name").val(inp.name);
+                        $("#patient_age").val(inp.age);
+                        $("#patient_sex").val(inp.sex);
+                        $("#patient_telephone").val(inp.telephone);
+                        $("#patient_nic").val(inp.nic);
+                        $("#patient_address").val(inp.address);
+                        $("#patient_occupation").val(inp.occupation);
+                        $("#patient_id").val(inp.id);
 
                         $("#reginpatient2").slideDown(1000);
                         $("#reginpatient3").slideUp(1000);
                        
                     }else{
                         console.log('not found');
-                        alert("Please Enter a Valid Registration Number!");
+                        alert("Please Enter a Valid Admitted Patient Registration Number!");
                     }
                 }
             });

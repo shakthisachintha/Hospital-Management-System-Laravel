@@ -36,6 +36,7 @@ Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middlew
 Route::get('/lang/{lan}', ['as' => 'lang', 'uses' => 'HomeController@setLocale'])->middleware('auth');
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@changeUserPassword'])->middleware('auth');
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
+Route::post('/changecontactnumber', ['as' => 'changecontactnumber', 'uses' => 'UserController@changecontactnumber'])->middleware('auth');
 
 //Make channels Routes
 Route::post('/channel', ['as' => 'makechannel', 'uses' => 'PatientController@getPatientData'])->middleware('auth', 'staff', 'lang');
@@ -115,4 +116,5 @@ Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middl
 Route::post('/add-ward', ['as' => 'add-ward', 'uses' => 'WardController@createWard'])->middleware('auth');
 
 Route::get('/herbs',['as'=>'herbs', 'uses' => 'MedicineController@getherbs']);
+Route::get('/wardlist', 'PatientController@get_ward_list');
 
