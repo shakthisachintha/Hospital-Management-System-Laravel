@@ -51,9 +51,6 @@ class PatientController extends Controller
 
     public function register_patient(Request $request)
     {
-        //dd($request->all());
-
-
         try {
             $patient = new Patients;
             $today_regs = (int) Patients::whereDate('created_at', date("Y-m-d"))->count();
@@ -76,6 +73,9 @@ class PatientController extends Controller
             $patient->telephone = $request->reg_ptel;
             $patient->nic = $request->reg_pnic;
             $patient->image = $reg_num.".png";
+
+            
+
             $patient->save();
             session()->flash('regpsuccess', 'Patient ' . $request->reg_pname . ' Registered Successfully !');
             session()->flash('pid', "$reg_num");
@@ -137,7 +137,7 @@ class PatientController extends Controller
         }
     }
 
-    public function check_patient_view()
+    public function checkPatientView()
     {
         $user = Auth::user();
         return view('patient.check_patient_intro', ['title' => $user->name]);
@@ -146,6 +146,11 @@ class PatientController extends Controller
     public function checkPatient(Request $request)
     {
         $appointment=Appointment::where('number',$request->appNum)->where('created_at','>=', date('Y-m-d').' 00:00:00')->where('patient_id',$request->pid)->first();
+        
+        if($appointment->completed=="YES"){
+            return redirect()->route('check_patient_view')->with('fail',"This Appointment Has Already Been Channeled.");
+        }
+
         $patient=Patients::find($appointment->patient_id);
 
         $user = Auth::user();

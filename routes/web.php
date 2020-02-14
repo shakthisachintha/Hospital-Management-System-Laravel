@@ -60,7 +60,7 @@ Route::post('/pharmacyValidate', ['as' => 'pharmacyValidate', 'uses' => 'Medicin
 Route::post('/issueMedicine', ['as' => 'issueMedicine', 'uses' => 'MedicineController@issueMedicine'])->middleware('auth', 'staff');
 
 // Check Patient Routes
-Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@check_patient_view'])->middleware('auth', 'doctor');
+Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@checkPatientView'])->middleware('auth', 'doctor');
 Route::post('/validateAppNum', ['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth', 'doctor');
 Route::post('/checkpatient', ['as' => 'checkPatient', 'uses' => 'PatientController@checkPatient'])->middleware('auth', 'doctor');
 Route::get('/medsuggest', ['as' => 'medicineSuggests', 'uses' => 'MedicineController@searchSuggestion'])->middleware('auth');

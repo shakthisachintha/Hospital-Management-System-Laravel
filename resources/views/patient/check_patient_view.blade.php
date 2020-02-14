@@ -260,16 +260,26 @@
                             <div class="box-body">
                                 <h5>Name : {{$pName}}</h5>
                                 <h5>Age & Sex : {{$pAge}} {{$pSex}}</h5>
-                                {{-- <h5>Blood Pressure : <span
+                                @if ($pBloodPressure->flag)
+                                <h5>Blood Pressure : <span
                                         class="h4 text-yellow">{{$pBloodPressure->sys}}/{{$pBloodPressure->dia}}
                                         mmHg</span><small> (Updated
                                         {{$pBloodPressure->date}})</small></h5>
+                                @endif
+
+                                @if($pBloodSugar->flag)
                                 <h5>Blood Glucose Levels : <span class="h4 text-green">{{$pBloodSugar->value}}
                                         mg/dL</span><small> (Updated
                                         {{$pBloodSugar->date}})</small></h5>
+                                @endif
+
+                                @if ($pCholestrol->flag){
                                 <h5>General Cholestrol Level : <span class="h4 text-red">{{$pCholestrol->value}}
                                         mg/dL</span><small>
-                                        (Updated {{$pCholestrol->date}})</small></h5> --}}
+                                        (Updated {{$pCholestrol->date}})</small></h5>
+                                }
+                                @endif
+
 
                             </div>
                         </div>
@@ -488,15 +498,16 @@
                 </div>
                 <div class="col-md-2">
                     <div class="p-2 mt-5 ml-1 mr-1">
-                        <button type="button" onclick="submit()" class="btn btn-block btn-success btn-lg">Save & Next</button>
+                        <button type="button" onclick="submit()" class="btn btn-block btn-success btn-lg">Save &
+                            Next</button>
                         <br>
                         @if ($inpatient=="YES")
-                        <button disabled type="button"
-                            class="btn btn-block btn-primary btn-lg">Inpatient</button>
+                        <button disabled type="button" class="btn btn-block btn-primary btn-lg">Inpatient</button>
                         @endif
 
                         @if ($inpatient=="NO")
-                        <button id="admit-btn" type="button" onclick="admitPatient('YES')" class="btn btn-block btn-warning btn-lg">Admit Patient</button>
+                        <button id="admit-btn" type="button" onclick="admitPatient('YES')"
+                            class="btn btn-block btn-warning btn-lg">Admit Patient</button>
                         @endif
 
                         <br>
