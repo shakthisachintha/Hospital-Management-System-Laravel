@@ -355,8 +355,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             <!-- /.box-footer -->
                                         </form>
                                     </div>
-
-                                    <li><a href="#"><i class="fa fa-fingerprint"></i> Change FingerPrint</a></li>
                                 </ul>
                             </div>
                             <!-- /.box-body -->

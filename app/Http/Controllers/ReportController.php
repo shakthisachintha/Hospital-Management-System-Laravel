@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 class ReportController extends Controller
@@ -26,16 +26,47 @@ class ReportController extends Controller
 
         $start_date = date('Y/m/00');
         $end_date = date('Y/m/31');
-        $no_of_workingdays=DB::table('attendances')->whereBetween('attendances.start',[$start_date,$end_date])->count(DB::raw('distinct start'));
-        $no_of_employees=DB::table('attendances')->whereBetween('attendances.start', [$start_date, $end_date])->count(DB::raw('DISTINCT user_id'));
-        $patient_count=DB::table('appointments')->count(DB::raw('distinct number'));
+        $no_of_workingdays=DB::table('attendances')
+                            ->whereBetween('attendances.start',[$start_date,$end_date])
+                            ->count(DB::raw('distinct start'));
+        $no_of_employees=DB::table('attendances')
+                            ->whereBetween('attendances.start', [$start_date, $end_date])
+                            ->count(DB::raw('DISTINCT user_id'));
+        $patient_count=DB::table('appointments')
+                            ->count(DB::raw('distinct number'));
         $avg_patient=ceil($patient_count/30);
 
-        $ward_count=DB::table('wards')->count(DB::raw('distinct ward_no'));
-        $bed_count=DB::table('wards')->sum('beds');
-        $inpatient_count=DB::table('inpatients')->whereBetween('created_at', [$start_date, $end_date])->count(DB::raw('discharged'));
-        $discharged_patinet_count=DB::table('inpatients')->where('discharged', '=', 'YES')->whereBetween('created_at', [$start_date, $end_date])->count(DB::raw('discharged'));
-        // dd($discharged_patinet_count);
+        $ward_count=DB::table('wards')
+                    ->count(DB::raw('distinct ward_no'));
+        $bed_count=DB::table('wards')
+                    ->sum('beds');
+        $inpatient_count=DB::table('inpatients')
+                        ->whereBetween('created_at', [$start_date, $end_date])
+                        ->count(DB::raw('discharged'));
+        $discharged_patinet_count=DB::table('inpatients')
+                                ->where('discharged', '=', 'YES')
+                                ->whereBetween('created_at', [$start_date, $end_date])
+                                ->count(DB::raw('discharged'));
+
+        $admindaycnt = DB::table('attendances')
+                        ->join('users','users.id','=','attendances.user_id')
+                        ->whereBetween('attendances.start', [$start_date, $end_date])
+                        ->where('users.user_type','=','admin')
+                        ->count(DB::raw('start'));
+
+        $doctordaycnt = DB::table('attendances')
+                        ->join('users', 'users.id', '=', 'attendances.user_id')
+                        ->whereBetween('attendances.start', [$start_date, $end_date])
+                        ->where('users.user_type', '=', 'doctor')
+                        ->count(DB::raw('start'));
+
+        $appointmentcnt = DB::table('appointments')
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count(DB::raw('id'));
+        $distinctappcnt = DB::table('appointments')
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count(DB::raw('distinct patient_id'));
+        $patientsecondarrival= $appointmentcnt- $distinctappcnt;
 
         return view('reports/monthly_static_report',[
             'title' => $user->name,
@@ -45,7 +76,12 @@ class ReportController extends Controller
             'wardcnt'=>$ward_count,
             'bedcnt' =>$bed_count,
             'inpcnt' =>$inpatient_count,
-            'dispcnt'=>$discharged_patinet_count
+            'dispcnt'=>$discharged_patinet_count,
+            'admindaycnt'=>$admindaycnt,
+            'doctordaycnt'=> $doctordaycnt,
+            'fa'=> $distinctappcnt,
+            'sa'=> $patientsecondarrival,
+            'total'=>$appointmentcnt
         ]);
     }
     public function view_out_patient_report(){

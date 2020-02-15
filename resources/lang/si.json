@@ -47,9 +47,35 @@
     "Notes of Admitting Officer":"ඇතුළත් කිරීමේ නිලධාරී - සටහන්",
     "Abstract of case by Medical officer":"වෛද්‍ය නිලධාරි විසින් රෝගියාගේ සාරාංශය",
     "Disease":"රෝගය",
-    "User ID":"රෝ",
-    "Reset User":"Reset User",
-    "Reset Any User Password To System Default":"Reset Any User Password To System Default",
-    "Your Password":"Your Password"
+    "User ID":"පරිශීලක හැඳුනුම් අංකය",
+    "Reset User":"පරිශීලකයා යළි පිහිටුවන්න",
+    "Reset Any User Password To System Default":"ඕනෑම පරිශීලක මුරපදයක් පද්ධති පෙරනිමියට නැවත සකසන්න",
+    "Your Password":"ඔබගේ මුරපදය",
+
+    "Wards":"වාට්ටු",
+    "Ward Management":"වාට්ටු කළමනාකරණය",
+    "Ward Number" : "වාට්ටු අංකය",
+    "Total Beds":"මුළු ඇඳන්",
+    "Free Beds":"නිදහස් ඇඳන්",
+    "Add New Ward":"නව වාට්ටුව එක් කරන්න",
+    "Add Ward":"වාට්ටුවක් එක් කරන්න",
+    "Doctor in-charge":"වාට්ටුව භාර වෛද්‍ය",
+
+    "Register New User":"නව පරිශීලකයෙකු ලියාපදිංචි කරන්න",
+    "Add a New User To The System":"පද්ධතියට නව පරිශීලකයෙකු එක් කරන්න",
+    "User Registration Form":"පරිශීලක ලියාපදිංචි කිරීමේ පෝරමය",
+    "Name Of The User":"පරිශීලකයාගේ නම",
+    "Email Address":"විද්යුත් තැපැල් ලිපිනය",
+    "Password":"මුරපදය",
+    "Confirm Password":"මුරපදය තහවුරු කරන්න",
+    "Contact No :":"දුරකථන අංකය",
+    "User Type":"පරිශීලක වර්ගය",
+    "Default Password 12345678": "පෙරනිමි මුරපදය 12345678",
+    "Fingerprint ID":"ඇඟිලි සලකුණු හැඳුනුම් අංකය",
+    "Register Fingerprint":"ඇඟිලි සලකුණු ලියාපදිංචි කරන්න",
+    "Register New Fingerprint For A New User":"නව පරිශීලකයෙකු සඳහා නව ඇඟිලි සලකුණු ලියාපදිංචි කරන්න",
+    "Register New Fingerprint":"නව ඇඟිලි සලකුණු ලියාපදිංචි කරන්න"
+
+
 
 }

@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"Register New User")
-@section('content_description',"Add a New User To The System")
+@section('content_title',__("Register New User"))
+@section('content_description',__("Add a New User To The System"))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -29,7 +29,7 @@
 
             <div style="padding:10px;margin-top:4.5vh !important" class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">User Registration Form</h3>
+                    <h3 class="box-title">{{__('User Registration Form')}}</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -37,7 +37,7 @@
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name">Name Of The User</label>
+                            <label for="name">{{__('Name Of The User')}}</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                                 name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             @error('name')
@@ -47,7 +47,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
+                            <label for="email">{{__('Email Address')}}</label>
                             <input required id="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" required autocomplete="email">
@@ -58,12 +58,12 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">{{__('Password')}}</label>
                             <input required value="12345678" readonly id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
                                 autocomplete="new-password">
                             <span class="text-primary" role="alert">
-                                <strong>Default Password 12345678</strong>
+                                <strong>{{__('Default Password 12345678')}}</strong>
                             </span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -73,13 +73,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm">Confirm Password</label>
+                            <label for="password-confirm">{{__('Confirm Password')}}</label>
                             <input required readonly id="password-confirm" type="password" class="form-control"
                                 name="password_confirmation" value="12345678" required autocomplete="new-password">
                         </div>
 
                         <div class="form-group">
-                            <label>Contact No : </label>
+                            <label>{{__('Contact No :')}} </label>
                             <input required type="text" class="form-control" name="contactno"
                                 placeholder="Enter Your Contact No...">
                         </div>
@@ -102,7 +102,7 @@
 
 
 
-                            <button type="submit" class="pull-right btn btn-primary">Register</button>
+                            <button type="submit" class="pull-right btn btn-primary">{{__('Register')}}</button>
 
                         </div>
 
