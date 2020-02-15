@@ -3,7 +3,6 @@
 @section('title', $title)
 
 @section('content_title',"General Statistics & Analytics For Year ".$year)
-{{-- @section('content_description',"General Analysis About Daily Activites") --}}
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -30,7 +29,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Out Patients</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-number">{{$out_patients_this_month}}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -43,7 +42,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">In Patients</span>
-                <span class="info-box-number">410</span>
+                <span class="info-box-number">{{$in_patients_this_month}}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -56,7 +55,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">New Patients</span>
-                <span class="info-box-number">13,648</span>
+                <span class="info-box-number">{{$new_patient_regs_this_month}}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -69,7 +68,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Total Checkings</span>
-                <span class="info-box-number">93,139</span>
+                <span class="info-box-number">{{$total_checkings_this_month}}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -96,9 +95,9 @@
                             <label for="year">Select Different Year</label>
                             <div class="input-group input-group">
                                 <select class="form-control" name="year" id="year">
-                                    <option value="2018">2018</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2020">2020</option>
+                                    <option @if($year==2018) selected @endif value="2018">2018</option>
+                                    <option @if($year==2019) selected @endif value="2019">2019</option>
+                                    <option @if($year==2020) selected @endif value="2020">2020</option>
                                 </select>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-info btn-flat">Fetch <i class="fas fa-arrow-right"></i></button>
@@ -149,17 +148,45 @@ var OutPatientData = {
         {
             label: "Male",
             backgroundColor: "RGBA(0,83,156,0.81)",
-            data: [3,7,4]
+            data: [
+                @php
+                use App\Appointment;
+                $i=1;
+                while($i<13){
+                    echo (Appointment::getMonthCount($year,$i,'Male','OUT'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         },
         {
             label: "Female",
             backgroundColor: "RGBA(206,91,120,0.51)",
-            data: [4,3,5]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Appointment::getMonthCount($year,$i,'Female','OUT'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         },
         {
             label: "All",
             backgroundColor: "RGBA(63,191,88,0.82)",
-            data: [7,2,6]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Appointment::getTotalCount($year,$i,'OUT'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         }
     ]
 };
@@ -218,17 +245,44 @@ var InPatientData = {
         {
             label: "Male",
             backgroundColor: "RGBA(0,83,156,0.81)",
-            data: [3,7,4]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Appointment::getMonthCount($year,$i,'Male','IN'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         },
         {
             label: "Female",
             backgroundColor: "RGBA(206,91,120,0.51)",
-            data: [4,3,5]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Appointment::getMonthCount($year,$i,'Female','IN'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         },
         {
             label: "All",
             backgroundColor: "RGBA(63,191,88,0.82)",
-            data: [7,2,6]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Appointment::getTotalCount($year,$i,'IN'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         }
     ]
 };
@@ -288,24 +342,52 @@ var newRegsMonthlyStat = {
         {
             label: "Male",
             backgroundColor: "RGBA(0,83,156,0.81)",
-            data: [3,7,4]
+            data: [
+                @php
+                use App\Patients;
+                $i=1;
+                while($i<13){
+                    echo (Patients::regsMonth($year,$i,'Male'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         },
         {
             label: "Female",
             backgroundColor: "RGBA(206,91,120,0.51)",
-            data: [4,3,5]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Patients::regsMonth($year,$i,'Female'));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         },
         {
             label: "All",
             backgroundColor: "RGBA(63,191,88,0.82)",
-            data: [7,2,6]
+            data: [
+                @php
+                $i=1;
+                while($i<13){
+                    echo (Patients::totalRegs($year,$i));
+                    echo (",");
+                    $i++;
+                }
+                @endphp
+            ]
         }
     ]
 };
 
 var newRegsMonthlyStat = new Chart(ctx, {
     type: 'bar',
-    data: InPatientData,
+    data: newRegsMonthlyStat,
     options: {
         title:{
             text:"Monthly New Patient Registrations",
