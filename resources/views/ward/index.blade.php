@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"Wards")
-@section('content_description',"Ward Management")
+@section('content_title',__("Wards"))
+@section('content_description',__("Ward Management"))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -34,7 +34,7 @@
         @endif
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Add New Ward</h3>
+                <h3 class="box-title">{{__('Add New Ward')}}</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -86,8 +86,8 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button class="btn btn-default" type="reset">Cancel</button>
-                    <button class="btn btn-info pull-right" type="submit">Add Ward</button>
+                    <button class="btn btn-default" type="reset">{{__('Cancel')}}</button>
+                    <button class="btn btn-info pull-right" type="submit">{{__('Add Ward')}}</button>
                 </div>
                 <!-- /.box-footer -->
             </form>
