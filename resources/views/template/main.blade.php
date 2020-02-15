@@ -430,15 +430,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                     href="{{route('searchPatient')}}"></i><i class="fas fa-id-card"
                                         aria-hidden="true"></i> Search Patient</a>
                             </li>
-                            {{--register in patient--}}
+                         {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
                                     href="{{route('register_in_patient_view')}}"><i 
                                     class="fas fa-user-plus"
                                         area-hidden="true"></i><span> Register In Patient</span></a>
                             </li>
-                            {{--Discharge in patient--}} 
+                            {{--discharge in patient--}} 
                             <li class="{{Active::checkRoute('discharge_inpatient')}}"><a 
-                                href="/dischargeInpatient"><i class="fa fa-hospital-o" area-hidden="true">
+                                href="{{route('discharge_inpatient')}}"><i class="fa fa-hospital-o" area-hidden="true">
                                 </i><span>Discharge In Patient</span></a>
                             </li>           
                         </ul>
