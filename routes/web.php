@@ -38,6 +38,7 @@ Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserContro
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
 Route::post('/changecontactnumber', ['as' => 'changecontactnumber', 'uses' => 'UserController@changecontactnumber'])->middleware('auth');
 Route::post('/changeemail', ['as' => 'changeemail', 'uses' => 'UserController@changeemail'])->middleware('auth');
+Route::post('/edituserprofile', ['as' => 'editprofile', 'uses' => 'UserController@editprofile'])->middleware('auth');
 
 //Make channels Routes
 Route::post('/channel', ['as' => 'makechannel', 'uses' => 'PatientController@getPatientData'])->middleware('auth', 'staff', 'lang');

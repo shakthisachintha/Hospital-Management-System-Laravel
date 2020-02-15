@@ -31,22 +31,31 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
 
-                    <li class="@if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn'))) active @endif">
+                    <li class="@if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit'))) active @endif">
                         <a href="#activity" data-toggle="tab"
-                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')) false @else true @endif">Activity Log</a>
+                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')||session('successedit')) false @else true @endif">Activity Log</a>
                     </li>
 
-                    <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">My Attendence</a></li>
-
-                    <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn') ) active @endif">
+                    <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit') ) active @endif">
                         <a href="#settings" data-toggle="tab"
-                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')) true @else false @endif">Settings</a>
+                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')||session('successedit')) true @else false @endif">Settings</a>
                     </li>
 
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane @if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn'))) active @endif" id="activity">
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <div class="tab-pane @if (!(session('success')||session('successmail') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit'))) active @endif" id="activity">
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -98,108 +107,60 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </div>
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane" id="attendance">
-                        <section class="content">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-xs-9">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-aqua"><i class="fa fa-envelope"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Messages</span>
-                                            <span class="info-box-number">1,410</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-9">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-green"><i class="fa fa-flag"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Bookmarks</span>
-                                            <span class="info-box-number">410</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-xs-9">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-yellow"><i class="fa fa-file"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Uploads</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-xs-9">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-red"><i class="fa fa-star"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Likes</span>
-                                            <span class="info-box-number">93,139</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-
-                                <div class="row">
-
-                                </div>
-
-                                <!-- /.col -->
-                        </section>
-                    </div>
-                    <!-- /.tab-pane -->
-
-                    <div class="tab-pane @if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn') ) active @endif" id="settings">
+                    <div class="tab-pane @if (session('success') ||session('successmail') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit') ) active @endif" id="settings">
                         <div class="box box-solid">
                             <div class="box-header with-border">
-                                <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="@if (session('successcn')) true @else false @endif">
+                                <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="@if (session('successcn')||session('successmail')||session('successedit')) true @else false @endif">
                                     <h3 class="box-title"><i class="fa fa-cogs"></i> General</h3>
                                 </a>
                             </div>
 
-                            <div id="collapseOne" class="panel-collapse @if (session('successcn') ) collapse in @else collapse @endif" aria-expanded="@if (session('successpw')) true @else false @endif">
+                            <div id="collapseOne" class="panel-collapse @if (session('successcn')||session('successmail')||session('successedit') ) collapse in @else collapse @endif" aria-expanded="@if (session('successpw')||session('successmail')) true @else false @endif">
                                 <ul class="nav nav-pills nav-stacked">
 
                                     <li><a data-toggle="collapse" href="#editprofile" class="collapsed"
                                             aria-expanded="false"><i class="fa fa-signature"></i> Edit Profile</a></li>
 
                                     <div id="editprofile"
-                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
-                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
-                                        <form>
+                                        class="panel-collapse @if (session('successedit')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('successedit')) true @else false @endif">
+
+                                        @if ($message = Session::get('successedit'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                        @endif
+
+                                        <form action="{{route('editprofile')}}" method="POST">
                                             @csrf
-                                            <div class="form-group row">
-                                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" readonly class="form-control-plaintext"
-                                                        id="staticEmail" value="email@example.com">
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="">Full Name</label>
+                                                <input type="text" name="name" class="form-control" id="" placeholder="enter name">
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="inputPassword"
-                                                    class="col-sm-2 col-form-label">Password</label>
-                                                <div class="col-sm-10">
-                                                    <input type="password" class="form-control" id="inputPassword"
-                                                        placeholder="Password">
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="">Education</label>
+                                                <input type="text" name="education" class="form-control" id="" placeholder="enter details">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="">Location</label>
+                                                <input type="text" name="location" class="form-control" id="" placeholder="enter details">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Skills</label>
+                                                <input type="text" name="skills" class="form-control" id="" placeholder="enter details">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Special Notes</label>
+                                                <input type="text" name="notes" class="form-control" id="" placeholder="enter details">
+                                            </div>
+
                                             <div class="box-footer">
                                                 <button type="reset" class="btn btn-default">Cancel</button>
-                                                <button type="submit" class="btn btn-danger pull-right">Update</button>
+                                                <button type="submit" class="btn btn-info pull-right">Update</button>
                                             </div>
                                             <!-- /.box-footer -->
+
                                         </form>
 
                                     </div>
@@ -209,27 +170,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             Number</a></li>
 
                                     <div id="changecontactno"
-                                        class="panel-collapse @if (session('errors') || session('successcn')) collapse in @else collapse @endif"
-                                        aria-expanded="@if (session('errors') || session('successcn')) true @else false @endif">
+                                        class="panel-collapse @if (session('successcn')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('successcn')) true @else false @endif">
 
                                         @if ($message = Session::get('successcn'))
                                         <div class="alert alert-success alert-block">
                                             <button type="button" class="close" data-dismiss="alert">×</button>
                                             <strong>{{ $message }}</strong>
                                         </div>
-
                                         @endif
 
-                                        @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <strong>Whoops!</strong> There were some problems with your input.
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        @endif
+
 
                                         <form action="{{route('changecontactnumber')}}" method="POST">
                                             @csrf
@@ -258,8 +209,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             aria-expanded="false"><i class="fa fa-envelope"></i> Change email</a></li>
 
                                     <div id="changeemail"
-                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
-                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+                                        class="panel-collapse @if (session('success')||session('successmail')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('success')||session('successmail')) true @else false @endif">
+
+                                        @if ($message = Session::get('successmail'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+
+                                        @endif
+
                                         <form action="{{route('changeemail')}}" method="POST">
                                             @csrf
                                             <div class="form-group row">
@@ -289,21 +249,21 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                         <div class="box box-solid">
                             <div class="box-header with-border">
                                 <a data-toggle="collapse" href="#collapseTwo" class=""
-                                    aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
+                                    aria-expanded="@if (session('success') || session('errorpw') || session('successpw')) true @else false @endif">
                                     <h3 class="box-title"><i class="fa fa-user-shield"></i> Security and Login</h3>
                                 </a>
                             </div>
                             <div id="collapseTwo"
-                                class="panel-collapse @if (session('errors') || session('success') ||session('errorpw') || session('successpw') ) collapse in @else collapse @endif"
-                                aria-expanded="@if (session('errors') || session('success') || session('errorpw') || session('successpw')) true @else false @endif">
+                                class="panel-collapse @if (session('success') ||session('errorpw') || session('successpw') ) collapse in @else collapse @endif"
+                                aria-expanded="@if (session('success') || session('errorpw') || session('successpw')) true @else false @endif">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a data-toggle="collapse" href="#changeprofilepic" class="collapsed"
                                             aria-expanded="false"><i class="fa fa-camera"></i> Change Profile
                                             Picture</a></li>
 
                                     <div id="changeprofilepic"
-                                        class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
-                                        aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
+                                        class="panel-collapse @if (session('success')) collapse in @else collapse @endif"
+                                        aria-expanded="@if (session('success')) true @else false @endif">
 
                                         @if ($message = Session::get('success'))
                                         <div class="alert alert-success alert-block">
@@ -313,16 +273,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                         <img src="images/{{ Session::get('image') }}">
                                         @endif
 
-                                        @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <strong>Whoops!</strong> There were some problems with your input.
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        @endif
 
                                         <!-- form start -->
                                         <form action="{{ route('change_propic') }}" method="POST"
@@ -349,17 +299,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                     <div id="changepw"
                                         class="panel-collapse @if (session('errorpw') || session('successpw')) collapse in @else collapse @endif"
                                         aria-expanded="@if (session('errorpw') || session('successpw')) true @else false @endif">
-
-
-                                        @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        @endif
 
 
                                         @if (session('errorpw'))
@@ -476,32 +415,31 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
                     <p class="text-muted">
-                        B.S. in Computer Science from the University of Tennessee at Knoxville
+                        {{$education}}
                     </p>
 
                     <hr>
 
                     <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-                    <p class="text-muted">Malibu, California</p>
+                    <p class="text-muted">{{$location}}</p>
 
                     <hr>
 
-                    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+                    <strong><i class="fa fa-pencil-alt margin-r-5"></i> Skills</strong>
 
-                    <p>
-                        <span class="label label-danger">UI Design</span>
-                        <span class="label label-success">Coding</span>
-                        <span class="label label-info">Javascript</span>
-                        <span class="label label-warning">PHP</span>
-                        <span class="label label-primary">Node.js</span>
-                    </p>
+                        <li><span class="label label-danger">Communication Skills</span></li>
+                        <li><span class="label label-success">Emotional Intelligence</span></li>
+                        <li><span class="label label-info">Problem-Solving Skills</span></li>
+                        <li><span class="label label-warning">Attention to Detail</span></li>
+                        <li><span class="label label-primary">Decision-Making Skills</span></li>
+                        <li>{{$skills}}</li>
 
                     <hr>
 
-                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+                    <strong><i class="fas fa-sticky-note margin-r-5"></i> Notes</strong>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                    <p>{{$notes}}</p>
                 </div>
                 <!-- /.box-body -->
 
