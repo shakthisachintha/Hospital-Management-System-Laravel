@@ -21,6 +21,7 @@
 
 <style>
     @media print {
+
         .no-print,
         .no-print * {
             display: none !important;
@@ -34,14 +35,15 @@
         <div class="col-md-12">
             <!-- Horizontal Form -->
             <div class="box box-info">
-                <div class="box-header with-border no-print">
+                <div class="box-header with-border no-print ">
                     <h3 class="box-title">Monthly Statics Reports</h3>
                 </div>
                 <!-- /.box-header -->
-                <!-- form start -->
-                <form class="form-horizontal">
 
-                    <div class="box-body">
+                <!-- form start -->
+                <form class="form-horizontal" >
+
+                    <div class="box-body" >
 
                         <h2 align="center">Ayruvedic Department</h2>
                         <h4 align="center">Monthly Statics Report</h4>
@@ -63,28 +65,43 @@
                         <br>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">OPD opened dates : {{$nodays}}</label>
+                            <label class="col-sm-5 control-label">OPD opened dates : <input readonly
+                                    style="border: 0px none" type="text" value="{{$nodays}}"></label>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Employees Total Atendance : {{$noemp}}</label>
+                            <label class="col-sm-3 control-label">Patients Total Atendance :- </label>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">AVG of daily OPD patients : {{$avgpatient}}</label>
+                            <label class="col-sm-5 control-label">First Arrival : <input readonly style="border: 0px none"
+                                    type="text" value="{{$fa}}"></label>
                         </div>
-
-                        {{--  <div class="form-group">
-                            <label class="col-sm-3 control-label">Value of Issued medicine :</label>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">Second Arrival : <input readonly style="border: 0px none"
+                                    type="text" value="{{$sa}}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">Total : <input readonly style="border: 0px none"
+                                    type="text" value="{{$total}}"></label>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">AVG price for one patient</label>
+                            <label class="col-sm-5 control-label">AVG of daily OPD patients : <input readonly
+                                    style="border: 0px none" type="text" value="{{$avgpatient}}"></label>
+                        </div>
 
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="avg for one patient">
-                            </div>
-                        </div>  --}}
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">Value of Issued medicine : <input
+                                    style="border: 0px none" type="text" placeholder="enter total value"></label>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">AVG price for one patient : <input
+                                    style="border: 0px none" type="text"
+                                    placeholder="avg value for one patient"></label>
+                        </div>
                         <br>
                         <br>
 
@@ -94,9 +111,11 @@
                             <br>
                             <br>
                         </div>
+
                         <div class="row">
-                            <div class="col-sm-12">
-                                <table>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">Description</th>
@@ -104,32 +123,32 @@
                                             <th scope="col">Day 05</th>
                                             <th scope="col">Day 07</th>
                                             <th scope="col">Day 06</th>
-                                            <th scope="col">Day</th>
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>No. of patients from OPD</th>
-                                            <td><input type="text" name="no_patient_day3"></td>
-                                            <td><input type="text" name="no_patient_day5"></td>
-                                            <td><input type="text" name="no_patient_day7"></td>
-                                            <td><input type="text" name="no_patient_day6"></td>
-                                            <td><input type="text" name="no_patient_day"></td>
-                                            <td><input type="text" name="no_patient_total"></td>
+                                            <th scope="row">No. of patients from OPD</th>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" >
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>No. of OPD days</th>
-                                            <td><input type="text" name="no_opd_day3"></td>
-                                            <td><input type="text" name="no_opd_day5"></td>
-                                            <td><input type="text" name="no_opd_day7"></td>
-                                            <td><input type="text" name="no_opd_day6"></td>
-                                            <td><input type="text" name="no_opd_day"></td>
-                                            <td><input type="text" name="no_opd_day_total"></td>
+                                            <th scope="row">No. of OPD days</th>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" ></td>
+                                            <td><input style="border: 0px none" type="text" >
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-sm-1"></div>
                         </div>
                         <br>
                         <br>
@@ -138,64 +157,95 @@
                             <h4>Inpatient Department</h4>
                         </center>
                         <br>
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">No of wards : {{$wardcnt}}</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">No of beds in wards : {{$bedcnt}}</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">No of in-patients in this month : {{$inpcnt}}</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">No of in-patients discharged(this month) : {{$dispcnt}}</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">No of in-patient dates : </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">AVG no of days that in-patient spent in the hospital : </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Monthly revenue for the medicines issued for the in-patients : </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Revenue for the medicines issued for one in-patient day : </label>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-6 control-label">No of wards : <input readonly
+                                        style="border: 0px none" type="text" value="{{$wardcnt}}"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-6 control-label">No of beds in wards : <input readonly
+                                        style="border: 0px none" type="text" value="{{$bedcnt}}"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-6 control-label">No of in-patients in this month : <input readonly
+                                        style="border: 0px none" type="text" value="{{$inpcnt}}"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-6 control-label">No of in-patients discharged(this month) : <input
+                                        readonly style="border: 0px none" type="text" value="{{$dispcnt}}"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-6 control-label">No of in-patient dates : <input readonly
+                                        style="border: 0px none" type="text" value="{{$wardcnt}}"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-7 control-label">AVG no of days that in-patient spent in the
+                                    hospital : <input readonly style="border: 0px none" type="text"
+                                        value="{{$wardcnt}}"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-7 control-label">Monthly revenue for the medicines issued for the
+                                    in-patients : <input style="border: 0px none" type="text"
+                                        placeholder="enter value"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-7 control-label">Revenue for the medicines issued for one
+                                    in-patient day : <input style="border: 0px none" type="text"
+                                        placeholder="enter value"></label>
+                            </div>
                         </div>
                         <br>
                         <br>
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <table>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-2 no-print"><button type="button" class="btn btn-success"
+                                    onclick="myFunction()">Add Row</button></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <table class="table table-bordered" id="myTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">The type of drug produced</th>
-                                            <th scope="col">Drugs produced in the institute</th>
-                                            <th scope="col">Drugs received from othe institutes</th>
-                                            <th scope="col">Drugs received from Pharmaceutical Corporation</th>
-                                            <th scope="col">Total Medicines Available</th>
+                                            <th>type of drug produced</th>
+                                            <th colspan="2">Drugs produced in the institute</th>
+                                            <th colspan="2">Drugs received from othe institutes</th>
+                                            <th colspan="2">Drugs received from Pharmaceutical Corporation</th>
+                                            <th colspan="2">Total Medicines Available</th>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th>Quentity</th>
+                                            <th>Value</th>
+                                            <th>Quentity</th>
+                                            <th>Value</th>
+                                            <th>Quentity</th>
+                                            <th>Value</th>
+                                            <th>Quentity</th>
+                                            <th>Value</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <tr>
-                                            <td><input type="text" name="no_patient_day3"></td>
-                                            <td><input type="text" name="no_patient_day5"></td>
-                                            <td><input type="text" name="no_patient_day7"></td>
-                                            <td><input type="text" name="no_patient_day6"></td>
-                                            <td><input type="text" name="no_patient_day"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
+                                            <td><input style="border: 0px none" type="text"></td>
                                         </tr>
-                                        <tr>
-                                            <td><input type="text" name="no_opd_day3"></td>
-                                            <td><input type="text" name="no_opd_day5"></td>
-                                            <td><input type="text" name="no_opd_day7"></td>
-                                            <td><input type="text" name="no_opd_day6"></td>
-                                            <td><input type="text" name="no_opd_day"></td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-sm-1"></div>
                         </div>
                         <br>
                         <br>
@@ -207,18 +257,19 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Total value for the medicines which bought this
-                                month</label>
+                                month </label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="total value for medicines">
+                                <input type="text" style="border: 0px none" class="form-control"
+                                    placeholder="total value for medicines">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Total value for the medicines which got as
-                                donations</label>
+                                donations </label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"
+                                <input type="text" style="border: 0px none" class="form-control"
                                     placeholder="total value for medicines as donations">
                             </div>
                         </div>
@@ -234,7 +285,8 @@
                                 all grades)</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="number of employees">
+                                <input type="text" style="border: 0px none" class="form-control"
+                                    placeholder="number of employees">
                             </div>
                         </div>
 
@@ -242,7 +294,8 @@
                             <label class="col-sm-3 control-label">Number of employees served for this month</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Number of employees">
+                                <input type="text" style="border: 0px none" class="form-control"
+                                    placeholder="Number of employees">
                             </div>
                         </div>
                         <div class="form-group">
@@ -250,7 +303,8 @@
                                 month(in all grades)</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Number of vacancies available">
+                                <input type="text" style="border: 0px none" class="form-control"
+                                    placeholder="Number of vacancies available">
                             </div>
                         </div>
                         <div class="form-group">
@@ -258,32 +312,41 @@
                                 employees)</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Excess number of workers">
+                                <input type="text" style="border: 0px none" class="form-control"
+                                    placeholder="Excess number of workers">
                             </div>
                         </div>
                         <label>Number of days of duty in the field within the month :-</label>
                         <br><br>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Head of the institute</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Number of days of duty">
-                            </div>
+                            <label class="col-sm-5 control-label">Head of the institute :
+                                <input type="text" style="border: 0px none" readonly value="{{$admindaycnt}}">
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Other medical officers</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Number of days of duty">
-                            </div>
+                            <label class="col-sm-5 control-label">Other medical officers :
+                                <input type="text" style="border: 0px none" readonly value="{{$doctordaycnt}}">
+                            </label>
                         </div>
 
 
-                    </div>
-                    <br>
-                    <br>
 
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <p>I certified that the above statical reports and informations are true</p>
+                                <div class="pull-right">
+                                    <p>.............................</p>
+                                    <p>Certified By</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                    </div>
 
                     <!-- /.box-body -->
-                    <div class="box-footer">
+                    <div class="box-footer no-print">
                         <button action="refresh()" type="submit" class="btn btn-default no-print">Cancel</button>
                         <button onclick="window.print()" class="float-right btn btn-warning no-print">Print <i
                                 class="fas fa-print"></i></button>
@@ -297,6 +360,33 @@
     </div>
     <!-- /.row -->
 
-</section>
 
+</section>
+<script>
+    function myFunction() {
+                var table = document.getElementById("myTable");
+                var row = table.insertRow(2);
+
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                var cell6 = row.insertCell(5);
+                var cell7 = row.insertCell(6);
+                var cell8 = row.insertCell(7);
+                var cell9 = row.insertCell(8);
+
+                var input="<input style='border: 0px none' type='text'>";
+                cell1.innerHTML = input;
+                cell2.innerHTML = input;
+                cell3.innerHTML = input;
+                cell4.innerHTML = input;
+                cell5.innerHTML = input;
+                cell6.innerHTML = input;
+                cell7.innerHTML = input;
+                cell8.innerHTML = input;
+                cell9.innerHTML = input;
+            }
+</script>
 @endsection

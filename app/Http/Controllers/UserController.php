@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Contracts\Validation\ValidationException;
 use Illuminate\Contracts\Validation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendNotices;
-use DB;
+use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Environment\Console;
 
 // require 'vendor/autoload.php';
