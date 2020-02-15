@@ -62,7 +62,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    @yield('custom_style_sheets') 
+    @yield('custom_style_sheets')
     <link rel="stylesheet" href="{{ URL::asset('/css/bsutility.css') }}">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -74,7 +74,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
     {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
-        @yield('custom_styles') 
+        @yield('custom_styles')
         .spinner {
             margin: 0;
             position: absolute;
@@ -437,11 +437,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                     href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
                                         area-hidden="true"></i><span> Register In Patient</span></a>
                             </li>
-                            {{--discharge in patient--}} 
-                            <li class="{{Active::checkRoute('discharge_inpatient')}}"><a 
+                            {{--discharge in patient--}}
+                            <li class="{{Active::checkRoute('discharge_inpatient')}}"><a
                                 href="{{route('discharge_inpatient')}}"><i class="fa fa-hospital-o" area-hidden="true">
                                 </i><span>Discharge In Patient</span></a>
-                            </li>           
+                            </li>
                         </ul>
                     </li>
                     {{--create channel--}}
@@ -627,6 +627,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    
     <!-- page script -->
 
     @yield('optional_scripts')
