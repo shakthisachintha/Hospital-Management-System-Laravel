@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="doctor">{{__('Free Beds')}}</label>
+                        <label class="col-sm-2 control-label" for="doctor">{{__('Doctor in-charge')}}</label>
 
                         <div class="col-sm-10">
                             <select class="form-control" name="doctor" id="doctor">

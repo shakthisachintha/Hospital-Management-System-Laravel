@@ -538,9 +538,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <li class="{{Active::checkRoute('clinic_reports')}}"><a
                                     href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
-                            <li class="{{Active::checkRoute('mob_clinic_report')}}"><a
+                            {{--  <li class="{{Active::checkRoute('mob_clinic_report')}}"><a
                                     href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
-                                        aria-hidden="true"></i> Mobile Clinic Report</a></li>
+                                        aria-hidden="true"></i> Mobile Clinic Report</a></li>  --}}
                             <li class="{{Active::checkRoute('mon_stat_report')}}"><a
                                     href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
@@ -628,6 +628,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     
+
     <!-- page script -->
 
     @yield('optional_scripts')

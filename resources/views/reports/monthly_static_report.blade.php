@@ -70,8 +70,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">Employees Total Atendance : <input readonly
-                                    style="border: 0px none" type="text" value="{{$noemp}}"></label>
+                            <label class="col-sm-3 control-label">Patients Total Atendance :- </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">First Arrival : <input readonly style="border: 0px none"
+                                    type="text" value="{{$fa}}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">Second Arrival : <input readonly style="border: 0px none"
+                                    type="text" value="{{$sa}}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">Total : <input readonly style="border: 0px none"
+                                    type="text" value="{{$total}}"></label>
                         </div>
 
                         <div class="form-group">

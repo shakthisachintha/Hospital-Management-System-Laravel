@@ -60,6 +60,14 @@ class ReportController extends Controller
                         ->where('users.user_type', '=', 'doctor')
                         ->count(DB::raw('start'));
 
+        $appointmentcnt = DB::table('appointments')
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count(DB::raw('id'));
+        $distinctappcnt = DB::table('appointments')
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count(DB::raw('distinct patient_id'));
+        $patientsecondarrival= $appointmentcnt- $distinctappcnt;
+
         return view('reports/monthly_static_report',[
             'title' => $user->name,
             'noemp'=> $no_of_employees,
@@ -70,7 +78,10 @@ class ReportController extends Controller
             'inpcnt' =>$inpatient_count,
             'dispcnt'=>$discharged_patinet_count,
             'admindaycnt'=>$admindaycnt,
-            'doctordaycnt'=> $doctordaycnt
+            'doctordaycnt'=> $doctordaycnt,
+            'fa'=> $distinctappcnt,
+            'sa'=> $patientsecondarrival,
+            'total'=>$appointmentcnt
         ]);
     }
     public function view_out_patient_report(){
