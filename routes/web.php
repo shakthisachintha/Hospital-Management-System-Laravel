@@ -37,6 +37,8 @@ Route::get('/lang/{lan}', ['as' => 'lang', 'uses' => 'HomeController@setLocale']
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@changeUserPassword'])->middleware('auth');
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
 Route::post('/changecontactnumber', ['as' => 'changecontactnumber', 'uses' => 'UserController@changecontactnumber'])->middleware('auth');
+Route::post('/changeemail', ['as' => 'changeemail', 'uses' => 'UserController@changeemail'])->middleware('auth');
+Route::post('/edituserprofile', ['as' => 'editprofile', 'uses' => 'UserController@editprofile'])->middleware('auth');
 
 //Make channels Routes
 Route::post('/channel', ['as' => 'makechannel', 'uses' => 'PatientController@getPatientData'])->middleware('auth', 'staff', 'lang');
@@ -50,8 +52,10 @@ Route::post('/patientregister', ['as' => 'patient_register', 'uses' => 'PatientC
 Route::get('/inpatientregister', ['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth', 'staff', 'lang');
 Route::post('/inpatientregister2', ['as' => 'regInPatient', 'uses' => 'PatientController@regInPatientValid'])->middleware('auth', 'staff', 'lang');
 Route::post('/inpatientregister3', ['as' => 'save_inpatient', 'uses' => 'PatientController@store_inpatient'])->middleware('auth', 'staff', 'lang');
-//Route::get('/dischargeInpatient', ['uses' => 'PatientController@discharge_inpatient','as' => 'discharge_inpatient'])->middleware('auth', 'staff', 'lang');
-Route::get('dischargeInpatient', 'PatientController@discharge_inpatient')->name('Patient.discharge_inpatient')->middleware('auth', 'staff', 'lang');
+Route::get('/dischargeInpatient', ['as' => 'discharge_inpatient','uses' => 'PatientController@discharge_inpatient'])->middleware('auth', 'staff', 'lang');
+Route::post('/dischargeInpatient2', ['as' => 'disInPatient', 'uses' => 'PatientController@disInPatientValid'])->middleware('auth', 'staff', 'lang');
+Route::post('/dischargeInpatient3', ['as' => 'save_disinpatient', 'uses' => 'PatientController@store_disinpatient'])->middleware('auth', 'staff', 'lang');
+
 Route::get('getDoctor', 'PatientController@getDoctor');
 
 // Issue Medicine(Pharmacist Routes)

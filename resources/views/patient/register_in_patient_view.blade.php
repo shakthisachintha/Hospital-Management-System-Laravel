@@ -197,15 +197,11 @@
                     </div>
                 </div>
             </div>
-        {{-- </form> --}}
 
 
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Ward Registration Form')}}</h3>
         </div>
-
-        {{-- <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
-            {{csrf_field()}} --}}
             <div class="box-body">
                 <div class="form-group">
 
@@ -254,8 +250,7 @@
             <h3 class="box-title">{{__('Admitting Officer - Notes')}}</h3>
         </div>
 
-        {{-- <form method="post" action="{{ route('save_inpatient') }}" class="form-horizontal">
-            {{csrf_field()}} --}}
+        
             <div class="box-body">
                 <div class="form-group">
                     <label for="dis1" class="col-sm-2 control-label">{{__('Disease')}}</label>
@@ -306,7 +301,7 @@
 
 
 
-<div class="box box-info" id="reginpatient3">
+<div class="box box-info" id="reginpatient1">
     <div class="box-header with-border">
         <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
     </div>
@@ -330,23 +325,6 @@
     </div>
     <!-- /.box-footer -->
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script>
@@ -385,7 +363,7 @@
                         $("#patient_id").val(inp.id);
 
                         $("#reginpatient2").slideDown(1000);
-                        $("#reginpatient3").slideUp(1000);
+                        $("#reginpatient1").slideUp(1000);
                        
                     }else{
                         console.log('not found');
@@ -397,15 +375,6 @@
                 alert("Please Enter a Valid Registration Number!");
             }    
     }
-   
-    // function setdate(){
-    //         var today = new Date();
-    //         var dd = String(today.getDate()).padStart(2, '0');
-    //         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    //         var yyyy = today.getFullYear();
-    //         today =  dd+ '-'+ mm  + '-' + yyyy;
-    //         document.getElementById("today").innerHTML=today;
-    //     }
 
 </script>
 

@@ -422,6 +422,51 @@ class PatientController extends Controller
         return view('patient.discharge_inpatient_view', ['title' => "Discharge Inpatient"]);
     }
 
+    public function disInPatientValid(Request $request)
+    {
+        $pNum = $request->pNum;
+        $inpatient = DB::table('patients')->join('inpatients', 'patients.id', '=', 'inpatients.patient_id')->select('inpatients.patient_id as id','patients.name as name','patients.address as address','patients.telephone as tel', 'inpatients.discharged as dis')->whereRaw(DB::Raw("inpatients.patient_id='$pNum' and inpatients.discharged='NO'"))->first();
+
+        if ($inpatient) {
+
+            return response()->json([
+                'exist' => true,
+                'name' => $inpatient->name,
+                'address' => $inpatient->address,
+                'telephone' => $inpatient->tel,
+                'id' => $inpatient->id
+            ]);
+        } else {
+            return response()->json([
+                'exist' => false,
+            ]);
+        }
+    }
+
+    public function store_disinpatient(Request $request)
+    {
+        $pid=$request->reg_pid;
+        $test3=Inpatient::where('patient_id',$pid)->first();
+        // $test->discharged_date=;
+        $timestamp = now();
+        $test3->discharged='YES';
+        $test3->discharged_date=$timestamp;
+        $test3->description=$request->reg_medicalofficer1;
+        $test3->discharged_officer=$request->reg_medicalofficer2;
+
+        $test3->save();
+
+        // increment bed count by 1
+        $wardNo=$test3->ward_id;
+        $getFB=Ward::where('id',$wardNo)->first();
+        $incre=1;
+        $newFB=$getFB->free_beds + $incre;
+        Ward::where('id',$wardNo)->update(['free_beds'=>$newFB]);
+
+        return redirect()->back();
+
+    }
+
     public function getPatientData(Request $request)
     {
         $regNum = $request->regNum;
