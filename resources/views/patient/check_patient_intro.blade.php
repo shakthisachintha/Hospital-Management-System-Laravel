@@ -20,10 +20,14 @@
 });
 
 function validateNum(appNum){
+    
+    $("#validation").text("");
+
     var data=new FormData;
     data.append('number',appNum);
     data.append('_token','{{csrf_token()}}');
     
+
     $.ajax({
     type: "POST",
     url: "{{route('validateAppNum')}}",
@@ -36,16 +40,18 @@ function validateNum(appNum){
     },
     success: function (appointment) {
         if(appointment.exist){
-          $("#btn_submit").removeAttr("disabled");
-          $("#btn_submit").focus();
-          $("#details").fadeIn();
-          $("#p_name").text(appointment.name);
-          $("#pnum").val(appointment.pNum)
-          $("#appt_num").text(appointment.appNum);
-          $("#appt_num_1").val(appointment.appNum);
+            $("#btn_submit").removeAttr("disabled");
+            $("#btn_submit").focus();
+            $("#details").fadeIn();
+            $("#p_name").text(appointment.name);
+            $("#pnum").val(appointment.pNum)
+            $("#appt_num").text(appointment.appNum);
+            $("#appt_num_1").val(appointment.appNum);
         }else{
-          $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
-          $("#appNum").focus();
+            $("#details").fadeOut();
+            $("#btn-submit").attr("disabled","disabled");
+            $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
+            $("#appNum").focus();
         }
     }
 });
@@ -56,16 +62,16 @@ function validateNum(appNum){
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <div class="box box-success">
+        <div class="box box-success mt-5">
             <div class="box-header with-border">
                 <h3 class="box-title">Check Patient</h3>
             </div>
-            <div class="box-body mt-0">
+            <div class="box-body">
                 <form class="pl-5 pr-5 pb-5" method="post" action="{{route('checkPatient')}}">
                     @csrf
                     <h3>Enter Appointment Number Or Patient Number To Begin</h3>
-                    <input id="appNum" class="form-control input-lg" type="number"
-                        onchange="validateNum(this.value)" placeholder="Appointment Number Or Patient Number">
+                    <input id="appNum" class="form-control input-lg" type="number" onchange="validateNum(this.value)"
+                        placeholder="Appointment Number Or Patient Number">
                     <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
                         value="Check Patient">
                     <input name="pid" type="hidden" id="pnum">
@@ -78,6 +84,14 @@ function validateNum(appNum){
                 </form>
             </div>
         </div>
+        @if (session()->has('fail'))
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Already Channeld!</h4>
+
+            {{session()->get('fail')}}
+        </div>
+        @endif
     </div>
     <div class="col-md-1"></div>
 
