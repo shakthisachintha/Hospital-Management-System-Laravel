@@ -19,6 +19,7 @@ class CreateInpatientsTable extends Migration
             $table->bigInteger('patient_id');
             $table->char('discharged',4)->default('NO'); // YES | NO
             $table->bigInteger('ward_id');
+            $table->foreign('ward_id')->references('id')->on('wards');
             $table->integer('bed')->nullable();
         });
     }

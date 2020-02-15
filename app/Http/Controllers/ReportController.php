@@ -23,7 +23,30 @@ class ReportController extends Controller
     }
     public function view_monthly_static_report(){
         $user = Auth::user();
-        return view('reports/monthly_static_report',['title' => $user->name]);
+
+        $start_date = date('Y/m/00');
+        $end_date = date('Y/m/31');
+        $no_of_workingdays=DB::table('attendances')->whereBetween('attendances.start',[$start_date,$end_date])->count(DB::raw('distinct start'));
+        $no_of_employees=DB::table('attendances')->whereBetween('attendances.start', [$start_date, $end_date])->count(DB::raw('DISTINCT user_id'));
+        $patient_count=DB::table('appointments')->count(DB::raw('distinct number'));
+        $avg_patient=ceil($patient_count/30);
+
+        $ward_count=DB::table('wards')->count(DB::raw('distinct ward_no'));
+        $bed_count=DB::table('wards')->sum('beds');
+        $inpatient_count=DB::table('inpatients')->whereBetween('created_at', [$start_date, $end_date])->count(DB::raw('discharged'));
+        $discharged_patinet_count=DB::table('inpatients')->where('discharged', '=', 'YES')->whereBetween('created_at', [$start_date, $end_date])->count(DB::raw('discharged'));
+        // dd($discharged_patinet_count);
+
+        return view('reports/monthly_static_report',[
+            'title' => $user->name,
+            'noemp'=> $no_of_employees,
+            'nodays'=> $no_of_workingdays,
+            'avgpatient'=>$avg_patient,
+            'wardcnt'=>$ward_count,
+            'bedcnt' =>$bed_count,
+            'inpcnt' =>$inpatient_count,
+            'dispcnt'=>$discharged_patinet_count
+        ]);
     }
     public function view_out_patient_report(){
         $user = Auth::user();

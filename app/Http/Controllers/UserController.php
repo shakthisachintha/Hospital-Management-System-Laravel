@@ -115,6 +115,7 @@ class UserController extends Controller
             'newpasswordagain' => 'required|string|min:6'
         ]);
 
+
         if (!Hash::check($request->get('currentpassword'), Auth::user()->password)) {
             return redirect()->back()->with("errorpw", "Your current password does not matches with the password you provided. Please try again.");
         }
@@ -265,4 +266,66 @@ class UserController extends Controller
             }
         }
     }
+
+    public function changecontactnumber(Request $data){
+
+       $this->validate($data, [
+            'newcontactnumber' => 'required|min:9|max:10|unique:users'
+        ]);
+
+        $user = Auth::user();
+        $user_id=$user->id;
+        // dd($user_id);
+        DB::table('users')
+            ->where('id', $user_id)
+            ->limit(1)
+            ->update(array('contactnumber' => $data->newcontactnumber));
+
+        activity()->performedOn($user)->log('Contact number changed successfully!');
+
+        return redirect()->back()->with("successcn", "Contact number changed successfully !");
+    }
+    public function changeemail(Request $data){
+
+        $this->validate($data, [
+            'newemail' => 'required|string|email|max:255|min:1|unique:users'
+        ]);
+        $user = Auth::user();
+        $user_id = $user->id;
+        // dd($user_id);
+        DB::table('users')
+            ->where('id', $user_id)
+            ->limit(1)
+            ->update(array('email' => $data->newemail));
+
+        activity()->performedOn($user)->log('Email changed successfully!');
+
+        return redirect()->back()->with("successmail", "Email changed successfully !");
+    }
+
+    public function editprofile(Request $data){
+        $this->validate($data, [
+            'name' => 'required|string',
+            'education'=> 'required|string',
+            'location' => 'required|string',
+        ]);
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        DB::table('users')
+            ->where('id', $user_id)
+            ->limit(1)
+            ->update(array(
+            'name' => $data->name,
+            'education' => $data->education,
+            'skills' => $data->skills,
+            'location' => $data->location,
+            'notes' => $data->notes));
+
+        activity()->performedOn($user)->log('User details updated!');
+
+        return redirect()->back()->with("successedit", "Changes added to the database successfully !");
+    }
+
 }
+
