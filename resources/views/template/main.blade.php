@@ -517,7 +517,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     </li>
 
                      {{--statistics--}}
-                     <li class="{{Active::checkRoute('stats')}}">
+                     <li class="{{Active::checkRoute(['stats','stats_old'])}}">
                         <a href="{{route('stats')}}">
                             <i class="fas fa-chart-line"></i></i>
                             <span> Statistics</span>

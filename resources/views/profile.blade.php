@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title', $title)
+@section('title', ucfirst($title))
 
 @section('content_title',"User Profile")
 @section('content_description',"Personalize Your Account")
@@ -14,7 +14,7 @@
 
 @section('main_content')
 <?php $user = Auth::user();
-$name = $user->name;
+$name = ucfirst($user->name);
 $user_type =$user->user_type;
 $image_path =$user->img_path;
 $email = $user->email;
@@ -70,9 +70,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                         <th>Subject Id</th>
                                                         <th>Subject Type</th>
                                                         <th>Causer Type</th>
-                                                        <th>Properties</th>
+                                                        
                                                         <th>Created At</th>
-                                                        <th>Updated At</th>
+                                                    
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -80,11 +80,10 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                     <tr>
                                                         <td>{{$app->description}}</td>
                                                         <td>{{$app->subject_id}}</td>
-                                                        <td>{{$app->subject_type}}</td>
-                                                        <td>{{$app->causer_type}}</td>
-                                                        <td>{{$app->properties}}</td>
+                                                        <td>{{explode('\\',$app->subject_type)[1]}}</td>
+                                                        <td>{{explode('\\',$app->causer_type)[1]}}</td>
                                                         <td>{{$app->created_at}}</td>
-                                                        <td>{{$app->updated_at}}</td>
+                                                       
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -93,9 +92,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                     <th>Subject Id</th>
                                                     <th>Subject Type</th>
                                                     <th>Causer Type</th>
-                                                    <th>Properties</th>
                                                     <th>Created At</th>
-                                                    <th>Updated At</th>
+                                              
                                                 </tfoot>
                                             </table>
                                         </div>
@@ -425,13 +423,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <hr>
 
                     <strong><i class="fa fa-pencil-alt margin-r-5"></i> Skills</strong>
-
-                        <li><span class="label label-danger">Communication Skills</span></li>
-                        <li><span class="label label-success">Emotional Intelligence</span></li>
-                        <li><span class="label label-info">Problem-Solving Skills</span></li>
-                        <li><span class="label label-warning">Attention to Detail</span></li>
-                        <li><span class="label label-primary">Decision-Making Skills</span></li>
-                        <li>{{$skills}}</li>
+                        <br>
+                        <span styles="display:inline-block;" class="label label-danger">Communication Skills</span>
+                        <span styles="display:inline-block;" class="label label-success">Emotional Intelligence</span>
+                        <span styles="display:inline-block;" class="label label-info">Problem-Solving Skills</span>
+                        <span styles="display:inline-block;" class="label label-warning">Attention to Detail</span>
+                        <span styles="display:inline-block;" class="label label-primary">Decision-Making Skills</span>
+                        {{$skills}}
 
                     <hr>
 
