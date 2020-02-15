@@ -37,7 +37,7 @@ class HomeController extends Controller
         $currentcontactnumber=$user->contactnumber;
         $log = DB::table('activity_log')->select('description','subject_id', 'subject_type', 'causer_type','properties','created_at','updated_at')->orderBy('created_at', 'desc')->get();
         // ->whereRaw(DB::Raw('Date(created_at)=CURDATE()'))
-        return view('profile', ['title' => $user->name, 'activity' => $log,'currentno'=>$currentcontactnumber]);
+        return view('profile', ['title' => $user->name, 'activity' => $log,'currentno'=>$currentcontactnumber,'crntmail'=>$user->email]);
     }
 
     public function setLocale($lan)

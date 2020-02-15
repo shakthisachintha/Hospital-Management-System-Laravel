@@ -30,17 +30,23 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity Log</a></li>
-                    <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">My Attendence</a></li>
-                    <li
-                        class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw') ) active @endif">
-                        <a href="#settings" data-toggle="tab"
-                            aria-expanded="@if (session('success') || session('errors') ) true @else false @endif">Settings</a>
+
+                    <li class="@if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn'))) active @endif">
+                        <a href="#activity" data-toggle="tab"
+                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')) false @else true @endif">Activity Log</a>
                     </li>
+
+                    <li class=""><a href="#attendance" data-toggle="tab" aria-expanded="false">My Attendence</a></li>
+
+                    <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn') ) active @endif">
+                        <a href="#settings" data-toggle="tab"
+                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')) true @else false @endif">Settings</a>
+                    </li>
+
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="activity">
+                    <div class="tab-pane @if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn'))) active @endif" id="activity">
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -90,8 +96,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                             <!-- /.box-body -->
                         </div>
                     </div>
-
                     <!-- /.tab-pane -->
+
                     <div class="tab-pane" id="attendance">
                         <section class="content">
                             <div class="row">
@@ -153,20 +159,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 <!-- /.col -->
                         </section>
                     </div>
-
-
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane @if (session('success') || session('errors')  ||session('errorpw') || session('successpw') ) active @endif"
-                        id="settings">
+                    <div class="tab-pane @if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn') ) active @endif" id="settings">
                         <div class="box box-solid">
                             <div class="box-header with-border">
-                                <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="true">
+                                <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="@if (session('successcn')) true @else false @endif">
                                     <h3 class="box-title"><i class="fa fa-cogs"></i> General</h3>
                                 </a>
                             </div>
 
-                            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
+                            <div id="collapseOne" class="panel-collapse @if (session('successcn') ) collapse in @else collapse @endif" aria-expanded="@if (session('successpw')) true @else false @endif">
                                 <ul class="nav nav-pills nav-stacked">
 
                                     <li><a data-toggle="collapse" href="#editprofile" class="collapsed"
@@ -257,21 +260,18 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                     <div id="changeemail"
                                         class="panel-collapse @if (session('errors') || session('success')) collapse in @else collapse @endif"
                                         aria-expanded="@if (session('errors') || session('success')) true @else false @endif">
-                                        <form>
+                                        <form action="{{route('changeemail')}}" method="POST">
                                             @csrf
                                             <div class="form-group row">
-                                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <label class="col-sm-2 col-form-label">Current Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" readonly class="form-control-plaintext"
-                                                        id="staticEmail" value="email@example.com">
+                                                    <input type="text" readonly class="form-control" value="{{$crntmail}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputPassword"
-                                                    class="col-sm-2 col-form-label">Password</label>
+                                                <label class="col-sm-2 col-form-label">New Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="password" class="form-control" id="inputPassword"
-                                                        placeholder="Password">
+                                                    <input type="text" name="newemail" class="form-control" placeholder="enter new mail">
                                                 </div>
                                             </div>
                                             <div class="box-footer">
@@ -426,6 +426,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
                     </div>
                     <!-- /.tab-pane -->
+
                 </div>
                 <!-- /.tab-content -->
             </div>

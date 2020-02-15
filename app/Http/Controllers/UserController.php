@@ -278,6 +278,19 @@ class UserController extends Controller
 
         activity()->performedOn($user)->log('Contact number changed successfully!');
 
-        return redirect()->back()->with("successcn", "Password changed successfully !");
+        return redirect()->back()->with("successcn", "Contact number changed successfully !");
+    }
+    public function changeemail(Request $data){
+        $user = Auth::user();
+        $user_id = $user->id;
+        // dd($user_id);
+        DB::table('users')
+            ->where('id', $user_id)
+            ->limit(1)
+            ->update(array('email' => $data->newemail));
+
+        activity()->performedOn($user)->log('Email changed successfully!');
+
+        return redirect()->back()->with("successmail", "Email changed successfully !");
     }
 }
