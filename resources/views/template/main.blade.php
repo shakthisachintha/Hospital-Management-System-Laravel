@@ -19,7 +19,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {{-- print-function --}}
-   
+
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -46,7 +46,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{-- date picker end --}}
 
-    
+
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -62,6 +62,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
+    @yield('custom_style_sheets') 
     <link rel="stylesheet" href="{{ URL::asset('/css/bsutility.css') }}">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -73,7 +74,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
     {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
-        @yield('custom_styles') .spinner {
+        @yield('custom_styles') 
+        .spinner {
             margin: 0;
             position: absolute;
             top: 50%;
@@ -432,15 +434,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </li>
                             {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
-                                    href="{{route('register_in_patient_view')}}"><i 
-                                    class="fas fa-user-plus"
+                                    href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
                                         area-hidden="true"></i><span> Register In Patient</span></a>
                             </li>
-                            {{--Discharge in patient--}} 
-                            <li class="{{Active::checkRoute('discharge_inpatient')}}"><a 
-                                href="/dischargeInpatient"><i class="fa fa-hospital-o" area-hidden="true">
-                                </i><span>Discharge In Patient</span></a>
-                            </li>           
+                            {{--Discharge in patient--}}
+                            <li class="{{Active::checkRoute('discharge_inpatient')}}"><a href="/dischargeInpatient"><i
+                                        class="fa fa-hospital-o" area-hidden="true">
+                                    </i><span>Discharge In Patient</span></a>
+                            </li>
                         </ul>
                     </li>
                     {{--create channel--}}
@@ -502,8 +503,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
                     {{-- Wards --}}
 
-                    <li class="{{Active::checkRoute('wards')}}"><a href="{{route('wards')}}"><i class="fas fa-warehouse"></i> 
-                        <span>&nbsp;Wards</span></a></li>
+                    <li class="{{Active::checkRoute('wards')}}"><a href="{{route('wards')}}"><i
+                                class="fas fa-warehouse"></i>
+                            <span>&nbsp;Wards</span></a></li>
 
 
                     {{--add notices--}}
@@ -514,9 +516,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                         </a>
                     </li>
 
+                     {{--statistics--}}
+                     <li class="{{Active::checkRoute('stats')}}">
+                        <a href="{{route('stats')}}">
+                            <i class="fas fa-chart-line"></i></i>
+                            <span> Statistics</span>
+                        </a>
+                    </li>
+
+
                     {{--report generation--}}
-                    <li
-                        class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
+                    <li class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
                         <a href="#">
                             <i class="fas fa-sticky-note"></i>
                             <span> Report Generation</span>

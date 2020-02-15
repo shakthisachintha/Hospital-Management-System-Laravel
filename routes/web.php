@@ -115,6 +115,11 @@ Route::get('/allprintpreview', ['as' => 'all_print_preview', 'uses' => 'ReportCo
 Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middleware('auth');
 Route::post('/add-ward', ['as' => 'add-ward', 'uses' => 'WardController@createWard'])->middleware('auth');
 
+// Other Routes
 Route::get('/herbs',['as'=>'herbs', 'uses' => 'MedicineController@getherbs']);
 Route::get('/wardlist', 'PatientController@get_ward_list');
+
+// Statistics Routes
+Route::get('/stats', ['as' => 'stats', 'uses' => 'AnalyticsController@index'])->middleware('doctor','admin');
+Route::post('/stats-old', ['as' => 'stats_old', 'uses' => 'AnalyticsController@index'])->middleware('doctor','admin');
 
