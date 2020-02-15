@@ -15,132 +15,169 @@
 @section('main_content')
 {{--  issue medicine  --}}
 
-<script>
-    $(document).ready(function () {
-  $("#appNum").focus();
-});
-
-fetchData();
-
-function validateId(appNum){
-    var data=new FormData;
-    data.append('number',appNum);
-    data.append('_token','{{csrf_token()}}');
-    
-    $.ajax({
-    type: "POST",
-    url: "{{route('pharmacyValidate')}}",
-    processData: false,
-    contentType: false,
-    cache: false,
-    data:data,
-    error: function(data){
-        console.log(data);
-    },
-    success: function (prescription) {
-        if(prescription.exist){
-          $("#btn_submit").removeAttr("disabled");
-          $("#btn_submit").focus();
-          $("#details").fadeIn();
-          $("#box").fadeOut();
-          $("#p_name").text(prescription.name);
-          $("#pnum").val(prescription.pNum);
-          $("#pnum_1").text(prescription.pNum);
-          $("#appt_num").text(prescription.appNum);
-          $("#appt_num_1").val(prescription.appNum);
-        //   $("#example2").fadeIn();
-        }else{
-          $("#validation").text("Invalid Appointment Number Or Patient Number. Check Again...");
-          $("#appNum").focus();
-        }
-        // if(med.exist){
-        //     $('#ename').text(med.ename);
-        //     $('#sname').text(med.sname);
-
-        // }
-    }
-});
-}
 
 
+<div class="box box-info" id="issuemedicine2" style="display:none">
+    <div class="box-header with-border">
+        <h3 class="box-title">Approved to Issue Medicine</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body mt-0">
+        <h4>Registration No : <span id="patient_id"></span></h4>
+        <h4>Patient Name : <span id="p_name"></span></h4>
+        <h4>Appointment No &nbsp;: <span id="p_appnum"></span></h4>
+        <input id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center" onclick="getdata()"
+            value="Issue Medicine Now">
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+    </div>
+    <!-- box-footer -->
+</div>
+<!-- /.box -->
 
+<div class="col-xs-12" id="issuemedicine3" style="display:none">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Prescription</h3>
+        </div>
+        <div class="box-body">
+            <table class="table table-striped table-info">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="2" style="text-align:center;font-size:18px">Medicine</th>
+                        <th scope="col" style="text-align:center;vertical-align:middle;font-size:18px" rowspan="2">Note
+                        </th>
+                        <th scope="col" style="text-align:center;vertical-align:middle;font-size:18px" rowspan="2">
+                            Issued or Not</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align:center;font-size:15px">English</th>
+                        <th style="text-align:center;font-size:15px">Sinhala</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyData">
+                    {{-- @foreach ($pmedicines as $med)
+            <tr>
+                <td>{{ $med->name_english }}</td>
+                    <td>{{ $med->name_sinhala }}</td>
+                    <td>{{ $med->note }}</td>
 
+                    </tr>
+                    @endforeach --}}
 
-</script>
-
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <div class="box box-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">Issue Medicine</h3>
-            </div>
-            <div class="box-body mt-0">
-                <form class="pl-5 pr-5 pb-5" method="post" action="{{route('issueMedicine')}}">
-                    @csrf
-                    <div id="box">
-                        <h3>Enter Appointment Number Or Patient Number To Begin</h3>
-                        <input id="appNum" class="form-control input-lg" type="number" onchange="validateId(this.value)"
-                            placeholder="Appointment Number Or Patient Number">
-                        <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
-                            value="Issue Medicine">
-                        <input name="pid" type="hidden" id="pnum">
-                        <input name="appNum" type="hidden" id="appt_num_1">
-                        <p id="validation" class="mt-2 text-danger"></p>
-                    </div>
-                    <div style="display:none" id="details">
-                        <h4>Registration No : <span id="pnum_1"></span></h4>
-                        <h4>Patient Name : <span id="p_name"></span></h4>
-                        <h4>Appointment No &nbsp;: <span id="appt_num"></span></h4>
-                        <input id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
-                        value="Issue Medicine Now">
-                        {{-- <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Prescription</h3>
-                                </div>
-                                <div class="box-body">
-                                    <table id="example2" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2" style="text-align:center">Medicine</th>
-                                                <th style="text-align:center;vertical-align:middle" rowspan="2">Note</th>
-                                                <th style="text-align:center;vertical-align:middle" rowspan="2">Issued or Not</th>
-                                                <th style="text-align:center;vertical-align:middle" rowspan="2">Quantity (If issued)</th>
-                                            </tr>
-                                            <tr>
-                                                <th  style="text-align:center">English</th>
-                                                <th  style="text-align:center">Sinhala</th>
-                                            </tr>
-                                        </thead> --}}
-                                      {{-- @foreach ($pmedicines as $med)
-                                            <tr>
-                                                <td>{{ $med->name_english }}</td>
-                                                <td>{{ $med->name_sinhala }}</td>
-                                                <td>{{ $med->note }}</td>
-                                                 <td>{{ $user->city_name }}</td>
-                                                <td>{{ $user->email }}</td> --}}
-                                             {{-- </tr>
-                                        @endforeach   --}} 
-                                    {{-- </table>
-                                  {{ csrf_field() }}
-                                </div>
-                            </div> --}}
-                        </div> 
-                    </div>
-                </form>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="col-md-1"></div>
 </div>
 
 
 
+<div class="box box-info" id="issuemedicine1">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="form-group">
+            <label for="p_id" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
+            <div class="col-sm-8">
+                <input type="number" required class="form-control" onchange="issuemedicinefunction1()" id="p_id"
+                    placeholder="Enter Registration No" />
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-info" onclick="issuemedicinefunction1()">Enter</button>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+</div>
+
+<script>
+    function issuemedicinefunction1() {
+        
+        var x, text;
+        x = document.getElementById("p_id").value;
+        patientid=x;
+        if (x > 0)
+        {
+            var data=new FormData;
+            data.append('pNum',x);
+            data.append('_token','{{csrf_token()}}');
 
 
+            $.ajax({
+                type: "post",
+                url: "{{route('issueMedicine2')}}",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                error: function(data){
+                    console.log(data);
+                },
+                success: function (im) {
+                    if(im.exist){
+                        console.log(im.name);
+                        $("#p_name").text(im.name);
+                        $("#patient_id").text(im.pNUM);
+                        $("#p_appnum").text(im.appNum)
 
+                        $("#issuemedicine2").slideDown(1000);
+                        $("#issuemedicine1").slideUp(1000);
+                        console.log('check');
+                    }else{
+                        console.log('not found');
+                        alert("Please Enter Today Prescriptions' Details only!");
+                    }
+                }
+            });
+            }else{
+                alert("Please Enter a Valid Registration Number!");
+            }    
 
+    }
+
+        function getdata(){
+
+            document.getElementById("btn_submit").disabled = true;
+            $("#issuemedicine3").slideDown(1000);
+
+            var url = "{{URL('imData')}}";
+            $.ajax({
+            url: "/imData/getMedicineData",
+            type: "POST",
+            data:{ 
+                _token:'{{ csrf_token() }}'
+            },
+            cache: false,
+            dataType: 'json',
+            success: function(dataR){
+                console.log(dataR);
+                var resultData = dataR.data;
+                var bodyData = '';
+                var i=1;
+                $.each(resultData,function(index,row){
+                    var editUrl = url+'/'+row.id+"/edit";
+                    bodyData+="<tr>"
+                    bodyData+="<td>"+ i++ +"</td><td>"+row.name_english+"</td><td>"+row.name_sinhala+"</td><td>"+row.note+"</td>"
+                    +"</td><td><a class='btn btn-primary' href='"+editUrl+"'>Edit</a>" 
+                    +"<button class='btn btn-danger delete' value='"+row.id+"' style='margin-left:20px;'>Delete</button></td>";
+                    bodyData+="</tr>";
+                    
+                })
+                $("#bodyData").append(bodyData);
+            }
+        });
+    }
+
+</script>
 
 
 
