@@ -1,7 +1,7 @@
 @auth
 <?php $user = Auth::user();
-$name = $user->name;
-$user_type = $user->user_type;
+$name = ucwords($user->name);
+$user_type = ucfirst($user->user_type);
 $image_path = $user->img_path;
 $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 \App::setLocale(Session::get('locale'));
@@ -238,7 +238,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
         <header class="main-header skin-green">
 
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">HMS</span>
                 <!-- logo for regular state and mobile devices -->
