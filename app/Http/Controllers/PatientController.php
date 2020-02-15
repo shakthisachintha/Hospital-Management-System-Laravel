@@ -447,7 +447,7 @@ class PatientController extends Controller
     {
         $pid=$request->reg_pid;
         $test3=Inpatient::where('patient_id',$pid)->first();
-        // $test->discharged_date=;
+
         $timestamp = now();
         $test3->discharged='YES';
         $test3->discharged_date=$timestamp;

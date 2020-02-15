@@ -45,13 +45,13 @@
 
 
 
-<div class="box box-info" id="disinpatient2"   style="display:none" >
-  
+<div class="box box-info" id="disinpatient2" style="display:none">
+
     <div class="box-header with-border">
         <h3 class="box-title">{{__('Medical Officer - Abstract of Case')}}</h3>
     </div>
 
-    <form  method="post" action="{{ route('save_disinpatient') }}" class="form-horizontal">
+    <form method="post" action="{{ route('save_disinpatient') }}" class="form-horizontal">
         {{csrf_field()}}
         <div class="box-body">
 
@@ -62,29 +62,28 @@
                 </div>
             </div>
 
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">{{__('Name')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" required readonly class="form-control" name="reg_pname" id="patient_name"
-                            placeholder="Enter Patient Full Name">
-                    </div>
+            <div class="form-group">
+                <label for="patient_name" class="col-sm-2 control-label">{{__('Name')}}</label>
+                <div class="col-sm-10">
+                    <input type="text" required readonly class="form-control" name="reg_pname" id="patient_name"
+                        placeholder="Enter Patient Full Name">
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
-                    <div class="col-sm-10">
-                        <input type="text" required readonly class="form-control" name="reg_paddress"
-                            id="patient_address" placeholder="Enter Patient Address ">
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="text" required readonly class="form-control" name="reg_paddress" id="patient_address"
+                        placeholder="Enter Patient Address ">
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
-                    <div class="col-sm-10">
-                        <input type="tel" readonly class="form-control" name="reg_ptel" id="patient_telephone"
-                            placeholder="Patient Telephone Number">
-                    </div>
+            <div class="form-group">
+                <label for="patient_telephone" class="col-sm-2 control-label">{{__('Telephone')}}</label>
+                <div class="col-sm-10">
+                    <input type="tel" readonly class="form-control" name="reg_ptel" id="patient_telephone"
+                        placeholder="Patient Telephone Number">
                 </div>
+            </div>
 
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">{{__('Description:')}}</label>
@@ -97,7 +96,8 @@
             <div class="form-group">
                 <label for="medofs2" class="col-sm-2 control-label">{{__('Certified by')}}</label>
                 <div class="col-sm-10" id="al-box">
-                    <input type="text" class="form-control" id="medofs2" name="reg_medicalofficer2" placeholder="Select Your ID here" />
+                    <input type="text" class="form-control" id="medofs2" name="reg_medicalofficer2"
+                        placeholder="Select Your ID here" />
                 </div>
             </div>
 
@@ -111,7 +111,7 @@
     </form>
 </div>
 
-    <div class="box box-info" id="disinpatient1">
+<div class="box box-info" id="disinpatient1">
     <div class="box-header with-border">
         <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
     </div>
