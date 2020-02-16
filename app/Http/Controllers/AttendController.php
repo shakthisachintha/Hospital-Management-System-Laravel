@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
 use App\Attendance;
+use App\User;
 use DB;
+use Illuminate\Http\Request;
 
 class AttendController extends Controller
 {
     //
     public function myattend()
     {
-        $rec = DB::table('attendances')->select(DB::raw('user_id,DATE(start) as date, MONTH(start) as month,DAY(start) as day ,YEAR(start) as year, sum(TIMESTAMPDIFF(MINUTE,start,end))/60 as duration'))
-            ->where('user_id', \Auth::user()->id)->whereRaw(DB::raw('end is not null'))->orderBy('created_at','desc')->groupBy('date')->get();
+        $rec = DB::table('attendances')
+            ->select(DB::raw('user_id,DATE(start) as date, MONTH(start) as month,DAY(start) as day ,YEAR(start) as year, sum(TIMESTAMPDIFF(MINUTE,start,end))/60 as duration'))
+            ->where('user_id', \Auth::user()->id)
+            ->whereRaw("YEAR(created_at)=YEAR(CURDATE())")
+            ->whereRaw(DB::raw('end is not null'))
+            ->orderBy('created_at', 'desc')->groupBy('date')->get();
 
-        $rec_more = DB::table('attendances')->select(DB::raw('user_id,DATE(created_at) as date,TIME(start) as start,TIME(end) as end, MONTH(created_at) as month,DAY(created_at) as day ,YEAR(created_at) as year, TIMESTAMPDIFF(MINUTE,start,end)/60 as duration'))
-            ->where('user_id', \Auth::user()->id)->whereRaw(DB::raw('end is not null'))->orderBy('created_at','desc')->get();
+        $rec_more = DB::table('attendances')
+            ->select(DB::raw('user_id,DATE(created_at) as date,TIME(start) as start,TIME(end) as end, MONTH(created_at) as month,DAY(created_at) as day ,YEAR(created_at) as year, TIMESTAMPDIFF(MINUTE,start,end)/60 as duration'))
+            ->where('user_id', \Auth::user()->id)
+            ->whereRaw("YEAR(created_at)=YEAR(CURDATE())")
+            ->whereRaw("MONTH(created_at)=MONTH(CURDATE())")
+            ->whereRaw(DB::raw('end is not null'))
+            ->orderBy('created_at', 'desc')->get();
 
         return view('attendance.attendance', ['title' => "My Attendance", 'att_records' => $rec, 'att_more' => $rec_more]);
     }
@@ -30,27 +39,47 @@ class AttendController extends Controller
     {
         $finger_id = $data->input('finger');
         $timestamp = $data->input('time');
-        // echo $finger_id;
-        // echo $timestamp;
-        if (User::where('fingerprint', $finger_id)->exists()) {
+
+        if (User::where('fingerprint', $finger_id)->exists()) { //updating the end time of a attendance record
             $user = User::where('fingerprint', $finger_id)->first();
             if (DB::table('attendances')->whereRaw(DB::raw("user_id='$user->id' and date(start)=date('$timestamp') and end is null"))->exists()) {
                 $rec = DB::table('attendances')->whereRaw(DB::raw("user_id='$user->id' and date(start)=date('$timestamp') and end is null"))->orderBy('start', 'asc')->first();
-                // echo $rec;
                 $x = Attendance::where('id', $rec->id)->first();
                 $x->end = $timestamp;
                 $x->save();
                 // Log Activity
-                activity()->performedOn($x)->withProperties(['User ID' => $user->id,'Finger ID'=>$finger_id,'Time'=>$timestamp,'Record ID'=>$x->id])->log('Attendance Record Updated');
-            } else {
+                activity()->performedOn($x)->withProperties(['User ID' => $user->id, 'Finger ID' => $finger_id, 'Time' => $timestamp, 'Record ID' => $x->id])->log('Attendance Record Updated');
+
+                return response()->json([
+                    "status"=>200,
+                    "name"=>ucwords($user->name),
+                    "fingerprint"=>$finger_id,
+                    "userid"=>$user->id
+                ]);
+
+            } else {    //creating new attendance record
                 $attend = new Attendance;
                 $attend->user_id = $user->id;
                 $attend->start = $timestamp;
                 $attend->save();
 
                 // Log Activity
-                activity()->performedOn($attend)->withProperties(['User ID' => $user->id,'Finger ID'=>$finger_id,'Time'=>$timestamp,'Record ID'=>$attend->id])->log('New Attendance Record Added');
+                activity()->performedOn($attend)->withProperties(['User ID' => $user->id, 'Finger ID' => $finger_id, 'Time' => $timestamp, 'Record ID' => $attend->id])->log('New Attendance Record Added');
+                
+                return response()->json([
+                    "status"=>200,
+                    "name"=>ucwords($user->name),
+                    "fingerprint"=>$finger_id,
+                    "userid"=>$user->id
+                ]);
             }
+        }else{
+            return response()->json([
+                "status"=>400,
+                "name"=>ucwords("not found"),
+                "fingerprint"=>$finger_id,
+                "userid"=>-1
+            ]);
         }
     }
 }
