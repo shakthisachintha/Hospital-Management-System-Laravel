@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 class HomeController extends Controller
 {
     /**
@@ -25,10 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $notice=DB::table('noticeboards')
+        ->join('users', 'noticeboards.user_id','=','users.id')
+        ->select('noticeboards.subject', 'noticeboards.description', 'noticeboards.time','users.user_type','users.name')
+        ->get();
+        
         return view('dash', [
             'title' => 'Dashboard',
+            'notices'=>$notice
         ]);
-        // return view('home');
     }
 
     public function profile()

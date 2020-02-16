@@ -31,14 +31,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
 
-                    <li class="@if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit'))) active @endif">
+                    <li
+                        class="@if (!(session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit'))) active @endif">
                         <a href="#activity" data-toggle="tab"
-                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')||session('successedit')) false @else true @endif">Activity Log</a>
+                            aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')||session('successedit')) false @else true @endif">Activity
+                            Log</a>
                     </li>
 
-                    <li class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit') ) active @endif">
+                    <li
+                        class="@if (session('success') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit') ) active @endif">
                         <a href="#settings" data-toggle="tab"
-                        aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')||session('successedit')) true @else false @endif">Settings</a>
+                            aria-expanded="@if (session('success') || session('errors')||session('errorpw') || session('successpw')||session('successcn')||session('successedit')) true @else false @endif">Settings</a>
                     </li>
 
                 </ul>
@@ -55,7 +58,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </div>
                     @endif
 
-                    <div class="tab-pane @if (!(session('success')||session('successmail') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit'))) active @endif" id="activity">
+                    <div class="tab-pane @if (!(session('success')||session('successmail') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit'))) active @endif"
+                        id="activity">
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -70,9 +74,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                         <th>Subject Id</th>
                                                         <th>Subject Type</th>
                                                         <th>Causer Type</th>
-                                                        
+
                                                         <th>Created At</th>
-                                                    
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -83,7 +87,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                         <td>{{explode('\\',$app->subject_type)[1]}}</td>
                                                         <td>{{explode('\\',$app->causer_type)[1]}}</td>
                                                         <td>{{$app->created_at}}</td>
-                                                       
+
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -93,7 +97,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                     <th>Subject Type</th>
                                                     <th>Causer Type</th>
                                                     <th>Created At</th>
-                                              
+
                                                 </tfoot>
                                             </table>
                                         </div>
@@ -105,15 +109,19 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </div>
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane @if (session('success') ||session('successmail') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit') ) active @endif" id="settings">
+                    <div class="tab-pane @if (session('success') ||session('successmail') || session('errors') ||session('errorpw') || session('successpw')||session('successcn')||session('successedit') ) active @endif"
+                        id="settings">
                         <div class="box box-solid">
                             <div class="box-header with-border">
-                                <a data-toggle="collapse" href="#collapseOne" class="" aria-expanded="@if (session('successcn')||session('successmail')||session('successedit')) true @else false @endif">
+                                <a data-toggle="collapse" href="#collapseOne" class=""
+                                    aria-expanded="@if (session('successcn')||session('successmail')||session('successedit')) true @else false @endif">
                                     <h3 class="box-title"><i class="fa fa-cogs"></i> General</h3>
                                 </a>
                             </div>
 
-                            <div id="collapseOne" class="panel-collapse @if (session('successcn')||session('successmail')||session('successedit') ) collapse in @else collapse @endif" aria-expanded="@if (session('successpw')||session('successmail')) true @else false @endif">
+                            <div id="collapseOne"
+                                class="panel-collapse @if (session('successcn')||session('successmail')||session('successedit') ) collapse in @else collapse @endif"
+                                aria-expanded="@if (session('successpw')||session('successmail')) true @else false @endif">
                                 <ul class="nav nav-pills nav-stacked">
 
                                     <li><a data-toggle="collapse" href="#editprofile" class="collapsed"
@@ -134,23 +142,28 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             @csrf
                                             <div class="form-group">
                                                 <label for="">Full Name</label>
-                                                <input type="text" name="name" class="form-control" id="" placeholder="enter name">
+                                                <input type="text" name="name" class="form-control" id=""
+                                                    placeholder="enter name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Education</label>
-                                                <input type="text" name="education" class="form-control" id="" placeholder="enter details">
+                                                <input type="text" name="education" class="form-control" id=""
+                                                    placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Location</label>
-                                                <input type="text" name="location" class="form-control" id="" placeholder="enter details">
+                                                <input type="text" name="location" class="form-control" id=""
+                                                    placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Skills</label>
-                                                <input type="text" name="skills" class="form-control" id="" placeholder="enter details">
+                                                <input type="text" name="skills" class="form-control" id=""
+                                                    placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Special Notes</label>
-                                                <input type="text" name="notes" class="form-control" id="" placeholder="enter details">
+                                                <input type="text" name="notes" class="form-control" id=""
+                                                    placeholder="enter details">
                                             </div>
 
                                             <div class="box-footer">
@@ -183,16 +196,19 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                         <form action="{{route('changecontactnumber')}}" method="POST">
                                             @csrf
                                             <div class="form-group row">
-                                                <label for="inputPassword"
-                                                    class="col-sm-2 col-form-label">Current Number</label>
+                                                <label for="inputPassword" class="col-sm-2 col-form-label">Current
+                                                    Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" value="{{$currentno}}" readonly>
+                                                    <input type="text" class="form-control" value="{{$currentno}}"
+                                                        readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputPassword" class="col-sm-2 col-form-label">New Number</label>
+                                                <label for="inputPassword" class="col-sm-2 col-form-label">New
+                                                    Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="newcontactnumber" class="form-control"  placeholder="enter new number">
+                                                    <input type="text" name="newcontactnumber" class="form-control"
+                                                        placeholder="enter new number">
                                                 </div>
                                             </div>
                                             <div class="box-footer">
@@ -223,13 +239,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Current Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" readonly class="form-control" value="{{$crntmail}}">
+                                                    <input type="text" readonly class="form-control"
+                                                        value="{{$crntmail}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">New Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="newemail" class="form-control" placeholder="enter new mail">
+                                                    <input type="text" name="newemail" class="form-control"
+                                                        placeholder="enter new mail">
                                                 </div>
                                             </div>
                                             <div class="box-footer">
@@ -370,7 +388,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
         <!-- /.col -->
 
         <div class="col-md-3">
-
             <!-- Profile Image -->
             <div class="box box-danger">
                 <div class="box-body box-profile">
@@ -423,13 +440,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <hr>
 
                     <strong><i class="fa fa-pencil-alt margin-r-5"></i> Skills</strong>
-                        <br>
-                        <span styles="display:inline-block;" class="label label-danger">Communication Skills</span>
-                        <span styles="display:inline-block;" class="label label-success">Emotional Intelligence</span>
-                        <span styles="display:inline-block;" class="label label-info">Problem-Solving Skills</span>
-                        <span styles="display:inline-block;" class="label label-warning">Attention to Detail</span>
-                        <span styles="display:inline-block;" class="label label-primary">Decision-Making Skills</span>
-                        {{$skills}}
+                    <br>
+                    <span styles="display:inline-block;" class="label label-danger">Communication Skills</span>
+                    <span styles="display:inline-block;" class="label label-success">Emotional Intelligence</span>
+                    <span styles="display:inline-block;" class="label label-info">Problem-Solving Skills</span>
+                    <span styles="display:inline-block;" class="label label-warning">Attention to Detail</span>
+                    <span styles="display:inline-block;" class="label label-primary">Decision-Making Skills</span>
+                    {{$skills}}
 
                     <hr>
 

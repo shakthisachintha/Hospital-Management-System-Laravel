@@ -15,7 +15,7 @@
 
 @section('main_content')
 <div class="row">
-    <div class="row col-md-12">
+    <div class="col-md-12">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fas fa-user-md"></i></span>
@@ -227,9 +227,33 @@
     </div>
 
     <div class="row">
-        <div class="col-md-9"></div>
+        <div class="col-md-9">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Noticeboard</h3>
+                </div>
+                <div class="box-body">
+                    {{--  @if ($notices)  --}}
+                    @foreach ($notices as $notice)
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <b><h4 class="mb-1">{{$notice->subject}}</h4></b>
+                                <small>{{$notice->time}}</small>
+                            </div>
+                            <p class="mb-1">{{$notice->description}}</p>
+                            <small>By {{$notice->name}} ({{$notice->user_type}})</small>
+                        </a>
+                    </div>
+                    @endforeach
+                    {{--  @else
+                    <h3>No Notices !!!</h3>
+                    @endif  --}}
+                </div>
+            </div>
+        </div>
         <div class="col-md-3">
-            <div class="box box-default">
+            <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Reports</h3>
                 </div>
@@ -255,6 +279,4 @@
             </div>
         </div>
     </div>
-
-
     @endsection
