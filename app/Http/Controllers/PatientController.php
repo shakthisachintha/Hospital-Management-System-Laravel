@@ -202,7 +202,11 @@ class PatientController extends Controller
 
         }
 
-        $updated = explode(" ", $prescriptions[0]->created_at)[0];
+        $updated = "No Previous Visits";
+        if($prescriptions->count()>0){
+            $updated = explode(" ", $prescriptions[0]->created_at)[0];
+        }
+        // $updated = explode(" ", $prescriptions[0]->created_at)[0];
 
         $pHistory = new stdClass;
 

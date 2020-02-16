@@ -52,15 +52,18 @@ Route::post('/patientregister', ['as' => 'patient_register', 'uses' => 'PatientC
 Route::get('/inpatientregister', ['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth', 'staff', 'lang');
 Route::post('/inpatientregister2', ['as' => 'regInPatient', 'uses' => 'PatientController@regInPatientValid'])->middleware('auth', 'staff', 'lang');
 Route::post('/inpatientregister3', ['as' => 'save_inpatient', 'uses' => 'PatientController@store_inpatient'])->middleware('auth', 'staff', 'lang');
-Route::get('/dischargeInpatient', ['as' => 'discharge_inpatient','uses' => 'PatientController@discharge_inpatient'])->middleware('auth', 'staff', 'lang');
+Route::get('/dischargeInpatient', ['as' => 'discharge_inpatient', 'uses' => 'PatientController@discharge_inpatient'])->middleware('auth', 'staff', 'lang');
 Route::post('/dischargeInpatient2', ['as' => 'disInPatient', 'uses' => 'PatientController@disInPatientValid'])->middleware('auth', 'staff', 'lang');
 Route::post('/dischargeInpatient3', ['as' => 'save_disinpatient', 'uses' => 'PatientController@store_disinpatient'])->middleware('auth', 'staff', 'lang');
 Route::get('getDoctor', 'PatientController@getDoctor');
 
 // Issue Medicine(Pharmacist Routes)
-Route::get('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff','lang');
-Route::post('/issueMedicine2', ['as' => 'issueMedicine2', 'uses' => 'MedicineController@issueMedicineValid'])->middleware('auth', 'staff','lang');
-Route::post('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff','lang');
+Route::get('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff', 'lang');
+Route::post('/issueMedicine2', ['as' => 'issueMedicine2', 'uses' => 'MedicineController@issueMedicineValid'])->middleware('auth', 'staff', 'lang');
+//Route::post('/pharmacyValidate', ['as' => 'pharmacyValidate', 'uses' => 'MedicineController@pharmacyValidate'])->middleware('auth', 'staff');
+//Route::post('/issueMedicine', ['as' => 'issueMedicine', 'uses' => 'MedicineController@issueMedicine'])->middleware('auth', 'staff','lang');
+Route::post('/imData/getMedicineData', 'UserDataController@issueMedicineValid');
+Route::resource('/imData', 'MedicineController');
 
 // Check Patient Routes
 Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@checkPatientView'])->middleware('auth', 'doctor');
@@ -78,10 +81,10 @@ Route::get('/searchpatient', ['as' => 'searchPatient', 'uses' => 'PatientControl
 Route::get('/search', ['as' => 'searchData', 'uses' => 'PatientController@patientData'])->middleware('auth', 'doctor', 'lang');
 
 //edit patitent routes
-Route::post('/editpatient',['as'=> 'editpatient','uses' => 'PatientController@editPatientview'])->middleware('auth', 'doctor', 'lang');
+Route::post('/editpatient', ['as' => 'editpatient', 'uses' => 'PatientController@editPatientview'])->middleware('auth', 'doctor', 'lang');
 
 //update patitent routes
-Route::post('/updatepatientdetails',['as'=> 'updatepatientdetails','uses' => 'PatientController@updatePatient'])->middleware('auth', 'doctor', 'lang');
+Route::post('/updatepatientdetails', ['as' => 'updatepatientdetails', 'uses' => 'PatientController@updatePatient'])->middleware('auth', 'doctor', 'lang');
 
 
 //Attendance Routes
@@ -92,15 +95,18 @@ Route::get('/attendance', ['as' => 'attendance', 'uses' => 'AttendController@mar
 // Admin Routes For User Registration and Management
 Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth', 'admin', 'lang');
 Route::post('regfinger', ['as' => 'user.regfinger', 'uses' => 'UserController@regFinger'])->middleware('auth', 'admin');
-Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth', 'admin','lang');
-Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUserView'])->middleware('auth','lang','admin');
-Route::post('/resetusersave', ['as' => 'resetuser_save', 'uses' => 'UserController@resetUser'])->middleware('auth','admin');
+Route::get('/newuser', ['as' => 'newuser', 'uses' => 'UserController@regNew'])->middleware('auth', 'admin', 'lang');
+Route::get('/resetuser', ['as' => 'resetuser', 'uses' => 'UserController@resetUserView'])->middleware('auth', 'lang', 'admin');
+Route::post('/resetusersave', ['as' => 'resetuser_save', 'uses' => 'UserController@resetUser'])->middleware('auth', 'admin');
 
 // Admin Routes For Notices
-Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth','lang');
+Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth', 'lang');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
 Route::get('/emails', ['as' => 'emails', 'uses' => 'UserController@email'])->middleware('auth');
+Route::post('/addnotice', ['as' => 'addnotice', 'uses' => 'NoticeboardController@addnotice'])->middleware('auth');
+Route::post('/deletenotice', ['as' => 'deletenotice', 'uses' => 'NoticeboardController@deletenotice'])->middleware('auth');
+
 
 // Report Generation Routes
 Route::get('/reportgeneration', ['as' => 'reportgeneration', 'uses' => 'UserController@reportgen'])->middleware('auth');
@@ -116,13 +122,12 @@ Route::get('/allprintpreview', ['as' => 'all_print_preview', 'uses' => 'ReportCo
 //Ward Management Routes
 Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middleware('auth');
 Route::post('/add-ward', ['as' => 'add-ward', 'uses' => 'WardController@createWard'])->middleware('auth');
-Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middleware('auth','lang');
+Route::get('/wards', ['as' => 'wards', 'uses' => 'WardController@index'])->middleware('auth', 'lang');
 
 // Other Routes
-Route::get('/herbs',['as'=>'herbs', 'uses' => 'MedicineController@getherbs']);
+Route::get('/herbs', ['as' => 'herbs', 'uses' => 'MedicineController@getherbs']);
 Route::get('/wardlist', 'PatientController@get_ward_list');
 
 // Statistics Routes
-Route::get('/stats', ['as' => 'stats', 'uses' => 'AnalyticsController@index'])->middleware('doctor','admin');
-Route::post('/stats-old', ['as' => 'stats_old', 'uses' => 'AnalyticsController@index'])->middleware('doctor','admin');
-
+Route::get('/stats', ['as' => 'stats', 'uses' => 'AnalyticsController@index'])->middleware('doctor', 'admin');
+Route::post('/stats-old', ['as' => 'stats_old', 'uses' => 'AnalyticsController@index'])->middleware('doctor', 'admin');
