@@ -86,7 +86,7 @@
 
                 <div class="col-sm-2">
                     <a href="{{route('patient')}}" class="btn btn-app">
-                        <i class="ion ion-person-add"></i> Patients
+                        <i class="ion ion-person-add"></i> Register out-patient
                     </a>
                 </div>
 
@@ -107,24 +107,24 @@
                 </div>
 
                 <div class="col-sm-2">
-                    <a href="{{route('patient')}}" class="btn btn-app">
-                        <i class="ion ion-person-add"></i> Patients
+                    <a href="{{route('check_patient_view')}}" class="btn btn-app">
+                        <i class="fa fa-heartbeat"></i> Check Patient
                     </a>
                 </div>
 
 
                 <!-- ./col -->
                 <div class="col-sm-2">
-                    <a href="{{route('searchPatient')}}" class="btn btn-app">
-                        <i class="ion ion-stats-bars"></i> Search Patient
+                    <a href="{{route('create_channel_view')}}" class="btn btn-app">
+                        <i class="fa fa-plus-square"></i> Create Appointment
                     </a>
                 </div>
 
 
                 <!-- ./col -->
                 <div class="col-sm-2">
-                    <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
-                        <i class="fa fa-procedures"></i> Register in-Patient
+                    <a href="{{route('issueMedicineView')}}" class="btn btn-app">
+                        <i class="fa fa-medkit"></i> Issue Medicine
                     </a>
                 </div>
 
@@ -132,46 +132,46 @@
             <div class="box-body">
 
                 <div class="col-sm-2">
-                    <a href="{{route('patient')}}" class="btn btn-app">
-                        <i class="ion ion-person-add"></i> Patients
+                    <a href="{{route('myattend')}}" class="btn btn-app">
+                        <i class="fa fa-user"></i> My Attendance
                     </a>
                 </div>
 
 
                 <!-- ./col -->
                 <div class="col-sm-2">
-                    <a href="{{route('searchPatient')}}" class="btn btn-app">
-                        <i class="ion ion-stats-bars"></i> Search Patient
+                    <a href="{{route('newuser')}}" class="btn btn-app">
+                        <i class="fa fa-user-plus"></i> Register User
                     </a>
                 </div>
 
 
                 <!-- ./col -->
                 <div class="col-sm-2">
-                    <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
-                        <i class="fa fa-procedures"></i> Register in-Patient
+                    <a href="{{route('regfinger')}}" class="btn btn-app">
+                        <i class="fa fa-fingerprint"></i> Register Fingerprint
                     </a>
                 </div>
 
                 <div class="col-sm-2">
-                    <a href="{{route('patient')}}" class="btn btn-app">
-                        <i class="ion ion-person-add"></i> Patients
-                    </a>
-                </div>
-
-
-                <!-- ./col -->
-                <div class="col-sm-2">
-                    <a href="{{route('searchPatient')}}" class="btn btn-app">
-                        <i class="ion ion-stats-bars"></i> Search Patient
+                    <a href="{{route('resetuser')}}" class="btn btn-app">
+                        <i class="fa fa-user-edit"></i> Reset User
                     </a>
                 </div>
 
 
                 <!-- ./col -->
                 <div class="col-sm-2">
-                    <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
-                        <i class="fa fa-procedures"></i> Register in-Patient
+                    <a href="{{route('profile')}}" class="btn btn-app">
+                        <i class="fa fa-home"></i> User Profile
+                    </a>
+                </div>
+
+
+                <!-- ./col -->
+                <div class="col-sm-2">
+                    <a href="{{route('wards')}}" class="btn btn-app">
+                        <i class="fa fa-hospital"></i> Wards
                     </a>
                 </div>
 
@@ -179,22 +179,22 @@
             <div class="box-body">
 
                 <div class="col-sm-2">
-                    <a href="{{route('patient')}}" class="btn btn-app">
-                        <i class="ion ion-person-add"></i> Patients
+                    <a href="{{route('createnoticeview')}}" class="btn btn-app">
+                        <i class="fa fa-commenting"></i> Notices
                     </a>
                 </div>
 
 
                 <!-- ./col -->
                 <div class="col-sm-2">
-                    <a href="{{route('searchPatient')}}" class="btn btn-app">
-                        <i class="ion ion-stats-bars"></i> Search Patient
+                    <a href="{{route('stats')}}" class="btn btn-app">
+                        <i class="fa fa-chart-line"></i> Statistics
                     </a>
                 </div>
 
 
                 <!-- ./col -->
-                <div class="col-sm-2">
+                {{--  <div class="col-sm-2">
                     <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
                         <i class="fa fa-procedures"></i> Register in-Patient
                     </a>
@@ -220,7 +220,7 @@
                     <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
                         <i class="fa fa-procedures"></i> Register in-Patient
                     </a>
-                </div>
+                </div>  --}}
 
             </div>
         </div>
