@@ -21,7 +21,7 @@
                 <span class="info-box-icon bg-aqua"><i class="fas fa-user-md"></i></span>
                 <div class="info-box-content">
                     <h3><b><span class="info-box-text">Doctors</span></b></h3>
-                    <span class="info-box-number">90</span>
+                    <span class="info-box-number">{{$doctorcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -33,8 +33,8 @@
                 <span class="info-box-icon bg-red"><i class="fas fa-id-card-alt"></i></span>
 
                 <div class="info-box-content">
-                    <h3><b><span class="info-box-text">Nurses</span></b></h3>
-                    <span class="info-box-number">10</span>
+                    <h3><b><span class="info-box-text">General Staff</span></b></h3>
+                    <span class="info-box-number">{{$generalcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -50,8 +50,8 @@
                 <span class="info-box-icon bg-green"><i class="fas fa-briefcase-medical"></i></span>
 
                 <div class="info-box-content">
-                    <h3><b><span class="info-box-text">Pharmasists</span></b></h3>
-                    <span class="info-box-number">2</span>
+                    <h3><b><span class="info-box-text">Pharmacists</span></b></h3>
+                    <span class="info-box-number">{{$pharmacistcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -64,7 +64,7 @@
 
                 <div class="info-box-content">
                     <h3><b><span class="info-box-text">In Patients</span></b></h3>
-                    <span class="info-box-number">2,000</span>
+                    <span class="info-box-number">{{$inpatientcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -233,22 +233,24 @@
                     <h3 class="box-title">Noticeboard</h3>
                 </div>
                 <div class="box-body">
-                    {{--  @if ($notices)  --}}
-                    @foreach ($notices as $notice)
+
+                    @foreach ($notices as $note)
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <b><h4 class="mb-1">{{$notice->subject}}</h4></b>
-                                <small>{{$notice->time}}</small>
+                                <b>
+                                    <h4 class="mb-1">{{$note->subject}}</h4>
+                                </b>
+                                <small>{{$note->time}}</small>
                             </div>
-                            <p class="mb-1">{{$notice->description}}</p>
-                            <small>By {{$notice->name}} ({{$notice->user_type}})</small>
+                            <p class="mb-1">{{$note->description}}</p>
+                            <small>By {{$note->name}} ({{$note->user_type}})</small>
                         </a>
                     </div>
                     @endforeach
-                    {{--  @else
-                    <h3>No Notices !!!</h3>
-                    @endif  --}}
+                    @if (count($notices)==0)
+                    <h3 class="text-center"><i class="fas fa-angle-double-left"></i>..........Empty..........<i class="fas fa-angle-double-right"></i></h3>
+                    @endif
                 </div>
             </div>
         </div>
