@@ -18,19 +18,17 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <title>Smart Hospitals | @yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    {{-- print-function --}}
-
 
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- daterange picker -->
-    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
@@ -51,15 +49,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <!-- Google Font -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-    {{-- <link rel="stylesheet" href="css/theme.css"> --}}
-    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/skins/skin-blue.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
     @yield('custom_style_sheets')
@@ -67,12 +65,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-    <link rel="shortcut icon" type="image/png" href="images/logo.png" />
+    <link rel="shortcut icon" type="image/png" href="{{asset('images/logo.png')}}" />
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
-    {{-- <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css"> --}}
     <style>
         @yield('custom_styles')
         .spinner {
@@ -87,6 +84,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
             text-align: center;
             font-size: 20px;
             z-index: 9999;
+        }
+
+        input[readonly], input[readonly="readonly"]
+        {
+        background-color:white !important;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 16px;
+        font-weight: 300
         }
 
         .spinner>div {
@@ -300,7 +305,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <!-- User Image -->
-                                                    <img src="{{$image_path}}" class="img-circle" alt="User Image">
+                                                    <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
                                                 </div>
                                                 <!-- Message title and timestamp -->
                                                 <h4>
@@ -350,14 +355,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="{{$image_path}}" class="user-image" alt="User Image">
+                                <img src="{{asset("$image_path")}}" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ucwords($name)}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="{{$image_path}}" class="img-circle" alt="User Image">
+                                    <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
 
                                     <p>
                                         {{$name}}
@@ -399,7 +404,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="{{$image_path}}" class="img-circle" alt="User Image">
+                        <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{$name}}</p>
@@ -418,7 +423,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     </li>
                     {{--patient--}}
                     <li
-                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData','discharge_inpatient'])}}">
+                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData','discharge_inpatient','patientProfileIntro','patientProfile'])}}">
                         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -429,9 +434,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         class="fas fa-user-plus" aria-hidden="true"></i>
                                     Register New</a></li>
                             <li class="{{Active::checkRoute(['searchPatient','searchData'])}}"><a
-                                    href="{{route('searchPatient')}}"></i><i class="fas fa-id-card"
+                                    href="{{route('searchPatient')}}"></i><i class="fas fa-search"
                                         aria-hidden="true"></i> Search Patient</a>
                             </li>
+
+                            <li class="{{Active::checkRoute(['patientProfileIntro','patientProfile'])}}"><a
+                                    href="{{route('patientProfileIntro')}}"></i><i class="fas fa-id-card"
+                                        aria-hidden="true"></i> Patient Profile</a>
+                            </li>
+
                          {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
                                     href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
@@ -597,36 +608,31 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                 Version 1.0
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2019 <a href="#">Smart Hospital Systems</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; {{date('Y')}} <a href="#">Smart Hospital Systems</a>.</strong> All rights reserved.
         </footer>
 
 
-        <!-- Add the sidebars background. This div must be placed
-  immediately after the control sidebar -->
+ 
         <div class="control-sidebar-bg"></div>
     </div>
-    <!-- ./wrapper -->
 
 
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="dist/js/adminlte.min.js"></script>
+    <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.js')}}"></script>
+    <script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+    <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
     <script>
         $("#preloader").fadeOut();
     $("#spinner").fadeOut();
     </script>
     <!--Datepicker-->
-    <script src="bower_components/moment/min/moment.min.js"></script>
-    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <!-- DataTables -->
-    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+    <script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
+    <script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+ 
     
 
     <!-- page script -->

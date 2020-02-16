@@ -5,12 +5,15 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patients extends Model
 {
     //
     protected $primaryKey = 'id';
     public $incrementing = false;
+
+    use SoftDeletes;
 
     public function history()
     {
