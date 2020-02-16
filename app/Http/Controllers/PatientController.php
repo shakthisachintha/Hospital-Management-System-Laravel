@@ -143,7 +143,7 @@ class PatientController extends Controller
     public function checkPatientView()
     {
         $user = Auth::user();
-        return view('patient.check_patient_intro', ['title' => $user->name]);
+        return view('patient.check_patient_intro', ['title' => "Check Patient"]);
     }
 
     public function checkPatient(Request $request)
@@ -216,7 +216,7 @@ class PatientController extends Controller
     
 
         return view('patient.check_patient_view', [
-            'title' => ucWords($user->name),
+            'title' => "Check Patient",
             'appNum' => $request->appNum,
             'appID' => $appointment->id,
             'pName' => $appointment->patient->name,
