@@ -87,22 +87,23 @@ class UserController extends Controller
         return view('users.resetuser', ['title' => "Reset User Account"]);
     }
 
-    public function resetUser(Request $request){
-        $reset_user_id=$request->userid;
-        $admin_pw=$request->admin_password;
+    public function resetUser(Request $request)
+    {
+        $reset_user_id = $request->userid;
+        $admin_pw = $request->admin_password;
 
         if (!Hash::check($admin_pw, Auth::user()->password)) {
             return redirect()->back()->with("error", "Your Entered Password Does Not Matches With Your Current Password.Please Check Again.");
-        }else if($usr=User::find($reset_user_id)){
-            $usr->password=bcrypt("12345678");
+        } else if ($usr = User::find($reset_user_id)) {
+            $usr->password = bcrypt("12345678");
             try {
                 $usr->save();
-                return redirect()->back()->with('success',"User ".ucWords($usr->name)."'s(UserID: $usr->id) Password Reset To System Default(12345678) Password.");
+                return redirect()->back()->with('success', "User " . ucWords($usr->name) . "'s(UserID: $usr->id) Password Reset To System Default(12345678) Password.");
             } catch (\Throwable $th) {
-                return redirect()->back()->with('error',"Unkown Error Occured.Try Later.");
+                return redirect()->back()->with('error', "Unkown Error Occured.Try Later.");
             }
-        }else{
-            return redirect()->back()->with('error',"User($reset_user_id) Does Not Exist.");
+        } else {
+            return redirect()->back()->with('error', "User($reset_user_id) Does Not Exist.");
         }
     }
 
@@ -166,8 +167,8 @@ class UserController extends Controller
 
     public function createnoticeview()
     {
-
-        return view('users.send_notices', ['title' => "Send Notices"]);
+        $notices = DB::table('noticeboards')->select('*')->orderBy('time', 'desc')->get();
+        return view('users.send_notices', ['title' => "Send Notices", 'notices' => $notices]);
     }
 
     public function send_notice(Request $request)
@@ -267,14 +268,15 @@ class UserController extends Controller
         }
     }
 
-    public function changecontactnumber(Request $data){
+    public function changecontactnumber(Request $data)
+    {
 
-       $this->validate($data, [
+        $this->validate($data, [
             'newcontactnumber' => 'required|min:9|max:10|unique:users'
         ]);
 
         $user = Auth::user();
-        $user_id=$user->id;
+        $user_id = $user->id;
         // dd($user_id);
         DB::table('users')
             ->where('id', $user_id)
@@ -285,7 +287,8 @@ class UserController extends Controller
 
         return redirect()->back()->with("successcn", "Contact number changed successfully !");
     }
-    public function changeemail(Request $data){
+    public function changeemail(Request $data)
+    {
 
         $this->validate($data, [
             'newemail' => 'required|string|email|max:255|min:1|unique:users'
@@ -303,10 +306,11 @@ class UserController extends Controller
         return redirect()->back()->with("successmail", "Email changed successfully !");
     }
 
-    public function editprofile(Request $data){
+    public function editprofile(Request $data)
+    {
         $this->validate($data, [
             'name' => 'required|string',
-            'education'=> 'required|string',
+            'education' => 'required|string',
             'location' => 'required|string',
         ]);
         $user = Auth::user();
@@ -316,16 +320,15 @@ class UserController extends Controller
             ->where('id', $user_id)
             ->limit(1)
             ->update(array(
-            'name' => $data->name,
-            'education' => $data->education,
-            'skills' => $data->skills,
-            'location' => $data->location,
-            'notes' => $data->notes));
+                'name' => $data->name,
+                'education' => $data->education,
+                'skills' => $data->skills,
+                'location' => $data->location,
+                'notes' => $data->notes
+            ));
 
         activity()->performedOn($user)->log('User details updated!');
 
         return redirect()->back()->with("successedit", "Changes added to the database successfully !");
     }
-
 }
-
