@@ -76,8 +76,13 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-4">
+                        @if(Auth::user()->user_type=='general')
+                        <button type="button" onclick="go('delete')" class="btn btn-danger  pull-left"><i
+                            class="far fa-id-card"></i>
+                        Print Reg Card</button>
+                        @endif
                         @if(Auth::user()->user_type=="admin" && $status=="Active")
-                        <button type="button" onclick="go('delete')" class="btn btn-danger pull-left"><i
+                        <button type="button" onclick="go('delete')" class="btn btn-danger ml-2 pull-left"><i
                                 class="far fa-id-card"></i>
                             Mark As Inactive</button>
                         @elseif(Auth::user()->user_type=="admin" && $status=="Inactive")
@@ -93,9 +98,8 @@
                             {{csrf_field()}}
                             <input type="hidden" name="reg_pid" value="{{$patient->id}}">
                             <button style="display:inline-block;align-content: center" class="btn btn-warning"><i
-                                    class="fas fa-edit"></i> Edit Details</button>
-                                    
-                                </form>
+                                    class="fas fa-edit"></i> Edit Details</button>            
+                        </form>
                     </div>
 
                     <div class="col-sm-4">

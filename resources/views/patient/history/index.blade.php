@@ -1,4 +1,7 @@
-@foreach ($prescs as $presc)
+@extends('template.plain')
+
+
+{{-- @foreach ($prescs as $presc)
 <br>----------------------
 <br>
 {{$presc->patient->name}}
@@ -29,4 +32,4 @@
         </ul>
     @endforeach
 <br>----------------------
-@endforeach
+@endforeach --}}
