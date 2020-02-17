@@ -86,6 +86,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
             z-index: 9999;
         }
 
+        input[readonly], input[readonly="readonly"]
+        {
+        background-color:white !important;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 16px;
+        font-weight: 300
+        }
+
         .spinner>div {
 
             background-color: #2A98E5;
@@ -297,7 +305,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <!-- User Image -->
-                                                    <img src="{{$image_path}}" class="img-circle" alt="User Image">
+                                                    <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
                                                 </div>
                                                 <!-- Message title and timestamp -->
                                                 <h4>
@@ -347,14 +355,14 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="{{$image_path}}" class="user-image" alt="User Image">
+                                <img src="{{asset("$image_path")}}" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ucwords($name)}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="{{$image_path}}" class="img-circle" alt="User Image">
+                                    <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
 
                                     <p>
                                         {{$name}}
@@ -396,7 +404,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="{{$image_path}}" class="img-circle" alt="User Image">
+                        <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{$name}}</p>
@@ -415,7 +423,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                     </li>
                     {{--patient--}}
                     <li
-                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData','discharge_inpatient'])}}">
+                        class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData','discharge_inpatient','patientProfileIntro','patientProfile'])}}">
                         <a href="#"><i class="fas fa-user-injured"></i><span> Patient</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -426,9 +434,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         class="fas fa-user-plus" aria-hidden="true"></i>
                                     Register New</a></li>
                             <li class="{{Active::checkRoute(['searchPatient','searchData'])}}"><a
-                                    href="{{route('searchPatient')}}"></i><i class="fas fa-id-card"
+                                    href="{{route('searchPatient')}}"></i><i class="fas fa-search"
                                         aria-hidden="true"></i> Search Patient</a>
                             </li>
+
+                            <li class="{{Active::checkRoute(['patientProfileIntro','patientProfile'])}}"><a
+                                    href="{{route('patientProfileIntro')}}"></i><i class="fas fa-id-card"
+                                        aria-hidden="true"></i> Patient Profile</a>
+                            </li>
+
                          {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
                                     href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"

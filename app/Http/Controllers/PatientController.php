@@ -34,24 +34,62 @@ class PatientController extends Controller
         return view('patient.register_patient', ['title' => $user->name]);
     }
 
+    public function patientProfileIntro(Request $request){
+        if($request->has('pid')){
+            return redirect()->route('patientProfile',$request->pid);
+        }else{
+            return view('patient.profile.intro',['title'=>"Patient Profile"]);
+        }
+    }
+
+    public function patientDelete($id,$action){
+        if($action=="delete"){
+            Patients::find($id)->delete();
+        }if($action=='restore'){
+            Patients::withTrashed()->find($id)->restore();
+        }
+        return redirect()->route('patientProfile',$id);
+    }
+
+    public function patientProfile($id){
+        $patient=Patients::withTrashed()->find($id);
+        $hospital_visits=1;
+        $status="Active";
+        $last_seen=explode(" ",$patient->updated_at)[0];
+        if ($patient->trashed()) {
+            $status="Inactive";
+        }
+        $hospital_visits+=Prescription::where('patient_id',$patient->id)->count();
+        
+        return view('patient.profile.profile',
+        [
+            'title'=>$patient->name,
+            'patient'=>$patient,
+            'status'=>$status,
+            'last_seen'=>$last_seen,
+            'hospital_visits'=>$hospital_visits
+            
+            ]);
+    }
+
     public function searchPatient(Request $request)
     {
-        return view('patient.search_patient_view', ['title' => "Search Patient", "search_result" => ""]);
+        return view('patient.search_patient_view', ['title' => "Search Patient","old_keyword"=>null, "search_result" => ""]);
     }
 
     public function patientData(Request $request)
     {
         if ($request->cat == "name") {
-            $result = Patients::where('name', 'LIKE', '%' . $request->keyword . '%')->get();
+            $result = Patients::withTrashed()->where('name', 'LIKE', '%' . $request->keyword . '%')->get();
         }
         if ($request->cat == "nic") {
-            $result = Patients::where('nic', 'LIKE', '%' . $request->keyword . '%')->get();
+            $result = Patients::withTrashed()->where('nic', 'LIKE', '%' . $request->keyword . '%')->get();
 
         }
         if ($request->cat == "telephone") {
-            $result = Patients::where('telephone', 'LIKE', '%' . $request->keyword . '%')->get();
+            $result = Patients::withTrashed()->where('telephone', 'LIKE', '%' . $request->keyword . '%')->get();
         }
-        return view('patient.search_patient_view', ["title" => "Search Results", "search_result" => $result]);
+        return view('patient.search_patient_view', ["title" => "Search Results","old_keyword"=>$request->keyword, "search_result" => $result]);
     }
 
     public function register_patient(Request $request)
@@ -143,7 +181,7 @@ class PatientController extends Controller
     public function checkPatientView()
     {
         $user = Auth::user();
-        return view('patient.check_patient_intro', ['title' => $user->name]);
+        return view('patient.check_patient_intro', ['title' => "Check Patient"]);
     }
 
     public function checkPatient(Request $request)
@@ -216,7 +254,7 @@ class PatientController extends Controller
     
 
         return view('patient.check_patient_view', [
-            'title' => ucWords($user->name),
+            'title' => "Check Patient",
             'appNum' => $request->appNum,
             'appID' => $appointment->id,
             'pName' => $appointment->patient->name,

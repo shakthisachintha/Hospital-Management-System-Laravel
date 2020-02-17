@@ -74,9 +74,12 @@ Route::post('/addclinic', ['as' => 'addToClinic', 'uses' => 'PatientController@a
 // In patient Routes
 Route::post('/markinpatient', ['as' => 'markInPatient', 'uses' => 'PatientController@markInPatient'])->middleware('auth', 'doctor');
 
-// Search Patient Routes
+// Search & Patient Profile Routes
 Route::get('/searchpatient', ['as' => 'searchPatient', 'uses' => 'PatientController@searchPatient'])->middleware('auth', 'doctor', 'lang');
 Route::get('/search', ['as' => 'searchData', 'uses' => 'PatientController@patientData'])->middleware('auth', 'doctor', 'lang');
+Route::get('/patient-profile', ['as' => 'patientProfileIntro', 'uses' => 'PatientController@patientProfileIntro'])->middleware('auth', 'doctor', 'lang');
+Route::get('/patient/{id}', ['as' => 'patientProfile', 'uses' => 'PatientController@patientProfile'])->middleware('auth', 'doctor', 'lang');
+Route::get('/patient-delete/{id}/{action}', ['as' => 'patientDelete', 'uses' => 'PatientController@patientDelete'])->middleware('auth', 'doctor', 'lang');
 
 //edit patitent routes
 Route::post('/editpatient', ['as' => 'editpatient', 'uses' => 'PatientController@editPatientview'])->middleware('auth', 'doctor', 'lang');
@@ -110,7 +113,7 @@ Route::post('/deletenotice', ['as' => 'deletenotice', 'uses' => 'NoticeboardCont
 Route::get('/reportgeneration', ['as' => 'reportgeneration', 'uses' => 'UserController@reportgen'])->middleware('auth');
 Route::get('/clinicreports', ['as' => 'clinic_reports', 'uses' => 'ReportController@viewclinicreport'])->middleware('auth');
 Route::get('/mobclinicreport', ['as' => 'mob_clinic_report', 'uses' => 'ReportController@view_mobile_clinic_report'])->middleware('auth');
-Route::get('/monstatreport', ['as' => 'mon_stat_report', 'uses' => 'ReportController@view_monthly_static_report'])->middleware('auth');
+Route::get('/monstatreport', ['as' => 'mon_stat_report', 'uses' => 'ReportController@view_monthly_static_report'])->middleware('auth','lang');
 Route::get('/outpreport', ['as' => 'out_p_report', 'uses' => 'ReportController@view_out_patient_report'])->middleware('auth');
 Route::get('/attendancereport', ['as' => 'attendance_report', 'uses' => 'ReportController@view_attendance_report'])->middleware('auth');
 Route::get('/wardreport', ['as' => 'ward_report', 'uses' => 'ReportController@view_ward_report'])->middleware('auth');
