@@ -93,6 +93,7 @@ Route::post('/updatepatientdetails', ['as' => 'updatepatientdetails', 'uses' => 
 Route::get('/myattend', ['as' => 'myattend', 'uses' => 'AttendController@myattend'])->middleware('auth', 'lang');
 Route::get('/attendmore', ['as' => 'attendmore', 'uses' => 'AttendController@attendmore'])->middleware('auth', 'admin', 'lang');
 Route::get('/attendance', ['as' => 'attendance', 'uses' => 'AttendController@markattendance'])->middleware('guest');
+Route::post('/getyearattendance', ['as' => 'getyearattendance', 'uses' => 'AttendController@myattend'])->middleware('auth', 'lang');
 
 // Admin Routes For User Registration and Management
 Route::get('/regfinger', ['as' => 'regfinger', 'uses' => 'UserController@showRegFingerprint'])->middleware('auth', 'admin', 'lang');

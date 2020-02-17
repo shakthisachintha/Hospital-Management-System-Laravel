@@ -11,24 +11,43 @@ use Illuminate\Support\Facades\Auth;
 class AttendController extends Controller
 {
     //
-    public function myattend()
+    public function myattend(Request $request)
     {
-        $rec = DB::table('attendances')
-            ->select(DB::raw('user_id,DATE(start) as date, MONTH(start) as month,DAY(start) as day ,YEAR(start) as year, sum(TIMESTAMPDIFF(MINUTE,start,end))/60 as duration'))
-            ->where('user_id', \Auth::user()->id)
-            ->whereRaw("YEAR(created_at)=YEAR(CURDATE())")
-            ->whereRaw(DB::raw('end is not null'))
-            ->orderBy('created_at', 'desc')->groupBy('date')->get();
+        if($request->has('year')){
+            $rec = DB::table('attendances')
+                ->select(DB::raw('user_id,DATE(start) as date, MONTH(start) as month,DAY(start) as day ,YEAR(start) as year, sum(TIMESTAMPDIFF(MINUTE,start,end))/60 as duration'))
+                ->where('user_id', \Auth::user()->id)
+                ->whereRaw("YEAR(created_at)=$request->year")
+                ->whereRaw(DB::raw('end is not null'))
+                ->orderBy('created_at', 'desc')->groupBy('date')->get();
 
-        $rec_more = DB::table('attendances')
-            ->select(DB::raw('user_id,DATE(created_at) as date,TIME(start) as start,TIME(end) as end, MONTH(created_at) as month,DAY(created_at) as day ,YEAR(created_at) as year, TIMESTAMPDIFF(MINUTE,start,end)/60 as duration'))
-            ->where('user_id', \Auth::user()->id)
-            ->whereRaw("YEAR(created_at)=YEAR(CURDATE())")
-            ->whereRaw("MONTH(created_at)=MONTH(CURDATE())")
-            ->whereRaw(DB::raw('end is not null'))
-            ->orderBy('created_at', 'desc')->get();
 
-        return view('attendance.attendance', ['title' => "My Attendance", 'att_records' => $rec, 'att_more' => $rec_more]);
+            return view('attendance.attendance', ['title' => "My Attendance", 'att_records' => $rec, 'att_more' => null]);
+
+
+
+        }else{
+            $rec = DB::table('attendances')
+                ->select(DB::raw('user_id,DATE(start) as date, MONTH(start) as month,DAY(start) as day ,YEAR(start) as year, sum(TIMESTAMPDIFF(MINUTE,start,end))/60 as duration'))
+                ->where('user_id', \Auth::user()->id)
+                ->whereRaw("YEAR(created_at)=YEAR(CURDATE())")
+                ->whereRaw(DB::raw('end is not null'))
+                ->orderBy('created_at', 'desc')->groupBy('date')->get();
+
+
+            $rec_more = DB::table('attendances')
+                ->select(DB::raw('user_id,DATE(created_at) as date,TIME(start) as start,TIME(end) as end, MONTH(created_at) as month,DAY(created_at) as day ,YEAR(created_at) as year, TIMESTAMPDIFF(MINUTE,start,end)/60 as duration'))
+                ->where('user_id', \Auth::user()->id)
+                ->whereRaw("YEAR(created_at)=YEAR(CURDATE())")
+                ->whereRaw("MONTH(created_at)=MONTH(CURDATE())")
+                ->whereRaw(DB::raw('end is not null'))
+                ->orderBy('created_at', 'desc')->get();
+
+
+            return view('attendance.attendance', ['title' => "My Attendance", 'att_records' => $rec, 'att_more' => $rec_more]);
+        }
+
+
     }
 
     public function attendmore()
@@ -66,7 +85,7 @@ class AttendController extends Controller
 
                 // Log Activity
                 activity()->performedOn($attend)->withProperties(['User ID' => $user->id, 'Finger ID' => $finger_id, 'Time' => $timestamp, 'Record ID' => $attend->id])->log('New Attendance Record Added');
-                
+
                 return response()->json([
                     "status"=>200,
                     "name"=>ucwords($user->name),
