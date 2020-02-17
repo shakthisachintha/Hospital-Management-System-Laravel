@@ -157,8 +157,13 @@
 
     "Check Patient here and update history from here !":"රෝගියා පරීක්ෂා කර ඉතිහාසය මෙතැනින් යාවත්කාලීන කරන්න!",
     "Check Patient":"පරික්ෂාව",
-    "Enter Appointment Number Or Patient Number To Begin":"ආරම්භ කිරීම සඳහා හමුවීම් අංකය හෝ රෝගියාගේ අංකය ඇතුළත් කරන්න"
+    "Enter Appointment Number Or Patient Number To Begin":"ආරම්භ කිරීම සඳහා හමුවීම් අංකය හෝ රෝගියාගේ අංකය ඇතුළත් කරන්න",
     
+    "My Attendance":"මගේ පැමිණීම",
+    "My Attendance And Holidays Taken":"මගේ පැමිණීම සහ නිවාඩු",
+    "Attendance":"පැමිණීම",
+    "Hours You Worked Are Displayed In The Calander.The Color Change With The Number Of Hours.":"ඔබ වැඩ කළ පැය ගණන දින දර්ශනයේ ප්‍රදර්ශනය කෙරේ. පැය ගණන සමඟ වර්ණය වෙනස් වේ."
+
 
 
     

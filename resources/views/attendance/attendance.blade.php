@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"My Attendance")
-@section('content_description',"My Attendance And Holidays Taken")
+@section('content_title',__("My Attendance"))
+@section('content_description',__("My Attendance And Holidays Taken"))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -92,8 +92,7 @@
                 </div>
                 <div class="box-body">
                     <div class="w-100" id="calendar_basic" style="height:25rem"></div>
-                    <p><span class="text-red">*</span>Hours You Worked Are Displayed In The Calander.The Color Changes
-                        With The Number Of Hours.</p>
+                    <p><span class="text-red">*</span>{{__('Hours You Worked Are Displayed In The Calander.The Color Change With The Number Of Hours.')}}</p>
                 </div>
             </div>
 

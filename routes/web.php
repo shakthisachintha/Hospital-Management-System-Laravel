@@ -13,6 +13,7 @@
 
 //use Illuminate\Routing\Route;
 
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
