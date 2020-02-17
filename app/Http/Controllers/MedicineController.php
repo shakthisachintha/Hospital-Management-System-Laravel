@@ -44,11 +44,13 @@ class MedicineController extends Controller
         $pmedicines = DB::table('medicine_prescription')
         ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
         ->join('prescriptions', 'medicine_prescription.prescription_id', '=', 'prescriptions.id')
-        ->select('medicines.name_english', 'medicines.name_sinhala', 'medicine_prescription.note')
+        ->select('medicines.name_english', 'medicines.name_sinhala', 'medicine_prescription.note','prescriptions.patient_id')
+        // ->whereDate(DB::Raw("Date(prescriptions.created_at,=,CURDATE()")
         // ->where('prescriptions.patient_id','=',$request->patientid)
         ->get();
 
-        return view('patient.issueMedicineView', ['title' => $user->name, 'pmedicines' => $pmedicines]);
+        return view('patient.issueMedicineView',compact('pmedicines'), ['title' => "Issue MedicineN"]);
+        // 'pmedicines' => $pmedicines
         // return view('patient.issueMedicineView', ['title' => "Issue Medicine"]);
 
     }
@@ -103,27 +105,51 @@ class MedicineController extends Controller
         
     }
 
-    // public function issueMedNow()
+    // public function issueMedicine(Request $request)
+
     // {
-    //     $pmedicines['pmedicines'] =DB::table('medicine_prescription')
-    //         ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
-    //         ->join('prescriptions', 'medicine_prescription.prescription_id', '=', 'prescriptions.id')
-    //         ->select('medicines.name_english as e', 'medicines.name_sinhala as s', 'medicine_prescription.note as n')
-    //         // ->where('pre scriptions.patient_id','=',$num)
-    //         ->get();
+    //     $num = $request->pNum;
+    //     // $user = Auth::user();
 
-    //         if(count($pmedicines)>0)
-    //         {
-    //             return view('patient.issueMedicineView',$pmedicines,['title' => "Issue Medicine"]);
-    //         }
-    //         else{
-    //             return view('patient.issueMedicineView',['title' => "Issue Medicine"]);
-    //         }
-
-
+    //     $pmedicines = DB::table('medicine_prescription')
+    //     ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
+    //     ->join('prescriptions', 'medicine_prescription.prescription_id', '=', 'prescriptions.id')
+    //     ->select('medicines.name_english as ename', 'medicines.name_sinhala as sname', 'medicine_prescription.note as not')
+    //     ->where('prescriptions.patient_id','=',$num)
+    //     ->get();
 
        
-    
+    //     if ($pmedicines) {
+    //         return response()->json([
+    //             "exist" => true,
+    //             "nameE" => $pmedicines->ename,
+    //             "nameS" => $pmedicines->sname,
+    //             "Note" => $pmedicines->not,
+    //         ]);
+    //     } else {
+    //         return response()->json([
+    //             "exist" => false,
+    //         ]);
+    //     }
+
+    //     // return view('patient.issueMedicineView', ['title' => $user->name, 'pmedicines' => $pmedicines]);
+    // }
+
+    // public function show($id)
+    // {
+    //     // get the nerd
+
+    //         $pmedicines = DB::table('medicine_prescription')
+    //     ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
+    //     ->join('prescriptions', 'medicine_prescription.prescription_id', '=', 'prescriptions.id')
+    //     ->select('medicines.name_english as ename', 'medicines.name_sinhala as sname', 'medicine_prescription.note as not')
+    //     ->where('prescriptions.patient_id','=',$id)
+    //     ->get();
+
+    //     // show the view and pass the nerd to it
+    //     return View::make('patient.show')
+    //         ->with('pmedicines', $pmedicines);
+    // }
 
 }
 

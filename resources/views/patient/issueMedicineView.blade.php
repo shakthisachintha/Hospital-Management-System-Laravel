@@ -28,7 +28,7 @@
         <h4>Appointment No &nbsp;: <span id="p_appnum"></span></h4>
         <button type="button" class="btn btn-primary btn-lg mt-3 text-center" value="Issue Medicine Now"
             onclick="issuemedicinefunction2()" id="btn">Issue Medicine Now</button>
-
+            {{-- <a class="btn btn-primary btn-lg mt-3 text-center" href="{{ URL::to('issueMedicinenow/' . $pmedicines->patient_id) }}">Issue Medicine Now</a> --}} 
 
     </div>
     <!-- /.box-body -->

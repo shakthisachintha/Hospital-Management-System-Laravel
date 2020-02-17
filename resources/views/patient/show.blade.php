@@ -24,7 +24,7 @@
             <h3 class="box-title">Prescription</h3>
         </div>
         <div class="box-body">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-active">
                 <thead>
                     <tr>
                         <th scope="col" colspan="2" style="text-align:center;font-size:18px">Medicine</th>
@@ -34,27 +34,27 @@
                             Issued or Not</th>
                     </tr>
                     <tr>
-                        <th style="text-align:center;font-size:15px">English</th>
-                        <th style="text-align:center;font-size:15px">Sinhala</th>
+                        <th style="text-align:center;font-size:18px">English</th>
+                        <th style="text-align:center;font-size:18px">Sinhala</th>
                     </tr>
                 </thead>
                 <tbody id="bodyData">
-                    @foreach ($data as $med)
-            <tr>
-                <td>{{ $med->e }}</td>
-                    <td>{{ $med->s }}</td>
-                    <td>{{ $med->n }}</td>
-
+                    @foreach ($pmedicines as $med)
+                    <tr>
+                        <td style="text-align:center;font-size:15px;color:blue;">{{ $med->name_english }}</td>
+                        <td style="text-align:center;font-size:15px;color:blue;">{{ $med->name_sinhala }}</td>
+                        <td style="text-align:center;font-size:15px;color:blue;">{{ $med->note }}</td>
+                        <td style="text-align:center;font-size:15px;color:blue;"><button
+                                style="font-size:20px;color:green;" class='fa fa-check btn-md'></button></td>
                     </tr>
                     @endforeach
 
                 </tbody>
             </table>
             {{ csrf_field() }}
+        </div>
     </div>
 </div>
-</div>
-
 
 
 @endsection

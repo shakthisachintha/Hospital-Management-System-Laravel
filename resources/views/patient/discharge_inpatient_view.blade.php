@@ -71,6 +71,7 @@
             </div>
 
             <div class="form-group">
+                <label for="patient_address" class="col-sm-2 control-label">{{__('Address')}}</label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_paddress" id="patient_address"
                         placeholder="Enter Patient Address ">
@@ -88,7 +89,7 @@
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">{{__('Description:')}}</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="reg_medicalofficer1" rows="3" cols="100"
+                    <textarea required class="form-control" name="reg_medicalofficer1" rows="3" cols="100"
                         placeholder="Enter abstract condition of patient here"></textarea>
                 </div>
             </div>
@@ -96,7 +97,7 @@
             <div class="form-group">
                 <label for="medofs2" class="col-sm-2 control-label">{{__('Certified by')}}</label>
                 <div class="col-sm-10" id="al-box">
-                    <input type="text" class="form-control" id="medofs2" name="reg_medicalofficer2"
+                    <input type="text" required class="form-control" id="medofs2" name="reg_medicalofficer2"
                         placeholder="Select Your ID here" />
                 </div>
             </div>
@@ -104,6 +105,7 @@
             <div class="box-footer">
                 <input type="submit" class="btn btn-info pull-right" value="Submit">
                 <input type="reset" class="btn btn-default" value="Cancel">
+                <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i>Print</a>
             </div>
 
         </div>
