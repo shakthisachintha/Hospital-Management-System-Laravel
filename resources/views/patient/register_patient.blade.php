@@ -62,14 +62,14 @@
                         <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}} <span
                                 style="color:red">*</span></label>
                         <div class="col-sm-10">
-                            <input type="text" required class="form-control" name="reg_pname"
+                            <input type="text" minlength="10" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required class="form-control" name="reg_pname"
                                 placeholder="Enter Patient Full Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
                         <div class="col-sm-10">
-                            <input type="text" required class="form-control" name="reg_pnic"
+                            <input type="text" pattern="^[1-9]{1}[0-9]{8}[V,X,v,x]|[0-9]{12}$" maxlength="12" required class="form-control" name="reg_pnic"
                                 placeholder="National Identity Card Number">
                         </div>
                     </div>
@@ -82,9 +82,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}}</label>
+                        <label for="inputPassword3" class="col-sm-2 control-label">{{__('Telephone')}} <span
+                            style="color:red">*</span></label>
                         <div class="col-sm-10">
-                            <input type="tel" class="form-control" name="reg_ptel"
+                            <input pattern="\+[0-9]{11}|[0-9]{10}"  required maxlength="12" type="text" class="form-control" name="reg_ptel"
                                 placeholder="Patient Telephone Number">
                         </div>
                     </div>
@@ -113,7 +114,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" id="datepicker" class="form-control pull-right" name="reg_pbd"
+                                <input type="text" required pattern="^(((0)[0-9])|((1)[0-2]))(\/)([0-2][0-9]|(3)[0-1])(\/)\d{4}$" id="datepicker" class="form-control pull-right" name="reg_pbd"
                                     placeholder="Birthday">
                             </div>
 

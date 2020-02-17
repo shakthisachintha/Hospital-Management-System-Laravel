@@ -98,7 +98,7 @@ class PatientController extends Controller
         return view('patient.search_patient_view', ["title" => "Search Results","old_keyword"=>$request->keyword, "search_result" => $result]);
     }
 
-    public function register_patient(Request $request)
+    public function registerPatient(Request $request)
     {
         try {
             $patient = new Patients;
