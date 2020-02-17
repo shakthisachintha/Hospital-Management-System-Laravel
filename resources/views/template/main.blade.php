@@ -612,7 +612,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
         </footer>
 
 
- 
+
         <div class="control-sidebar-bg"></div>
     </div>
 
@@ -632,10 +632,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
- 
-    
-
-    <!-- page script -->
 
     @yield('optional_scripts')
 
