@@ -15,8 +15,8 @@
 
 @section('main_content')
 <div class="row">
-    <div class="col-md-12">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="m-0 col-md-12">
+        <div class="pl-0 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fas fa-user-md"></i></span>
                 <div class="info-box-content">
@@ -58,7 +58,7 @@
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 pr-0 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fas fa-user-injured"></i></span>
 
@@ -78,17 +78,17 @@
     <div class="col-md-3">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Reports</h3>
+                <h3 class="box-title">{{__('Quick Reports')}}</h3>
             </div>
             <div class="box-body list-group">
                 <a href="{{route('mon_stat_report')}}" class="list-group-item list-group-item-action btn btn-danger">
-                    Monthly Statistic Report
+                    {{__('Monthly Statistic Report')}}
                 </a>
                 <a href="{{route('stats')}}" class="list-group-item mt-4 list-group-item-action btn btn-warning">
-                    Statistics
+                    {{__('Statistics')}}
                 </a>
                 <a href="{{route('attendance_report')}}" class="list-group-item mt-4 list-group-item-action btn btn-success">
-                    Attendance Report
+                    {{__('Attendance Report')}}
                 </a>
             </div>
         </div>
@@ -97,7 +97,7 @@
         <div class="box box-default col-md-12">
 
             <div class="box-header with-border">
-                <h3 class="box-title">Short-cuts</h3>
+                <h3 class="box-title">{{__('Quick Links')}}</h3>
             </div>
 
             <div class="box-body">
