@@ -34,6 +34,12 @@ class PatientController extends Controller
         return view('patient.register_patient', ['title' => $user->name]);
     }
 
+    public function patientHistory($id){
+        $prescs=Prescription::where('patient_id',$id)->orderBy('created_at','desc')->get();
+        $title="Patient History ($id)";
+        return view('patient.history.index',compact('prescs','title'));
+    }
+
     public function patientProfileIntro(Request $request){
         if($request->has('pid')){
             return redirect()->route('patientProfile',$request->pid);

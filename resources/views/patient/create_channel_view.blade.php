@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"Create Appoinments")
-@section('content_description',"Create an appointment for the patient from here !")
+@section('content_title',__("Create Appoinments"))
+@section('content_description',__("Create an appointment for the patient from here !"))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -34,7 +34,7 @@
                 <h3 id="appt_num"></h3>
             </div>
             <a href="#" class="icon"><i class="ion ion-person-add"></i></a>
-            <a href="#" class="small-box-footer">Create Channel<i class="fas fa-plus-circle"></i></a>
+            <a href="#" class="small-box-footer">{{__('Create Channel')}}<i class="fas fa-plus-circle"></i></a>
         </div>
     </div>
 </div>
@@ -112,14 +112,14 @@
 
 <div class="box box-info" id="createchannel3">
     <div class="box-header with-border">
-        <h3 class="box-title">Enter Registration No. Or Scan The Bar Code</h3>
+        <h3 class="box-title">{{__('Enter Registration No. Or Scan The Bar Code')}}</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <div class="form-horizontal">
         <div class="box-body">
             <div class="form-group">
-                <label for="p_reg_num" class="col-sm-2 control-label">Registration No:</label>
+                <label for="p_reg_num" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
                 <div class="col-sm-8">
                     <input type="number" onchange="createChannelFunction()" required class="form-control" id="p_reg_num"
                         placeholder="Enter Patient Registration Number">
@@ -141,16 +141,16 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Patients Appointments Today</h3>
+                <h3 class="box-title">{{__('Patients Appointments Today')}}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                 <table id="example2" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Registration No.</th>
-                            <th>Appointment No.</th>
-                            <th>Name</th>
+                            <th>{{__('Registration No.')}}</th>
+                            <th>{{__('Appointment No.')}}</th>
+                            <th>{{__('Name')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -163,9 +163,9 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <th>Registration No.</th>
-                        <th>Appointment No.</th>
-                        <th>Name</th>
+                        <th>{{__('Registration No.')}}</th>
+                        <th>{{__('Appointment No.')}}</th>
+                        <th>{{__('Name')}}</th>
                     </tfoot>
 
                 </table>

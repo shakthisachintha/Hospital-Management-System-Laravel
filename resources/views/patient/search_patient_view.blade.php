@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"Search Patient")
-@section('content_description',"Search,View & Update Patient Details")
+@section('content_title',__("Search Patient"))
+@section('content_description',__("Search,View & Update Patient Details"))
 @section('breadcrumbs')
 <ol class="breadcrumb">
     <li><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
@@ -31,7 +31,7 @@
             </div>
             @endif
             <div class="callout callout-info">
-                <label class="h4">Search Patient With ...</label>
+                <label class="h4">{{__('Search Patient With ...')}}</label>
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
@@ -39,21 +39,21 @@
                         <label class="mr-2">
                             <input onchange="changeFunc('Name');" style="display:inline-block" checked type="radio"
                                 name="cat" id="cat" value="name">
-                            Name
+                            {{__('Name')}}
                         </label>
 
 
                         <label class="ml-2 mr-4">
                             <input onchange="changeFunc('Telephone Number');" style="display:inline-block" type="radio"
                                 name="cat" id="cat" value="telephone">
-                            Telephone
+                            {{__('Telephone')}}
                         </label>
 
 
                         <label>
                             <input onchange="changeFunc('NIC Number');" style="display:inline-block" type="radio"
                                 name="cat" id="cat" value="nic">
-                            NIC Number
+                            {{__('NIC Number')}}
                         </label>
                     </div>
                     <div class="col-md-1"></div>
@@ -173,8 +173,8 @@
 
                         <div class="col-sm-3">
                             <div class="btn-group pull-right" role="group" aria-label="Button group">
-                                <button type="button" onclick="go('{{$patient->id}}')" class="btn bg-navy"><i class="far fa-id-card"></i> Profile</button>
-                            <button @if($patient->trashed()) type="button" disabled @endif class="btn btn-warning"><i class="fas fa-edit"></i> Edit</button>
+                                <button type="button" onclick="go('{{$patient->id}}')" class="btn bg-navy"><i class="far fa-id-card"></i> {{__('Profile')}}</button>
+                            <button @if($patient->trashed()) type="button" disabled @endif class="btn btn-warning"><i class="fas fa-edit"></i> {{__('Edit')}}</button>
                             </div>
                             
                         </div>
@@ -200,7 +200,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <h4>No results found...</h4>
+        <h4>{{__('No results found...')}}</h4>
     </div>
     <div class="col-md-1"></div>
 </div>
