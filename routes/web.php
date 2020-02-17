@@ -61,10 +61,8 @@ Route::get('getDoctor', 'PatientController@getDoctor');
 Route::get('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff', 'lang');
 Route::post('/issueMedicine2', ['as' => 'issueMedicine2', 'uses' => 'MedicineController@issueMedicineValid'])->middleware('auth', 'staff', 'lang');
 //Route::post('/pharmacyValidate', ['as' => 'pharmacyValidate', 'uses' => 'MedicineController@pharmacyValidate'])->middleware('auth', 'staff');
-//Route::post('/issueMedicine', ['as' => 'issueMedicine', 'uses' => 'MedicineController@issueMedicine'])->middleware('auth', 'staff','lang');
-Route::post('/imData/getMedicineData', 'UserDataController@issueMedicineValid');
-Route::resource('/imData', 'MedicineController');
-
+//Route::get('/issueMedicine3', ['as' => 'issueMedicinenow', 'uses' => 'MedicineController@show'])->middleware('auth', 'staff','lang');
+// Route::resource('/patient', 'MedicineController');
 // Check Patient Routes
 Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@checkPatientView'])->middleware('auth', 'doctor');
 Route::post('/validateAppNum', ['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth', 'doctor');
