@@ -28,7 +28,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+    <link rel="stylesheet"
+        href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
@@ -53,9 +54,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/skins/skin-blue.min.css')}}">
     <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+    <link rel="stylesheet"
+        href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -71,8 +74,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
     <style>
-        @yield('custom_styles')
-        .spinner {
+        @yield('custom_styles') .spinner {
             margin: 0;
             position: absolute;
             top: 50%;
@@ -86,12 +88,12 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
             z-index: 9999;
         }
 
-        input[readonly], input[readonly="readonly"]
-        {
-        background-color:white !important;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 16px;
-        font-weight: 300
+        input[readonly],
+        input[readonly="readonly"] {
+            background-color: white !important;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 16px;
+            font-weight: 300
         }
 
         .spinner>div {
@@ -289,67 +291,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             </ul>
                         </li>
 
-                        <li class="dropdown messages-menu">
-                            <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fas fa-envelope-open"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the messages -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <!-- User Image -->
-                                                    <img src="{{asset("$image_path")}}" class="img-circle" alt="User Image">
-                                                </div>
-                                                <!-- Message title and timestamp -->
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fas fa-clock"></i> 5 mins</small>
-                                                </h4>
-                                                <!-- The message -->
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                    </ul>
-                                    <!-- /.menu -->
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
-                        <!-- /.messages-menu -->
-
-                        <!-- Notifications Menu -->
-                        <li class="dropdown notifications-menu">
-                            <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fas fa-bell"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- Inner Menu: contains the notifications -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start notification -->
-                                            <a href="#">
-                                                <i class="fas fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <!-- end notification -->
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                        </li>
-
+                    
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
@@ -443,15 +385,16 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         aria-hidden="true"></i> Patient Profile</a>
                             </li>
 
-                         {{--register in patient--}}
+                            {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
                                     href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
                                         area-hidden="true"></i><span> Register In Patient</span></a>
                             </li>
                             {{--discharge in patient--}}
                             <li class="{{Active::checkRoute('discharge_inpatient')}}"><a
-                                href="{{route('discharge_inpatient')}}"><i class="fa fa-hospital-o" area-hidden="true">
-                                </i><span>Discharge In Patient</span></a>
+                                    href="{{route('discharge_inpatient')}}"><i class="fa fa-hospital-o"
+                                        area-hidden="true">
+                                    </i><span>Discharge In Patient</span></a>
                             </li>
                         </ul>
                     </li>
@@ -527,8 +470,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                         </a>
                     </li>
 
-                     {{--statistics--}}
-                     <li class="{{Active::checkRoute(['stats','stats_old'])}}">
+                    {{--statistics--}}
+                    <li class="{{Active::checkRoute(['stats','stats_old'])}}">
                         <a href="{{route('stats')}}">
                             <i class="fas fa-chart-line"></i></i>
                             <span> Statistics</span>
@@ -537,7 +480,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
 
                     {{--report generation--}}
-                    <li class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
+                    <li
+                        class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
                         <a href="#">
                             <i class="fas fa-sticky-note"></i>
                             <span> Report Generation</span>
@@ -550,29 +494,29 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                     href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
                             {{--  <li class="{{Active::checkRoute('mob_clinic_report')}}"><a
-                                    href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
-                                        aria-hidden="true"></i> Mobile Clinic Report</a></li>  --}}
-                            <li class="{{Active::checkRoute('mon_stat_report')}}"><a
-                                    href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
-                                        aria-hidden="true"></i> Monthly Statistic Report</a></li>
-                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
-                                        class="fa fa-user-edit" aria-hidden="true"></i>
-                                    Out-Patient Report</a></li>
-                            <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i
-                                        class="fa fa-hospital" aria-hidden="true"></i>
-                                    Ward Reports</a></li>
-                            <li class="{{Active::checkRoute('attendance_report')}}"><a
-                                    href="{{route('attendance_report')}}"><i class="fa fa-clipboard
+                                href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance" aria-hidden="true"></i>
+                                Mobile Clinic Report</a>
+                    </li> --}}
+                    <li class="{{Active::checkRoute('mon_stat_report')}}"><a href="{{route('mon_stat_report')}}"><i
+                                class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
+                    <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
+                                class="fa fa-user-edit" aria-hidden="true"></i>
+                            Out-Patient Report</a></li>
+                    <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i
+                                class="fa fa-hospital" aria-hidden="true"></i>
+                            Ward Reports</a></li>
+                    <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i
+                                class="fa fa-clipboard
                                         aria-hidden=" true"></i> Attendance Report</a></li>
-                        </ul>
-                    </li>
+                </ul>
+                </li>
 
-                    <li>
-                        <a href="https://adminlte.io/themes/AdminLTE/index2.html" target="_blank">
-                            <i class="fas fa-folder-plus"></i>
-                            <span> Template</span>
-                        </a>
-                    </li>
+                <li>
+                    <a href="https://adminlte.io/themes/AdminLTE/index2.html" target="_blank">
+                        <i class="fas fa-folder-plus"></i>
+                        <span> Template</span>
+                    </a>
+                </li>
 
                 </ul>
 
