@@ -50,9 +50,12 @@ class AttendController extends Controller
 
     }
 
-    public function attendmore()
+    public function attendmore(Request $data)
     {
-        return view('attendance.more_attendance', ['title' => "More Attendance"]);
+        $ids=User::all();
+        // $ids=DB::table('attendances')->select('user_id')->distinct()->get();
+        dd($ids);
+        return view('attendance.more_attendance', ['title' => "More Attendance",'ids'=>$ids]);
     }
 
     public function markAttendance(Request $data)
