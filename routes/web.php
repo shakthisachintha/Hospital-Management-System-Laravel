@@ -82,6 +82,7 @@ Route::get('/search', ['as' => 'searchData', 'uses' => 'PatientController@patien
 Route::get('/patient-profile', ['as' => 'patientProfileIntro', 'uses' => 'PatientController@patientProfileIntro'])->middleware('auth', 'doctor', 'lang');
 Route::get('/patient/{id}', ['as' => 'patientProfile', 'uses' => 'PatientController@patientProfile'])->middleware('auth', 'doctor', 'lang');
 Route::get('/patient-delete/{id}/{action}', ['as' => 'patientDelete', 'uses' => 'PatientController@patientDelete'])->middleware('auth', 'doctor', 'lang');
+Route::get('/patient-history/{id}', ['as' => 'patientHistory', 'uses' => 'PatientController@patientHistory'])->middleware('auth', 'doctor', 'lang');
 
 //edit patitent routes
 Route::post('/editpatient', ['as' => 'editpatient', 'uses' => 'PatientController@editPatientview'])->middleware('auth', 'doctor', 'lang');

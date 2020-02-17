@@ -94,13 +94,14 @@
                             <input type="hidden" name="reg_pid" value="{{$patient->id}}">
                             <button style="display:inline-block;align-content: center" class="btn btn-warning"><i
                                     class="fas fa-edit"></i> Edit Details</button>
-                        </form>
+                                    
+                                </form>
                     </div>
 
                     <div class="col-sm-4">
                         @if(Auth::user()->user_type=="admin" || Auth::user()->user_type=="doctor")
                         <form action="">
-                            <button class="btn btn-info pull-right"><i class="fas fa-history"></i> View Treatment
+                            <button type="button" onclick="window.open('{{route('patientHistory',$patient->id)}}','myWin','scrollbars=yes,width=720,height=690,location=no').focus();" class="btn btn-info pull-right"><i class="fas fa-history"></i> View Treatment
                                 History</button>
                         </form>
                         @endif
