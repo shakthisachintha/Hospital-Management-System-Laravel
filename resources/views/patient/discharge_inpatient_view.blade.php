@@ -124,7 +124,7 @@
                     placeholder="Enter Registration No" />
             </div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-info" onclick="dischargeinpatientfunction()">Enter</button>
+                <button type="button" class="btn btn-info" onclick="dischargeinpatientfunction()">{{__('Enter')}}</button>
             </div>
         </div>
     </div>

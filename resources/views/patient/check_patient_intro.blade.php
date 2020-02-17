@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"Check Patient")
-@section('content_description',"Check Patient here and update history from here !")
+@section('content_title',__('Check Patient'))
+@section('content_description',__('Check Patient here and update history from here !'))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -64,16 +64,16 @@ function validateNum(appNum){
     <div class="col-md-10">
         <div class="box box-success mt-5">
             <div class="box-header with-border">
-                <h3 class="box-title">Check Patient</h3>
+                <h3 class="box-title">{{__('Check Patient')}}</h3>
             </div>
             <div class="box-body">
                 <form class="pl-5 pr-5 pb-5" method="post" action="{{route('checkPatient')}}">
                     @csrf
-                    <h3>Enter Appointment Number Or Patient Number To Begin</h3>
+                    <h3>{{__('Enter Appointment Number Or Patient Number To Begin')}}</h3>
                     <input id="appNum" class="form-control input-lg" type="number" onchange="validateNum(this.value)"
                         placeholder="Appointment Number Or Patient Number">
                     <input disabled id="btn_submit" type="submit" class="btn btn-primary btn-lg mt-3 text-center"
-                        value="Check Patient">
+                        value={{__("Check Patient")}}>
                     <input name="pid" type="hidden" id="pnum">
                     <input name="appNum" type="hidden" id="appt_num_1">
                     <p id="validation" class="mt-2 text-danger"></p>

@@ -127,5 +127,40 @@
     "Certified By": "සහතික කරනු ලබුවේ",
     "Print": "මුද්‍රණය කරන්න",
     "February": "පෙබරවාරි මාසය",
-    "enter value":"අගය ඇතුළත් කරන්න"
+    "enter value":"අගය ඇතුළත් කරන්න",
+    "Search,View & Update Patient Details":"රෝගියාගේ තොරතුරු සොයන්න, බලන්න සහ යාවත්කාලීන කරන්න",
+    "Search Patient With ...":"රෝගියා සෙවීම සඳහා",
+    "Name":"නම",
+    "Patient ID":"රෝගියාගේ හැඳුනුම් අංකය",
+    "No results found...":"ප්රතිඵල සොයාගත නොහැකි",
+    "Profile":"පැතිකඩ",
+    "Edit":"සංස්කරණය කරන්න",
+    "Patient Profile":"රෝගියාගේ පැතිකඩ",
+    "Enter Patient Registration Number":"රෝගීන් ලියාපදිංචි කිරීමේ අංකය ඇතුළත් කරන්න",
+    "Invalid Registration Number!":"එය අවලංගු ලියාපදිංචි අංකයකි",
+    "View Profile":"පැතිකඩ බලන්න",
+    "Discharge Patient":"රෝගියා පිටවීම ",
+    "Discharge In-Patients Here.":"ඇතුලත්ව සිටින රෝගියා පිටත් කිරීම මෙතනින් ",
+    "Enter Registration No. Or Scan the bar code":"ලියාපදිංචි අංකය ඇතුළත් කරන්න හෝ තීරු කේතය පරිලෝකනය කරන්න",
+    "Registration No:":"ලියාපදිංචි අංකය:",
+    "Enter":"ඇතුලත් කරන්න",
+    "Register New In Patients Here.":"අලුතින් ඇතුල් කරන රෝගියා ලියාපදිංචි කිරීම මෙතනින් ",
+    "In Patient Registration":"රෝගියා ඇතුලත් කිරීම",
+    "Create Appoinments":"වෛද්‍ය හමුවීම් සාදන්න",
+    "Create an appointment for the patient from here !":"රෝගියා සඳහා වෛද්‍ය හමුවීමක් මෙතනින් සාදන්න" ,
+    "Patients Appointments Today":"අද දින රෝගීන්ගේ වෛද්‍ය හමුවීම් " ,
+    "Appointment No.":"හමුවීම් අංකය",
+    "No data available in table":"වගුවේ දත්ත නොමැත",
+    "Search:":"සොයන්න",
+    "Enter Registration No. Or Scan The Bar Code":"ලියාපදිංචි අංකය ඇතුළත් කරන්න හෝ තීරු කේතය පරිලෝකනය කරන්න",
+    "Registration No.":"ලියාපදිංචි අංකය",
+
+    "Check Patient here and update history from here !":"රෝගියා පරීක්ෂා කර ඉතිහාසය මෙතැනින් යාවත්කාලීන කරන්න!",
+    "Check Patient":"පරික්ෂාව",
+    "Enter Appointment Number Or Patient Number To Begin":"ආරම්භ කිරීම සඳහා හමුවීම් අංකය හෝ රෝගියාගේ අංකය ඇතුළත් කරන්න"
+    
+
+
+    
+    
 }

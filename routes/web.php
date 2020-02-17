@@ -66,12 +66,12 @@ Route::post('/imData/getMedicineData', 'UserDataController@issueMedicineValid');
 Route::resource('/imData', 'MedicineController');
 
 // Check Patient Routes
-Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@checkPatientView'])->middleware('auth', 'doctor');
-Route::post('/validateAppNum', ['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth', 'doctor');
-Route::post('/checkpatient', ['as' => 'checkPatient', 'uses' => 'PatientController@checkPatient'])->middleware('auth', 'doctor');
-Route::get('/medsuggest', ['as' => 'medicineSuggests', 'uses' => 'MedicineController@searchSuggestion'])->middleware('auth');
-Route::post('/checksave', ['as' => 'checkSave', 'uses' => 'PatientController@checkPatientSave'])->middleware('auth', 'doctor');
-Route::post('/addclinic', ['as' => 'addToClinic', 'uses' => 'PatientController@addToClinic'])->middleware('auth', 'doctor');
+Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@checkPatientView'])->middleware('auth', 'doctor','lang');
+Route::post('/validateAppNum', ['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth', 'doctor','lang');
+Route::post('/checkpatient', ['as' => 'checkPatient', 'uses' => 'PatientController@checkPatient'])->middleware('auth', 'doctor','lang');
+Route::get('/medsuggest', ['as' => 'medicineSuggests', 'uses' => 'MedicineController@searchSuggestion'])->middleware('auth','lang');
+Route::post('/checksave', ['as' => 'checkSave', 'uses' => 'PatientController@checkPatientSave'])->middleware('auth', 'doctor','lang');
+Route::post('/addclinic', ['as' => 'addToClinic', 'uses' => 'PatientController@addToClinic'])->middleware('auth', 'doctor','lang');
 
 // In patient Routes
 Route::post('/markinpatient', ['as' => 'markInPatient', 'uses' => 'PatientController@markInPatient'])->middleware('auth', 'doctor');
