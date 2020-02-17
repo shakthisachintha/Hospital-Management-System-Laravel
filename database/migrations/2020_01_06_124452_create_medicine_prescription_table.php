@@ -20,6 +20,7 @@ class CreateMedicinePrescriptionTable extends Migration
             $table->bigInteger('medicine_id');
             $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');
             $table->text('note')->nullable();
+            $table->string('issued')->default("NO");
             $table->timestamps();
         });
     }

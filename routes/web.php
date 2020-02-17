@@ -48,7 +48,7 @@ Route::get('/createchannel', ['as' => 'create_channel_view', 'uses' => 'PatientC
 // Patients Registration (In Patient Out Patients)
 Route::get('/patient', ['as' => 'patient', 'uses' => 'PatientController@index'])->middleware('auth', 'staff', 'lang');
 Route::get('/patientregcard/{pid}', ['as' => 'pregcard', 'uses' => 'PatientController@regcard'])->middleware('auth', 'staff');
-Route::post('/patientregister', ['as' => 'patient_register', 'uses' => 'PatientController@register_patient'])->middleware('auth', 'staff');
+Route::post('/patientregister', ['as' => 'patient_register', 'uses' => 'PatientController@registerPatient'])->middleware('auth', 'staff');
 Route::get('/inpatientregister', ['as' => 'register_in_patient_view', 'uses' => 'PatientController@register_in_patient_view'])->middleware('auth', 'staff', 'lang');
 Route::post('/inpatientregister2', ['as' => 'regInPatient', 'uses' => 'PatientController@regInPatientValid'])->middleware('auth', 'staff', 'lang');
 Route::post('/inpatientregister3', ['as' => 'save_inpatient', 'uses' => 'PatientController@store_inpatient'])->middleware('auth', 'staff', 'lang');
@@ -58,11 +58,12 @@ Route::post('/dischargeInpatient3', ['as' => 'save_disinpatient', 'uses' => 'Pat
 Route::get('getDoctor', 'PatientController@getDoctor');
 
 // Issue Medicine(Pharmacist Routes)
-Route::get('/issueMedicine', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff', 'lang');
-Route::post('/issueMedicine2', ['as' => 'issueMedicine2', 'uses' => 'MedicineController@issueMedicineValid'])->middleware('auth', 'staff', 'lang');
-//Route::post('/pharmacyValidate', ['as' => 'pharmacyValidate', 'uses' => 'MedicineController@pharmacyValidate'])->middleware('auth', 'staff');
-//Route::get('/issueMedicine3', ['as' => 'issueMedicinenow', 'uses' => 'MedicineController@show'])->middleware('auth', 'staff','lang');
-// Route::resource('/patient', 'MedicineController');
+Route::get('/issueMedicine/', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff', 'lang');
+Route::post('/issuemed-validate', ['as' => 'issueMedicine2', 'uses' => 'MedicineController@issueMedicineValid'])->middleware('auth', 'staff', 'lang');
+Route::get('/issue/{presid}', ['as' => 'issue', 'uses' => 'MedicineController@issueMedicine'])->middleware('auth', 'staff', 'lang');
+Route::post('/issuemark', ['as' => 'markIssued', 'uses' => 'MedicineController@markIssued'])->middleware('auth', 'staff', 'lang');
+Route::get('/med-issue-save', ['as' => 'medIssueSave', 'uses' => 'MedicineController@medIssueSave'])->middleware('auth', 'staff', 'lang');
+
 // Check Patient Routes
 Route::get('/checkpatient', ['as' => 'check_patient_view', 'uses' => 'PatientController@checkPatientView'])->middleware('auth', 'doctor');
 Route::post('/validateAppNum', ['as' => 'validateAppNum', 'uses' => 'PatientController@validateAppNum'])->middleware('auth', 'doctor');
