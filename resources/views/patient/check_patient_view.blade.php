@@ -5,8 +5,8 @@
 @section('optional_scripts')
 @endsection
 
-@section('content_title',"Check Patient")
-@section('content_description',"Check Patient here and update history from here !")
+@section('content_title',__('Check Patient'))
+@section('content_description',__('Check Patient here and update history from here !'))
 @section('breadcrumbs')
 
 <ol class="breadcrumb">

@@ -27,7 +27,8 @@ class NoticeboardController extends Controller
             ->insert([
                 'subject' => $request->subject,
                 'description' => $request->description,
-                'user_id'=>$user->id
+                'user_id'=>$user->id,
+                'time'=> date("Y-m-d H:i:s")
             ]);
 
         activity()->performedOn($user)->log('Notice added to the databasse!');
