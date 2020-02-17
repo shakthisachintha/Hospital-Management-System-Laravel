@@ -360,20 +360,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Main Menu</li>
 
+                    @yield('sidebar_content')
 
-
-                    <li class="{{Active::checkRoute('profile')}}"><a href="{{route('profile')}}"><i
-                                class="fas fa-user"></i><span> Profile</span></a></li>
-
-
-
-
-
-
-
-                    <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i
-                                class="fa fa-clipboard
-                                        aria-hidden=" true"></i> Attendance Report</a></li>
+                   
                 </ul>
                 </li>
 
@@ -389,11 +378,10 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
+                <h1 class="text-center">
                     @yield('content_title')
                     <small>@yield('content_description')</small>
                 </h1>
-                @yield('breadcrumbs')
 
             </section>
 
@@ -427,7 +415,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
     <script>
         $("#preloader").fadeOut();
-    $("#spinner").fadeOut();
+        $("#spinner").fadeOut();
     </script>
     <!--Datepicker-->
     <script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
