@@ -103,9 +103,11 @@
             </div>
 
             <div class="box-footer">
-                <input type="submit" class="btn btn-info pull-right" value="Submit">
-                <input type="reset" class="btn btn-default" value="Cancel">
-                <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i>Print</a>
+                <input type="submit" class="btn pull-right mt-5 mb-2 btn-lg btn-success" value="Submit & Print">
+                <input type="reset" class="btn pull-left mt-5 mb-2 btn-lg btn-info" value="Cancel">
+                {{-- <input type="submit" id="btn-print" value="Save & Print"
+                        class="btn pull-right mt-5 mb-2 btn-lg btn-success"> --}}
+                {{-- <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i>Print</a> --}}
             </div>
 
         </div>
