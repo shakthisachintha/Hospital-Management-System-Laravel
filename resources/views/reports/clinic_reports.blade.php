@@ -43,7 +43,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 @foreach ($data as $item)
                                 <tr>
                                     <td>{{$item->name_eng}}</td>
-                                    <td>{{$item->name}}</td>
+                                    <td>Dr.{{$item->name}}</td>
                                     <td>{{$item->total}}</td>
                                 </tr>
                                 @endforeach
