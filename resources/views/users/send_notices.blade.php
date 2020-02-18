@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"User Profile")
-@section('content_description',"Personalize Your Account")
+@section('content_title',"Notices")
+@section('content_description',"Send Notices & Push General Notices To Noticeboard")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
@@ -206,10 +206,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                 </label>
                                             </div>
                                             {{-- <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="receiverlist[]" value="patient"> Patient
-                                    </label>
-                                </div> --}}
+                                                <label>
+                                                    <input type="checkbox" name="receiverlist[]" value="patient">
+                                                    Patient
+                                                </label>
+                                            </div> --}}
                                         </div>
 
                                         <div class="col-md-1">

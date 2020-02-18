@@ -41,16 +41,16 @@
         @csrf
         <div class="box-body">
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputEmail3">{{__('User ID')}} <span class="text-red">*</span></label>
+            <label class="col-sm-3 control-label" for="inputEmail3">{{__('User ID')}} <span class="text-red">*</span></label>
 
-            <div class="col-sm-10">
-              <input class="form-control" name="userid" id="inputEmail3" required type="text" placeholder="User ID">
+            <div class="col-sm-9">
+              <input class="form-control" name="userid" id="inputEmail3" required type="number" placeholder="User ID">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputPassword3">{{__('Your Password')}} <span class="text-red">*</span></label>
+            <label class="col-sm-3 control-label" for="inputPassword3">{{__('Your Password')}} <span class="text-red">*</span></label>
 
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <input class="form-control" required name="admin_password" id="inputPassword3" type="password"
                 placeholder="Password">
             </div>
