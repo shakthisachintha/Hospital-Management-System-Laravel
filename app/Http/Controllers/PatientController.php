@@ -76,7 +76,7 @@ class PatientController extends Controller
             $status="Inactive";
         }
         $hospital_visits+=Prescription::where('patient_id',$patient->id)->count();
-        
+
         return view('patient.profile.profile',
         [
             'title'=>$patient->name,
@@ -84,7 +84,7 @@ class PatientController extends Controller
             'status'=>$status,
             'last_seen'=>$last_seen,
             'hospital_visits'=>$hospital_visits
-            
+
             ]);
     }
 
@@ -265,9 +265,9 @@ class PatientController extends Controller
         $pHistory = new stdClass;
 
         $assinged_clinics=Patients::find($request->pid)->clinics;
-       
+
         $clinics = Clinic::all();
-    
+
 
         return view('patient.check_patient_view', [
             'title' => "Check Patient",
@@ -305,7 +305,7 @@ class PatientController extends Controller
             'html_already'=>$html_already,
             'html_list'=>$html_list,
         ]);
-    
+
     }
 
     public function markInPatient(Request $request)
@@ -401,7 +401,12 @@ class PatientController extends Controller
     public function register_in_patient_view()
     {
         $user = Auth::user();
-        return view('patient.register_in_patient_view', ['title' => "Register Inpatient"]);
+        $data = DB::table('wards')
+        ->select('*')
+        ->join('users', 'wards.doctor_id', '=', 'users.id')
+        ->get();
+// dd($data);
+        return view('patient.register_in_patient_view', ['title' => "Register Inpatient",'data'=>$data]);
     }
 
     public function regInPatientValid(Request $request)
@@ -433,7 +438,7 @@ class PatientController extends Controller
         $pid=$request->reg_pid;
         $test=Patients::find($pid);
         $test1=new inpatient;
-   
+
         $test->civil_status=$request->reg_ipcondition;
         $test->birth_place=$request->reg_ipbirthplace;
         $test->nationality=$request->reg_ipnation;
@@ -441,7 +446,7 @@ class PatientController extends Controller
         $test->income=$request->reg_inpincome;
         $test->guardian=$request->reg_ipguardname;
         $test->guardian_address=$request->reg_ipguardaddress;
-        
+
         $test1->patient_id=$request->reg_pid;
         $test1->ward_id=$request->reg_ipwardno;
         $test1->patient_inventory=$request->reg_ipinventory;
@@ -452,7 +457,7 @@ class PatientController extends Controller
         $test1->duration=$request->reg_admitofficer2;
         $test1->condition=$request->reg_admitofficer3;
         $test1->certified_officer=$request->reg_admitofficer4;
-        
+
         $test->save();
         $test1->save();
 
@@ -461,14 +466,15 @@ class PatientController extends Controller
         $decre=1;
         $newFB=$getFB->free_beds - $decre;
         Ward::where('id',$request->reg_ipwardno)->update(['free_beds'=>$newFB]);
-        
+
         return redirect()->back();
     }
 
     public function get_ward_list()
     {
         $wardList = $this->wardList;
-         return view('register_in_patient_view', compact('wardList'));
+        $data=DB::table('wards')->join('users','wards.doctor_id','=','users.id')->select('*')->get();
+         return view('register_in_patient_view', ['data'=>$data]);
         // $wards = Ward::all();
         // dd($wardss);
         // return view('register_in_patient_view', compact(['wards']));

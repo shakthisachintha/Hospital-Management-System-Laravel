@@ -43,8 +43,7 @@
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="ward_num">{{__('Ward Number')}}<span
-                                style="color:red">*</span></label></label>
+                        <label class="col-sm-2 control-label" for="ward_num">{{__('Ward Number')}}<span style="color:red">*</span></label></label>
 
                         <div class="col-sm-10">
                             <input class="form-control" name="ward_num" required id="ward_num" type="number"

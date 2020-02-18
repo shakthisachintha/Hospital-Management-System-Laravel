@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_pname" id="patient_name"
                         placeholder="Enter Patient Full Name">
@@ -67,7 +67,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_pnic" id="patient_nic"
                         placeholder="National Identity Card Number">
@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_paddress" id="patient_address"
                         placeholder="Enter Patient Address ">
@@ -91,7 +91,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_poccupation"
                         id="patient_occupation" placeholder="Enter Patient Occupation ">
@@ -100,9 +100,9 @@
 
             <!-- select -->
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Sex')}}</label>
+                <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
-                    <select required readonly class="form-control" name="reg_psex" id="patient_sex">
+                    <select required disabled class="form-control" name="reg_psex" id="patient_sex">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -208,12 +208,13 @@
                 <div class="col-sm-2">
                     <select required class="form-control" name="reg_ipwardno">
                         <option value="">Select Ward No</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        {{-- @foreach ($wardList as $key => $ward)
-                                <option value="{!! $ward['id'] !!}"  !!}>{!! $ward['ward_no'] !!}</option>
-                            @endforeach --}}
-                        {{-- <input type="number" required min="01" class="form-control" name="reg_ipwardno">           --}}
+                        {{-- <option value="1">1</option>
+                        <option value="2">2</option> --}}
+                        @if($data)
+                        @foreach ($data as $x)
+                                <option value="">{{$x->ward_no}} ({{ucwords($x->name)}})</option>
+                        @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
