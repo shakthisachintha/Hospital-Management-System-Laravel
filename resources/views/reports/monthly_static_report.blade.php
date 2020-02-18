@@ -215,16 +215,9 @@
                                                 <th>{{__('Type of drug produced')}}</th>
                                                 <th colspan="2">{{__('Drugs produced in the institute')}}</th>
                                                 <th colspan="2">{{__('Drugs received from othe institutes')}}</th>
-                                                <th colspan="2">{{__('Drugs received from Pharmaceutical Corporation')}}
-                                                </th>
-                                                <th colspan="2">{{__('Total Medicines Available')}}</th>
-                                            </tr>
+                                                </tr>
                                             <tr>
                                                 <th></th>
-                                                <th>{{__('Quentity')}}</th>
-                                                <th>{{__('Value')}}</th>
-                                                <th>{{__('Quentity')}}</th>
-                                                <th>{{__('Value')}}</th>
                                                 <th>{{__('Quentity')}}</th>
                                                 <th>{{__('Value')}}</th>
                                                 <th>{{__('Quentity')}}</th>
@@ -238,6 +231,44 @@
                                                 <td><input style="border: 0px none" type="text"></td>
                                                 <td><input style="border: 0px none" type="text"></td>
                                                 <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-2 no-print"><button type="button" class="btn btn-success"
+                                    onclick="myFunction2()">{{__('Add Row')}}</button></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="myTable2">
+                                        <thead>
+                                            <tr>
+                                                <th>{{__('Type of drug produced')}}</th>
+                                                <th colspan="2">{{__('Drugs received from Pharmaceutical Corporation')}}
+                                                </th>
+                                                <th colspan="2">{{__('Total Medicines Available')}}</th>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th>{{__('Quentity')}}</th>
+                                                <th>{{__('Value')}}</th>
+                                                <th>{{__('Quentity')}}</th>
+                                                <th>{{__('Value')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
                                                 <td><input style="border: 0px none" type="text"></td>
                                                 <td><input style="border: 0px none" type="text"></td>
                                                 <td><input style="border: 0px none" type="text"></td>
@@ -379,10 +410,6 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                var cell6 = row.insertCell(5);
-                var cell7 = row.insertCell(6);
-                var cell8 = row.insertCell(7);
-                var cell9 = row.insertCell(8);
 
                 var input="<input style='border: 0px none' type='text'>";
                 cell1.innerHTML = input;
@@ -390,10 +417,24 @@
                 cell3.innerHTML = input;
                 cell4.innerHTML = input;
                 cell5.innerHTML = input;
-                cell6.innerHTML = input;
-                cell7.innerHTML = input;
-                cell8.innerHTML = input;
-                cell9.innerHTML = input;
+            }
+
+            function myFunction2() {
+            var table = document.getElementById("myTable2");
+            var row = table.insertRow(2);
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+
+            var input="<input style='border: 0px none' type='text'>";
+            cell1.innerHTML = input;
+            cell2.innerHTML = input;
+            cell3.innerHTML = input;
+            cell4.innerHTML = input;
+            cell5.innerHTML = input;
             }
 </script>
 @endsection
