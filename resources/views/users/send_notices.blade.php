@@ -2,8 +2,8 @@
 
 @section('title', $title)
 
-@section('content_title',"User Profile")
-@section('content_description',"Personalize Your Account")
+@section('content_title',"Notices")
+@section('content_description',"Send Notices & Push General Notices To Noticeboard")
 @section('breadcrumbs')
 
 <ol class="breadcrumb">

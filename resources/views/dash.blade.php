@@ -14,9 +14,10 @@
 @endsection
 
 @section('main_content')
+
 <div class="row">
-    <div class="col-md-12">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="m-0 col-md-12">
+        <div class="pl-0 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fas fa-user-md"></i></span>
                 <div class="info-box-content">
@@ -58,7 +59,7 @@
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 pr-0 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fas fa-user-injured"></i></span>
 
@@ -78,20 +79,20 @@
     <div class="col-md-3">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Reports</h3>
+                <h3 class="box-title">{{__('Quick Reports')}}</h3>
             </div>
             <div class="box-body list-group">
                 <a href="{{route('mon_stat_report')}}" class="list-group-item list-group-item-action btn btn-danger">
-                    Monthly Statistic Report
+                    {{__('Monthly Statistic Report')}}
                 </a>
                 <a href="{{route('stats')}}" class="list-group-item mt-1 list-group-item-action btn btn-warning">
-                    Statistics
+                    {{__('Statistics')}}
                 </a>
                 <a href="{{route('attendance_report')}}" class="list-group-item mt-1 list-group-item-action btn btn-success">
-                    Attendance Report
+                    {{__('Attendance Report')}}
                 </a>
                 <a href="{{route('clinic_reports')}}" class="list-group-item mt-1 list-group-item-action btn btn-info">
-                    Clinic Report
+                    {{__('Clinic Report')}}
                 </a>
             </div>
         </div>
@@ -100,7 +101,7 @@
         <div class="box box-default col-md-12">
 
             <div class="box-header with-border">
-                <h3 class="box-title">Short-cuts</h3>
+                <h3 class="box-title">{{__('Quick Links')}}</h3>
             </div>
 
             <div class="box-body">
@@ -270,7 +271,7 @@
                                     </tr>
                                     <tr>
                                         <th class="prev">«</th>
-                                        <th colspan="5" class="datepicker-switch">September 2020</th>
+                                        <th colspan="5" class="datepicker-switch">February 2020</th>
                                         <th class="next">»</th>
                                     </tr>
                                     <tr>
@@ -487,6 +488,41 @@
             <!-- /.box-body -->
 
         </div>
+        <!-- Calendar -->
+        <div class="box box-solid bg-green-gradient">
+            <div class="box-header">
+                <i class="fa fa-calendar"></i>
+
+                <h3 class="box-title">Calendar</h3>
+                <!-- tools box -->
+                <div class="pull-right box-tools">
+                    <!-- button with a dropdown -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bars"></i></button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li><a href="#">Add new event</a></li>
+                            <li><a href="#">Clear events</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">View calendar</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <!--The calendar -->
+                <div id="calendar" style="width: 100%"></div>
+            </div>
+            <!-- /.box-body -->
+
+        </div>
+        <!-- /.box -->
 
     </div>
 </div>
