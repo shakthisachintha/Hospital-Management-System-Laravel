@@ -13,6 +13,7 @@
 
 //use Illuminate\Routing\Route;
 
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
@@ -32,7 +33,7 @@ Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\
 
 //User Profile Language and Dashboard
 Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile'])->middleware('auth', 'lang');
-Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middleware('auth');
+Route::get('/dash', ['as' => 'dash', 'uses' => 'HomeController@index'])->middleware('auth','lang');
 Route::get('/lang/{lan}', ['as' => 'lang', 'uses' => 'HomeController@setLocale'])->middleware('auth');
 Route::post('/changepassword', ['as' => 'change_password', 'uses' => 'UserController@changeUserPassword'])->middleware('auth');
 Route::post('/changepropic', ['as' => 'change_propic', 'uses' => 'UserController@changeUserPropic'])->middleware('auth');
@@ -56,6 +57,7 @@ Route::get('/dischargeInpatient', ['as' => 'discharge_inpatient', 'uses' => 'Pat
 Route::post('/dischargeInpatient2', ['as' => 'disInPatient', 'uses' => 'PatientController@disInPatientValid'])->middleware('auth', 'staff', 'lang');
 Route::post('/dischargeInpatient3', ['as' => 'save_disinpatient', 'uses' => 'PatientController@store_disinpatient'])->middleware('auth', 'staff', 'lang');
 Route::get('getDoctor', 'PatientController@getDoctor');
+//Route::get('/discharge-save', ['as' => 'dischargeSave', 'uses' => 'MedicineController@medIssueSave'])->middleware('auth', 'staff', 'lang');
 
 // Issue Medicine(Pharmacist Routes)
 Route::get('/issueMedicine/', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'staff', 'lang');

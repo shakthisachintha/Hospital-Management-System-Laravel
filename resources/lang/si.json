@@ -157,8 +157,32 @@
 
     "Check Patient here and update history from here !":"රෝගියා පරීක්ෂා කර ඉතිහාසය මෙතැනින් යාවත්කාලීන කරන්න!",
     "Check Patient":"පරික්ෂාව",
-    "Enter Appointment Number Or Patient Number To Begin":"ආරම්භ කිරීම සඳහා හමුවීම් අංකය හෝ රෝගියාගේ අංකය ඇතුළත් කරන්න"
+    "Enter Appointment Number Or Patient Number To Begin":"ආරම්භ කිරීම සඳහා හමුවීම් අංකය හෝ රෝගියාගේ අංකය ඇතුළත් කරන්න",
     
+    "My Attendance":"මගේ පැමිණීම",
+    "My Attendance And Holidays Taken":"මගේ පැමිණීම සහ නිවාඩු",
+    "Attendance":"පැමිණීම",
+    "Hours You Worked Are Displayed In The Calander.The Color Change With The Number Of Hours.":"ඔබ වැඩ කළ පැය ගණන දින දර්ශනයේ ප්‍රදර්ශනය කෙරේ. පැය ගණන සමඟ වර්ණය වෙනස් වේ.",
+    "Dashboard":"උපකරණ පුවරුව",
+    "Operate All The Things Here":"සියලු දේ මෙතැන් සිට ක්‍රියාත්මක කරන්න",
+    "Doctors":"වෛද්‍යවරු",
+    "General Staff":"කාර්ය මණ්ඩලය",
+    "Pharmacists":"ඖෂධවේදීන්",
+    "In Patients":"ඇතුළත් කළ රෝගීන්",
+    "Quick Reports":"ඉක්මන් වාර්තා",
+    "Quick Links":"ඉක්මන් සබැඳි",
+    "Noticeboard":"දැන්වීම් පුවරුව",
+    "Monthly Statistic Report":"මාසික සංඛ්‍යාලේඛන වාර්තාව",
+    "Statistics":"සංඛ්‍යාලේඛන",
+    "Attendance Report":"පැමිණීමේ වාර්තාව",
+    "Register out-patient":"බාහිර රෝගීන් ලියාපදිංචි",
+    "Register in-Patient":"රෝගියා ලියාපදිංචි ",
+    "Create Appointment":"වෛද්‍ය හමුව සාදන්න",
+    "Issue Medicine":"ඖෂධ නිකුත් කිරීම",
+    "Register User":" පරිශීලකයෙකු ලියාපදිංචි",
+    "User Profile":"පරිශීලක පැතිකඩ",
+    "Notices":"දැන්වීම්"
+
 
 
     
