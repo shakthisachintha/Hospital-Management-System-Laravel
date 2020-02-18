@@ -3,8 +3,8 @@
 @section('title', $title)
 
 
-@section('content_title',"Dashboard")
-@section('content_description',"Operate All The Things Here")
+@section('content_title',__("Dashboard"))
+@section('content_description',__("Operate All The Things Here"))
 @section('breadcrumbs')
 <ol class="breadcrumb">
     <li><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
@@ -20,7 +20,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fas fa-user-md"></i></span>
                 <div class="info-box-content">
-                    <h3><b><span class="info-box-text">Doctors</span></b></h3>
+                    <h3><b><span class="info-box-text">{{__('Doctors')}}</span></b></h3>
                     <span class="info-box-number">{{$doctorcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -33,7 +33,7 @@
                 <span class="info-box-icon bg-red"><i class="fas fa-id-card-alt"></i></span>
 
                 <div class="info-box-content">
-                    <h3><b><span class="info-box-text">General Staff</span></b></h3>
+                    <h3><b><span class="info-box-text">{{__('General Staff')}}</span></b></h3>
                     <span class="info-box-number">{{$generalcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -50,7 +50,7 @@
                 <span class="info-box-icon bg-green"><i class="fas fa-briefcase-medical"></i></span>
 
                 <div class="info-box-content">
-                    <h3><b><span class="info-box-text">Pharmacists</span></b></h3>
+                    <h3><b><span class="info-box-text">{{__('Pharmacists')}}</span></b></h3>
                     <span class="info-box-number">{{$pharmacistcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -63,7 +63,7 @@
                 <span class="info-box-icon bg-yellow"><i class="fas fa-user-injured"></i></span>
 
                 <div class="info-box-content">
-                    <h3><b><span class="info-box-text">In Patients</span></b></h3>
+                    <h3><b><span class="info-box-text">{{__('In Patients')}}</span></b></h3>
                     <span class="info-box-number">{{$inpatientcnt}}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -82,10 +82,10 @@
             </div>
             <div class="box-body list-group">
                 <a href="{{route('mon_stat_report')}}" class="list-group-item list-group-item-action btn btn-danger">
-                    {{__('Monthly Statistic Report')}}
+                   {{ __('Monthly Statistic Report')}}
                 </a>
                 <a href="{{route('stats')}}" class="list-group-item mt-4 list-group-item-action btn btn-warning">
-                    {{__('Statistics')}}
+                   {{__('Statistics')}}
                 </a>
                 <a href="{{route('attendance_report')}}" class="list-group-item mt-4 list-group-item-action btn btn-success">
                     {{__('Attendance Report')}}
@@ -104,7 +104,7 @@
 
                 <div class="col-sm-2">
                     <a href="{{route('patient')}}" class="btn btn-app">
-                        <i class="ion ion-person-add"></i> Register out-patient
+                        <i class="ion ion-person-add"></i> {{__('Register out-patient')}}
                     </a>
                 </div>
 
@@ -112,7 +112,7 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('searchPatient')}}" class="btn btn-app">
-                        <i class="ion ion-stats-bars"></i> Search Patient
+                        <i class="ion ion-stats-bars"></i>{{__('Search Patient')}}
                     </a>
                 </div>
 
@@ -120,13 +120,13 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('register_in_patient_view')}}" class="btn btn-app">
-                        <i class="fa fa-procedures"></i> Register in-Patient
+                        <i class="fa fa-procedures"></i> {{__('Register in-Patient')}}
                     </a>
                 </div>
 
                 <div class="col-sm-2">
                     <a href="{{route('check_patient_view')}}" class="btn btn-app">
-                        <i class="fa fa-heartbeat"></i> Check Patient
+                        <i class="fa fa-heartbeat"></i> {{__('Check Patient')}}
                     </a>
                 </div>
 
@@ -134,7 +134,7 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('create_channel_view')}}" class="btn btn-app">
-                        <i class="fa fa-plus-square"></i> Create Appointment
+                        <i class="fa fa-plus-square"></i> {{__('Create Appointment')}}
                     </a>
                 </div>
 
@@ -142,7 +142,7 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('issueMedicineView')}}" class="btn btn-app">
-                        <i class="fa fa-medkit"></i> Issue Medicine
+                        <i class="fa fa-medkit"></i> {{__('Issue Medicine')}}
                     </a>
                 </div>
 
@@ -151,7 +151,7 @@
 
                 <div class="col-sm-2">
                     <a href="{{route('myattend')}}" class="btn btn-app">
-                        <i class="fa fa-user"></i> My Attendance
+                        <i class="fa fa-user"></i> {{__('My Attendance')}}
                     </a>
                 </div>
 
@@ -159,7 +159,7 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('newuser')}}" class="btn btn-app">
-                        <i class="fa fa-user-plus"></i> Register User
+                        <i class="fa fa-user-plus"></i> {{__('Register User')}}
                     </a>
                 </div>
 
@@ -167,13 +167,13 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('regfinger')}}" class="btn btn-app">
-                        <i class="fa fa-fingerprint"></i> Register Fingerprint
+                        <i class="fa fa-fingerprint"></i> {{__('Register Fingerprint')}}
                     </a>
                 </div>
 
                 <div class="col-sm-2">
                     <a href="{{route('resetuser')}}" class="btn btn-app">
-                        <i class="fa fa-user-edit"></i> Reset User
+                        <i class="fa fa-user-edit"></i> {{__('Reset User')}}
                     </a>
                 </div>
 
@@ -181,13 +181,13 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('profile')}}" class="btn btn-app">
-                        <i class="fa fa-home"></i> User Profile
+                        <i class="fa fa-home"></i> {{__('User Profile')}}
                     </a>
                 </div>
 
                 <div class="col-sm-2">
                     <a href="{{route('createnoticeview')}}" class="btn btn-app">
-                        <i class="fa fa-commenting"></i> Notices
+                        <i class="fa fa-commenting"></i> {{__('Notices')}}
                     </a>
                 </div>
 
@@ -201,7 +201,7 @@
     <div class="col-md-9">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Noticeboard</h3>
+                <h3 class="box-title">{{__('Noticeboard')}}</h3>
             </div>
             <div class="box-body">
 
