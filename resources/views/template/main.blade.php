@@ -363,6 +363,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <i class="fas fa-tachometer-alt"></i>
                             <span> Dashboard</span></a>
                     </li>
+                    @if($user_type!='Pharmacist')
                     {{--patient--}}
                     <li
                         class="treeview {{Active::checkRoute(['patient','register_in_patient_view','searchPatient','searchData','discharge_inpatient','patientProfileIntro','patientProfile'])}}">
@@ -403,6 +404,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
                         </ul>
                     </li>
+                    @endif
+                    @if($user_type!='Pharmacist')
                     {{--create channel--}}
                     <li class="{{Active::checkRoute('create_channel_view')}}">
                         <a href="{{route('create_channel_view')}}">
@@ -410,7 +413,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <span> Create Appoinment</span>
                         </a>
                     </li>
-
+                    @endif
                     @if($user_type=='Admin' || $user_type=='Doctor')
                     {{--check patient--}}
                     <li class="{{Active::checkRoute('check_patient_view')}}"><a
@@ -434,10 +437,10 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <li class="{{Active::checkRoute('myattend')}}"><a href="{{route('myattend')}}"><i
                                         class="fas fa-calendar-day" aria-hidden="true"></i>&nbsp; My
                                     Attendance</a></li>
-                                    @if($user_type=='Admin')
+                            @if($user_type=='Admssin')
                             <li class="{{Active::checkRoute('attendmore')}}"><a href="{{route('attendmore')}}"><i
                                         class="fas fa-plus-square" aria-hidden="true"></i>&nbsp; More</a></li>
-                                        @endif
+                            @endif
                         </ul>
                     </li>
 
@@ -470,13 +473,13 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
                     {{-- Wards --}}
 
-                        @if($user_type!="Pharmacist")
+                    @if($user_type!="Pharmacist")
                     <li class="{{Active::checkRoute('wards')}}"><a href="{{route('wards')}}"><i
                                 class="fas fa-warehouse"></i>
                             <span>&nbsp;Wards</span></a></li>
-                        @endif
+                    @endif
 
-                        @if($user_type=="Admin")
+                    @if($user_type=="Admin")
                     {{--add notices--}}
                     <li class="{{Active::checkRoute('createnoticeview')}}">
                         <a href="{{route('createnoticeview')}}">
@@ -499,7 +502,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
 
                     {{--report generation--}}
                     <li
-                        class="treeview {{Active::checkRoute(['clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
+                        class="treeview {{Active::checkRoute(['inPatientReport','inPatientReportData','clinic_reports','mob_clinic_report','mon_stat_report','out_p_report','attendance_report'])}}">
                         <a href="#">
                             <i class="fas fa-sticky-note"></i>
                             <span> Report Generation</span>
@@ -513,32 +516,36 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                     href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
                             @endif
-                    
-                    @if($user_type=="Admin"||$user_type=="Doctor")
-                    <li class="{{Active::checkRoute('mon_stat_report')}}"><a href="{{route('mon_stat_report')}}"><i
-                                class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
-                    @endif
 
-                    @if($user_type=="Admin"||$user_type=="Doctor")
-                    <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
-                                class="fa fa-user-edit" aria-hidden="true"></i>
-                            Out-Patient Report</a></li>
-                    @endif
-                    
-                    
+                            @if($user_type=="Admin"||$user_type=="Doctor")
+                            <li class="{{Active::checkRoute('mon_stat_report')}}"><a
+                                    href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
+                                        aria-hidden="true"></i> Monthly Statistic Report</a></li>
+                            @endif
 
-                    <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i
-                                class="fa fa-clipboard
+                            @if($user_type=="Admin"||$user_type=="Doctor")
+                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
+                                        class="fa fa-user-edit" aria-hidden="true"></i>
+                                    Out-Patient Report</a></li>
+                            @endif
+
+                            <li class="{{Active::checkRoute(['inPatientReport','inPatientReportData'])}}"><a
+                                    href="{{route('inPatientReport')}}"><i class="fa fa-hospital-o"
+                                        area-hidden="true"></i><span>In Patient Stats</span></a>
+                            </li>
+
+                            <li class="{{Active::checkRoute('attendance_report')}}"><a
+                                    href="{{route('attendance_report')}}"><i class="fa fa-clipboard
                                         aria-hidden=" true"></i> Attendance Report</a></li>
-                </ul>
-                </li>
-                
-                <li>
-                    <a href="https://adminlte.io/themes/AdminLTE/index2.html" target="_blank">
-                        <i class="fas fa-folder-plus"></i>
-                        <span> Template</span>
-                    </a>
-                </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="https://adminlte.io/themes/AdminLTE/index2.html" target="_blank">
+                            <i class="fas fa-folder-plus"></i>
+                            <span> Template</span>
+                        </a>
+                    </li>
 
                 </ul>
 

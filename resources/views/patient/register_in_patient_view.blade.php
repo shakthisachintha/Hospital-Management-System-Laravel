@@ -210,10 +210,7 @@
                         <option value="">Select Ward No</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
-                        {{-- @foreach ($wardList as $key => $ward)
-                                <option value="{!! $ward['id'] !!}"  !!}>{!! $ward['ward_no'] !!}</option>
-                            @endforeach --}}
-                        {{-- <input type="number" required min="01" class="form-control" name="reg_ipwardno">           --}}
+                        
                     </select>
                 </div>
             </div>

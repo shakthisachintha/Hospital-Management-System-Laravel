@@ -81,13 +81,19 @@
                 <h3 class="box-title">{{__('Quick Reports')}}</h3>
             </div>
             <div class="box-body list-group">
+                @if(Auth::user()->user_type=='doctor' || Auth::user()->user_type=='admin')
                 <a href="{{route('mon_stat_report')}}" class="list-group-item list-group-item-action btn btn-danger">
                     {{__('Monthly Statistic Report')}}
                 </a>
+                @endif
+                @if(Auth::user()->user_type=='doctor' || Auth::user()->user_type=='admin')
                 <a href="{{route('stats')}}" class="list-group-item mt-4 list-group-item-action btn btn-warning">
                     {{__('Statistics')}}
                 </a>
-                <a href="{{route('attendance_report')}}" class="list-group-item mt-4 list-group-item-action btn btn-success">
+                @endif
+
+                <a href="{{route('attendance_report')}}"
+                    class="list-group-item mt-4 list-group-item-action btn btn-success">
                     {{__('Attendance Report')}}
                 </a>
             </div>
@@ -101,7 +107,7 @@
             </div>
 
             <div class="box-body">
-
+                @if(Auth::user()->user_type!='pharmacist')
                 <div class="col-sm-2">
                     <a href="{{route('patient')}}" class="btn btn-app">
                         <i class="ion ion-person-add"></i> Register out-patient
@@ -138,14 +144,16 @@
                     </a>
                 </div>
 
+                @endif
 
+                @if(Auth::user()->user_type=='pharmacist')
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('issueMedicineView')}}" class="btn btn-app">
                         <i class="fa fa-medkit"></i> Issue Medicine
                     </a>
                 </div>
-
+                @endif
             </div>
             <div class="box-body">
 
@@ -155,7 +163,7 @@
                     </a>
                 </div>
 
-
+                @if(Auth::user()->user_type=='admin')
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('newuser')}}" class="btn btn-app">
@@ -176,7 +184,7 @@
                         <i class="fa fa-user-edit"></i> Reset User
                     </a>
                 </div>
-
+                @endif
 
                 <!-- ./col -->
                 <div class="col-sm-2">
@@ -184,13 +192,13 @@
                         <i class="fa fa-home"></i> User Profile
                     </a>
                 </div>
-
+                @if(Auth::user()->user_type=='admin')
                 <div class="col-sm-2">
                     <a href="{{route('createnoticeview')}}" class="btn btn-app">
                         <i class="fa fa-commenting"></i> Notices
                     </a>
                 </div>
-
+                @endif
             </div>
 
         </div>
@@ -246,7 +254,8 @@
                             <li><a href="#">View calendar</a></li>
                         </ul>
                     </div>
-                    <button type="button" class="btn bg-purple btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <button type="button" class="btn bg-purple btn-sm" data-widget="collapse"><i
+                            class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn bg-purple btn-sm" data-widget="remove"><i class="fa fa-times"></i>
                     </button>
@@ -359,12 +368,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span
-                                                class="month">Mar</span><span class="month">Apr</span><span
-                                                class="month">May</span><span class="month">Jun</span><span
-                                                class="month">Jul</span><span class="month">Aug</span><span
-                                                class="month focused">Sep</span><span class="month">Oct</span><span
-                                                class="month">Nov</span><span class="month">Dec</span></td>
+                                        <td colspan="7"><span class="month">Jan</span><span
+                                                class="month">Feb</span><span class="month">Mar</span><span
+                                                class="month">Apr</span><span class="month">May</span><span
+                                                class="month">Jun</span><span class="month">Jul</span><span
+                                                class="month">Aug</span><span class="month focused">Sep</span><span
+                                                class="month">Oct</span><span class="month">Nov</span><span
+                                                class="month">Dec</span></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
@@ -458,12 +468,12 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="7"><span class="century old">1900</span><span
-                                                class="century focused">2000</span><span class="century">2100</span><span
-                                                class="century">2200</span><span class="century">2300</span><span
-                                                class="century">2400</span><span class="century">2500</span><span
-                                                class="century">2600</span><span class="century">2700</span><span
-                                                class="century">2800</span><span class="century">2900</span><span
-                                                class="century new">3000</span></td>
+                                                class="century focused">2000</span><span
+                                                class="century">2100</span><span class="century">2200</span><span
+                                                class="century">2300</span><span class="century">2400</span><span
+                                                class="century">2500</span><span class="century">2600</span><span
+                                                class="century">2700</span><span class="century">2800</span><span
+                                                class="century">2900</span><span class="century new">3000</span></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

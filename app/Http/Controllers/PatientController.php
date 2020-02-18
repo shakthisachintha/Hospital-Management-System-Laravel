@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\Clinic;
-use App\inpatient;
 use App\Http\Controllers\Redirect;
+use App\inpatient;
 use App\Medicine;
 use App\Patients;
 use App\Prescription;
 use App\Prescription_Medicine;
 use App\Ward;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use stdClass;
-use Carbon\Carbon;
 
 class PatientController extends Controller
 {
@@ -28,69 +28,92 @@ class PatientController extends Controller
         $this->wardList = ['' => 'Select Ward No'] + Ward::pluck('id', 'ward_no')->all();
     }
 
+    public function inPatientReport()
+    {
+
+        return view('patient.inpatient.inpatients', ["date"=>null,"title" => "Inpatient Details", "data_count" => 0]);
+
+    }
+
+    public function inPatientReportData(Request $request)
+    {
+        $data=DB::table('inpatients')->whereDate('created_at', '=', $request->date)->get();
+        if($data->count()>0){
+            return view('patient.inpatient.inpatients', ["title" => "Inpatient Details","date"=>$request->date,"data_count"=>$data->count(), "data" => $data]);
+
+        }else{
+            return redirect(route("inPatientReport"))->with('fail',"No Results Found");
+        }
+      
+    }
+
     public function index()
     {
         $user = Auth::user();
         return view('patient.register_patient', ['title' => $user->name]);
     }
 
-    public function patientHistory($id){
-        $prescs=Prescription::where('patient_id',$id)->orderBy('created_at','desc')->get();
-        $title="Patient History ($id)";
+    public function patientHistory($id)
+    {
+        $prescs = Prescription::where('patient_id', $id)->orderBy('created_at', 'desc')->get();
+        $title = "Patient History ($id)";
 
-        $patient=Patients::withTrashed()->find($id);
-        $hospital_visits=1;
-        $status="Active";
-        $last_seen=explode(" ",$patient->updated_at)[0];
+        $patient = Patients::withTrashed()->find($id);
+        $hospital_visits = 1;
+        $status = "Active";
+        $last_seen = explode(" ", $patient->updated_at)[0];
         if ($patient->trashed()) {
-            $status="Inactive";
+            $status = "Inactive";
         }
-        $hospital_visits+=Prescription::where('patient_id',$patient->id)->count();
+        $hospital_visits += Prescription::where('patient_id', $patient->id)->count();
 
-        return view('patient.history.index',compact('prescs','patient','title','hospital_visits','status','last_seen'));
+        return view('patient.history.index', compact('prescs', 'patient', 'title', 'hospital_visits', 'status', 'last_seen'));
     }
 
-    public function patientProfileIntro(Request $request){
-        if($request->has('pid')){
-            return redirect()->route('patientProfile',$request->pid);
-        }else{
-            return view('patient.profile.intro',['title'=>"Patient Profile"]);
+    public function patientProfileIntro(Request $request)
+    {
+        if ($request->has('pid')) {
+            return redirect()->route('patientProfile', $request->pid);
+        } else {
+            return view('patient.profile.intro', ['title' => "Patient Profile"]);
         }
     }
 
-    public function patientDelete($id,$action){
-        if($action=="delete"){
+    public function patientDelete($id, $action)
+    {
+        if ($action == "delete") {
             Patients::find($id)->delete();
-        }if($action=='restore'){
+        }if ($action == 'restore') {
             Patients::withTrashed()->find($id)->restore();
         }
-        return redirect()->route('patientProfile',$id);
+        return redirect()->route('patientProfile', $id);
     }
 
-    public function patientProfile($id){
-        $patient=Patients::withTrashed()->find($id);
-        $hospital_visits=1;
-        $status="Active";
-        $last_seen=explode(" ",$patient->updated_at)[0];
+    public function patientProfile($id)
+    {
+        $patient = Patients::withTrashed()->find($id);
+        $hospital_visits = 1;
+        $status = "Active";
+        $last_seen = explode(" ", $patient->updated_at)[0];
         if ($patient->trashed()) {
-            $status="Inactive";
+            $status = "Inactive";
         }
-        $hospital_visits+=Prescription::where('patient_id',$patient->id)->count();
-        
+        $hospital_visits += Prescription::where('patient_id', $patient->id)->count();
+
         return view('patient.profile.profile',
-        [
-            'title'=>$patient->name,
-            'patient'=>$patient,
-            'status'=>$status,
-            'last_seen'=>$last_seen,
-            'hospital_visits'=>$hospital_visits
-            
+            [
+                'title' => $patient->name,
+                'patient' => $patient,
+                'status' => $status,
+                'last_seen' => $last_seen,
+                'hospital_visits' => $hospital_visits,
+
             ]);
     }
 
     public function searchPatient(Request $request)
     {
-        return view('patient.search_patient_view', ['title' => "Search Patient","old_keyword"=>null, "search_result" => ""]);
+        return view('patient.search_patient_view', ['title' => "Search Patient", "old_keyword" => null, "search_result" => ""]);
     }
 
     public function patientData(Request $request)
@@ -105,7 +128,7 @@ class PatientController extends Controller
         if ($request->cat == "telephone") {
             $result = Patients::withTrashed()->where('telephone', 'LIKE', '%' . $request->keyword . '%')->get();
         }
-        return view('patient.search_patient_view', ["title" => "Search Results","old_keyword"=>$request->keyword, "search_result" => $result]);
+        return view('patient.search_patient_view', ["title" => "Search Results", "old_keyword" => $request->keyword, "search_result" => $result]);
     }
 
     public function registerPatient(Request $request)
@@ -257,17 +280,16 @@ class PatientController extends Controller
         }
 
         $updated = "No Previous Visits";
-        if($prescriptions->count()>0){
+        if ($prescriptions->count() > 0) {
             $updated = explode(" ", $prescriptions[0]->created_at)[0];
         }
         // $updated = explode(" ", $prescriptions[0]->created_at)[0];
 
         $pHistory = new stdClass;
 
-        $assinged_clinics=Patients::find($request->pid)->clinics;
-       
+        $assinged_clinics = Patients::find($request->pid)->clinics;
+
         $clinics = Clinic::all();
-    
 
         return view('patient.check_patient_view', [
             'title' => "Check Patient",
@@ -285,27 +307,27 @@ class PatientController extends Controller
             'medicines' => Medicine::all(),
             'updated' => $updated,
             'assinged_clinics' => $assinged_clinics,
-            'clinics' => $clinics
+            'clinics' => $clinics,
         ]);
     }
 
     public function addToClinic(Request $request)
     {
         foreach ($request->clinic as $clinic) {
-            $c=Clinic::find($clinic);
+            $c = Clinic::find($clinic);
             $c->addPatientToClinic($request->pid);
         }
-        $assinged_clinics=Patients::find($request->pid)->clinics;
+        $assinged_clinics = Patients::find($request->pid)->clinics;
         $clinics = Clinic::all();
-        $pid=$request->pid;
-        $html_list = view('patient.patinet_clinic', compact('pid','assinged_clinics','clinics'))->render();
-        $html_already = view('patient.patient_clinic_registered', compact('assinged_clinics','clinics'))->render();
+        $pid = $request->pid;
+        $html_list = view('patient.patinet_clinic', compact('pid', 'assinged_clinics', 'clinics'))->render();
+        $html_already = view('patient.patient_clinic_registered', compact('assinged_clinics', 'clinics'))->render();
         return response()->json([
-            'code'=>200,
-            'html_already'=>$html_already,
-            'html_list'=>$html_list,
+            'code' => 200,
+            'html_already' => $html_already,
+            'html_list' => $html_list,
         ]);
-    
+
     }
 
     public function markInPatient(Request $request)
@@ -407,7 +429,7 @@ class PatientController extends Controller
     public function regInPatientValid(Request $request)
     {
         $pNum = $request->pNum;
-        $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id','patients.name as name','patients.sex as sex','patients.address as address','patients.occupation as occ','patients.telephone as tel','patients.nic as nic', 'appointments.admit as ad','patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
+        $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
         if ($patient) {
 
             return response()->json([
@@ -419,7 +441,7 @@ class PatientController extends Controller
                 'telephone' => $patient->tel,
                 'nic' => $patient->nic,
                 'age' => Patients::find($patient->id)->getAge(),
-                'id' => $patient->id
+                'id' => $patient->id,
             ]);
         } else {
             return response()->json([
@@ -429,46 +451,46 @@ class PatientController extends Controller
     }
 
     public function store_inpatient(Request $request)
-     {
-        $pid=$request->reg_pid;
-        $test=Patients::find($pid);
-        $test1=new inpatient;
-   
-        $test->civil_status=$request->reg_ipcondition;
-        $test->birth_place=$request->reg_ipbirthplace;
-        $test->nationality=$request->reg_ipnation;
-        $test->religion=$request->reg_ipreligion;
-        $test->income=$request->reg_inpincome;
-        $test->guardian=$request->reg_ipguardname;
-        $test->guardian_address=$request->reg_ipguardaddress;
-        
-        $test1->patient_id=$request->reg_pid;
-        $test1->ward_id=$request->reg_ipwardno;
-        $test1->patient_inventory=$request->reg_ipinventory;
-        $test1->approved_doctor=$request->reg_ipapprovedoc;
-        $test1->incharge_doctor=$request->reg_ipinchrgedoc;
-        $test1->house_doctor=$request->reg_iphousedoc;
-        $test1->disease=$request->reg_admitofficer1;
-        $test1->duration=$request->reg_admitofficer2;
-        $test1->condition=$request->reg_admitofficer3;
-        $test1->certified_officer=$request->reg_admitofficer4;
-        
+    {
+        $pid = $request->reg_pid;
+        $test = Patients::find($pid);
+        $test1 = new inpatient;
+
+        $test->civil_status = $request->reg_ipcondition;
+        $test->birth_place = $request->reg_ipbirthplace;
+        $test->nationality = $request->reg_ipnation;
+        $test->religion = $request->reg_ipreligion;
+        $test->income = $request->reg_inpincome;
+        $test->guardian = $request->reg_ipguardname;
+        $test->guardian_address = $request->reg_ipguardaddress;
+
+        $test1->patient_id = $request->reg_pid;
+        $test1->ward_id = $request->reg_ipwardno;
+        $test1->patient_inventory = $request->reg_ipinventory;
+        $test1->approved_doctor = $request->reg_ipapprovedoc;
+        $test1->incharge_doctor = $request->reg_ipinchrgedoc;
+        $test1->house_doctor = $request->reg_iphousedoc;
+        $test1->disease = $request->reg_admitofficer1;
+        $test1->duration = $request->reg_admitofficer2;
+        $test1->condition = $request->reg_admitofficer3;
+        $test1->certified_officer = $request->reg_admitofficer4;
+
         $test->save();
         $test1->save();
 
         // decrement bed count by 1
-        $getFB=Ward::where('id',$request->reg_ipwardno)->first();
-        $decre=1;
-        $newFB=$getFB->free_beds - $decre;
-        Ward::where('id',$request->reg_ipwardno)->update(['free_beds'=>$newFB]);
-        
-        return redirect()->back();
+        $getFB = Ward::where('id', $request->reg_ipwardno)->first();
+        $decre = 1;
+        $newFB = $getFB->free_beds - $decre;
+        Ward::where('id', $request->reg_ipwardno)->update(['free_beds' => $newFB]);
+
+        return redirect()->back()->with('regpsuccess', "Inpatient Successfully Registered");
     }
 
     public function get_ward_list()
     {
         $wardList = $this->wardList;
-         return view('register_in_patient_view', compact('wardList'));
+        return view('register_in_patient_view', compact('wardList'));
         // $wards = Ward::all();
         // dd($wardss);
         // return view('register_in_patient_view', compact(['wards']));
@@ -483,7 +505,7 @@ class PatientController extends Controller
     public function disInPatientValid(Request $request)
     {
         $pNum = $request->pNum;
-        $inpatient = DB::table('patients')->join('inpatients', 'patients.id', '=', 'inpatients.patient_id')->select('inpatients.patient_id as id','patients.name as name','patients.address as address','patients.telephone as tel', 'inpatients.discharged as dis')->whereRaw(DB::Raw("inpatients.patient_id='$pNum' and inpatients.discharged='NO'"))->first();
+        $inpatient = DB::table('patients')->join('inpatients', 'patients.id', '=', 'inpatients.patient_id')->select('inpatients.patient_id as id', 'patients.name as name', 'patients.address as address', 'patients.telephone as tel', 'inpatients.discharged as dis')->whereRaw(DB::Raw("inpatients.patient_id='$pNum' and inpatients.discharged='NO'"))->first();
 
         if ($inpatient) {
 
@@ -492,7 +514,7 @@ class PatientController extends Controller
                 'name' => $inpatient->name,
                 'address' => $inpatient->address,
                 'telephone' => $inpatient->tel,
-                'id' => $inpatient->id
+                'id' => $inpatient->id,
             ]);
         } else {
             return response()->json([
@@ -503,23 +525,23 @@ class PatientController extends Controller
 
     public function store_disinpatient(Request $request)
     {
-        $pid=$request->reg_pid;
-        $test3=Inpatient::where('patient_id',$pid)->first();
+        $pid = $request->reg_pid;
+        $test3 = Inpatient::where('patient_id', $pid)->first();
 
         $timestamp = now();
-        $test3->discharged='YES';
-        $test3->discharged_date=$timestamp;
-        $test3->description=$request->reg_medicalofficer1;
-        $test3->discharged_officer=$request->reg_medicalofficer2;
+        $test3->discharged = 'YES';
+        $test3->discharged_date = $timestamp;
+        $test3->description = $request->reg_medicalofficer1;
+        $test3->discharged_officer = $request->reg_medicalofficer2;
 
         $test3->save();
 
         // increment bed count by 1
-        $wardNo=$test3->ward_id;
-        $getFB=Ward::where('id',$wardNo)->first();
-        $incre=1;
-        $newFB=$getFB->free_beds + $incre;
-        Ward::where('id',$wardNo)->update(['free_beds'=>$newFB]);
+        $wardNo = $test3->ward_id;
+        $getFB = Ward::where('id', $wardNo)->first();
+        $incre = 1;
+        $newFB = $getFB->free_beds + $incre;
+        Ward::where('id', $wardNo)->update(['free_beds' => $newFB]);
 
         return redirect()->back();
 

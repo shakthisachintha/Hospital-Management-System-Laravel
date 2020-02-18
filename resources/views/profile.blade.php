@@ -85,7 +85,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                         <td>{{$app->description}}</td>
                                                         <td>{{$app->subject_id}}</td>
                                                         <td>{{explode('\\',$app->subject_type)[1]}}</td>
-                                                        <td>{{explode('\\',$app->causer_type)[1]}}</td>
+                                                        <td>{{$app->causer_type}}</td>
                                                         <td>{{$app->created_at}}</td>
 
                                                     </tr>
