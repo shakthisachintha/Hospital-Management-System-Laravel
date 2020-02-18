@@ -22,6 +22,40 @@ class MedicineController extends Controller
 {
     //
 
+    public function markIssued(Request $request){
+        try {
+            $pres_med=Prescription_Medicine::find($request->medid);
+            $pres_med->issued="YES";
+            $pres_med->save();
+            $med=Medicine::find($pres_med->medicine_id);
+            $med->qty+=1;
+            $med->save();
+            return response()->json([
+                "code"=>200,
+                "prescription"=>$request->medid,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "code"=>400,
+                "prescription"=>$request->medid,
+            ]);
+        }
+        
+    }
+
+    public function medIssueSave(Request $request){
+        try {
+            $presc=Prescription::find($request->presid);
+            $presc->medicine_issued="YES";
+            $presc->save();
+            $medicines=Prescription_Medicine::where('prescription_id',$request->presid)->get();
+            return view('medicine.receipt',compact('presc','medicines'));
+        } catch (\Throwable $th) {
+           return redirect()->back()->with('error',"Unkown Error Occured");
+        }
+        
+    }
+
     public function searchSuggestion(Request $request)
     {
         $keyword = $request->keyword;
@@ -35,6 +69,13 @@ class MedicineController extends Controller
         $herbs = DB::table('medicines')->get();
         // dd($herbs);
         return response()->json($herbs);
+    }
+
+    public function issueMedicine($presid){
+        $pmedicines=Prescription_Medicine::where('prescription_id',$presid)->get();
+        $title="Issue Medicine ($presid)";
+        $prescription=Prescription::find($presid);
+        return view('patient.show',compact('pmedicines','title','presid','prescription'));
     }
 
     public function issueMedicineView()
@@ -62,18 +103,15 @@ class MedicineController extends Controller
         $numlength = strlen((string) $num);
         
         if ($numlength < 5) {
-            $rec = DB::table('prescriptions')
-                    ->join('patients', 'prescriptions.patient_id', '=', 'patients.id')
-                    ->join('appointments', 'prescriptions.appointment_id', '=', 'appointments.id')
-                    ->select('patients.name as name', 'appointments.number as num', 'prescriptions.patient_id as pnum')
-                    ->whereRaw(DB::Raw("Date(prescriptions.created_at)=CURDATE() and appointments.number='$num'"))
-                    ->first();
+            $rec=Prescription::whereRaw('date(created_at)=curdate()')
+            ->where('appointment_id',$num)->first();
             if ($rec) {
                 return response()->json([
                     "exist" => true,
-                    "name" => $rec->name,
-                    "appNum" => $rec->num,
-                    "pNUM" => $rec->pnum,
+                    "name" => $rec->patient->name,
+                    "appNum" => $rec->appointment_id,
+                    "pNUM" => $rec->patient_id,
+                    "pres_id"=>$rec->id,
                 ]);
             } else {
                 return response()->json([
@@ -82,18 +120,15 @@ class MedicineController extends Controller
             }
         } 
         else {
-            $rec = DB::table('prescriptions')
-                    ->join('patients', 'prescriptions.patient_id', '=', 'patients.id')
-                    ->join('appointments', 'prescriptions.appointment_id', '=', 'appointments.id')
-                    ->select('patients.name as name', 'appointments.number as num', 'prescriptions.patient_id as pnum')
-                    ->whereRaw(DB::Raw("Date(prescriptions.created_at)=CURDATE() and prescriptions.patient_id='$num'"))
-                    ->first();
+            $rec=Prescription::whereRaw('date(created_at)=curdate()')
+            ->where('patient_id',$num)->first();
             if ($rec) {
                 return response()->json([
                     "exist" => true,
-                    "name" => $rec->name,
-                    "appNum" => $rec->num,
-                    "pNUM" => $rec->pnum,
+                    "name" => $rec->patient->name,
+                    "appNum" => $rec->appointment_id,
+                    "pNUM" => $rec->patient_id,
+                    "pres_id"=>$rec->id,
                 ]);
             } else {
                 return response()->json([

@@ -34,6 +34,22 @@ class PatientController extends Controller
         return view('patient.register_patient', ['title' => $user->name]);
     }
 
+    public function patientHistory($id){
+        $prescs=Prescription::where('patient_id',$id)->orderBy('created_at','desc')->get();
+        $title="Patient History ($id)";
+
+        $patient=Patients::withTrashed()->find($id);
+        $hospital_visits=1;
+        $status="Active";
+        $last_seen=explode(" ",$patient->updated_at)[0];
+        if ($patient->trashed()) {
+            $status="Inactive";
+        }
+        $hospital_visits+=Prescription::where('patient_id',$patient->id)->count();
+
+        return view('patient.history.index',compact('prescs','patient','title','hospital_visits','status','last_seen'));
+    }
+
     public function patientProfileIntro(Request $request){
         if($request->has('pid')){
             return redirect()->route('patientProfile',$request->pid);
@@ -92,7 +108,7 @@ class PatientController extends Controller
         return view('patient.search_patient_view', ["title" => "Search Results","old_keyword"=>$request->keyword, "search_result" => $result]);
     }
 
-    public function register_patient(Request $request)
+    public function registerPatient(Request $request)
     {
         try {
             $patient = new Patients;

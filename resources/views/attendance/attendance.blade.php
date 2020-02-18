@@ -91,13 +91,38 @@
                     </div>
                 </div>
                 <div class="box-body">
+<<<<<<< HEAD
                     <div class="w-100" id="calendar_basic" style="height:25rem"></div>
                     <p><span class="text-red">*</span>{{__('Hours You Worked Are Displayed In The Calander.The Color Change With The Number Of Hours.')}}</p>
+=======
+                    <div class="row">
+                        <div class="w-100" id="calendar_basic" style="height:25rem"></div>
+                        <div class="col-md-9">
+                            <p><span class="text-red">*</span>Hours You Worked Are Displayed In The Calander.The Color
+                                Changes
+                                With The Number Of Hours.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <form action="{{route('getyearattendance')}}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" name="year" placeholder="Enter Year">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="submit" class="form-control btn btn-success" value="Find">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+>>>>>>> a121e916c794c5480cf0d80fc0683f74bb94c2d1
                 </div>
             </div>
 
         </div>
     </div>
+    @if ($att_more)
     <div class="row">
         <div class="col">
             <div class="box">
@@ -140,6 +165,7 @@
             <!-- /.box -->
         </div>
     </div>
+    @endif
 </div>
 </div>
 @endsection

@@ -16,27 +16,7 @@
 @endsection
 @section('main_content')
 
-<script>
-    function suggestMed(val){
-    keyword=val;
-    var data=new FormData;
-    data.append('keyword',keyword);
-    data.append('_token','{{csrf_token()}}');
-    $.ajax({
-        type: "POST",
-        url: "{{route('medicineSuggests')}}",
-        data:data,
-        processData: false,
-        contentType: false,
-        cache: false,
-        global:false,
-        success: function (response) {
-            console.log(response.sugestion)
-            return(response)
-        }
-    });
-}
-</script>
+
 <script src="js/typeahead/typeahead.bundle.js"></script>
 {{-- <script src="js/typeahead/typeahead.jquery.js"></script> --}}
 <script src="js/typeahead/bloodhound.js"></script>
@@ -77,7 +57,7 @@
                 @endif
                 <div class="row mt-2 mb-0 pb-0">
                     <div class="col-md-3 mt-2 mb-0 pb-0">
-                        <button class="btn btn-info">
+                        <button onclick="window.open('{{route('patientHistory',$pid)}}','myWin','scrollbars=yes,width=720,height=690,location=no').focus();" class="btn btn-info">
                             View Patient History
                         </button>
                     </div>

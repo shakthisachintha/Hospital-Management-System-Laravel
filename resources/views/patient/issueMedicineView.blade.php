@@ -26,9 +26,10 @@
         <h4>Registration No : <span id="patient_id"></span></h4>
         <h4>Patient Name : <span id="p_name"></span></h4>
         <h4>Appointment No &nbsp;: <span id="p_appnum"></span></h4>
-        <button type="button" class="btn btn-primary btn-lg mt-3 text-center" value="Issue Medicine Now"
-            onclick="issuemedicinefunction2()" id="btn">Issue Medicine Now</button>
-            {{-- <a class="btn btn-primary btn-lg mt-3 text-center" href="{{ URL::to('issueMedicinenow/' . $pmedicines->patient_id) }}">Issue Medicine Now</a> --}} 
+        <button type="button" class="btn btn-primary btn-lg mt-3 text-center" value="Issue Medicine Now" onclick="go()"
+            id="btn">Issue Medicine Now</button>
+        {{-- <a class="btn btn-primary btn-lg mt-3 text-center" href="{{ URL::to('issueMedicinenow/' . $pmedicines->patient_id) }}">Issue
+        Medicine Now</a> --}}
 
     </div>
     <!-- /.box-body -->
@@ -39,6 +40,12 @@
     <!-- /.box -->
 </div>
 
+<script>
+    var presid=1;
+    function go(){
+        window.location.href="/issue/"+presid;
+    }
+</script>
 
 
 
@@ -49,18 +56,17 @@
     <!-- /.box-header -->
     <div class="box-body">
         {{-- <form action="{{route('issueMedicineView')}}" method="post">
-            @csrf --}}
-            <div class="form-group">
-                <label for="p_id" class="col-sm-2 control-label"
-                    style="font-size:18px">{{__('Registration No:')}}</label>
-                <div class="col-sm-8">
-                    <input type="number" required class="form-control" name="patientid"
-                        onchange="issuemedicinefunction1()" id="p_id" placeholder="Enter Registration No" />
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-info btn-md" onclick="issuemedicinefunction1()">Enter</button>
-                </div>
+        @csrf --}}
+        <div class="form-group">
+            <label for="p_id" class="col-sm-2 control-label" style="font-size:18px">{{__('Registration No:')}}</label>
+            <div class="col-sm-8">
+                <input type="number" required class="form-control" name="patientid" onchange="issuemedicinefunction1()"
+                    id="p_id" placeholder="Enter Registration No" />
             </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-info btn-md" onclick="issuemedicinefunction1()">Enter</button>
+            </div>
+        </div>
         {{-- </form> --}}
     </div>
     <!-- /.box-body -->
@@ -137,7 +143,8 @@
                         console.log(im.name);
                         $("#p_name").text(im.name);
                         $("#patient_id").text(im.pNUM);
-                        $("#p_appnum").text(im.appNum)
+                        $("#p_appnum").text(im.appNum);
+                        presid=im.pres_id;
 
                        
 

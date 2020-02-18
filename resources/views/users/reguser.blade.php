@@ -37,7 +37,7 @@
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name">{{__('Name Of The User')}}</label>
+                            <label for="name">{{__('Name Of The User')}} <span class="text-red">*</span></label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                                 name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             @error('name')
@@ -47,7 +47,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="email">{{__('Email Address')}}</label>
+                            <label for="email">{{__('Email Address')}} <span class="text-red">*</span></label>
                             <input required id="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" required autocomplete="email">
@@ -58,7 +58,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password">{{__('Password')}}</label>
+                            <label for="password">{{__('Password')}} <span class="text-red">*</span></label>
                             <input required value="12345678" readonly id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
                                 autocomplete="new-password">
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm">{{__('Confirm Password')}}</label>
+                            <label for="password-confirm">{{__('Confirm Password')}} <span class="text-red">*</span></label>
                             <input required readonly id="password-confirm" type="password" class="form-control"
                                 name="password_confirmation" value="12345678" required autocomplete="new-password">
                         </div>
@@ -86,7 +86,7 @@
 
 
                         <div class="form-group">
-                            <label for="user-type">{{ __('User Type') }}</label>
+                            <label for="user-type">{{ __('User Type') }} <span class="text-red">*</span></label>
                             <select required id="user-type" type="select" class="form-control" name="user_type"
                                 required>
                                 <option value="admin">Administrator</option>
@@ -98,9 +98,7 @@
 
                         <!-- /.box-body -->
 
-                        <div class="">
-
-
+                        <div>
 
                             <button type="submit" class="pull-right btn btn-primary">{{__('Register')}}</button>
 

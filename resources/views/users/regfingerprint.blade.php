@@ -45,7 +45,7 @@
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="userid" class="col-sm-2 control-label">{{__('User ID')}}</label>
+                        <label for="userid" class="col-sm-2 control-label">{{__('User ID')}} <span class="text-red">*</span></label>
                         <div class="col-sm-10">
                             <input type="number" name="userid"
                                 class="form-control @error('userid') border border-danger @enderror" id="userid"
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="fingerid" class="col-sm-2 control-label">{{__('Fingerprint ID')}}</label>
+                        <label for="fingerid" class="col-sm-2 control-label">{{__('Fingerprint ID')}} <span class="text-red">*</span></label>
 
                         <div class="col-sm-10">
                             <input type="number" name="fingerid"
