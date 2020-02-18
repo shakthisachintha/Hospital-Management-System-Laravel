@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Ward;
+use Illuminate\Support\Facades\DB;
+
+
+
+
 class WardController extends Controller
 {
     //
@@ -14,7 +19,8 @@ class WardController extends Controller
             $query->where('user_type', '=', 'doctor')
                   ->orWhere('user_type', '=', 'admin');
         })->get();
-        return view('ward.index',compact("title","docs"));
+        $data=DB::table('wards')->get();
+        return view('ward.index',compact("title","docs","data"));
     }
 
     public function createWard(Request $request){

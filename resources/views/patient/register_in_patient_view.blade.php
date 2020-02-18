@@ -52,14 +52,14 @@
         <div class="box-body">
 
             <div class="form-group">
-                <label for="patient_id" class="col-sm-2 control-label">{{__('Registration No')}}</label>
+                <label for="patient_id" class="col-sm-2 control-label">{{__('Registration No')}}<span style="color:red">*</span></label></label></label>
                 <div class="col-sm-2">
                     <input type="text" required readonly class="form-control" name="reg_pid" id="patient_id">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">{{__('Full Name')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_pname" id="patient_name"
                         placeholder="Enter Patient Full Name">
@@ -67,7 +67,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_pnic" id="patient_nic"
                         placeholder="National Identity Card Number">
@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Address')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_paddress" id="patient_address"
                         placeholder="Enter Patient Address ">
@@ -91,7 +91,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">{{__('Occupation')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required readonly class="form-control" name="reg_poccupation"
                         id="patient_occupation" placeholder="Enter Patient Occupation ">
@@ -100,9 +100,9 @@
 
             <!-- select -->
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Sex')}}</label>
+                <label class="col-sm-2 control-label">{{__('Sex')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
-                    <select required readonly class="form-control" name="reg_psex" id="patient_sex">
+                    <select required disabled class="form-control" name="reg_psex" id="patient_sex">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -115,7 +115,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Civil Condition')}}</label>
+                <label class="col-sm-2 control-label">{{__('Civil Condition')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
                     <select required class="form-control" name="reg_ipcondition">
                         <option value="Single">Single</option>
@@ -132,7 +132,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Nationality')}}</label>
+                <label class="col-sm-2 control-label">{{__('Nationality')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
                     <select required class="form-control" name="reg_ipnation">
                         <option selected value="Sinhala">Sinhala</option>
@@ -147,7 +147,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Religion')}}</label>
+                <label class="col-sm-2 control-label">{{__('Religion')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
                     <select required class="form-control" name="reg_ipreligion">
                         <option selected value="Buddhism">Buddhism</option>
@@ -173,17 +173,17 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Name of Patient/Guardian')}}</label>
+                <label class="col-sm-2 control-label">{{__('Name of Patient/Guardian')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_ipguardname"
+                    <input type="text" required class="form-control" name="reg_ipguardname"
                         placeholder="Enter Name of any responsible person of patient">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Address of Patient/Guardian')}}</label>
+                <label class="col-sm-2 control-label">{{__('Address of Patient/Guardian')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_ipguardaddress"
+                    <input type="text" required class="form-control" name="reg_ipguardaddress"
                         placeholder="Enter Address of any responsible person of patient">
                 </div>
             </div>
@@ -208,33 +208,37 @@
                 <div class="col-sm-2">
                     <select required class="form-control" name="reg_ipwardno">
                         <option value="">Select Ward No</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        
+                        {{-- <option value="1">1</option>
+                        <option value="2">2</option> --}}
+                        @if($data)
+                        @foreach ($data as $x)
+                                <option value="">{{$x->ward_no}} ({{ucwords($x->name)}})</option>
+                        @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Approved Physician/Surgeon')}}</label>
+                <label class="col-sm-2 control-label">{{__('Approved Physician/Surgeon')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_ipapprovedoc"
+                    <input type="text" required class="form-control" name="reg_ipapprovedoc"
                         placeholder="Name of Physician/Surgeon">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Physician/Surgeon In Charge')}}</label>
+                <label class="col-sm-2 control-label">{{__('Physician/Surgeon In Charge')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_ipinchrgedoc"
+                    <input type="text" required class="form-control" name="reg_ipinchrgedoc"
                         placeholder="Name of Physician/Surgeon">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('House Physician/Surgeon')}}</label>
+                <label class="col-sm-2 control-label">{{__('House Physician/Surgeon')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="reg_iphousedoc"
+                    <input type="text" required class="form-control" name="reg_iphousedoc"
                         placeholder="Name of Physician/Surgeon">
                 </div>
             </div>
@@ -249,36 +253,36 @@
 
         <div class="box-body">
             <div class="form-group">
-                <label for="dis1" class="col-sm-2 control-label">{{__('Disease')}}</label>
+                <label for="dis1" class="col-sm-2 control-label">{{__('Disease')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="dis1" placeholder="Enter diagnosis of patient"
-                        name="reg_admitofficer1" />
+                    <input type="text" required class="form-control" id="dis1" placeholder="Enter diagnosis of patient"
+                    name="reg_admitofficer1" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Duration of illness')}}</label>
+                <label class="col-sm-2 control-label">{{__('Duration of illness')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
                     <div class="input-group">
                         <span class="input-group-addon">{{__('Days:')}}</span>
-                        <input type="number" min="1" step="1" data-number-to-fixed="2" data-number-stepfactor="100"
+                        <input type="number" required min="1" step="1" data-number-to-fixed="2" data-number-stepfactor="100"
                             class="form-control currency" name="reg_admitofficer2" id="dis2">
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="dis3" class="col-sm-2 control-label">{{__('Mode of arises and current condition:')}}</label>
+                <label for="dis3" class="col-sm-2 control-label">{{__('Mode of arises and current condition:')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="reg_admitofficer3" id="dis3" rows="3" cols="100"
+                    <textarea class="form-control" required name="reg_admitofficer3" id="dis3" rows="3" cols="100"
                         placeholder="Enter current condition of patient here"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="dis4" class="col-sm-2 control-label">{{__('Certified by')}}</label>
+                <label for="dis4" class="col-sm-2 control-label">{{__('Certified by')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" id="dis4" placeholder="Select Your ID here"
+                    <input type="text" required class="form-control" id="dis4" placeholder="Select Your ID here"
                         name="reg_admitofficer4" />
                 </div>
             </div>
@@ -326,7 +330,7 @@
 
 <script>
     function registerinpatientfunction() {
-        
+
         var x, text;
         x = document.getElementById("pID").value;
         patientid=x;
@@ -361,7 +365,7 @@
 
                         $("#reginpatient2").slideDown(1000);
                         $("#reginpatient1").slideUp(1000);
-                       
+
                     }else{
                         console.log('not found');
                         alert("Please Enter a Valid Admitted Patient Registration Number!");
@@ -370,7 +374,7 @@
             });
             }else{
                 alert("Please Enter a Valid Registration Number!");
-            }    
+            }
     }
 
 </script>

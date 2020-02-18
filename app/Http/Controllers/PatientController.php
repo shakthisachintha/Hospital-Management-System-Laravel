@@ -423,7 +423,12 @@ class PatientController extends Controller
     public function register_in_patient_view()
     {
         $user = Auth::user();
-        return view('patient.register_in_patient_view', ['title' => "Register Inpatient"]);
+        $data = DB::table('wards')
+        ->select('*')
+        ->join('users', 'wards.doctor_id', '=', 'users.id')
+        ->get();
+// dd($data);
+        return view('patient.register_in_patient_view', ['title' => "Register Inpatient",'data'=>$data]);
     }
 
     public function regInPatientValid(Request $request)
@@ -490,7 +495,8 @@ class PatientController extends Controller
     public function get_ward_list()
     {
         $wardList = $this->wardList;
-        return view('register_in_patient_view', compact('wardList'));
+        $data=DB::table('wards')->join('users','wards.doctor_id','=','users.id')->select('*')->get();
+         return view('register_in_patient_view', ['data'=>$data]);
         // $wards = Ward::all();
         // dd($wardss);
         // return view('register_in_patient_view', compact(['wards']));

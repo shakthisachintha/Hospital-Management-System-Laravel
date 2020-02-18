@@ -41,9 +41,9 @@
                 <!-- /.box-header -->
 
                 <!-- form start -->
-                <form class="form-horizontal" >
+                <form class="form-horizontal">
 
-                    <div class="box-body" >
+                    <div class="box-body">
 
                         <h2 align="center">{{__('Ayruvedic Department')}}</h2>
                         <h4 align="center">{{__('Monthly Statics Report')}}</h4>
@@ -74,16 +74,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">{{__('First Arrival')}} : <input readonly style="border: 0px none"
-                                    type="text" value="{{$fa}}"></label>
+                            <label class="col-sm-5 control-label">{{__('First Arrival')}} : <input readonly
+                                    style="border: 0px none" type="text" value="{{$fa}}"></label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">{{__('Second Arrival')}} : <input readonly style="border: 0px none"
-                                    type="text" value="{{$sa}}"></label>
+                            <label class="col-sm-5 control-label">{{__('Second Arrival')}} : <input readonly
+                                    style="border: 0px none" type="text" value="{{$sa}}"></label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">{{__('Total')}} : <input readonly style="border: 0px none"
-                                    type="text" value="{{$total}}"></label>
+                            <label class="col-sm-5 control-label">{{__('Total')}} : <input readonly
+                                    style="border: 0px none" type="text" value="{{$total}}"></label>
                         </div>
 
                         <div class="form-group">
@@ -99,56 +99,56 @@
 
                         <div class="form-group">
                             <label class="col-sm-5 control-label">{{__('AVG price for one patient')}} : <input
-                                    style="border: 0px none" type="text"
-                                    placeholder="{{__('enter value')}}"></label>
+                                    style="border: 0px none" type="text" placeholder="{{__('enter value')}}"></label>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{__('Issuing medicines according to OPD dates')}}</label>
+                            <label
+                                class="col-sm-4 control-label">{{__('Issuing medicines according to OPD dates')}}</label>
                             <br>
                             <br>
                             <br>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-6">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">{{__('Description')}}</th>
-                                            <th scope="col">{{__('Day 03')}}</th>
-                                            <th scope="col">{{__('Day 05')}}</th>
-                                            <th scope="col">{{__('Day 07')}}</th>
-                                            <th scope="col">{{__('Day 06')}}</th>
-                                            <th scope="col">{{__('Total')}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">{{__('No. of patients from OPD')}}</th>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" >
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">{{__('No. of OPD days')}}</th>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" ></td>
-                                            <td><input style="border: 0px none" type="text" >
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">{{__('Description')}}</th>
+                                                <th scope="col">{{__('Day 03')}}</th>
+                                                <th scope="col">{{__('Day 05')}}</th>
+                                                <th scope="col">{{__('Day 07')}}</th>
+                                                <th scope="col">{{__('Day 06')}}</th>
+                                                <th scope="col">{{__('Total')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">{{__('No. of patients from OPD')}}</th>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">{{__('No. of OPD days')}}</th>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="col-sm-1"></div>
                         </div>
                         <br>
                         <br>
@@ -167,27 +167,32 @@
                                         style="border: 0px none" type="text" value="{{$bedcnt}}"></label>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{__('No. of inpatients in this month')}} : <input readonly
-                                        style="border: 0px none" type="text" value="{{$inpcnt}}"></label>
+                                <label class="col-sm-6 control-label">{{__('No. of inpatients in this month')}} : <input
+                                        readonly style="border: 0px none" type="text" value="{{$inpcnt}}"></label>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{__('No. of inpatients discharged(this month)')}} : <input
-                                        readonly style="border: 0px none" type="text" value="{{$dispcnt}}"></label>
+                                <label class="col-sm-6 control-label">{{__('No. of inpatients discharged(this month)')}}
+                                    : <input readonly style="border: 0px none" type="text" value="{{$dispcnt}}"></label>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{__('No. of inpatient dates')}} : <input readonly
                                         style="border: 0px none" type="text" value="{{$wardcnt}}"></label>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-7 control-label">{{__('AVG no of days that inpatient spent in the hospital')}} : <input readonly style="border: 0px none" type="text"
-                                        value="{{$wardcnt}}"></label>
+                                <label
+                                    class="col-sm-7 control-label">{{__('AVG no of days that inpatient spent in the hospital')}}
+                                    : <input readonly style="border: 0px none" type="text" value="{{$wardcnt}}"></label>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-7 control-label">{{__('Value for the medicines issued for the inpatients in this month')}} : <input style="border: 0px none" type="text"
+                                <label
+                                    class="col-sm-7 control-label">{{__('Value for the medicines issued for the inpatients in this month')}}
+                                    : <input style="border: 0px none" type="text"
                                         placeholder="{{__('enter value')}}"></label>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-7 control-label">{{__('Value for the medicines issued for one inpatient day')}} : <input style="border: 0px none" type="text"
+                                <label
+                                    class="col-sm-7 control-label">{{__('Value for the medicines issued for one inpatient day')}}
+                                    : <input style="border: 0px none" type="text"
                                         placeholder="{{__('enter value')}}"></label>
                             </div>
                         </div>
@@ -204,43 +209,79 @@
                         <div class="row">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-10">
-                                <table class="table table-bordered" id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th>{{__('Type of drug produced')}}</th>
-                                            <th colspan="2">{{__('Drugs produced in the institute')}}</th>
-                                            <th colspan="2">{{__('Drugs received from othe institutes')}}</th>
-                                            <th colspan="2">{{__('Drugs received from Pharmaceutical Corporation')}}</th>
-                                            <th colspan="2">{{__('Total Medicines Available')}}</th>
-                                        </tr>
-                                        <tr>
-                                            <th></th>
-                                            <th>{{__('Quentity')}}</th>
-                                            <th>{{__('Value')}}</th>
-                                            <th>{{__('Quentity')}}</th>
-                                            <th>{{__('Value')}}</th>
-                                            <th>{{__('Quentity')}}</th>
-                                            <th>{{__('Value')}}</th>
-                                            <th>{{__('Quentity')}}</th>
-                                            <th>{{__('Value')}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th>{{__('Type of drug produced')}}</th>
+                                                <th colspan="2">{{__('Drugs produced in the institute')}}</th>
+                                                <th colspan="2">{{__('Drugs received from othe institutes')}}</th>
+                                                </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th>{{__('Quentity')}}</th>
+                                                <th>{{__('Value')}}</th>
+                                                <th>{{__('Quentity')}}</th>
+                                                <th>{{__('Value')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                        <tr>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                            <td><input style="border: 0px none" type="text"></td>
-                                        </tr>
+                                            <tr>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                            </tr>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-2 no-print"><button type="button" class="btn btn-success"
+                                    onclick="myFunction2()">{{__('Add Row')}}</button></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="myTable2">
+                                        <thead>
+                                            <tr>
+                                                <th>{{__('Type of drug produced')}}</th>
+                                                <th colspan="2">{{__('Drugs received from Pharmaceutical Corporation')}}
+                                                </th>
+                                                <th colspan="2">{{__('Total Medicines Available')}}</th>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th>{{__('Quentity')}}</th>
+                                                <th>{{__('Value')}}</th>
+                                                <th>{{__('Quentity')}}</th>
+                                                <th>{{__('Value')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                                <td><input style="border: 0px none" type="text"></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="col-sm-1"></div>
                         </div>
@@ -253,7 +294,9 @@
                         <br>
                         <br>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{__('Total value for the medicines which bought this month')}} </label>
+                            <label
+                                class="col-sm-3 control-label">{{__('Total value for the medicines which bought this month')}}
+                            </label>
 
                             <div class="col-sm-9">
                                 <input type="text" style="border: 0px none" class="form-control"
@@ -261,7 +304,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{__('Total value for the medicines which got as donations')}} </label>
+                            <label
+                                class="col-sm-3 control-label">{{__('Total value for the medicines which got as donations')}}
+                            </label>
 
                             <div class="col-sm-9">
                                 <input type="text" style="border: 0px none" class="form-control"
@@ -276,7 +321,8 @@
                         <br>
                         <br>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{__('Total number of employees approved to the hospital(in all grades)')}}</label>
+                            <label
+                                class="col-sm-3 control-label">{{__('Total number of employees approved to the hospital(in all grades)')}}</label>
 
                             <div class="col-sm-9">
                                 <input type="text" style="border: 0px none" class="form-control"
@@ -285,7 +331,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{__('Number of employees served for this month')}}</label>
+                            <label
+                                class="col-sm-3 control-label">{{__('Number of employees served for this month')}}</label>
 
                             <div class="col-sm-9">
                                 <input type="text" style="border: 0px none" class="form-control"
@@ -293,7 +340,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{__('Number of vacancies available at the end of the month(in all grades)')}}</label>
+                            <label
+                                class="col-sm-3 control-label">{{__('Number of vacancies available at the end of the month(in all grades)')}}</label>
 
                             <div class="col-sm-9">
                                 <input type="text" style="border: 0px none" class="form-control"
@@ -301,7 +349,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{__('Excess number of workers(Exceed the approved number of employees)')}}</label>
+                            <label
+                                class="col-sm-3 control-label">{{__('Excess number of workers(Exceed the approved number of employees)')}}</label>
 
                             <div class="col-sm-9">
                                 <input type="text" style="border: 0px none" class="form-control"
@@ -339,7 +388,8 @@
 
                     <!-- /.box-body -->
                     <div class="box-footer no-print">
-                        <button action="refresh()" type="submit" class="btn btn-default no-print">{{__('Cancel')}}</button>
+                        <button action="refresh()" type="submit"
+                            class="btn btn-default no-print">{{__('Cancel')}}</button>
                         <button onclick="window.print()" class="float-right btn btn-warning no-print">{{__('Print')}} <i
                                 class="fas fa-print"></i></button>
                     </div>
@@ -364,10 +414,6 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                var cell6 = row.insertCell(5);
-                var cell7 = row.insertCell(6);
-                var cell8 = row.insertCell(7);
-                var cell9 = row.insertCell(8);
 
                 var input="<input style='border: 0px none' type='text'>";
                 cell1.innerHTML = input;
@@ -375,10 +421,24 @@
                 cell3.innerHTML = input;
                 cell4.innerHTML = input;
                 cell5.innerHTML = input;
-                cell6.innerHTML = input;
-                cell7.innerHTML = input;
-                cell8.innerHTML = input;
-                cell9.innerHTML = input;
+            }
+
+            function myFunction2() {
+            var table = document.getElementById("myTable2");
+            var row = table.insertRow(2);
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+
+            var input="<input style='border: 0px none' type='text'>";
+            cell1.innerHTML = input;
+            cell2.innerHTML = input;
+            cell3.innerHTML = input;
+            cell4.innerHTML = input;
+            cell5.innerHTML = input;
             }
 </script>
 @endsection
