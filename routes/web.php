@@ -116,6 +116,7 @@ Route::post('/deletenotice', ['as' => 'deletenotice', 'uses' => 'NoticeboardCont
 // Report Generation Routes
 Route::get('/reportgeneration', ['as' => 'reportgeneration', 'uses' => 'UserController@reportgen'])->middleware('auth');
 Route::get('/clinicreports', ['as' => 'clinic_reports', 'uses' => 'ReportController@viewclinicreport'])->middleware('auth');
+Route::post('/printclinicreports', ['as' => 'print_clinic', 'uses' => 'ReportController@printclinicreport'])->middleware('auth');
 Route::get('/mobclinicreport', ['as' => 'mob_clinic_report', 'uses' => 'ReportController@view_mobile_clinic_report'])->middleware('auth');
 Route::get('/monstatreport', ['as' => 'mon_stat_report', 'uses' => 'ReportController@view_monthly_static_report'])->middleware('auth','lang');
 Route::get('/outpreport', ['as' => 'out_p_report', 'uses' => 'ReportController@view_out_patient_report'])->middleware('auth');

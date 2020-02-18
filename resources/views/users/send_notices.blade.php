@@ -206,10 +206,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                 </label>
                                             </div>
                                             {{-- <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="receiverlist[]" value="patient"> Patient
-                                    </label>
-                                </div> --}}
+                                                <label>
+                                                    <input type="checkbox" name="receiverlist[]" value="patient">
+                                                    Patient
+                                                </label>
+                                            </div> --}}
                                         </div>
 
                                         <div class="col-md-1">

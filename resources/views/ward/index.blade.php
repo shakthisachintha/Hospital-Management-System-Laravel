@@ -15,8 +15,8 @@
 @section('main_content')
 
 <div style="margin-top:1vh;padding:3%" class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
         @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -43,7 +43,8 @@
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="ward_num">{{__('Ward Number')}}</label>
+                        <label class="col-sm-2 control-label" for="ward_num">{{__('Ward Number')}}<span
+                                style="color:red">*</span></label></label>
 
                         <div class="col-sm-10">
                             <input class="form-control" name="ward_num" required id="ward_num" type="number"
@@ -52,25 +53,28 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="total_beds">{{__('Total Beds')}}</label>
+                        <label class="col-sm-2 control-label" for="total_beds">{{__('Total Beds')}}<span
+                                style="color:red">*</span></label></label>
 
                         <div class="col-sm-10">
-                            <input class="form-control" name="total_beds" id="total_beds" type="number"
+                            <input class="form-control" required name="total_beds" id="total_beds" type="number"
                                 placeholder="Total Beds">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="free_beds">{{__('Free Beds')}}</label>
+                        <label class="col-sm-2 control-label" for="free_beds">{{__('Free Beds')}}<span
+                                style="color:red">*</span></label></label>
 
                         <div class="col-sm-10">
-                            <input class="form-control" name="free_beds" id="free_beds" type="number"
+                            <input class="form-control" required name="free_beds" id="free_beds" type="number"
                                 placeholder="Free Beds">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="doctor">{{__('Doctor in-charge')}}</label>
+                        <label class="col-sm-2 control-label" for="doctor">{{__('Doctor in-charge')}}<span
+                                style="color:red">*</span></label></label>
 
                         <div class="col-sm-10">
                             <select class="form-control" name="doctor" id="doctor">
@@ -93,7 +97,71 @@
             </form>
         </div>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
 </div>
+
+<div style="padding:3%" class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Clinic Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+
+                    <br>
+                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                        aria-describedby="example1_info">
+                        <thead>
+                            <tr>
+                                <th>Ward No.</th>
+                                <th>Bed Count</th>
+                                <th>Free Beds</th>
+                                <th>Doctor Incharge</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $app)
+                            <tr>
+                                <td>{{$app->ward_no}}</td>
+                                <td>{{$app->beds}}</td>
+                                <td>{{$app->free_beds}}</td>
+                                <td>{{$app->doctor_id}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <th>Ward No.</th>
+                            <th>Bed Count</th>
+                            <th>Free Beds</th>
+                            <th>Doctor Incharge</th>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <!-- /.box-body -->
+</div>
+@endsection
+@section('optional_scripts')
+<script>
+    $(function () {
+
+        $('#example1').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+
+</script>
 
 @endsection

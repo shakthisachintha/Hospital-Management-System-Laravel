@@ -513,7 +513,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                     href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
                             @endif
-                    
+
                     @if($user_type=="Admin"||$user_type=="Doctor")
                     <li class="{{Active::checkRoute('mon_stat_report')}}"><a href="{{route('mon_stat_report')}}"><i
                                 class="fa fa-sticky-note" aria-hidden="true"></i> Monthly Statistic Report</a></li>
@@ -524,15 +524,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                 class="fa fa-user-edit" aria-hidden="true"></i>
                             Out-Patient Report</a></li>
                     @endif
-                    
-                    
+
+
 
                     <li class="{{Active::checkRoute('attendance_report')}}"><a href="{{route('attendance_report')}}"><i
                                 class="fa fa-clipboard
                                         aria-hidden=" true"></i> Attendance Report</a></li>
                 </ul>
                 </li>
-                
+
                 <li>
                     <a href="https://adminlte.io/themes/AdminLTE/index2.html" target="_blank">
                         <i class="fas fa-folder-plus"></i>
