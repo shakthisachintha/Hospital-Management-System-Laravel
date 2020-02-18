@@ -84,11 +84,14 @@
                 <a href="{{route('mon_stat_report')}}" class="list-group-item list-group-item-action btn btn-danger">
                     Monthly Statistic Report
                 </a>
-                <a href="{{route('stats')}}" class="list-group-item mt-4 list-group-item-action btn btn-warning">
+                <a href="{{route('stats')}}" class="list-group-item mt-1 list-group-item-action btn btn-warning">
                     Statistics
                 </a>
-                <a href="{{route('attendance_report')}}" class="list-group-item mt-4 list-group-item-action btn btn-success">
+                <a href="{{route('attendance_report')}}" class="list-group-item mt-1 list-group-item-action btn btn-success">
                     Attendance Report
+                </a>
+                <a href="{{route('clinic_reports')}}" class="list-group-item mt-1 list-group-item-action btn btn-info">
+                    Clinic Report
                 </a>
             </div>
         </div>
@@ -246,7 +249,8 @@
                             <li><a href="#">View calendar</a></li>
                         </ul>
                     </div>
-                    <button type="button" class="btn bg-purple btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <button type="button" class="btn bg-purple btn-sm" data-widget="collapse"><i
+                            class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn bg-purple btn-sm" data-widget="remove"><i class="fa fa-times"></i>
                     </button>
@@ -359,12 +363,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span
-                                                class="month">Mar</span><span class="month">Apr</span><span
-                                                class="month">May</span><span class="month">Jun</span><span
-                                                class="month">Jul</span><span class="month">Aug</span><span
-                                                class="month focused">Sep</span><span class="month">Oct</span><span
-                                                class="month">Nov</span><span class="month">Dec</span></td>
+                                        <td colspan="7"><span class="month">Jan</span><span
+                                                class="month">Feb</span><span class="month">Mar</span><span
+                                                class="month">Apr</span><span class="month">May</span><span
+                                                class="month">Jun</span><span class="month">Jul</span><span
+                                                class="month">Aug</span><span class="month focused">Sep</span><span
+                                                class="month">Oct</span><span class="month">Nov</span><span
+                                                class="month">Dec</span></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
@@ -458,12 +463,12 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="7"><span class="century old">1900</span><span
-                                                class="century focused">2000</span><span class="century">2100</span><span
-                                                class="century">2200</span><span class="century">2300</span><span
-                                                class="century">2400</span><span class="century">2500</span><span
-                                                class="century">2600</span><span class="century">2700</span><span
-                                                class="century">2800</span><span class="century">2900</span><span
-                                                class="century new">3000</span></td>
+                                                class="century focused">2000</span><span
+                                                class="century">2100</span><span class="century">2200</span><span
+                                                class="century">2300</span><span class="century">2400</span><span
+                                                class="century">2500</span><span class="century">2600</span><span
+                                                class="century">2700</span><span class="century">2800</span><span
+                                                class="century">2900</span><span class="century new">3000</span></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

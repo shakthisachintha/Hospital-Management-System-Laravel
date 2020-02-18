@@ -549,18 +549,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             <li class="{{Active::checkRoute('clinic_reports')}}"><a
                                     href="{{route('clinic_reports')}}"><i class="fa fa-stethoscope"
                                         aria-hidden="true"></i> Clinic Report</a></li>
-                            {{--  <li class="{{Active::checkRoute('mob_clinic_report')}}"><a
-                                    href="{{route('mob_clinic_report')}}"><i class="fa fa-ambulance"
-                                        aria-hidden="true"></i> Mobile Clinic Report</a></li>  --}}
                             <li class="{{Active::checkRoute('mon_stat_report')}}"><a
                                     href="{{route('mon_stat_report')}}"><i class="fa fa-sticky-note"
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
-                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
-                                        class="fa fa-user-edit" aria-hidden="true"></i>
-                                    Out-Patient Report</a></li>
-                            <li class="{{Active::checkRoute('ward_report')}}"><a href="{{route('ward_report')}}"><i
-                                        class="fa fa-hospital" aria-hidden="true"></i>
-                                    Ward Reports</a></li>
                             <li class="{{Active::checkRoute('attendance_report')}}"><a
                                     href="{{route('attendance_report')}}"><i class="fa fa-clipboard
                                         aria-hidden=" true"></i> Attendance Report</a></li>
