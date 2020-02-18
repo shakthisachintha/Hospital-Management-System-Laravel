@@ -97,7 +97,7 @@
                     class="list-group-item mt-4 list-group-item-action btn btn-success">
                     {{__('Attendance Report')}}
                 </a>
-                <a href="{{route('clinic_reports')}}" class="list-group-item mt-1 list-group-item-action btn btn-info">
+                <a href="{{route('clinic_reports')}}" class="list-group-item mt-4 list-group-item-action btn btn-info">
                     {{__('Clinic Report')}}
                 </a>
             </div>
@@ -150,7 +150,7 @@
 
                 @endif
 
-                @if(Auth::user()->user_type=='pharmacist')
+                @if(Auth::user()->user_type=='pharmacist' || Auth::user()->user_type=='admin')
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('issueMedicineView')}}" class="btn btn-app">

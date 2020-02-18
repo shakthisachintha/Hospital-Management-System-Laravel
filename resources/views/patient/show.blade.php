@@ -29,13 +29,15 @@ use App\Medicine;
             <table class="table table-striped table-bordered table-active">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="2" style="text-align:center;font-size:18px">Medicine</th>
+                        
+                        <th scope="col" colspan="3" style="text-align:center;font-size:18px">Medicine</th>
                         <th scope="col" style="text-align:center;vertical-align:middle;font-size:18px" rowspan="2">Note
                         </th>
                         <th scope="col" style="text-align:center;vertical-align:middle;font-size:18px" rowspan="2">
                             Issued or Not</th>
                     </tr>
                     <tr>
+                        <th>Medicine ID</th>
                         <th style="text-align:center;font-size:18px">English</th>
                         <th style="text-align:center;font-size:18px">Sinhala</th>
                     </tr>
@@ -43,10 +45,13 @@ use App\Medicine;
                 <tbody id="bodyData">
                     @foreach ($pmedicines as $med)
                     <tr>
+                        <td>
+                            {{$med->medicine_id}}
+                        </td>
                         <td style="text-align:center;font-size:15px;">
-                            {{ ucwords(Medicine::find($med->id)->name_english) }}</td>
+                            {{ ucwords(Medicine::find($med->medicine_id)->name_english) }}</td>
                         <td style="text-align:center;font-size:15px;">
-                            {{ Medicine::find($med->id)->name_sinhala }}</td>
+                            {{ Medicine::find($med->medicine_id)->name_sinhala }}</td>
                         <td style="text-align:center;font-size:15px;">{{ $med->note }}</td>
                         <td id="td-issue-{{$med->id}}" style="text-align:center;">
                             @if ($med->issued=="YES")

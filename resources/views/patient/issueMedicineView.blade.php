@@ -13,107 +13,85 @@
 @endsection
 
 @section('main_content')
-{{--  issue medicine  --}}
+
+<div class="row mt-5 pt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="box box-info" id="issuemedicine1">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{__('Enter Patient Registration Number Or The Appointment Number')}}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
 
 
 
-<div class="box box-info" id="issuemedicine2" style="display:none">
-    <div class="box-header with-border">
-        <h3 class="box-title">Approved to Issue Medicine</h3>
+                <div class="form-group">
+                    <label for="p_id" class="control-label"
+                        style="font-size:18px">{{__('Registration or Appointment No:')}}</label>
+                    <input type="number" required class="form-control mt-2" name="patientid"
+                        onchange="issuemedicinefunction1()" id="p_id"
+                        placeholder="Enter Registration or Appointment Number" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info" onclick="issuemedicinefunction1()">Check</button>
+                </div>
+
+
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+
+            </div>
+            <!-- /.box-footer -->
+        </div>
+        <div class="box box-info" id="issuemedicine2" style="display:none">
+            <div class="box-header with-border">
+                <h3 class="box-title">Approved to Issue Medicine</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body mt-0">
+                <h4>Registration No : <span id="patient_id"></span></h4>
+                <h4>Patient Name : <span id="p_name"></span></h4>
+                <h4>Appointment No &nbsp;: <span id="p_appnum"></span></h4>
+                <button id="btn-issue" type="button" class="btn btn-primary btn-lg mt-3 text-center"
+                    value="Issue Medicine Now" onclick="go()" id="btn">Issue Medicine Now</button>
+                <button onclick="cancel()" class="btn btn-warning btn-lg mt-3 text-center">Cancel</button>
+                {{-- <a class="btn btn-primary btn-lg mt-3 text-center" href="{{ URL::to('issueMedicinenow/' . $pmedicines->patient_id) }}">Issue
+                Medicine Now</a> --}}
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+            </div>
+            <!-- box-footer -->
+
+            <!-- /.box -->
+        </div>
     </div>
-    <!-- /.box-header -->
-    <div class="box-body mt-0">
-        <h4>Registration No : <span id="patient_id"></span></h4>
-        <h4>Patient Name : <span id="p_name"></span></h4>
-        <h4>Appointment No &nbsp;: <span id="p_appnum"></span></h4>
-        <button type="button" class="btn btn-primary btn-lg mt-3 text-center" value="Issue Medicine Now" onclick="go()"
-            id="btn">Issue Medicine Now</button>
-        {{-- <a class="btn btn-primary btn-lg mt-3 text-center" href="{{ URL::to('issueMedicinenow/' . $pmedicines->patient_id) }}">Issue
-        Medicine Now</a> --}}
-
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-    </div>
-    <!-- box-footer -->
-
-    <!-- /.box -->
+    <div class="col-md-1"></div>
 </div>
+
+
 
 <script>
     var presid=1;
     function go(){
         window.location.href="/issue/"+presid;
     }
+
+    function cancel(){
+        $("#issuemedicine2").slideUp(1000);
+        $("#issuemedicine1").slideDown(1000);
+    }
 </script>
 
 
 
-<div class="box box-info" id="issuemedicine1">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        {{-- <form action="{{route('issueMedicineView')}}" method="post">
-        @csrf --}}
-        <div class="form-group">
-            <label for="p_id" class="col-sm-2 control-label" style="font-size:18px">{{__('Registration No:')}}</label>
-            <div class="col-sm-8">
-                <input type="number" required class="form-control" name="patientid" onchange="issuemedicinefunction1()"
-                    id="p_id" placeholder="Enter Registration No" />
-            </div>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-info btn-md" onclick="issuemedicinefunction1()">Enter</button>
-            </div>
-        </div>
-        {{-- </form> --}}
-    </div>
-    <!-- /.box-body -->
 
-    <div class="box-footer">
 
-    </div>
-    <!-- /.box-footer -->
-</div>
 
-<div class="col-xs-12" id="issuemedicine3" style="display:none">
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Prescription</h3>
-        </div>
-        <div class="box-body">
-            <table class="table table-striped table-bordered table-active">
-                <thead>
-                    <tr>
-                        <th scope="col" colspan="2" style="text-align:center;font-size:18px">Medicine</th>
-                        <th scope="col" style="text-align:center;vertical-align:middle;font-size:18px" rowspan="2">Note
-                        </th>
-                        <th scope="col" style="text-align:center;vertical-align:middle;font-size:18px" rowspan="2">
-                            Issued or Not</th>
-                    </tr>
-                    <tr>
-                        <th style="text-align:center;font-size:18px">English</th>
-                        <th style="text-align:center;font-size:18px">Sinhala</th>
-                    </tr>
-                </thead>
-                <tbody id="bodyData">
-                    @foreach ($pmedicines as $med)
-                    <tr>
-                        <td style="text-align:center;font-size:15px;color:blue;">{{ $med->name_english }}</td>
-                        <td style="text-align:center;font-size:15px;color:blue;">{{ $med->name_sinhala }}</td>
-                        <td style="text-align:center;font-size:15px;color:blue;">{{ $med->note }}</td>
-                        <td style="text-align:center;font-size:15px;color:blue;"><button
-                                style="font-size:20px;color:green;" class='fa fa-check btn-md'></button></td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-            {{ csrf_field() }}
-        </div>
-    </div>
-</div>
 
 <script>
     function issuemedicinefunction1() {
@@ -145,9 +123,7 @@
                         $("#patient_id").text(im.pNUM);
                         $("#p_appnum").text(im.appNum);
                         presid=im.pres_id;
-
-                       
-
+                        $("#btn-issue").focus();
                         $("#issuemedicine2").slideDown(1000);
                         $("#issuemedicine1").slideUp(1000);
                         console.log('check');

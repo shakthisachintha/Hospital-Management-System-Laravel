@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">{{__('NIC Number')}}</label>
                         <div class="col-sm-10">
-                            <input type="text" pattern="^[1-9]{1}[0-9]{8}[V,X,v,x]|[0-9]{12}$" maxlength="12" required class="form-control" name="reg_pnic"
+                            <input type="text" pattern="^[1-9]{1}[0-9]{8}[V,X,v,x]|[0-9]{12}$" maxlength="12" class="form-control" name="reg_pnic"
                                 placeholder="National Identity Card Number">
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" required pattern="^(((0)[0-9])|((1)[0-2]))(\/)([0-2][0-9]|(3)[0-1])(\/)\d{4}$" id="datepicker" class="form-control pull-right" name="reg_pbd"
+                                <input type="date" required max="2014-12-30" class="form-control pull-right" name="reg_pbd"
                                     placeholder="Birthday">
                             </div>
 

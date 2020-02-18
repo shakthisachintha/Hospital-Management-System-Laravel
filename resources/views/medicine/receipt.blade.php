@@ -45,7 +45,7 @@
                       </colgroup>
                     @foreach ($medicines as $med)
                         <tr>
-                            <td>{{Medicine::find($med->id)->name_sinhala}}</td>
+                            <td>{{Medicine::find($med->medicine_id)->name_sinhala}}</td>
                             <td>{{$med->note}}</td>
                         </tr>
                     @endforeach

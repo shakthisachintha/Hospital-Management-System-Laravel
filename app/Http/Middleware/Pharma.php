@@ -15,7 +15,7 @@ class Pharma
      */
     public function handle($request, Closure $next)
     {
-        if (\Auth::user()->user_type == 'pharmacist') {
+        if (\Auth::user()->user_type == 'pharmacist' || \Auth::user()->user_type == 'admin' ) {
             return $next($request);
           }else{
             return redirect()->back();

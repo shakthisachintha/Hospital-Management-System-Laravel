@@ -186,8 +186,11 @@ class PatientController extends Controller
     {
         $num = $request->number;
         $numlength = strlen((string) $num);
-        if ($numlength < 5) {
-            $rec = DB::table('appointments')->join('patients', 'appointments.patient_id', '=', 'patients.id')->select('patients.name as name', 'appointments.number as num', 'appointments.patient_id as pnum')->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and appointments.number='$num'"))->first();
+        if ($numlength < 5) { // this means the appointment number has entered
+            $rec = DB::table('appointments')
+            ->join('patients', 'appointments.patient_id', '=', 'patients.id')
+            ->select('patients.name as name', 'appointments.number as num', 'appointments.patient_id as pnum')
+            ->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and appointments.number='$num'"))->first();
             if ($rec) {
                 return response()->json([
                     "exist" => true,
@@ -200,7 +203,7 @@ class PatientController extends Controller
                     "exist" => false,
                 ]);
             }
-        } else {
+        } else { //this means the patient registration number has entered
             $rec = DB::table('appointments')->join('patients', 'appointments.patient_id', '=', 'patients.id')->select('patients.name as name', 'appointments.number as num', 'appointments.patient_id as pnum')->whereRaw(DB::Raw("Date(appointments.created_at)=CURDATE() and completed='NO' and appointments.patient_id='$num'"))->first();
             if ($rec) {
                 return response()->json([

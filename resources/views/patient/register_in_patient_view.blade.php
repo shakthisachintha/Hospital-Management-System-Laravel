@@ -212,7 +212,7 @@
                         <option value="2">2</option> --}}
                         @if($data)
                         @foreach ($data as $x)
-                                <option value="">{{$x->ward_no}} ({{ucwords($x->name)}})</option>
+                                <option value="{{$x->ward_no}}">{{$x->ward_no}} ({{ucwords($x->name)}})</option>
                         @endforeach
                         @endif
                     </select>
