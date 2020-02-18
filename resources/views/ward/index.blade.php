@@ -105,7 +105,7 @@
     <div class="col-md-10">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Clinic Details</h3>
+                <h3 class="box-title">{{__('Clinic Details')}}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -116,10 +116,10 @@
                         aria-describedby="example1_info">
                         <thead>
                             <tr>
-                                <th>Ward No.</th>
-                                <th>Bed Count</th>
-                                <th>Free Beds</th>
-                                <th>Doctor Incharge</th>
+                                <th>{{__('Ward No.')}}</th>
+                                <th>{{__('Bed Count')}}</th>
+                                <th>{{__('Free Beds')}}</th>
+                                <th>{{__('Doctor Incharge')}}</th>
 
                             </tr>
                         </thead>
@@ -134,10 +134,10 @@
                             @endforeach
                         </tbody>
                         <tfoot>
-                            <th>Ward No.</th>
-                            <th>Bed Count</th>
-                            <th>Free Beds</th>
-                            <th>Doctor Incharge</th>
+                            <th>{{__('Ward No.')}}</th>
+                            <th>{{__('Bed Count')}}</th>
+                            <th>{{__('Free Beds')}}</th>
+                            <th>{{__('Doctor Incharge')}}</th>
                         </tfoot>
                     </table>
                 </div>

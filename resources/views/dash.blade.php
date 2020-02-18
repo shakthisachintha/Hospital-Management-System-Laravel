@@ -171,13 +171,13 @@
                 <!-- ./col -->
                 <div class="col-sm-2">
                     <a href="{{route('regfinger')}}" class="btn btn-app">
-                        <i class="fa fa-fingerprint"></i> {{__('Register Fingerprint')}}
+                        <i class="fa fa-fingerprint"></i> {{__('Register Fingerprints')}}
                     </a>
                 </div>
 
                 <div class="col-sm-2">
                     <a href="{{route('resetuser')}}" class="btn btn-app">
-                        <i class="fa fa-user-edit"></i> {{__('Reset User')}}
+                        <i class="fa fa-user-edit"></i> {{__('Reset Users')}}
                     </a>
                 </div>
 

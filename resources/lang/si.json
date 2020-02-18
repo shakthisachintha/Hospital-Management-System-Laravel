@@ -175,13 +175,22 @@
     "Monthly Statistic Report":"මාසික සංඛ්‍යාලේඛන වාර්තාව",
     "Statistics":"සංඛ්‍යාලේඛන",
     "Attendance Report":"පැමිණීමේ වාර්තාව",
-    "Register out-patient":"බාහිර රෝගීන් ලියාපදිංචි",
-    "Register in-Patient":"රෝගියා ලියාපදිංචි ",
-    "Create Appointment":"වෛද්‍ය හමුව සාදන්න",
-    "Issue Medicine":"ඖෂධ නිකුත් කිරීම",
-    "Register User":" පරිශීලකයෙකු ලියාපදිංචි",
+    "Register out-patient":"බාහිර රෝගීන් ",
+    "Register in-Patient":"රෝගීන් ලියාපදිංචිය ",
+    "Create Appointment":"වෛද්‍ය හමුව ",
+    "Issue Medicine":"ඖෂධ නිකුතුව",
+    "Register User":" පරිශීලකයන්",
     "User Profile":"පරිශීලක පැතිකඩ",
-    "Notices":"දැන්වීම්"
+    "Notices":"දැන්වීම්",
+    "Register Fingerprints":"ඇගිලි සලකුණු ",
+    "Reset Users":"යලි පිහිටුවිම ",
+    "Clinic Report":"සායන වාර්තාව",
+
+    "Clinic Details":"සායන විස්තර",
+    "Ward No.":"වාට්ටු අංක.",
+    "Bed Count":"ඇඳන් ගණන",
+    "Doctor Incharge":"වාට්ටුව භාර වෛද්යවරයා "
+
 
 
 
