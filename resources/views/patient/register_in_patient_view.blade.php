@@ -52,7 +52,7 @@
         <div class="box-body">
 
             <div class="form-group">
-                <label for="patient_id" class="col-sm-2 control-label">{{__('Registration No')}}</label>
+                <label for="patient_id" class="col-sm-2 control-label">{{__('Registration No')}}<span style="color:red">*</span></label></label></label>
                 <div class="col-sm-2">
                     <input type="text" required readonly class="form-control" name="reg_pid" id="patient_id">
                 </div>
@@ -329,7 +329,7 @@
 
 <script>
     function registerinpatientfunction() {
-        
+
         var x, text;
         x = document.getElementById("pID").value;
         patientid=x;
@@ -364,7 +364,7 @@
 
                         $("#reginpatient2").slideDown(1000);
                         $("#reginpatient1").slideUp(1000);
-                       
+
                     }else{
                         console.log('not found');
                         alert("Please Enter a Valid Admitted Patient Registration Number!");
@@ -373,7 +373,7 @@
             });
             }else{
                 alert("Please Enter a Valid Registration Number!");
-            }    
+            }
     }
 
 </script>

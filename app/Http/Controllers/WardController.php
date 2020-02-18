@@ -8,6 +8,8 @@ use App\Ward;
 use Illuminate\Support\Facades\DB;
 
 
+
+
 class WardController extends Controller
 {
     //
