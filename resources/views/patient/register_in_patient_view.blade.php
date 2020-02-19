@@ -15,7 +15,7 @@
 @section('main_content')
 {{--  patient registration  --}}
 
-<div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
+{{-- <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
     style="margin-bottom:0;margin-top:8vh" @endif class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-1"></div>
 
-</div>
+</div> --}}
 
 
 

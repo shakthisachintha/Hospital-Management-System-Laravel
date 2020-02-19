@@ -427,9 +427,9 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $data = DB::table('wards')
-        ->select('*')
-        ->join('users', 'wards.doctor_id', '=', 'users.id')
-        ->get();
+                    ->select('*')
+                    ->join('users', 'wards.doctor_id', '=', 'users.id')
+                    ->get();
 // dd($data);
         return view('patient.register_in_patient_view', ['title' => "Register Inpatient",'data'=>$data]);
     }
@@ -437,7 +437,43 @@ class PatientController extends Controller
     public function regInPatientValid(Request $request)
     {
         $pNum = $request->pNum;
-        $patient = DB::table('patients')->join('appointments', 'patients.id', '=', 'appointments.patient_id')->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod')->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))->first();
+        $pNumLen = strlen((string) $pNum);
+        if($pNumLen<7)
+        {
+            $patient = DB::table('patients')
+            ->join('appointments', 'patients.id', '=', 'appointments.patient_id')
+            ->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod','appointments.number as appnum')
+            ->whereRaw(DB::Raw("appointments.admit='YES' and appointments.number='$pNum'"))
+            ->first();
+
+            if ($patient) {
+
+            return response()->json([
+                'exist' => true,
+                'name' => $patient->name,
+                'sex' => $patient->sex,
+                'address' => $patient->address,
+                'occupation' => $patient->occ,
+                'telephone' => $patient->tel,
+                'nic' => $patient->nic,
+                'age' => Patients::find($patient->id)->getAge(),
+                'id' => $patient->id,
+            ]);
+        } else {
+            return response()->json([
+                'exist' => false,
+            ]);
+        }
+        }
+        
+        else
+        {
+ 
+        $patient = DB::table('patients')
+                        ->join('appointments', 'patients.id', '=', 'appointments.patient_id')
+                        ->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod','appointments.number as appnum')
+                        ->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))
+                        ->first();
         if ($patient) {
 
             return response()->json([
@@ -457,6 +493,7 @@ class PatientController extends Controller
             ]);
         }
     }
+}
 
     public function store_inpatient(Request $request)
     {

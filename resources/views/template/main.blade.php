@@ -390,7 +390,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                             {{--register in patient--}}
                             <li class="{{Active::checkRoute('register_in_patient_view')}}"><a
                                     href="{{route('register_in_patient_view')}}"><i class="fas fa-user-plus"
-                                        area-hidden="true"></i><span> Register In Patient</span></a>
+                                    area-hidden="true"></i><span> Register In Patient</span></a>
                             </li>
 
                             @if($user_type=='Doctor' || $user_type=='Admin')
