@@ -110,35 +110,44 @@
     <div class="col-md-1"></div>
 </div>
 
-<div class="box box-info" id="createchannel3">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{__('Enter Registration No. Or Scan The Bar Code')}}</h3>
-    </div>
-    <!-- /.box-header -->
-    <!-- form start -->
-    <div class="form-horizontal">
-        <div class="box-body">
-            <div class="form-group">
-                <label for="p_reg_num" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
-                <div class="col-sm-8">
-                    <input type="number" onchange="createChannelFunction()" required class="form-control" id="p_reg_num"
-                        placeholder="Enter Patient Registration Number">
+<div class="row">
+    <div class="col-md-1"></div>p
+    <div class="col-md-10">
+        <div class="box box-info" id="createchannel3">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{__('Enter Registration No. Or Scan The Bar Code')}}</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="p_reg_num" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
+                        <div class="col-sm-8">
+                            <input type="number" onchange="createChannelFunction()" required class="form-control"
+                                id="p_reg_num" placeholder="Enter Patient Registration Number">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-info" onclick="createChannelFunction()">Enter</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-info" onclick="createChannelFunction()">Enter</button>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
                 </div>
+                <!-- /.box-footer -->
             </div>
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
 
-        </div>
-        <!-- /.box-footer -->
     </div>
+    <div class="col-md-1"></div>
 </div>
 
+
 <div class="row" id="createchannel4">
-    <div class="col-xs-12">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">{{__('Patients Appointments Today')}}</h3>
@@ -174,6 +183,7 @@
         </div>
         <!-- /.box -->
     </div>
+    <div class="col-xs-1"></div>
     <!-- /.col -->
 </div>
 <!-- /.row -->
