@@ -282,7 +282,7 @@
             <div class="form-group">
                 <label for="dis4" class="col-sm-2 control-label">{{__('Certified by')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
-                    <input type="text" required class="form-control" id="dis4" placeholder="Select Your ID here"
+                    <input type="text" readonly value="{{Auth::user()->id}} ({{ucWords(Auth::user()->name)}})" required class="form-control" id="dis4" placeholder="Select Your ID here"
                         name="reg_admitofficer4" />
                 </div>
             </div>

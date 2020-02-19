@@ -64,7 +64,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (App\Clinic::all() as $item)
+                                @foreach (App\Clinic::alla() as $item)
                                 <tr>
                                     <td>{{$item->name_eng}}</td>
                                     <td>Dr.{{ucwords($item->doctor->name)}}</td>

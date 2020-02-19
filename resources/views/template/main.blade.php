@@ -265,8 +265,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                         <!-- Messages: style can be found in dropdown.less-->
 
                         <li class="nav-item mr-auto">
-                            <p
-                                style="padding-top:1.3rem;font-weight:400;margin-right:1.5vw;color:ivory;font-size:1.7rem">
+                            <p style="padding-top:1.3rem;font-weight:400;margin-right:1.5vw;color:ivory;font-size:1.7rem">
                                 <span class="mr-3" id="today"></span><span id="time"></span></p>
                         </li>
 
@@ -277,7 +276,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                 @else
                                 EN
                                 @endif
-
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">Select The Language</li>
@@ -287,7 +285,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         <li><a class="text-muted" href="{{route('lang','si')}}">සිංහල</a></li>
                                     </ul>
                                 </li>
-
                             </ul>
                         </li>
 
