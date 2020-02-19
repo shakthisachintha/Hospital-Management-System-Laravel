@@ -65,11 +65,6 @@
                         <br>
 
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">{{__('OPD opened dates')}} : <input readonly
-                                    style="border: 0px none" type="text" value="{{$nodays}}"></label>
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-sm-3 control-label">{{__('Patients Total Atendance')}} :- </label>
                         </div>
 

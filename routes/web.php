@@ -110,7 +110,6 @@ Route::post('/resetusersave', ['as' => 'resetuser_save', 'uses' => 'UserControll
 // Admin Routes For Notices
 Route::get('/createnoticeview', ['as' => 'createnoticeview', 'uses' => 'UserController@createnoticeview'])->middleware('auth', 'lang');
 Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
-Route::post('/sendnotice', ['as' => 'sendnotice', 'uses' => 'UserController@send_notice'])->middleware('auth');
 Route::get('/emails', ['as' => 'emails', 'uses' => 'UserController@email'])->middleware('auth');
 Route::post('/addnotice', ['as' => 'addnotice', 'uses' => 'NoticeboardController@addnotice'])->middleware('auth');
 Route::post('/deletenotice', ['as' => 'deletenotice', 'uses' => 'NoticeboardController@deletenotice'])->middleware('auth');

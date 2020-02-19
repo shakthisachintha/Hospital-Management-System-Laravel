@@ -19,9 +19,6 @@ $user_type =$user->user_type;
 $image_path =$user->img_path;
 $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
-@php
-use App\Clinic;
-@endphp
 
 <section class="content">
 
@@ -46,7 +43,7 @@ use App\Clinic;
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Clinic::all() as $item)
+                                @foreach ($clinic as $item)
                                 <tr>
                                     <td>{{$item->name_eng}}</td>
                                     <td>Dr.{{ucwords($item->doctor->name)}}</td>
@@ -65,6 +62,7 @@ use App\Clinic;
                                     <td>{{$male}}</td>
                                     <td>{{$female}}</td>
                                     <td>{{$item->patients->count()}}</td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -110,10 +108,4 @@ use App\Clinic;
     })
 
 </script>
-<script type="text/javascript">
-    $(document).ready(function () {
-            $('.btnprn').printPage();
-        });
-</script>
-
 @endsection

@@ -46,7 +46,7 @@
                 <h4 align="center">Attendance Report</h4>
 
                 <br>
-                <label>Date : -----------------------</label>
+                <label>Date : @php echo date('Y/m/d'); @endphp</label>
                 <br>
                 <br>
 
@@ -83,7 +83,7 @@
                 </div>
 
                 <br>
-                <label>Made By : -----------------------</label>
+                <label>Made By : {{$title}}</label>
                 <div align="right">
                     <label style="display:block">...............................................................</label>
                     <label>Sighned By , Officer</label>

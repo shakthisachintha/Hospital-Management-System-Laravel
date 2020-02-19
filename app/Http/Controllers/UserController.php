@@ -173,36 +173,35 @@ class UserController extends Controller
 
     public function send_notice(Request $request)
     {
-
+        $count = 0;
         $data = array(
             'message' => $request->message
         );
 
         $emailsarr = array();
         $receverlist = $request->input('receiverlist');
-        foreach ($receverlist as $list) {
 
-            // if ($list != "patient") {
-            $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
-            $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
-            // }
-
-            // if ($list == "patient") {
-            //     $nolist1[] = DB::table('patients')->select('contactnumber')->get();
-            // }
+        if ($receverlist) {
+            foreach ($receverlist as $list) {
+                $emailsarr[] = DB::table('users')->select('email')->where('user_type', $list)->get();
+                $nolist[] = DB::table('users')->select('contactnumber')->where('user_type', $list)->get();
+            }
+        } else {
+            return back()->with('unsuccess', 'Select at least one receiver!!!');
         }
-        // dd($emailsarr);
-        //userlata tp no eka na
 
-        //dd($data['message']);
         if ($request->emails) {
             $this->email($data, $emailsarr);
+            $count = 1;
         }
 
         if ($request->sms) {
             $this->sms($data, $nolist);
+            $count = 1;
         }
-
+        if($count==0){
+            return back()->with('unsuccess', 'Select at least one method to send the notice!!!');
+        }
 
         return back()->with('success', 'Messages Sent Successfully!');
     }
@@ -211,7 +210,6 @@ class UserController extends Controller
     {
         foreach ($emaillist as $key) {
             foreach ($key as $emails) {
-                // require '../vendor/autoload.php';
                 $email = new \SendGrid\Mail\Mail();
                 $email->setFrom("aurwedicHospitalkesbawa@gov.lk", "Aurwedic Hospital- KESBAWA");
                 $email->setSubject("Aurwedic Hospital- KESBAWA");
@@ -236,14 +234,6 @@ class UserController extends Controller
 
     public function sms($data, $nolist)
     {
-        // $basic  = new \Nexmo\Client\Credentials\Basic('4618c9cf', 'u56udGx4em2dqQqD');
-        // $client = new \Nexmo\Client($basic);
-
-        // $message = $client->message()->send([
-        // 'to' => 94767035067,//'94767035067',
-        // 'from' => 'Nexmo',
-        // 'text' => $data['message']
-        // ]);
         foreach ($nolist as $key) {
             foreach ($key as $tpnumber) {
                 $no = "94" . $tpnumber->contactnumber;
