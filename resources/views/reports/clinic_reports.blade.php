@@ -19,6 +19,10 @@ $user_type =$user->user_type;
 $image_path =$user->img_path;
 $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
 
+@php
+use App\Clinic;
+@endphp
+
 <section class="content">
 
     <div class="box box-danger">
@@ -36,21 +40,39 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                 <tr>
                                     <th>Clinic Name</th>
                                     <th>Doctor Incharge</th>
+                                    <th>male</th>
+                                    <th>female</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $item)
+                                @foreach (Clinic::all() as $item)
                                 <tr>
                                     <td>{{$item->name_eng}}</td>
-                                    <td>Dr.{{$item->name}}</td>
-                                    <td>{{$item->total}}</td>
+                                    <td>Dr.{{ucwords($item->doctor->name)}}</td>
+                                    @php
+                                    $male=0;
+                                    $female=0;
+                                    foreach ($item->patients as $patient){
+
+                                        if($patient->sex=="Male"){
+                                        $male+=1;
+                                        }else{
+                                        $female+=1;
+                                        }
+                                    }
+                                    @endphp
+                                    <td>{{$male}}</td>
+                                    <td>{{$female}}</td>
+                                    <td>{{$item->patients->count()}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <th>Clinic Name</th>
                                 <th>Doctor Incharge</th>
+                                <th>male</th>
+                                <th>female</th>
                                 <th>Total</th>
                             </tfoot>
                         </table>
