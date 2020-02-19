@@ -14,6 +14,10 @@ class Clinic extends Model
         return $this->belongsToMany('App\Patients',"clinic_patient");
     }
 
+    public function doctor(){
+        return $this->hasOne('App\User','id','doctor_id');
+    }
+
     public function addPatientToClinic($pid){
         DB::table('clinic_patient')->insert(
             [

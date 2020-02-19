@@ -18,4 +18,3 @@ class Prescription_Medicine extends Model
         return $c;
     }
 }
-// select medicine_id,count(medicine_id) as issues from `medicine_prescription` where year(`created_at`) = 2020 and month(`created_at`) = 2 group by `medicine_id`
