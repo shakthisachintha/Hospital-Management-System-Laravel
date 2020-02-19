@@ -142,27 +142,27 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             @csrf
                                             <div class="form-group">
                                                 <label for="">Full Name</label>
-                                                <input type="text" name="name" class="form-control" id=""
+                                                <input type="text" name="name" class="form-control" id="" value="{{$title}}"
                                                     placeholder="enter name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Education</label>
-                                                <input type="text" name="education" class="form-control" id=""
+                                                <input type="text" name="education" class="form-control" id="" value="{{$education}}"
                                                     placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Location</label>
-                                                <input type="text" name="location" class="form-control" id=""
+                                                <input type="text" name="location" class="form-control" id="" value="{{$location}}"
                                                     placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Skills</label>
-                                                <input type="text" name="skills" class="form-control" id=""
+                                                <input type="text" name="skills" class="form-control" id="" value="{{$skills}}"
                                                     placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Special Notes</label>
-                                                <input type="text" name="notes" class="form-control" id=""
+                                                <input type="text" name="notes" class="form-control" id="" value="{{$notes}}"
                                                     placeholder="enter details">
                                             </div>
 
@@ -207,7 +207,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">New
                                                     Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="newcontactnumber" class="form-control"
+                                                    <input type="text" name="newcontactnum" class="form-control"
                                                         placeholder="enter new number">
                                                 </div>
                                             </div>
@@ -403,7 +403,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                             <b>User ID :</b> <a class="pull-right">{{$id}}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Email :</b> <a class="pull-right">{{$email}}</a>
+                            <b>Email :</b> <a class="">{{$email}}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Contact No :</b> <a class="pull-right">{{$tp}}</a>
@@ -444,8 +444,8 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     <span styles="display:inline-block;" class="label label-danger">Communication Skills</span>
                     <span styles="display:inline-block;" class="label label-success">Emotional Intelligence</span>
                     <span styles="display:inline-block;" class="label label-info">Problem-Solving Skills</span>
-                    <span styles="display:inline-block;" class="label label-warning">Attention to Detail</span>
                     <span styles="display:inline-block;" class="label label-primary">Decision-Making Skills</span>
+                    <br>
                     {{$skills}}
 
                     <hr>

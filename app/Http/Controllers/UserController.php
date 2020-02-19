@@ -262,21 +262,21 @@ class UserController extends Controller
     {
 
         $this->validate($data, [
-            'newcontactnumber' => 'required|min:9|max:10|unique:users'
+            'newcontactnum' => 'required|min:9|max:10|unique:users'
         ]);
 
         $user = Auth::user();
         $user_id = $user->id;
-        // dd($user_id);
         DB::table('users')
             ->where('id', $user_id)
             ->limit(1)
-            ->update(array('contactnumber' => $data->newcontactnumber));
+            ->update(['contactnumber' => $data->newcontactnum]);
 
         activity()->performedOn($user)->log('Contact number changed successfully!');
 
         return redirect()->back()->with("successcn", "Contact number changed successfully !");
     }
+
     public function changeemail(Request $data)
     {
 
