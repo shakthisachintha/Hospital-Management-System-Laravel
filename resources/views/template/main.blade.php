@@ -523,11 +523,6 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
                                         aria-hidden="true"></i> Monthly Statistic Report</a></li>
                             @endif
 
-                            @if($user_type=="Admin"||$user_type=="Doctor")
-                            <li class="{{Active::checkRoute('out_p_report')}}"><a href="{{route('out_p_report')}}"><i
-                                        class="fa fa-user-edit" aria-hidden="true"></i>
-                                    Out-Patient Report</a></li>
-                            @endif
 
                             <li class="{{Active::checkRoute(['inPatientReport','inPatientReportData'])}}"><a
                                     href="{{route('inPatientReport')}}"><i class="fa fa-hospital-o"

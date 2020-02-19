@@ -14,7 +14,7 @@
 
 @section('main_content')
 
-<div style="margin-top:1vh;padding:3%" class="row">
+<div style="margin-top:1vh;padding:3%" class="pb-0 row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
         @if (session()->has('success'))
@@ -104,7 +104,7 @@
     <div class="col-md-10">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">{{__('Clinic Details')}}</h3>
+                <h3 class="box-title">{{__('Ward Details')}}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -128,7 +128,7 @@
                                 <td>{{$app->ward_no}}</td>
                                 <td>{{$app->beds}}</td>
                                 <td>{{$app->free_beds}}</td>
-                                <td>{{$app->doctor_id}}</td>
+                                <td>Dr. {{ucWords(App\User::find($app->doctor_id)->name)}}</td>
                             </tr>
                             @endforeach
                         </tbody>
