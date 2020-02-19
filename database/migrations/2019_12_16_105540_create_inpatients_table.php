@@ -24,9 +24,10 @@ class CreateInpatientsTable extends Migration
             $table->string('description')->nullable();
             $table->string('discharged_officer')->nullable();
             $table->string('patient_inventory')->nullable();
-            $table->string('approved_doctor');
-            $table->string('incharge_doctor');
+            
+            // $table->string('incharge_doctor');
             $table->string('house_doctor');
+            $table->string('approved_doctor');
             $table->string('disease');
             $table->integer('duration');
             $table->string('condition');

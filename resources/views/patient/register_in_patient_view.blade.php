@@ -15,7 +15,7 @@
 @section('main_content')
 {{--  patient registration  --}}
 
-{{-- <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
+<div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
     style="margin-bottom:0;margin-top:8vh" @endif class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-1"></div>
 
-</div> --}}
+</div>
 
 
 
@@ -219,26 +219,28 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Approved Physician/Surgeon')}}<span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input type="text" required class="form-control" name="reg_ipapprovedoc"
-                        placeholder="Name of Physician/Surgeon">
-                </div>
-            </div>
+            
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="col-sm-2 control-label">{{__('Physician/Surgeon In Charge')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required class="form-control" name="reg_ipinchrgedoc"
                         placeholder="Name of Physician/Surgeon">
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">{{__('House Physician/Surgeon')}}<span style="color:red">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" required class="form-control" name="reg_iphousedoc"
+                        placeholder="Name of Physician/Surgeon">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{__('Approved Physician/Surgeon')}}<span style="color:red">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" required class="form-control" name="reg_ipapprovedoc" id="approveDoc"
                         placeholder="Name of Physician/Surgeon">
                 </div>
             </div>
@@ -362,13 +364,14 @@
                         $("#patient_address").val(inp.address);
                         $("#patient_occupation").val(inp.occupation);
                         $("#patient_id").val(inp.id);
+                        // $('#approveDoc').val(inp.approveD);
 
                         $("#reginpatient2").slideDown(1000);
                         $("#reginpatient1").slideUp(1000);
 
                     }else{
                         console.log('not found');
-                        alert("Please Enter a Valid Admitted Patient Registration Number!");
+                        alert("Please Enter a Valid Admitted Patient Registration Number or Appointment Number!");
                     }
                 }
             });
