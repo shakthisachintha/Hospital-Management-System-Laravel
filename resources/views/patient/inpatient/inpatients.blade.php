@@ -36,7 +36,6 @@ use App\Patients;
                             <button type="submit" class="btn btn-info btn-flat">Go!</button>
                         </span>
                     </div>
-
                 </form>
             </div>
             <!-- /.box-body -->
@@ -48,13 +47,13 @@ use App\Patients;
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        @if (session()->has('success'))
+        {{-- @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-check"></i> Success!</h4>
             {{session()->get('success')}}
         </div>
-        @endif
+        @endif --}}
         @if (session()->has('fail'))
         <div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -98,8 +97,7 @@ use App\Patients;
                                         <td>{{Patients::find($rec->patient_id)->name}}</td>
                                         <td>{{$rec->patient_id}}</td>
                                         <td>{{explode(" ",$rec->created_at)[0]}}</td>
-                                        
-                                 
+
                                         @if ($rec->discharged_date==null)
                                         <td>Not Discharged</td>
                                         @else
