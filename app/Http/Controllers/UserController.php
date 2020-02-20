@@ -162,7 +162,6 @@ class UserController extends Controller
 
         return back()
             ->with('success', 'You have successfully upload image.');
-        //->with('image',$imageName);
     }
 
     public function createnoticeview()
@@ -199,7 +198,7 @@ class UserController extends Controller
             $this->sms($data, $nolist);
             $count = 1;
         }
-        if($count==0){
+        if ($count == 0) {
             return back()->with('unsuccess', 'Select at least one method to send the notice!!!');
         }
 
@@ -262,30 +261,33 @@ class UserController extends Controller
     {
 
         $this->validate($data, [
-            'newcontactnum' => 'required|min:9|max:10|unique:users'
+            'newcontactnum' => 'required|min:9|max:10'
         ]);
 
         $user = Auth::user();
-        $user_id = $user->id;
-        DB::table('users')
-            ->where('id', $user_id)
-            ->limit(1)
-            ->update(['contactnumber' => $data->newcontactnum]);
+        $user->contactnumber = $data->get('newcontactnum');
+        $user->save();
+
+        // $user_id = $user->id;
+        // DB::table('users')
+        //     ->where('id', $user_id)
+        //     ->limit(1)
+        //     ->update(array('contactnumber' => $data->newcontactnum));
 
         activity()->performedOn($user)->log('Contact number changed successfully!');
 
         return redirect()->back()->with("successcn", "Contact number changed successfully !");
     }
-
     public function changeemail(Request $data)
     {
 
         $this->validate($data, [
-            'newemail' => 'required|string|email|max:255|min:1|unique:users'
+            'newemail' => 'required|string|email|max:255|min:1'
         ]);
+
         $user = Auth::user();
         $user_id = $user->id;
-        // dd($user_id);
+
         DB::table('users')
             ->where('id', $user_id)
             ->limit(1)

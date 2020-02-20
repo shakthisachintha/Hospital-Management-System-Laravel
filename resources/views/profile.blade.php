@@ -142,28 +142,28 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                             @csrf
                                             <div class="form-group">
                                                 <label for="">Full Name</label>
-                                                <input type="text" name="name" class="form-control" id="" value="{{$title}}"
-                                                    placeholder="enter name">
+                                                <input type="text" name="name" class="form-control" id=""
+                                                    value="{{$title}}" placeholder="enter name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Education</label>
-                                                <input type="text" name="education" class="form-control" id="" value="{{$education}}"
-                                                    placeholder="enter details">
+                                                <input type="text" name="education" class="form-control" id=""
+                                                    value="{{$education}}" placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Location</label>
-                                                <input type="text" name="location" class="form-control" id="" value="{{$location}}"
-                                                    placeholder="enter details">
+                                                <input type="text" name="location" class="form-control" id=""
+                                                    value="{{$location}}" placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Skills</label>
-                                                <input type="text" name="skills" class="form-control" id="" value="{{$skills}}"
-                                                    placeholder="enter details">
+                                                <input type="text" name="skills" class="form-control" id=""
+                                                    value="{{$skills}}" placeholder="enter details">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Special Notes</label>
-                                                <input type="text" name="notes" class="form-control" id="" value="{{$notes}}"
-                                                    placeholder="enter details">
+                                                <input type="text" name="notes" class="form-control" id=""
+                                                    value="{{$notes}}" placeholder="enter details">
                                             </div>
 
                                             <div class="box-footer">
