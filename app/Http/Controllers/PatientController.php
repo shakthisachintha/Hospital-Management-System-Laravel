@@ -430,7 +430,7 @@ class PatientController extends Controller
                     ->select('*')
                     ->join('users', 'wards.doctor_id', '=', 'users.id')
                     ->get();
-// dd($data);
+        // dd($data);
         return view('patient.register_in_patient_view', ['title' => "Register Inpatient",'data'=>$data]);
     }
 
@@ -438,16 +438,13 @@ class PatientController extends Controller
     {
         $pNum = $request->pNum;
         $pNumLen = strlen((string) $pNum);
-        if($pNumLen<7)
+        if($pNumLen < 5) //if appointemnt number have been given
         {
             $patient = DB::table('patients')
             ->join('appointments', 'patients.id', '=', 'appointments.patient_id')
-            
-            ->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod','appointments.number as appnum','appointments.doctor_id as D1')
+            ->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod','appointments.number as appnum','appointments.doctor_id as D1', 'patients.updated_at')
             ->whereRaw(DB::Raw("appointments.admit='YES' and appointments.number='$pNum'"))
             ->first();
-
-            
 
             if ($patient) {
 
@@ -461,9 +458,8 @@ class PatientController extends Controller
                 'nic' => $patient->nic,
                 'age' => Patients::find($patient->id)->getAge(),
                 'id' => $patient->id,
-                // 'approveD' => $patient->D1,
             ]);
-        } else {
+        } else { //if patient registration number have been given
             return response()->json([
                 'exist' => false,
             ]);
@@ -476,10 +472,7 @@ class PatientController extends Controller
         $patient = DB::table('patients')
                         ->join('appointments', 'patients.id', '=', 'appointments.patient_id')
                         ->select('patients.id as id', 'patients.name as name', 'patients.sex as sex', 'patients.address as address', 'patients.occupation as occ', 'patients.telephone as tel', 'patients.nic as nic', 'appointments.admit as ad', 'patients.bod as bod','appointments.number as appnum','appointments.doctor_id as D1')
-                        ->whereRaw(DB::Raw("patients.id='$pNum' and appointments.admit='YES'"))
-                        ->first();
-
-        $doc = Users::where('id',$patient->D1)
+                        ->whereRaw(DB::Raw("appointments.admit='YES' and patients.id='$pNum'"))
                         ->first();
         if ($patient) {
 
@@ -493,7 +486,6 @@ class PatientController extends Controller
                 'nic' => $patient->nic,
                 'age' => Patients::find($patient->id)->getAge(),
                 'id' => $patient->id,
-                // 'approveD' => $doc->D1,
             ]);
         } else {
             return response()->json([
@@ -521,7 +513,6 @@ class PatientController extends Controller
         $INPtable->ward_id = $request->reg_ipwardno;
         $INPtable->patient_inventory = $request->reg_ipinventory;
        
-        // $INPtable->incharge_doctor = $request->reg_ipinchrgedoc;
         $INPtable->house_doctor = $request->reg_iphousedoc;
         $INPtable->approved_doctor = $request->reg_ipapprovedoc;
         $INPtable->disease = $request->reg_admitofficer1;
@@ -588,7 +579,6 @@ class PatientController extends Controller
         try{
         $pid = $request->reg_pid;
         $INPtableUpdate = Inpatient::where('patient_id', $pid)->first();
-        // $pDetails = Patients::where('id', $pid)->first();
 
         $timestamp = now();
         $INPtableUpdate->discharged = 'YES';
@@ -605,11 +595,8 @@ class PatientController extends Controller
         $newFB = $getFB->free_beds + $incre;
         Ward::where('ward_no', $wardNo)->update(['free_beds' => $newFB]);
 
-        return view('patient.discharge_recipt',compact('INPtableUpdate'));
+        return view('patient.discharge_recipt',compact('INPtableUpdate'))->with('regpsuccess', "Inpatient Successfully Discharged");;
         }
-        // ->with('regpsuccess', "Inpatient Successfully Discharged");
-
-        // return redirect()->back()->with('regpsuccess', "Inpatient Successfully Discharged");
         catch(\Throwable $th){
             return redirect()->back()->with('error',"Unkown Error Occured");
         }

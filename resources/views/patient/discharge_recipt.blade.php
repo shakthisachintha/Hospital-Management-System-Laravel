@@ -34,7 +34,7 @@ use App\Patients;
             <br>
             Patient Name: {{Patients::find($INPtableUpdate->patient_id)->name}}<br>
             Patient ID: {{Patients::find($INPtableUpdate->patient_id)->id}}<br>
-            Prescribed By: Dr.{{$INPtableUpdate->discharged_officer}}<br>
+            Prescribed By: Dr.{{$INPtableUpdate->approved_doctor}}<br>
             <br>
             <br>
             <div>
@@ -42,24 +42,6 @@ use App\Patients;
             <h5>Discription : {{$INPtableUpdate->description}}</h5>
             <h5>Issued by : {{ucwords(Auth::user()->name)}}</h5>
             </div>
-            {{-- <table class="mt-4 w-100">
-                <colgroup>
-                    <col style="width: 50%" />
-                    <col style="width: 50%" />
-                   
-                  </colgroup>
-                @foreach ($medicines as $med)
-                    <tr>
-                        <td>{{Medicine::find($med->medicine_id)->name_sinhala}}</td>
-                        <td>{{$med->note}}</td>
-                    </tr>
-                @endforeach
-            </table> --}}
-            {{-- <br> --}}
-            {{-- Date of Issue: {{}}<br>
-            Issued By: {{ucwords(Auth::user()->name)}}
-            <p class="mt-5 small text-center">This Is An Automated Computer Generated Slip</p> --}}
-            
             <button onclick="window.print()" class="btn no-print btn-lg btn-info">Print <i class="fas fa-print"></i></button>
             <a href="{{route('discharge_inpatient')}}" class="btn btn-dark btn-lg no-print">Go Back</a>
         </div>

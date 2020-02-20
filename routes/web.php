@@ -56,8 +56,6 @@ Route::post('/inpatientregister3', ['as' => 'save_inpatient', 'uses' => 'Patient
 Route::get('/dischargeInpatient', ['as' => 'discharge_inpatient', 'uses' => 'PatientController@discharge_inpatient'])->middleware('auth', 'staff', 'lang');
 Route::post('/dischargeInpatient2', ['as' => 'disInPatient', 'uses' => 'PatientController@disInPatientValid'])->middleware('auth', 'staff', 'lang');
 Route::post('/dischargeInpatient3', ['as' => 'save_disinpatient', 'uses' => 'PatientController@store_disinpatient'])->middleware('auth', 'staff', 'lang');
-// Route::get('getDoctor', 'PatientController@getDoctor');
-//Route::get('/discharge-save', ['as' => 'dischargeSave', 'uses' => 'MedicineController@medIssueSave'])->middleware('auth', 'staff', 'lang');
 
 // Issue Medicine(Pharmacist Routes)
 Route::get('/issueMedicine/', ['as' => 'issueMedicineView', 'uses' => 'MedicineController@issueMedicineView'])->middleware('auth', 'pharmacist', 'lang');

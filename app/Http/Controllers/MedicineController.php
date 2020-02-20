@@ -83,19 +83,7 @@ class MedicineController extends Controller
     public function issueMedicineView()
     {
         $user = Auth::user();
-
-        $pmedicines = DB::table('medicine_prescription')
-        ->join('medicines', 'medicine_prescription.medicine_id', '=', 'medicines.id')
-        ->join('prescriptions', 'medicine_prescription.prescription_id', '=', 'prescriptions.id')
-        ->select('medicines.name_english', 'medicines.name_sinhala', 'medicine_prescription.note','prescriptions.patient_id')
-        // ->whereDate(DB::Raw("Date(prescriptions.created_at,=,CURDATE()")
-        // ->where('prescriptions.patient_id','=',$request->patientid)
-        ->get();
-
         return view('patient.issueMedicineView',compact('pmedicines'), ['title' => "Issue MedicineN"]);
-        // 'pmedicines' => $pmedicines
-        // return view('patient.issueMedicineView', ['title' => "Issue Medicine"]);
-
     }
 
     public function issueMedicineValid(Request $request)
@@ -103,9 +91,11 @@ class MedicineController extends Controller
         $num = $request->pNum;
         $numlength = strlen((string) $num);
         
-        if ($numlength < 5) {  //this means the appointemnt number have been given
+        if ($numlength < 7) {  //if appointemnt number have been given
             $app=Appointment::whereRaw('date(created_at)=CURDATE()')
-            ->where('number',$num)->orderBy('created_at','DESC')->first();
+                            ->where('number',$num)
+                            ->orderBy('created_at','DESC')
+                            ->first();
           
             if ($app) {
                 $rec=Prescription::where('appointment_id',$app->id)->first();
@@ -122,9 +112,11 @@ class MedicineController extends Controller
                 ]);
             }
         } 
-        else { //this means the patient registration number have been given
+        else { //if patient registration number have been given
             $app=Appointment::whereRaw('date(created_at)=CURDATE()')
-            ->where('patient_id',$num)->orderBy('created_at','DESC')->first();
+                            ->where('patient_id',$num)
+                            ->orderBy('created_at','DESC')
+                            ->first();
 
             if ($app) {
 

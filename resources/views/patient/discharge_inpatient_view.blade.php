@@ -97,7 +97,7 @@
             <div class="form-group">
                 <label for="medofs2" class="col-sm-2 control-label">{{__('Certified by')}}</label>
                 <div class="col-sm-10" id="al-box">
-                    <input type="text" required class="form-control" id="medofs2" name="reg_medicalofficer2"
+                    <input type="text" readonly value="{{Auth::user()->id}} ({{ucWords(Auth::user()->name)}})" required class="form-control" id="medofs2" name="reg_medicalofficer2"
                         placeholder="Select Your ID here" />
                 </div>
             </div>
@@ -105,9 +105,6 @@
             <div class="box-footer">
                 <input type="submit" class="btn pull-right mt-5 mb-2 btn-lg btn-success" value="Submit & Print">
                 <input type="reset" class="btn pull-left mt-5 mb-2 btn-lg btn-info" value="Cancel">
-                {{-- <input type="submit" id="btn-print" value="Save & Print"
-                        class="btn pull-right mt-5 mb-2 btn-lg btn-success"> --}}
-                {{-- <a href="#" @click.prevent="printme" target="_blank" class="btn btn-success"><i class="fa fa-print"></i>Print</a> --}}
             </div>
 
         </div>
@@ -115,6 +112,9 @@
     </form>
 </div>
 
+<div class="row mt-5 pt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 <div class="box box-info" id="disinpatient1">
     <div class="box-header with-border">
         <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
@@ -122,22 +122,19 @@
     <!-- /.box-header -->
     <div class="box-body">
         <div class="form-group">
-            <label for="pid" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
-            <div class="col-sm-8">
-                <input type="number" required class="form-control" onchange="dischargeinpatientfunction()" id="pid"
+            <label for="pid" class="control-label" style="font-size:18px">{{__('Registration No:')}}</label>
+            <input type="number" required class="form-control" onchange="dischargeinpatientfunction()" id="pid"
                     placeholder="Enter Registration No" />
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-info" onclick="dischargeinpatientfunction()">{{__('Enter')}}</button>
-            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-info" onclick="dischargeinpatientfunction()">{{__('Enter')}}</button>
         </div>
     </div>
-    <!-- /.box-body -->
-
-    <div class="box-footer">
-
-    </div>
+</div>
+ </div>
     <!-- /.box-footer -->
+</div>
+    </div>
 </div>
 
 
