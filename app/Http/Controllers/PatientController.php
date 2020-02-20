@@ -659,7 +659,7 @@ class PatientController extends Controller
     {
         // dd($result->reg_pbd);
         $user = Auth::user();
-        $data = Patients::find($result->reg_pid);
+        
         $query = DB::table('patients')
             ->where('id', $result->reg_pid)
             ->update(array(
