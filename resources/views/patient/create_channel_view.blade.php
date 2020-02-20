@@ -111,7 +111,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-1"></div>p
+    <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="box box-info" id="createchannel3">
             <div class="box-header with-border">

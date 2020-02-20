@@ -46,7 +46,9 @@
                 <h4 align="center">Clinic Report</h4>
 
                 <br>
-                <label>Date : -----------------------</label>
+                {{-- <label>Date : -----------------------</label>
+                <br> --}}
+                <label>Date : @php echo date('Y/m/d'); @endphp</label>
                 <br>
                 <br>
 
@@ -64,7 +66,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (App\Clinic::alla() as $item)
+                                @foreach (App\Clinic::all() as $item)
                                 <tr>
                                     <td>{{$item->name_eng}}</td>
                                     <td>Dr.{{ucwords($item->doctor->name)}}</td>
@@ -98,7 +100,7 @@
                 </div>
 
                 <br>
-                <label>Made By : -----------------------</label>
+                <label>Made By : {{$name}}</label>
                 <div align="right">
                     <label style="display:block">...............................................................</label>
                     <label>Sighned By , Officer</label>

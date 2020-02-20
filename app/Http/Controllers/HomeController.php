@@ -28,6 +28,7 @@ class HomeController extends Controller
         $notice = DB::table('noticeboards')
             ->join('users', 'noticeboards.user_id', '=', 'users.id')
             ->select('noticeboards.subject', 'noticeboards.description', 'noticeboards.time', 'users.user_type', 'users.name')
+            ->orderByDesc('time')
             ->get();
 
         $doctorcnt = DB::table('users')->where('user_type', '=', 'doctor')->count(DB::raw('distinct id'));
