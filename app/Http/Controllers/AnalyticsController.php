@@ -33,10 +33,10 @@ class AnalyticsController extends Controller
         // this month total checking
         $total_checkings_this_month=Appointment::whereYear('created_at', date('Y'))->where('created_at', '>=', Carbon::now()->startOfMonth())->get()->count();
         
-        $top_ten_meds=Medicine::orderBy('qty','DESC')->limit(25)->get();
+        $top_ten_meds=Medicine::orderBy('qty','DESC')->limit(10)->get();
 
         $month=2;
-        $this_month_meds=Prescription_Medicine::thisMonthTrends($year,$month);
+        $this_month_meds=Prescription_Medicine::thisMonthTrends($year,$month,10);
         
         // dd($this_month_meds);
         return view('stat.index',compact(

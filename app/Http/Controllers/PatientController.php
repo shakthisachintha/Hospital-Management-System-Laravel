@@ -13,6 +13,7 @@ use App\Prescription_Medicine;
 use App\Ward;
 use Carbon\Carbon;
 use DB;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -228,6 +229,7 @@ class PatientController extends Controller
 
     public function checkPatient(Request $request)
     {
+        //to get the latest appointment number for the day
         $appointment = Appointment::where('number', $request->appNum)->where('created_at', '>=', date('Y-m-d') . ' 00:00:00')->where('patient_id', $request->pid)->orderBy('created_at', 'desc')->first();
 
         if ($appointment->completed == "YES") {
@@ -238,8 +240,11 @@ class PatientController extends Controller
 
         $user = Auth::user();
 
+        //need to get the latest issued prescription to fetch the patient bp,sugar,cholestrol to be displayed in the checkpatient
         $prescriptions = Prescription::where('patient_id', $appointment->patient_id)->orderBy('created_at', 'DESC')->get();
 
+        //creates thress objects to store these data
+        //sometimes thses may get blank so use the flag to resolve this issue if flag is false these will not be displayed in the view
         $pBloodPressure = new stdClass;
         $pBloodPressure->flag = false;
 
@@ -304,7 +309,7 @@ class PatientController extends Controller
             'pCholestrol' => $pCholestrol,
             'pBloodSugar' => $pBloodSugar,
             'pBloodPressure' => $pBloodPressure,
-            'pHistory' => $pHistory,
+            // 'pHistory' => $pHistory,
             'inpatient' => $appointment->admit,
             'pid' => $appointment->patient->id,
             'medicines' => Medicine::all(),
@@ -354,6 +359,7 @@ class PatientController extends Controller
 
     public function checkPatientSave(Request $request)
     {
+
         $user = Auth::user();
         $presc = new Prescription;
         $presc->doctor_id = $user->id;
@@ -641,8 +647,7 @@ class PatientController extends Controller
             ]);
         }
     }
-
-    public function addChannel(Request $request)
+public function addChannel(Request $request)
     {
         $app = new Appointment;
         $num = DB::table('appointments')->select('id')->whereRaw(DB::raw("date(created_at)=CURDATE()"))->count() + 1;

@@ -97,9 +97,11 @@
                     class="list-group-item mt-4 list-group-item-action btn btn-success">
                     {{__('Attendance Report')}}
                 </a>
+                @if(Auth::user()->user_type!='pharmacist')
                 <a href="{{route('clinic_reports')}}" class="list-group-item mt-4 list-group-item-action btn btn-info">
                     {{__('Clinic Report')}}
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -134,11 +136,14 @@
                     </a>
                 </div>
 
+                @if(Auth::user()->user_type!='general')
                 <div class="col-sm-2">
                     <a href="{{route('check_patient_view')}}" class="btn btn-app">
                         <i class="fa fa-heartbeat"></i> {{__('Check Patient')}}
                     </a>
                 </div>
+                @endif
+                
 
 
                 <!-- ./col -->
