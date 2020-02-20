@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Clinic;
 
 class ReportController extends Controller
 {
@@ -16,43 +17,17 @@ class ReportController extends Controller
 
     public function viewclinicreport()
     {
-
-        $start_date = date('Y/m/00');
-        $end_date = date('Y/m/31');
-
         $user = Auth::user();
-
-        $data = DB::table('clinic_patient')
-            ->join('clinics', 'clinic_patient.clinic_id', '=', 'clinics.id')
-            ->join('patients', 'clinic_patient.patients_id', '=', 'patients.id')
-            ->join('users', 'clinics.doctor_id', '=', 'users.id')
-            ->whereBetween('clinics.start-date', [$start_date, $end_date])
-            ->select('*', DB::raw('COUNT(clinic_patient.id) as total'))
-            ->get();
-
-        // dd($data);
-
-            return view('reports/clinic_reports', ['title' => $user->name, 'data' => $data]);
-
+        $data = Clinic::all();
+        return view('reports/clinic_reports', ['title' => $user->name, 'clinic' => $data]);
     }
+
     public function printclinicreport(Request $data)
     {
 
-        $start_date = date('Y/m/00');
-        $end_date = date('Y/m/31');
-
         $user = Auth::user();
 
-        $data = DB::table('clinic_patient')
-            ->join('clinics', 'clinic_patient.clinic_id', '=', 'clinics.id')
-            ->join('patients', 'clinic_patient.patients_id', '=', 'patients.id')
-            ->join('users', 'clinics.doctor_id', '=', 'users.id')
-            ->whereBetween('clinics.start-date', [$start_date, $end_date])
-            ->select('*', DB::raw('COUNT(clinic_patient.id) as total'))
-            ->get();
-
-        // dd($data);
-            return view('reports/print_clinic_report', ['title' => $user->name, 'data' => $data]);
+        return view('reports/print_clinic_report', ['name' => $user->name]);
     }
     public function view_mobile_clinic_report()
     {
@@ -65,9 +40,6 @@ class ReportController extends Controller
 
         $start_date = date('Y/m/00');
         $end_date = date('Y/m/31');
-        $no_of_workingdays = DB::table('attendances')
-            ->whereBetween('attendances.start', [$start_date, $end_date])
-            ->count(DB::raw('distinct start'));
         $no_of_employees = DB::table('attendances')
             ->whereBetween('attendances.start', [$start_date, $end_date])
             ->count(DB::raw('DISTINCT user_id'));
@@ -110,7 +82,6 @@ class ReportController extends Controller
         return view('reports/monthly_static_report', [
             'title' => $user->name,
             'noemp' => $no_of_employees,
-            'nodays' => $no_of_workingdays,
             'avgpatient' => $avg_patient,
             'wardcnt' => $ward_count,
             'bedcnt' => $bed_count,
@@ -142,12 +113,8 @@ class ReportController extends Controller
     public function gen_att_reports(Request $request)
     {
         $user = Auth::user();
-        // dd($request->start);
-
         $start_date = date_format(date_create($request->start), "Y/m/d");
         $end_date = date_format(date_create($request->end), "Y/m/d");
-        // dd($request->start);
-
 
         if ($request->type == "All") {
             $data = DB::table('attendances')
@@ -162,7 +129,7 @@ class ReportController extends Controller
                     DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave')
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
-                ->groupBy('name')
+                ->groupBy('id')
                 ->get();
         }
 
@@ -182,7 +149,7 @@ class ReportController extends Controller
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
                 ->where('attendances.user_id', $user->id)
-                ->groupBy('name')
+                ->groupBy('id')
                 ->get();
             // $data=User::find($user->id);
 
@@ -203,7 +170,7 @@ class ReportController extends Controller
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
                 ->where('users.user_type', 'doctor')
-                ->groupBy('name')
+                ->groupBy('id')
                 ->get();
         }
 
@@ -222,7 +189,7 @@ class ReportController extends Controller
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
                 ->whereIn('users.user_type', ['pharmacist', 'general'])
-                ->groupBy('name')
+                ->groupBy('id')
                 // ->where('users.user_type','pharmacist')
                 ->get();
         }
@@ -250,7 +217,7 @@ class ReportController extends Controller
                     DB::raw('count(CASE WHEN HOUR(TIMEDIFF(attendances.end, attendances.start )) < 5 THEN 1 ELSE NULL END) AS shortleave')
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
-                ->groupBy('name')
+                ->groupBy('id')
                 ->orderBy('type')
                 ->get();
         }
@@ -269,7 +236,7 @@ class ReportController extends Controller
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
                 ->where('attendances.user_id', $user->id)
-                ->groupBy('name')
+                ->groupBy('id')
                 ->orderBy('type')
                 ->get();
         }
@@ -288,7 +255,7 @@ class ReportController extends Controller
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
                 ->where('users.user_type', 'doctor')
-                ->groupBy('name')
+                ->groupBy('id')
                 ->orderBy('type')
                 ->get();
         }
@@ -307,7 +274,7 @@ class ReportController extends Controller
                 )
                 ->whereBetween('attendances.start', [$start_date, $end_date])
                 ->whereIn('users.user_type', ['pharmacist', 'general'])
-                ->groupBy('name')
+                ->groupBy('id')
                 ->orderBy('type')
                 // ->where('users.user_type','pharmacist')
                 ->get();

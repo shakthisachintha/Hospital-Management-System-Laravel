@@ -15,7 +15,7 @@
 @section('main_content')
 {{--  patient registration  --}}
 
-{{-- <div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
+<div @if (session()->has('regpsuccess') || session()->has('regpfail')) style="margin-bottom:0;margin-top:3vh" @else
     style="margin-bottom:0;margin-top:8vh" @endif class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-1"></div>
 
-</div> --}}
+</div>
 
 
 
@@ -142,7 +142,6 @@
                         <option value="Malay">Malay</option>
                         <option value="other">other</option>
                     </select>
-                    {{-- <input type="text" class="form-control" name="reg_ipnation" placeholder="Sri Lankan or another"> --}}
                 </div>
             </div>
 
@@ -156,7 +155,6 @@
                         <option value="Christianity">Christianity</option>
                         <option value="other">other</option>
                     </select>
-                    {{-- <input type="text" class="form-control" name="reg_ipreligion" placeholder="Patient Religion"> --}}
                 </div>
             </div>
 
@@ -208,30 +206,12 @@
                 <div class="col-sm-2">
                     <select required class="form-control" name="reg_ipwardno">
                         <option value="">Select Ward No</option>
-                        {{-- <option value="1">1</option>
-                        <option value="2">2</option> --}}
                         @if($data)
                         @foreach ($data as $x)
                                 <option value="{{$x->ward_no}}">{{$x->ward_no}} ({{ucwords($x->name)}})</option>
                         @endforeach
                         @endif
                     </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Approved Physician/Surgeon')}}<span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input type="text" required class="form-control" name="reg_ipapprovedoc"
-                        placeholder="Name of Physician/Surgeon">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{__('Physician/Surgeon In Charge')}}<span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input type="text" required class="form-control" name="reg_ipinchrgedoc"
-                        placeholder="Name of Physician/Surgeon">
                 </div>
             </div>
 
@@ -243,8 +223,15 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{__('Approved Physician/Surgeon')}}<span style="color:red">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" required class="form-control" name="reg_ipapprovedoc" id="approveDoc"
+                        placeholder="Name of Physician/Surgeon">
+                </div>
+            </div>
+
         </div>
-        {{-- </form> --}}
 
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Admitting Officer - Notes')}}</h3>
@@ -282,14 +269,12 @@
             <div class="form-group">
                 <label for="dis4" class="col-sm-2 control-label">{{__('Certified by')}}<span style="color:red">*</span></label>
                 <div class="col-sm-2">
-                    <input type="text" required class="form-control" id="dis4" placeholder="Select Your ID here"
+                    <input type="text" readonly value="{{Auth::user()->id}} ({{ucWords(Auth::user()->name)}})" required class="form-control" id="dis4" placeholder="Select Your ID here"
                         name="reg_admitofficer4" />
                 </div>
             </div>
         </div>
         <!-- /.box-body -->
-
-        {{-- </form> --}}
 
         <div class="box-footer">
             <input type="submit" class="btn btn-info pull-right" value="Register">
@@ -301,7 +286,9 @@
 
 
 
-
+<div class="row mt-5 pt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 <div class="box box-info" id="reginpatient1">
     <div class="box-header with-border">
         <h3 class="box-title">{{__('Enter Registration No. Or Scan the bar code')}}</h3>
@@ -309,15 +296,14 @@
     <!-- /.box-header -->
     <div class="box-body">
         <div class="form-group">
-            <label for="pID" class="col-sm-2 control-label">{{__('Registration No:')}}</label>
-            <div class="col-sm-8">
+            <label for="pID" class="control-label" style="font-size:18px">{{__('Registration No or Appointment No:')}}</label>
                 <input type="number" required class="form-control" onchange="registerinpatientfunction()" id="pID"
                     placeholder="Enter Registration No" />
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-info" onclick="registerinpatientfunction()">{{__('Enter')}}</button>
-            </div>
         </div>
+        <div class="form-group">
+                <button type="button" class="btn btn-info" onclick="registerinpatientfunction()">{{__('Enter')}}</button>
+        </div>
+        {{-- </div> --}}
     </div>
     <!-- /.box-body -->
 
@@ -325,6 +311,8 @@
 
     </div>
     <!-- /.box-footer -->
+</div>
+    </div>
 </div>
 
 
@@ -368,7 +356,7 @@
 
                     }else{
                         console.log('not found');
-                        alert("Please Enter a Valid Admitted Patient Registration Number!");
+                        alert("Please Enter a Valid Admitted Patient Registration Number or Appointment Number!");
                     }
                 }
             });

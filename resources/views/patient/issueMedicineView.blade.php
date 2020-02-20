@@ -45,8 +45,10 @@
 
             </div>
             <!-- /.box-footer -->
-        </div>
-        <div class="box box-info" id="issuemedicine2" style="display:none">
+</div>
+
+
+<div class="box box-info" id="issuemedicine2" style="display:none">
             <div class="box-header with-border">
                 <h3 class="box-title">Approved to Issue Medicine</h3>
             </div>
@@ -58,9 +60,6 @@
                 <button id="btn-issue" type="button" class="btn btn-primary btn-lg mt-3 text-center"
                     value="Issue Medicine Now" onclick="go()" id="btn">Issue Medicine Now</button>
                 <button onclick="cancel()" class="btn btn-warning btn-lg mt-3 text-center">Cancel</button>
-                {{-- <a class="btn btn-primary btn-lg mt-3 text-center" href="{{ URL::to('issueMedicinenow/' . $pmedicines->patient_id) }}">Issue
-                Medicine Now</a> --}}
-
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
@@ -86,11 +85,6 @@
         $("#issuemedicine1").slideDown(1000);
     }
 </script>
-
-
-
-
-
 
 
 <script>

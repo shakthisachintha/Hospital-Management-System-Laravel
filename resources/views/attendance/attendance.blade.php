@@ -103,7 +103,7 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" name="year" placeholder="Enter Year">
+                                        <input type="number" min="2018" max="{{date('Y')}}" class="form-control" name="year" placeholder="Enter Year">
                                     </div>
                                     <div class="col-xs-5">
                                         <input type="submit" class="form-control btn btn-success" value="Find">

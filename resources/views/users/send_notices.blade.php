@@ -27,15 +27,15 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
 
-                    <li class="@if (!session('success')||session('successnotice')) active @endif">
+                    <li class="@if (!session('success')&&!session('unsuccess')||session('successnotice')) active @endif">
                         <a href="#activity" data-toggle="tab"
-                            aria-expanded="@if (!session('success')||session('successnotice')) true @else false @endif">Add
+                            aria-expanded="@if (!session('unsuccess')&&!session('success')||session('successnotice')) true @else false @endif">Add
                             Notice</a>
                     </li>
 
-                    <li class="@if (session('success')  ) active @endif">
+                    <li class="@if (session('success')||session('unsuccess')) active @endif">
                         <a href="#settings" data-toggle="tab"
-                            aria-expanded="@if (session('success') ) true @else false @endif">Send
+                            aria-expanded="@if (session('success') ||session('unsuccess')) true @else false @endif">Send
                             Notice</a>
                     </li>
 
@@ -55,7 +55,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </div>
                     @endif
 
-                    <div class="tab-pane @if (!session('success')||session('successnotice')) active @endif"
+                    <div class="tab-pane @if (!session('unsuccess')&&!session('success')||session('successnotice')) active @endif"
                         id="activity">
                         <div class="box">
                             <!-- /.box-header -->
@@ -132,7 +132,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                     </div>
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane @if (session('success') ) active @endif" id="settings">
+                    <div class="tab-pane @if (session('success') ||session('unsuccess')) active @endif" id="settings">
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -144,7 +144,11 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                     {{ session('success') }}
                                 </div>
                                 @endif
-
+                                @if (session('unsuccess'))
+                                <div class="alert alert-danger">
+                                    {{ session('unsuccess') }}
+                                </div>
+                                @endif
                                 <form role="form" method="post" action="{{ route('sendnotice') }}">
 
                                     {{csrf_field()}}
@@ -167,7 +171,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                         </div>
 
                                         <div class="col-md-3">
-                                            <div class="checkbox">
+                                            <div class="checkbox" >
                                                 <label>
                                                     <input type="checkbox" name="emails" value="email"> Emails
                                                 </label>
@@ -205,12 +209,7 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa'?>
                                                     Pharmasist
                                                 </label>
                                             </div>
-                                            {{-- <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="receiverlist[]" value="patient">
-                                                    Patient
-                                                </label>
-                                            </div> --}}
+
                                         </div>
 
                                         <div class="col-md-1">
