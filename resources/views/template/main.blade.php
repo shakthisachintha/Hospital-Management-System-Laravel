@@ -215,6 +215,9 @@ $outlet = 'Rural Ayruvedic Hospital Kesbawa';
           var h = today.getHours();
           var c = ((h > 12) ? 'pm' : 'am');
           h=h%12;
+          if(h==0){
+            h=12;
+          }
           var m = today.getMinutes();
           var s = today.getSeconds();
           m = checkTime(m);
