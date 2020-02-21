@@ -327,16 +327,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v0.8.4",
+            "version": "v0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "8f49b3b01693f51037dd50da81090beba1b5c005"
+                "reference": "6782abfc090b132134cd6cea0ec6d76f0fce2c56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/8f49b3b01693f51037dd50da81090beba1b5c005",
-                "reference": "8f49b3b01693f51037dd50da81090beba1b5c005",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/6782abfc090b132134cd6cea0ec6d76f0fce2c56",
+                "reference": "6782abfc090b132134cd6cea0ec6d76f0fce2c56",
                 "shasum": ""
             },
             "require": {
@@ -389,7 +389,7 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2020-01-20T17:00:46+00:00"
+            "time": "2020-02-20T03:52:51+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -3529,16 +3529,16 @@
         },
         {
             "name": "sendgrid/php-http-client",
-            "version": "3.10.2",
+            "version": "3.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sendgrid/php-http-client.git",
-                "reference": "a3891dfe1130014e46b59e3c76be0c1c9d4fd540"
+                "reference": "2943016335aa6bc57be9a78316b26c11cabb1536"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sendgrid/php-http-client/zipball/a3891dfe1130014e46b59e3c76be0c1c9d4fd540",
-                "reference": "a3891dfe1130014e46b59e3c76be0c1c9d4fd540",
+                "url": "https://api.github.com/repos/sendgrid/php-http-client/zipball/2943016335aa6bc57be9a78316b26c11cabb1536",
+                "reference": "2943016335aa6bc57be9a78316b26c11cabb1536",
                 "shasum": ""
             },
             "require": {
@@ -3577,20 +3577,20 @@
                 "rest",
                 "sendgrid"
             ],
-            "time": "2020-01-22T20:51:56+00:00"
+            "time": "2020-02-19T20:33:05+00:00"
         },
         {
             "name": "sendgrid/sendgrid",
-            "version": "7.4.2",
+            "version": "7.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sendgrid/sendgrid-php.git",
-                "reference": "d697c9e1677516314c28d2b946cc3062ee9537ff"
+                "reference": "4b35a0f2ebc98aca6c861dc3fbcc40a9f2c35198"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/d697c9e1677516314c28d2b946cc3062ee9537ff",
-                "reference": "d697c9e1677516314c28d2b946cc3062ee9537ff",
+                "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/4b35a0f2ebc98aca6c861dc3fbcc40a9f2c35198",
+                "reference": "4b35a0f2ebc98aca6c861dc3fbcc40a9f2c35198",
                 "shasum": ""
             },
             "require": {
@@ -3612,7 +3612,6 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SendGrid\\": "lib/",
                     "SendGrid\\Mail\\": "lib/mail/",
                     "SendGrid\\Contacts\\": "lib/contacts/",
                     "SendGrid\\Stats\\": "lib/stats/"
@@ -3634,7 +3633,7 @@
                 "sendgrid",
                 "twilio sendgrid"
             ],
-            "time": "2020-01-22T20:59:57+00:00"
+            "time": "2020-02-19T20:36:10+00:00"
         },
         {
             "name": "spatie/db-dumper",

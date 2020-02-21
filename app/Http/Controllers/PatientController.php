@@ -512,7 +512,7 @@ class PatientController extends Controller
         $INPtable->patient_id = $request->reg_pid;
         $INPtable->ward_id = $request->reg_ipwardno;
         $INPtable->patient_inventory = $request->reg_ipinventory;
-       
+    
         $INPtable->house_doctor = $request->reg_iphousedoc;
         $INPtable->approved_doctor = $request->reg_ipapprovedoc;
         $INPtable->disease = $request->reg_admitofficer1;
@@ -525,8 +525,7 @@ class PatientController extends Controller
 
         // decrement bed count by 1
         $getFB = Ward::where('ward_no', $request->reg_ipwardno)->first();
-        $decre = 1;
-        $newFB = $getFB->free_beds - $decre;
+        $newFB = $getFB->free_beds-=1;
         Ward::where('ward_no', $request->reg_ipwardno)->update(['free_beds' => $newFB]);
 
       
@@ -576,7 +575,7 @@ class PatientController extends Controller
 
     public function store_disinpatient(Request $request)
     {
-        try{
+        // try{
         $pid = $request->reg_pid;
         $INPtableUpdate = Inpatient::where('patient_id', $pid)->first();
 
@@ -591,15 +590,14 @@ class PatientController extends Controller
         // increment bed count by 1
         $wardNo = $INPtableUpdate->ward_id;
         $getFB = Ward::where('ward_no', $wardNo)->first();
-        $incre = 1;
-        $newFB = $getFB->free_beds + $incre;
+        $newFB = $getFB->free_beds+=1;
         Ward::where('ward_no', $wardNo)->update(['free_beds' => $newFB]);
 
         return view('patient.discharge_recipt',compact('INPtableUpdate'))->with('regpsuccess', "Inpatient Successfully Discharged");;
-        }
-        catch(\Throwable $th){
-            return redirect()->back()->with('error',"Unkown Error Occured");
-        }
+        // }
+        // catch(\Throwable $th){
+        //     return redirect()->back()->with('error',"Unkown Error Occured");
+        // }
     }
 
     public function getPatientData(Request $request)

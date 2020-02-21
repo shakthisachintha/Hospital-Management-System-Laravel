@@ -83,7 +83,8 @@ class MedicineController extends Controller
     public function issueMedicineView()
     {
         $user = Auth::user();
-        return view('patient.issueMedicineView',compact('pmedicines'), ['title' => "Issue MedicineN"]);
+        return view('patient.issueMedicineView',
+        ['title' => "Issue MedicineN"]);
     }
 
     public function issueMedicineValid(Request $request)
