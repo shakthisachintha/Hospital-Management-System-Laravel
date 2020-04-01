@@ -40,11 +40,13 @@ function validateNum(appNum){
     },
     success: function (appointment) {
         if(appointment.exist){
+            console.log(appointment);
             $("#btn_submit").removeAttr("disabled");
             $("#btn_submit").focus();
             $("#details").fadeIn();
             $("#p_name").text(appointment.name);
-            $("#pnum").val(appointment.pNum)
+            $("#pnum").val(appointment.pNum);
+            $("#finger").text(appointment.finger);
             $("#appt_num").text(appointment.appNum);
             $("#appt_num_1").val(appointment.appNum);
         }else{
@@ -80,6 +82,7 @@ function validateNum(appNum){
                     <div style="display:none" id="details">
                         <h4>Patient Name : <span id="p_name"></span></h4>
                         <h4>Appointment &nbsp;: <span id="appt_num"></span></h4>
+                        <h4>Your Finger Print &nbsp;: <span id="finger"></span></h4>
                     </div>
                 </form>
             </div>

@@ -198,6 +198,7 @@ class PatientController extends Controller
                     "name" => $rec->name,
                     "appNum" => $rec->num,
                     "pNum" => $rec->pnum,
+                    "finger"=>Auth::user()->fingerprint ,
                 ]);
             } else {
                 return response()->json([
