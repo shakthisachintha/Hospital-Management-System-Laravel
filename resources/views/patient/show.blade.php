@@ -13,6 +13,8 @@
 @endsection
 @php
 use App\Medicine;
+use App\Prescription_Medicine;
+
 @endphp
 @section('main_content')
 {{--  issue medicine  --}}
@@ -67,6 +69,36 @@ use App\Medicine;
 
                 </tbody>
             </table>
+
+<div class="box box-info">
+    <div class="box-header with-border">
+    <div class="form-group">
+        <h3>Number of Medicine Types Issued Now</h3>
+        <input type="text" id="medCount" readonly class="col-sm-2 form-control" value="{{Prescription_Medicine::where('prescription_id',$presid)->select('medicine_id')->count('medicine_id')}}">
+    </div>
+<br>
+    <div class="form-group">
+        <h3>Quantity of Each Medicine Issued Up To Now</h3>
+        {{-- for="medDisplay" class="col-sm-2"> --}}
+        <table class="table table-striped table-bordered">
+            <tbody>
+        @foreach ($pmedicines as $med)
+        <tr>
+            {{-- <td>
+                {{$med->medicine_id}}
+            </td> --}}
+            <td style="text-align:left;font-size:15px;">
+                {{ Medicine::find($med->medicine_id)->name_sinhala }}</td>
+            <td style="text-align:left;font-size:15px;">
+                {{ Medicine::find($med->medicine_id)->qty }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+    </table>
+    </div>
+</div>
+</div>
+
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
