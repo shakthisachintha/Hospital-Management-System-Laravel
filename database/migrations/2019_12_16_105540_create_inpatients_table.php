@@ -18,13 +18,13 @@ class CreateInpatientsTable extends Migration
             $table->timestamps();
             $table->bigInteger('patient_id');
             $table->char('discharged',4)->default('NO'); // YES | NO
-            $table->bigInteger('ward_id');
+            $table->bigInteger('ward_id')->unsigned();
             $table->foreign('ward_id')->references('id')->on('wards');
             $table->date('discharged_date')->nullable();
             $table->string('description')->nullable();
             $table->string('discharged_officer')->nullable();
             $table->string('patient_inventory')->nullable();
-            
+
             // $table->string('incharge_doctor');
             $table->string('house_doctor');
             $table->string('approved_doctor');
